@@ -35,14 +35,14 @@ for (const pin of data.pins) {
 <div class="b">${esc(q.brand)}</div><h1 style="font-size:${q.name.length > 34 ? 68 : 86}px">${esc(q.name)}</h1><div class="ko">${esc(q.ko)}</div>
 <div class="score"><div class="r">★ ${q.rating.toFixed(2)} <small>/ 5</small></div><div class="v">${q.reviews.toLocaleString('en-US')} Korean reviews on Hwahae${q.price ? ' · ' + esc(q.price) + ' in Korea' : ''}</div></div>
 <div class="tags">${tags}</div>
-<div class="also">Also top ${esc(q.noun)}s in Korea</div>${q.others.slice(0, 3).map((o) => `<div class="o"><b>#${o.rank}</b><span>${esc(o.name)}</span></div>`).join('')}<div class="sp"></div><div class="f"><span>K-Beauty Now</span><span>What Koreans actually use</span></div></div></body></html>`);
+<div class="also">Also top ${esc(q.noun)}s in Korea</div>${q.others.slice(0, 3).map((o) => `<div class="o"><b>#${o.rank}</b><span>${esc(o.name)}</span></div>`).join('')}<div class="sp"></div><div class="f"><span>K-Beauty Now</span><span><b>koreanbeautynow.com</b></span></div></div></body></html>`);
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
     continue;
   }
   if (pin.tips) {
     const li = pin.tips.map((t) => `<li>${esc(t)}</li>`).join('');
     await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${GUIDE_CSS}</style></head><body><div class="wrap"><div class="k">K-beauty guide</div><h1>${esc(pin.title)}</h1><ul>${li}</ul>
-<div class="pick">${esc(pin.pickLabel)}<b>${esc(pin.pick)}</b></div><div class="f"><span>K-Beauty Now</span><span>Full guide at kbeauty-now</span></div></div></body></html>`);
+<div class="pick">${esc(pin.pickLabel)}<b>${esc(pin.pick)}</b></div><div class="f"><span>K-Beauty Now</span><span><b>koreanbeautynow.com</b></span></div></div></body></html>`);
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
     continue;
   }
@@ -58,8 +58,9 @@ li{display:flex;gap:28px;background:#fff;border-radius:22px;padding:26px 30px;ma
 .n{font-size:64px;font-weight:800;color:#b04a5a;width:56px}
 .b{font-size:26px;color:#6b665f;text-transform:uppercase;letter-spacing:1px}.p{font-size:34px;font-weight:700;line-height:1.2}.m{font-size:24px;color:#6b665f;margin-top:4px}
 .f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}
-</style></head><body><div class="wrap"><div class="k">Ranked by Korean reviewers</div><h1>${esc(pin.title)}</h1><div class="s">${esc(pin.sub || "Hwahae top 5")} · ${esc(pin.date)}</div><ol>${rows}</ol>
-<div class="f"><span>K-Beauty Now</span><span>Full top 20 at kbeauty-now</span></div></div></body></html>`);
+.cta{background:#b04a5a;color:#fff;border-radius:22px;padding:28px 34px;font-size:32px;font-weight:700;margin:8px 0 34px}
+</style></head><body><div class="wrap"><div class="k">Ranked by Korean reviewers</div><h1 style="font-size:${pin.title.length > 40 ? 60 : 72}px">${esc(pin.title)}</h1><div class="s">${esc(pin.sub || "Hwahae top 5")} · ${esc(pin.date)}</div><ol>${rows}</ol>
+<div class="cta">Full top 20, Korean prices and where to buy →</div><div class="f"><span>K-Beauty Now</span><span><b>koreanbeautynow.com</b></span></div></div></body></html>`);
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
 }
 await b.close();
