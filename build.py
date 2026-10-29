@@ -158,7 +158,7 @@ def page(title, desc, path, body, updated, head=''):
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta property="og:type" content="article"><meta property="og:site_name" content="K-Beauty Now">
 <meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/{default_img(path, updated)}">'}
 <style>{CSS}</style></head><body>
-<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}brand/">Brands</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
+<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}brand/">Brands</a><a href="{BASE}concern/">Concerns</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
@@ -248,6 +248,58 @@ def product_pages(data):
         desc = f"{nm} is rated {r['rating']:.2f} from {r['reviews']:,} Korean reviews on Hwahae. See where it ranks in Korea, its Korean price and what reviewers praise."
         pages[f"p/{pid}/"] = page(title, desc, f"p/{pid}/", body, data['updatedAt'])
     pages.update(brand_pages(hist, today, data['updatedAt']))
+    pages.update(concern_pages(hist, today, data['updatedAt']))
+    return pages
+
+
+CONCERNS = {  # review topic -> (slug, h1, lede)
+    'Moisturizing': ('moisturizing', 'The most moisturizing Korean skincare, according to Korean reviewers', 'Products Korean Hwahae users most often describe as moisturizing.'),
+    'Hydrating': ('hydrating', 'The most hydrating Korean skincare, according to Korean reviewers', 'Products Korean Hwahae users most often describe as hydrating.'),
+    'Fixes inner dryness': ('dehydrated-skin', 'Korean skincare for dehydrated skin: what Korean reviewers say fixes inner dryness', 'Korean reviewers use the phrase "속건조 해결" (fixes inner dryness) for skin that feels tight underneath even when the surface is oily. These products get that comment most.'),
+    'Lightweight': ('lightweight', 'Lightweight Korean skincare Korean reviewers love', 'Products Korean Hwahae users most often call lightweight.'),
+    'Non-sticky': ('non-sticky', 'Non-sticky Korean skincare, according to Korean reviewers', 'Products Korean Hwahae users most often describe as non-sticky, a top request in humid weather.'),
+    'Non-irritating': ('non-irritating', 'Non-irritating Korean skincare for sensitive skin', 'Products Korean Hwahae users most often describe as non-irritating.'),
+    'Soothing': ('soothing', 'The most soothing Korean skincare for redness, according to Korean reviewers', 'Products Korean Hwahae users most often describe as soothing.'),
+    'No breakouts': ('no-breakouts', "Korean skincare that doesn't cause breakouts, according to Korean reviewers", 'Products Korean Hwahae users most often say did not break them out.'),
+    'Clears breakouts': ('breakouts', 'Korean skincare for breakouts: what Korean reviewers say clears acne', 'Products Korean Hwahae users most often say helped clear breakouts.'),
+    'Pore care': ('pores', 'Korean skincare for pores, according to Korean reviewers', 'Products Korean Hwahae users most often mention for pore care.'),
+    'Oil-free feel': ('oil-free', 'Oil-free feel Korean skincare for oily skin', 'Products Korean Hwahae users most often say feel oil-free.'),
+    'Glowy': ('glowy', 'Glowy Korean skincare and makeup, according to Korean reviewers', 'Products Korean Hwahae users most often describe as glowy.'),
+    'Exfoliates well': ('exfoliating', 'Gentle exfoliating Korean skincare Korean reviewers rate highest', 'Products Korean Hwahae users most often say exfoliate well.'),
+    'Long-lasting': ('long-lasting', 'Long-lasting Korean makeup, according to Korean reviewers', 'Products Korean Hwahae users most often describe as long-lasting.'),
+}
+
+
+def concern_pages(hist, today, updated):
+    pages, idx = {}, []
+    for topic, (slug, h1, lede) in CONCERNS.items():
+        items = [(pid, h) for pid, h in hist.items() if topic in h['r']['topics']]
+        if len(items) < 4:
+            continue
+        items.sort(key=lambda t: (t[1]['last'] != today, t[1]['r']['topics'].index(topic), -t[1]['r']['rating'] * min(t[1]['r']['reviews'], 20000)))
+        cards = []
+        for pid, h in items[:20]:
+            r = h['r']
+            b = brand_label(r).split(' (')[0]
+            best = min(h['ranks'], key=lambda x: x[2])
+            q = f"{b} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+            amz = f'<a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
+            pos = r['topics'].index(topic) + 1
+            cards.append(f'<div class="card"><p class="kicker">#{best[2]} in <a href="{best[1]}">{esc(best[0])}</a></p>'
+                         f'<h3><a href="{BASE}p/{pid}/">{esc(b)} {esc(name_label(r))}</a></h3>'
+                         f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews. "{esc(topic)}" is the {["", "most", "second most", "third most"][min(pos, 3)] or "a"} mentioned review topic.</p><p>{amz}</p></div>')
+        body = (f'<p class="kicker">By concern · updated {esc(updated[:10])}</p><h1>{esc(h1)}</h1><p class="lede">{esc(lede)} '
+                'Hwahae, Korea\'s biggest cosmetics review app, groups its reviews into topics; this list shows ranked products where this topic is among the top three, strongest first.</p>'
+                f'<div class="grid">{"".join(cards)}</div><p class="meta">{esc(LINK_NOTE)}</p>'
+                f'<p><a href="{BASE}concern/">All concerns</a> · <a href="{BASE}guide/">Buying guides</a></p>')
+        title = h1.replace('according to Korean reviewers', 'Ranked by Korean Reviewers').strip()
+        title = title[0].upper() + title[1:] + ' (Hwahae)'
+        pages[f'concern/{slug}/'] = page(title, f'{lede} {len(items)} Korean products, with ratings, review counts and where to buy.', f'concern/{slug}/', body, updated)
+        idx.append((slug, h1, len(items)))
+    lst = ''.join(f'<div class="card"><h3><a href="{BASE}concern/{sl}/">{esc(h1.split(",")[0].split(":")[0])}</a></h3><p class="meta">{n} products</p></div>' for sl, h1, n in idx)
+    pages['concern/'] = page('Korean Skincare by Concern: What Korean Reviewers Say Works',
+                             'Korean skincare grouped by what Korean reviewers actually say about it: moisturizing, non-sticky, soothing, no breakouts, pores and more.',
+                             'concern/', f'<p class="kicker">By concern</p><h1>Korean skincare by concern</h1><p class="lede">Grouped by the review topics Korean Hwahae users mention most.</p><div class="grid">{lst}</div>', updated)
     return pages
 
 
@@ -574,6 +626,19 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc('Best ' + b + ' products, ranked by Korean reviewers')}</title><link>{BASE}brand/{brand_slug(b)}/</link><guid isPermaLink=\"false\">brand-{brand_slug(b)}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(f'{len(hs)} {b} products have made a Hwahae top 20 in Korea. Top picks: {top}. Ratings and review counts from Korean reviewers.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    # concern pins, monthly
+    for topic in ('Non-sticky', 'Non-irritating', 'No breakouts', 'Fixes inner dryness', 'Soothing', 'Pore care'):
+        slug, h1, lede = CONCERNS[topic]
+        hs = sorted((h for h in hist.values() if topic in h['r']['topics']), key=lambda h: (h['r']['topics'].index(topic), -h['r']['rating']))
+        if len(hs) < 4:
+            continue
+        f = f"concern-{slug}-{month}.jpg"
+        t = h1.split(':')[0].replace(', according to Korean reviewers', '')
+        pins.append({'title': t, 'date': up, 'file': f, 'items': [
+            {'brand': brand_label(h['r']).split(' (')[0], 'name': name_label(h['r']).split(' SPF')[0].split(' (')[0], 'rating': h['r']['rating'], 'reviews': h['r']['reviews']} for h in hs[:5]]})
+        items.append(f"<item><title>{esc(t)}</title><link>{BASE}concern/{slug}/</link><guid isPermaLink=\"false\">concern-{slug}-{month}</guid>"
+                     f"<pubDate>{pub}</pubDate><description>{esc(lede + ' Ranked from Hwahae, Korea' + chr(39) + 's biggest cosmetics review app.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
            f'<description>Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.</description>{"".join(items)}</channel></rss>')
@@ -595,6 +660,7 @@ def index_page(data):
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-routine/">Korean skincare routine</a></h3><p class="meta">The 5 steps in order, with Korea's #1 pick for each.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
+<div class="card"><h3><a href="{BASE}concern/">Shop by concern</a></h3><p class="meta">Non-sticky, soothing, no breakouts, pores, dehydrated skin.</p></div>
 <div class="card"><h3><a href="{BASE}brand/">Best by brand</a></h3><p class="meta">Torriden, Round Lab, Anua and more, ranked by Korean reviewers.</p></div>
 <div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>
 <div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
