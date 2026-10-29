@@ -1,8 +1,31 @@
 {
- "at": "2026-10-29T12:34+00:00",
+ "at": "2026-10-29T12:36+00:00",
  "joined": [],
- "pending": [],
+ "pending": [
+  {
+   "id": 15448,
+   "name": "YesStyle UK"
+  },
+  {
+   "id": 80851,
+   "name": "Korean Skincare EU"
+  },
+  {
+   "id": 130063,
+   "name": "SkinSeoul UK"
+  },
+  {
+   "id": 130075,
+   "name": "Skin Seoul US"
+  },
+  {
+   "id": 131331,
+   "name": "Skin Cupid (UK)"
+  }
+ ],
  "transactions": [],
- "totals": {},
- "note": "no token"
+ "totals": {
+  "count": 0,
+  "commission": 0
+ }
 }
