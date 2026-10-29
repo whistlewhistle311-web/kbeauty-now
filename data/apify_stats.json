@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T12:29Z",
+ "at": "2026-10-29T12:33Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -27,7 +27,7 @@
   },
   {
    "name": "naver-shopping-insight-search-trends",
-   "title": "Naver Shopping Insight & Search Trends (DataLab API)",
+   "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
    "users30": 1,
    "users": 2,
    "runs": 3,
