@@ -121,7 +121,8 @@ def page(title, desc, path, body, updated, head=''):
 <meta name="google-site-verification" content="0oISjJafxIxC-LdVeihPqTQ3o9DoxV5FSNgvVZB-tps">
 <meta name="p:domain_verify" content="62fc4bdb9182a51a7a89f9e270417f58"/>
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{url}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">{head}
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta property="og:type" content="article"><meta property="og:site_name" content="K-Beauty Now">
+<meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/category-all-{updated[:10]}.jpg">'}
 <style>{CSS}</style></head><body>
 <header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
