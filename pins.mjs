@@ -18,7 +18,7 @@ for (const pin of data.pins) {
   if (pin.tips) {
     const li = pin.tips.map((t) => `<li>${esc(t)}</li>`).join('');
     await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${GUIDE_CSS}</style></head><body><div class="wrap"><div class="k">K-beauty guide</div><h1>${esc(pin.title)}</h1><ul>${li}</ul>
-<div class="pick">Korea's #1 right now (Hwahae)<b>${esc(pin.pick)}</b></div><div class="f"><span>K-Beauty Now</span><span>Full guide at kbeauty-now</span></div></div></body></html>`);
+<div class="pick">${esc(pin.pickLabel)}<b>${esc(pin.pick)}</b></div><div class="f"><span>K-Beauty Now</span><span>Full guide at kbeauty-now</span></div></div></body></html>`);
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
     continue;
   }

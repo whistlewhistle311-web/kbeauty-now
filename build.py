@@ -218,12 +218,27 @@ GUIDES = {
 
 
 GUIDE_PINS = {  # evergreen pins, refreshed monthly (guid changes each month)
+    'korean-skincare-routine': ('sunscreen', 'Korean skincare routine in 5 steps', ['1. Cleanse (oil first at night)', '2. Hydrating toner', '3. One serum', '4. Moisturizer', '5. SPF50+ sunscreen every morning']),
     'korean-sunscreen': ('sunscreen', 'How to choose a Korean sunscreen', ['PA++++ is the top UVA grade.', 'Mineral (무기자차) suits sensitive skin.', 'Chemical (유기자차) feels lighter.', 'Look for the No white cast tag.']),
     'korean-toner': ('toner', 'How to choose a Korean toner', ['Korean toner hydrates, it is not an astringent.', 'Toner pads with PHA: quick gentle exfoliation.', 'Dry skin: glycerin, panthenol, hyaluronic acid.', 'Sensitive skin: centella or mugwort.']),
     'korean-serum': ('serum', 'Korean serum, essence or ampoule?', ['The names have no legal difference.', 'Pick by active ingredient, not the word.', 'Niacinamide: tone and oil control.', 'Centella, heartleaf: soothing.']),
     'korean-moisturizer': ('cream', 'How to choose a Korean moisturizer', ['Gel cream: oily skin, hot weather.', 'Ceramide barrier cream: dry skin, winter.', 'Centella or panthenol: redness.', 'Seal in toner and serum with it.']),
     'korean-cleanser': ('cleansing', 'Korean double cleansing in 2 steps', ['1. Oil or balm on dry skin, then rinse.', '2. Foam or gel cleanser.', 'Morning: one gentle cleanser is enough.', 'Tight after washing? Try a low-pH foam.']),
 }
+
+for _k, _t, _need, _avoid, _key in [
+    ('dry', 'dry skin', 'Layer hydration: a hydrating toner (patted in two or three times), a serum with hyaluronic acid or panthenol, then a ceramide cream. Look for the review tags Moisturizing and Fixes inner dryness.', 'Foaming cleansers that leave skin tight, and alcohol-heavy toners.', 'Ceramides, panthenol, glycerin, squalane'),
+    ('oily', 'oily skin', 'Keep it light: a gel cleanser, a watery toner or a toner pad with PHA or BHA a few times a week, niacinamide serum and a gel cream. Oily skin still needs moisture, or it makes more oil.', 'Skipping moisturizer, and heavy balm cleansers left on the skin.', 'Niacinamide, BHA (salicylic acid), heartleaf, green tea'),
+    ('combination', 'combination skin', 'Treat zones differently: a light gel cream all over and a richer cream only on dry cheeks. A gentle low-pH cleanser keeps both areas balanced.', 'Using strong oil-control products on dry areas.', 'Niacinamide, hyaluronic acid, panthenol'),
+    ('sensitive', 'sensitive skin', 'Fewer products, shorter ingredient lists, patch test first. Korean brands make many soothing lines with centella (병풀) or mugwort (쑥). Mineral sunscreens (무기자차) are usually gentler.', 'Fragrance, essential oils, strong acids and high-dose vitamin C.', 'Centella, mugwort, panthenol, madecassoside'),
+    ('acne-prone', 'acne-prone skin', 'Gentle cleansing twice a day, a BHA or heartleaf toner, and light non-comedogenic moisturizer. Do not skip sunscreen: it helps marks fade.', 'Over-washing, scrubs, and heavy oils on breakout areas.', 'BHA, heartleaf (어성초), tea tree, niacinamide, azelaic acid'),
+]:
+    GUIDES[f'skincare-for-{_k}-skin'] = (f'skin:{_k}', f'Best Korean Skincare for {_t.title()} (Updated Daily): Hwahae Top Picks',
+        f'How to build a Korean skincare routine for {_t}, which ingredients to look for, and the 5 products Hwahae users with {_t} rank highest today.',
+        f'Korean skincare for {_t}: what works, and what Koreans pick',
+        f'Hwahae lets users register their skin type, so its rankings show what people with {_t} actually rate highly. Here is how to build a routine for {_t}, and today\'s top 5.',
+        f'<h2>How to build the routine</h2><p>{_need}</p><h2>Ingredients to look for</h2><p>{_key}.</p><h2>What to avoid</h2><p>{_avoid}</p>'
+        f'<p>New to the order of steps? See the <a href="https://whistlewhistle311-web.github.io/kbeauty-now/guide/korean-skincare-routine/">Korean skincare routine guide</a>.</p>')
 
 
 def extra_pages(data):
@@ -257,17 +272,43 @@ def extra_pages(data):
         pages['guide/korean-sunscreen/'] = page('Best Korean Sunscreen (Updated Daily): SPF50+ PA++++ Picks from Hwahae', 'How to choose a Korean sunscreen (SPF50+, PA++++, mineral vs chemical) and the 5 sunscreens Korean Hwahae users rank highest today.', 'guide/korean-sunscreen/', g, up)
 
     for slug, (cat, title, desc, h1, lede, body) in GUIDES.items():
-        rk = by.get(('category', cat))
+        kind, key = ('skin', cat[5:]) if cat.startswith('skin:') else ('category', cat)
+        rk = by.get((kind, key))
         if not rk:
             continue
         top = ''.join(row_html(r) for r in rk['rows'][:5])
+        more = (f'<a href="{BASE}c/{key}/">See the full top 20 {CAT[key][1]}</a>' if kind == 'category'
+                else f'<a href="{BASE}skin/{key}/">See the full top 20 for {SKIN[key]}</a>')
+        h2 = 'Top 5 on Hwahae today' if kind == 'category' else f'Top 5 for {SKIN[key]} on Hwahae today'
         g = (f'<p class="kicker">Guide · updated {esc(up[:10])}</p><h1>{h1}</h1><p class="lede">{lede}</p>{body}'
-             f'<h2>Top 5 on Hwahae today</h2><ol class="rank">{top}</ol>'
-             f'<p><a href="{BASE}c/{cat}/">See the full top 20 {CAT[cat][1]}</a></p>')
+             f'<h2>{h2}</h2><ol class="rank">{top}</ol><p>{more}</p>')
         pages[f'guide/{slug}/'] = page(title, desc, f'guide/{slug}/', g, up)
-    names = {'korean-sunscreen': 'Korean sunscreen'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
+    steps = [('cleansing', 'Cleanse', 'Oil or balm at night to remove sunscreen, then a foam or gel cleanser. In the morning one gentle cleanser is enough.'),
+             ('toner', 'Toner', 'A hydrating toner right after washing, by hand or on a cotton pad. Toner pads with PHA can replace it a few times a week.'),
+             ('serum', 'Serum or essence', 'One targeted treatment: niacinamide for tone and oil, centella or heartleaf for redness, vitamin C for dullness.'),
+             ('cream', 'Moisturizer', 'Seal everything in. Gel cream if you are oily, a ceramide cream if you are dry.'),
+             ('sunscreen', 'Sunscreen (morning)', 'SPF50+ PA++++ every morning, even indoors near windows. This is the step Koreans never skip.')]
+    blocks = []
+    for i, (cat, name, txt) in enumerate(steps, 1):
+        rk = by.get(('category', cat))
+        pick = ''
+        if rk:
+            r = rk['rows'][0]
+            noun = {'cleansing': 'cleanser', 'toner': 'toner', 'serum': 'serum', 'cream': 'moisturizer', 'sunscreen': 'sunscreen'}[cat]
+            pick = (f'<p class="meta">Korea\'s #1 {noun} on Hwahae today: <a href="{BASE}p/{r["id"]}/">{esc(brand_label(r))} {esc(name_label(r))}</a></p>'
+                    f'<p class="links">{search_links(r)}<a href="{BASE}c/{cat}/">Top 20</a></p>')
+        blocks.append(f'<h2>{i}. {name}</h2><p>{txt}</p>{pick}')
+    routine = (f'<p class="kicker">Guide · updated {esc(up[:10])}</p><h1>Korean skincare routine: the order that actually matters</h1>'
+               '<p class="lede">Forget the 10-step myth. Most Koreans use four or five steps. Here is the order, what each step does, and the product Korean Hwahae users rank #1 for each step today.</p>'
+               + ''.join(blocks) +
+               '<h2>Optional extras</h2><p>Sheet masks once or twice a week after toner. Eye cream before moisturizer. Exfoliating pads or acids two or three nights a week, never on the same night as retinol.</p>'
+               f'<h2>By skin type</h2><p>' + ' · '.join(f'<a href="{BASE}guide/skincare-for-{k}-skin/">{v}</a>' for k, v in SKIN.items()) + '</p>')
+    pages['guide/korean-skincare-routine/'] = page('Korean Skincare Routine Order (Updated Daily): 5 Steps and Korea\'s #1 Pick for Each',
+        'The Korean skincare routine in the right order: cleanser, toner, serum, moisturizer, sunscreen, with the product Korean Hwahae users rank #1 for each step today.',
+        'guide/korean-skincare-routine/', routine, up)
+    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
     hub = '<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p><div class="grid">' + ''.join(
-        f'<div class="card"><h3><a href="{BASE}{p}">{esc(names.get(p.split("/")[1], p))}</a></h3></div>' for p in pages if p.startswith('guide/')) + '</div>'
+        f'<div class="card"><h3><a href="{BASE}{p}">{esc(names.get(p.split("/")[1], p))}</a></h3></div>' for p in sorted((p for p in pages if p.startswith('guide/')), key=lambda p: (p != 'guide/korean-skincare-routine/', 'skin' in p))) + '</div>'
     pages['guide/'] = page('Korean Skincare Buying Guides: Sunscreen, Toner, Serum, Moisturizer, Cleanser', 'Practical guides to each step of a Korean skincare routine, with the products Korean Hwahae users rank highest today.', 'guide/', hub, up)
     return pages
 
@@ -301,7 +342,8 @@ def pins_and_rss(data):
         r = rk['rows'][0]
         pick = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
         f = f"guide-{slug}-{month}.jpg"
-        pins.append({'title': title, 'date': up, 'file': f, 'tips': tips, 'pick': pick})
+        pins.append({'title': title, 'date': up, 'file': f, 'tips': tips, 'pick': pick,
+                     'pickLabel': f"Korea's #1 {CAT[cat][0].lower().replace('cleansing', 'cleanser').replace('cream', 'moisturizer').replace('serum and essence', 'serum')} right now (Hwahae)"})
         items.append(f"<item><title>{esc(title)}</title><link>{BASE}guide/{slug}/</link><guid isPermaLink=\"false\">guide-{slug}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(title + '. ' + ' '.join(tips) + ' Korea' + chr(39) + 's #1 right now: ' + pick + '.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
