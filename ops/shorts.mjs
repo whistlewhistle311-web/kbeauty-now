@@ -49,12 +49,18 @@ await b.close();
 // 2.6s per slide (first and last 3s), 0.4s crossfades
 const dur = slides.map((_, i) => (i === 0 || i === slides.length - 1 ? 3 : 2.6));
 const args = ['-y'];
-slides.forEach((_, i) => args.push('-loop', '1', '-t', String(dur[i]), '-i', `${tmp}/s${i}.png`));
-let f = '', last = '[0:v]', off = 0;
+slides.forEach((_, i) => args.push('-i', `${tmp}/s${i}.png`));  // one frame each; zoompan makes the motion frames
+// slow push-in on every slide (keeps the frame moving, which helps Reels retention)
+let f = '';
+slides.forEach((_, i) => {
+    const n = Math.round(dur[i] * 30);
+    f += `[${i}:v]scale=1188:2112,zoompan=z='1+0.05*on/${n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${n}:s=1080x1920:fps=30,setsar=1[z${i}];`;
+});
+let last = '[z0]', off = 0;
 for (let i = 1; i < slides.length; i++) {
     off += dur[i - 1] - 0.4;
     const o = i === slides.length - 1 ? '[v]' : `[x${i}]`;
-    f += `${last}[${i}:v]xfade=transition=fade:duration=0.4:offset=${off.toFixed(2)}${o};`;
+    f += `${last}[z${i}]xfade=transition=slideleft:duration=0.4:offset=${off.toFixed(2)}${o};`;
     last = o;
 }
 const out = `${outDir}/${slug}-${day}.mp4`;
