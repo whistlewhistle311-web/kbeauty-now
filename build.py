@@ -31,6 +31,7 @@ main{max-width:880px;margin:0 auto;padding:28px 16px 72px}
 header.top{border-bottom:1px solid var(--line);background:var(--card)}
 header.top div{max-width:880px;margin:0 auto;padding:12px 16px;display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
 header.top a{color:var(--ink);text-decoration:none}header.top a.home{font-weight:700;margin-right:auto}
+@media(max-width:640px){header.top div{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;white-space:nowrap}header.top div::-webkit-scrollbar{display:none}header.top a.home{margin-right:8px}}
 h1{font-size:clamp(26px,5.5vw,38px);line-height:1.2;margin:6px 0 10px;letter-spacing:-.02em}
 h2{font-size:22px;margin:40px 0 10px}
 .lede{color:var(--muted);font-size:17px}.meta{font-size:13px;color:var(--muted)}
