@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T12:27Z",
+ "at": "2026-10-29T12:29Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -19,11 +19,11 @@
   },
   {
    "name": "naver-news-blog-search-api",
-   "title": "Naver News, Blog & Cafe Monitor (Official API)",
+   "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
    "users30": 1,
    "users": 2,
    "runs": 2,
-   "pricing": "FREE"
+   "pricing": "PAY_PER_EVENT"
   },
   {
    "name": "naver-shopping-insight-search-trends",
@@ -35,20 +35,20 @@
   },
   {
    "name": "kakao-map-places-api",
-   "title": "Kakao Map Places Extractor (Official Local API, No 45 Cap)",
+   "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)",
    "users30": 0,
    "users": 1,
    "runs": 2,
-   "pricing": "FREE"
+   "pricing": "PAY_PER_EVENT"
   }
  ],
  "account": {
   "plan": "FREE"
  },
  "log": [
-  "nKECptsi2Y0QaaFbP updated ['pricingInfos', 'title']",
+  "nKECptsi2Y0QaaFbP update failed: HTTP Error 400: Bad Request",
   "8UUeDflm8Baj330cq updated ['title']",
-  "c5XpOhA6an0YpwrYa updated ['pricingInfos', 'title']",
+  "c5XpOhA6an0YpwrYa update failed: HTTP Error 400: Bad Request",
   "TwA7N7X916RY2EUkm updated ['title']"
  ]
 }
