@@ -2,25 +2,38 @@
  "actors": [
   {
    "id": "nKECptsi2Y0QaaFbP",
-   "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)"
+   "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)",
+   "build": true,
+   "version": "0.1"
   },
   {
    "id": "8UUeDflm8Baj330cq",
-   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)"
+   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)",
+   "build": true,
+   "version": "0.1"
   },
   {
    "id": "c5XpOhA6an0YpwrYa",
    "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
-   "isPublic": false
+   "build": true,
+   "version": "0.1"
   },
   {
    "id": "TwA7N7X916RY2EUkm",
    "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
-   "isPublic": false
+   "build": true,
+   "version": "0.1"
   },
   {
    "id": "whyzB2FJrg3ApaSMo",
-   "title": "Daangn Scraper - Karrot Used Price Index (Korea Second-hand)"
+   "title": "Daangn Scraper - Karrot Used Price Index (Korea Second-hand)",
+   "build": true,
+   "version": "0.1"
+  },
+  {
+   "id": "G5w0rYlAyXdJQOC09",
+   "build": true,
+   "version": "0.1"
   }
  ]
 }
