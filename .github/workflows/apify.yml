@@ -18,8 +18,11 @@ jobs:
       - run: python ops/gumroad_sync.py
         env:
           GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
+      - run: python ops/awin_sync.py
+        env:
+          AWIN_TOKEN: ${{ secrets.AWIN_TOKEN }}
       - run: |
           git config user.name "kbn-bot"; git config user.email "bot@users.noreply.github.com"
           git pull -q --rebase || true
-          git add data/apify_stats.json data/gumroad_stats.json
+          git add data/apify_stats.json data/gumroad_stats.json data/awin_stats.json
           git diff --cached --quiet || { git commit -m "Apify stats $(date -u +%FT%H:%M)"; git push; }
