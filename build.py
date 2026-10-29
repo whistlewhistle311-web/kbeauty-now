@@ -283,6 +283,7 @@ GUIDE_PINS = {  # evergreen pins, refreshed monthly (guid changes each month)
     'korean-toner': ('toner', 'How to choose a Korean toner', ['Korean toner hydrates, it is not an astringent.', 'Toner pads with PHA: quick gentle exfoliation.', 'Dry skin: glycerin, panthenol, hyaluronic acid.', 'Sensitive skin: centella or mugwort.']),
     'korean-serum': ('serum', 'Korean serum, essence or ampoule?', ['The names have no legal difference.', 'Pick by active ingredient, not the word.', 'Niacinamide: tone and oil control.', 'Centella, heartleaf: soothing.']),
     'korean-moisturizer': ('cream', 'How to choose a Korean moisturizer', ['Gel cream: oily skin, hot weather.', 'Ceramide barrier cream: dry skin, winter.', 'Centella or panthenol: redness.', 'Seal in toner and serum with it.']),
+    'korean-skincare-on-amazon': ('cream', 'Best Korean skincare on Amazon, picked by Korean reviewers', ['Start from what Koreans rate highest.', 'Buy from the brand store or Ships from Amazon.', 'Two top picks per routine step.', 'Updated daily from Hwahae.']),
     'korean-cleanser': ('cleansing', 'Korean double cleansing in 2 steps', ['1. Oil or balm on dry skin, then rinse.', '2. Foam or gel cleanser.', 'Morning: one gentle cleanser is enough.', 'Tight after washing? Try a low-pH foam.']),
 }
 
@@ -395,7 +396,35 @@ def extra_pages(data):
         pages['trending/'] = page('Trending Korean Skincare Right Now: Fastest Climbers on Hwahae (Updated Daily)',
             'The Korean skincare and makeup products climbing fastest on Hwahae, Korea\'s biggest cosmetics review app, today. English names, ratings and where to buy.',
             'trending/', tr, up)
-    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
+    # Amazon picks: Korea's #1-#2 per routine step, each with an Amazon search button (only when the Amazon tag is set)
+    if AMAZON_TAG:
+        steps_a = [('sunscreen', 'Sunscreen'), ('toner', 'Toner'), ('serum', 'Serum and essence'), ('cream', 'Moisturizer'),
+                   ('cleansing', 'Cleanser'), ('masks', 'Sheet masks and pads'), ('cushion', 'Cushion foundation')]
+        secs = []
+        for cat, label in steps_a:
+            rk = by.get(('category', cat))
+            if not rk:
+                continue
+            cards = []
+            for r in rk['rows'][:2]:
+                q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+                tags = ', '.join(t.lower() for t in r['topics'][:3])
+                cards.append(f'<div class="card"><p class="kicker">#{r["rank"]} {esc(label.lower())} in Korea</p>'
+                             f'<h3><a href="{BASE}p/{r["id"]}/">{esc(brand_label(r))} {esc(name_label(r))}</a></h3>'
+                             f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tags)}.' if tags else '.') + '</p>'
+                             f'<p><a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">See it on Amazon</a></p></div>')
+            secs.append(f'<h2>{esc(label)}</h2><div class="grid">{"".join(cards)}</div>')
+        am = (f'<p class="kicker">Buying guide · updated {esc(up[:10])}</p><h1>Best Korean skincare on Amazon, picked by Korean reviewers</h1>'
+              '<p class="lede">Amazon is full of Korean skincare, but its bestseller lists mix in sponsored and Western-made products. '
+              'This list starts from the other side: the products Korean shoppers rate highest on Hwahae, Korea\'s biggest cosmetics review app, today, '
+              'two per routine step, each linked to an Amazon search so you can compare sellers and prices.</p>'
+              '<p class="meta">Check the seller before you buy: look for the brand\'s official store or "Ships from Amazon" to avoid fakes. Formulas sold abroad can differ slightly from the Korean version.</p>'
+              + ''.join(secs) +
+              f'<p class="meta">{esc(LINK_NOTE)}</p><p><a href="{BASE}guide/korean-skincare-routine/">Korean routine order</a> · <a href="{BASE}trending/">What is trending in Korea</a></p>')
+        pages['guide/korean-skincare-on-amazon/'] = page('Best Korean Skincare on Amazon (Updated Daily): Picks from Korean Reviewers',
+            'The Korean skincare products Korean reviewers rank highest on Hwahae today, two per routine step, each with a link to find it on Amazon.',
+            'guide/korean-skincare-on-amazon/', am, up)
+    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order', 'korean-skincare-on-amazon': 'Best Korean skincare on Amazon'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
     hub = '<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p><div class="grid">' + ''.join(
         f'<div class="card"><h3><a href="{BASE}{p}">{esc(names.get(p.split("/")[1], p))}</a></h3></div>' for p in sorted((p for p in pages if p.startswith('guide/')), key=lambda p: (p != 'guide/korean-skincare-routine/', 'skin' in p))) + '</div>'
     pages['guide/'] = page('Korean Skincare Buying Guides: Sunscreen, Toner, Serum, Moisturizer, Cleanser', 'Practical guides to each step of a Korean skincare routine, with the products Korean Hwahae users rank highest today.', 'guide/', hub, up)
@@ -492,6 +521,7 @@ def index_page(data):
 <h2>Start here</h2><div class="grid">
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-routine/">Korean skincare routine</a></h3><p class="meta">The 5 steps in order, with Korea's #1 pick for each.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
+<div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
 <div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>
 <div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
 <h2>By category</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'category')}</div>
