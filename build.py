@@ -452,6 +452,7 @@ def threads_posts(data):
                 f"1. {nm(r)}: {r['rating']:.2f} from {r['reviews']:,} reviews" + (f". Most-mentioned: {t}" if t else '') + "\n"
                 + ''.join(f"{i}. {nm(o)}\n" for i, o in enumerate(rows[1:3], 2)) +
                 "\nThis account auto-translates Hwahae's rankings into English every morning (AI-assisted, not sponsored). Full top 20 at the link in my profile.")
+        text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', text)  # 'S.NATURE' would be auto-linked as a domain
         posts.append({'category': rk['slug'], 'topic': 'K Beauty', 'text': text})
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'threads.json')
     json.dump({'date': up, 'posts': posts}, open(path, 'w'), ensure_ascii=False, indent=1)
