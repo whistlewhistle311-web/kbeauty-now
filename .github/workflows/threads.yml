@@ -4,8 +4,6 @@ on:
     inputs:
       slot: {description: 'post index 0-2', required: false, default: ''}
   schedule:
-    - cron: '43 23 * * *'
-    - cron: '43 4 * * *'
     - cron: '43 11 * * *'
 permissions:
   contents: write

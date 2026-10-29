@@ -154,6 +154,8 @@ NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sit
 
 def page(title, desc, path, body, updated, head=''):
     url = BASE + path
+    if path.startswith(('p/', 'brand/')):  # templated; reopen once each carries rank history (see audit 2026-10-29)
+        NOINDEX.add(path)
     if path in NOINDEX:
         head = '<meta name="robots" content="noindex,follow">' + head
     nav = ''.join(f'<a href="{BASE}c/{s}/">{v[0]}</a>' for s, v in CAT.items() if s in ('skincare', 'sunscreen', 'serum', 'toner', 'cushion'))
@@ -167,7 +169,7 @@ def page(title, desc, path, body, updated, head=''):
 <header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}brand/">Brands</a><a href="{BASE}concern/">Concerns</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
-Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
+Pages are built automatically every day from Hwahae data; product names are translated by K-Beauty Now with AI assistance and checked against official brand names where we can verify them; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 Need this data as JSON for your shop or trend report? The same rankings are available as an API on <a href="https://apify.com/koreadata-lab/hwahae-kbeauty-ranking-tracker">Apify (Hwahae K-Beauty Ranking Tracker)</a>.
 {LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.</footer></main></body></html>"""
 
@@ -446,6 +448,7 @@ def extra_pages(data):
 <ul><li>English product names (translated by us) and official English brand names where we are sure of them. Where we are not sure, the brand is shown as a transliteration with the Korean in brackets.</li>
 <li>The review topics Korean users mention most, translated to English (for example Soothing, Non-sticky, No white cast).</li>
 <li>Approximate USD prices from Korean list prices.</li></ul>
+<p>How it is made: a script collects the public rankings every morning and builds these pages automatically. Translations are AI-assisted; we verify official English brand names against brand and retailer pages and leave a transliteration when we cannot confirm one.</p>
 <h2>What we do not do</h2>
 <p>We do not test products ourselves and we do not write fake reviews. Rankings are Hwahae's, not ours. K-Beauty Now is independent and not affiliated with Hwahae.</p>
 <h2>Links</h2>
@@ -651,10 +654,61 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc(t)}</title><link>{BASE}concern/{slug}/</link><guid isPermaLink=\"false\">concern-{slug}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(lede + ' Ranked from Hwahae, Korea' + chr(39) + 's biggest cosmetics review app.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    pins, items = select_pins(pins, items, up)
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
            f'<description>Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.</description>{"".join(items)}</channel></rss>')
     return rss
+
+
+PIN_CAP = 8  # per day; Pinterest treats repetitive automated pins as spam
+
+
+def select_pins(pins, items, today):
+    """Publish only pins that carry something new: a ranking whose top 5 changed, at most once a week per URL,
+    weekly product pins at most once every 4 weeks per product, evergreen pins at most monthly and one a day.
+    Same-day rebuilds are idempotent (today's picks are kept). State: data/pin_state.json."""
+    import datetime as dt
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'pin_state.json')
+    try:
+        state = json.load(open(path))
+    except Exception:
+        state = {}
+    d0 = dt.date.fromisoformat(today)
+    cand = []
+    for p, it in zip(pins, items):
+        url = re.search(r'<link>([^<]+)</link>', it).group(1)
+        guid = re.search(r'>([^<]+)</guid>', it).group(1)
+        if 'items' in p and not guid.startswith(('brand-', 'concern-')):
+            kind, cool, prio = ('trending', 7, 0) if guid.startswith('trending-') else ('ranking', 7, 1)
+            sig = '|'.join(x['name'] for x in p['items'])
+        elif 'product' in p:
+            kind, cool, prio, sig = 'product', 28, 2, guid
+        else:
+            kind, cool, prio, sig = 'evergreen', 30, 3, guid
+        st = state.get(url)
+        if st and st['date'] == today:
+            cand.append((-1, p, it, url, sig))  # already picked today
+            continue
+        if st and (d0 - dt.date.fromisoformat(st['date'])).days < cool:
+            continue
+        if st and kind in ('ranking', 'trending') and st.get('sig') == sig:
+            continue
+        cand.append((prio, p, it, url, sig))
+    cand.sort(key=lambda c: c[0])
+    picked, n_ever = [], 0
+    for prio, p, it, url, sig in cand:
+        if len(picked) >= PIN_CAP:
+            break
+        if prio == 3:
+            if n_ever >= 1:
+                continue
+            n_ever += 1
+        picked.append((p, it, url, sig))
+    for p, it, url, sig in picked:
+        state[url] = {'date': today, 'sig': sig}
+    json.dump(state, open(path, 'w'), ensure_ascii=False, indent=0, sort_keys=True)
+    return [p for p, *_ in picked], [it for _, it, *_ in picked]
 
 
 def index_page(data):
@@ -713,31 +767,49 @@ def threads_posts(data):
 
 
 def main():
+    import hashlib
     data = json.load(open(os.path.join(os.path.dirname(__file__), 'data', 'latest.json')))
     os.makedirs(OUT, exist_ok=True)
-    urls = [BASE]
+    day = data['fetchedAt'][:10]
+    hpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'page_hash.json')
+    try:
+        hashes = json.load(open(hpath))
+    except Exception:
+        hashes = {}
+    lastmod = {}
+
+    def write(path, h):
+        os.makedirs(f'{OUT}/{path}', exist_ok=True)
+        open(f'{OUT}/{path}index.html', 'w').write(h)
+        main_part = h.split('<main>', 1)[-1]
+        key = hashlib.sha1(re.sub(r'\d{4}-\d{2}-\d{2}( \d{2}:\d{2}:\d{2})?', '', main_part).encode()).hexdigest()[:16]
+        old = hashes.get(path)
+        if not old or old[0] != key:
+            hashes[path] = [key, day]
+        lastmod[path] = hashes[path][1]
+
+    urls = ['']
     for rk in data['rankings']:
         path, h = ranking_page(rk, data['updatedAt'])
-        os.makedirs(f'{OUT}/{path}', exist_ok=True)
-        open(f'{OUT}/{path}index.html', 'w').write(h)
-        urls.append(BASE + path)
+        write(path, h)
+        urls.append(path)
     for path, h in list(product_pages(data).items()) + list(extra_pages(data).items()):
-        os.makedirs(f'{OUT}/{path}', exist_ok=True)
-        open(f'{OUT}/{path}index.html', 'w').write(h)
+        write(path, h)
         if path not in NOINDEX:
-            urls.append(BASE + path)
-    open(f'{OUT}/index.html', 'w').write(index_page(data))
+            urls.append(path)
+    home = index_page(data)
+    open(f'{OUT}/index.html', 'w').write(home)
+    lastmod[''] = day
     open(f'{OUT}/rss.xml', 'w').write(pins_and_rss(data))
     threads_posts(data)
-    day = data['fetchedAt'][:10]
+    json.dump(hashes, open(hpath, 'w'), indent=0, sort_keys=True)
     open(f'{OUT}/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-                                          + ''.join(f'<url><loc>{u}</loc><lastmod>{day}</lastmod></url>' for u in urls) + '</urlset>')
+                                          + ''.join(f'<url><loc>{BASE}{u}</loc><lastmod>{lastmod.get(u, day)}</lastmod></url>' for u in urls) + '</urlset>')
     open(f'{OUT}/robots.txt', 'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n')
     open(f'{OUT}/.nojekyll', 'w').write('')
     missing = sorted({r['name'] for rk in data['rankings'] for r in rk['rows'] if r['name'] not in N})
     open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'untranslated.txt'), 'w').write('\n'.join(missing))
     print(len(urls), 'pages;', len(missing), 'untranslated')
-
 
 if __name__ == '__main__':
     main()

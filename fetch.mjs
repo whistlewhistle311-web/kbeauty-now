@@ -45,6 +45,23 @@ for (const [type, list] of [['category', CATS.map(([c, s]) => ({ code: c, slug: 
 }
 const dir = path.join(path.dirname(new URL(import.meta.url).pathname), 'data');
 fs.mkdirSync(dir, { recursive: true });
+// Safety: a list with fewer than 15 rows (fetch or parse failure) keeps yesterday's rows instead of
+// overwriting the site with an empty or partial ranking. If most lists failed, keep yesterday entirely.
+let prev = null;
+try { prev = JSON.parse(fs.readFileSync(path.join(dir, 'latest.json'), 'utf8')); } catch { /* first run */ }
+let kept = 0;
+if (prev) {
+    for (const p of prev.rankings) {
+        const cur = out.rankings.find((r) => r.type === p.type && r.slug === p.slug);
+        if (!cur) { out.rankings.push({ ...p, stale: true }); kept++; }
+        else if (cur.rows.length < 15 && p.rows.length >= 15) { cur.rows = p.rows; cur.stale = true; kept++; }
+    }
+}
+if (prev && kept > prev.rankings.length / 2) {
+    console.error(`FETCH FAILED for ${kept} of ${prev.rankings.length} lists; keeping yesterday's data unchanged.`);
+    process.exit(1);
+}
+if (kept) console.warn('kept yesterday for', kept, 'lists');
 fs.writeFileSync(path.join(dir, 'latest.json'), JSON.stringify(out, null, 1));
 fs.writeFileSync(path.join(dir, `${out.fetchedAt.slice(0, 10)}.json`), JSON.stringify(out));
 console.log('saved', out.rankings.length, 'rankings');
