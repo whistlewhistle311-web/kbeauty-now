@@ -779,9 +779,17 @@ def pins_and_rss(data):
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     pins, items = select_pins(pins, items, up)
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
-    rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
-           f'<description>Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.</description>{"".join(items)}</channel></rss>')
-    return rss
+    # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
+    # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
+    evergreen = ('guide/', 'concern/', 'brand/')
+    guide_items = [it for it in items if re.search(r'<link>[^<]*/(%s)' % '|'.join(evergreen), it)]
+    main_items = [it for it in items if it not in guide_items]
+
+    def feed(title, desc, its):
+        return (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{title}</title><link>{BASE}</link>'
+                f'<description>{desc}</description>{"".join(its)}</channel></rss>')
+    open(f'{OUT}/rss-guides.xml', 'w').write(feed('K-Beauty Now guides', 'How to choose Korean skincare, by step, concern and brand, from Hwahae rankings.', guide_items))
+    return feed('K-Beauty Now', 'Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.', main_items)
 
 
 PIN_CAP = 8  # per day; Pinterest treats repetitive automated pins as spam
@@ -819,6 +827,11 @@ def select_pins(pins, items, today):
             continue
         cand.append((prio, p, it, url, sig))
     cand.sort(key=lambda c: c[0])
+    # keep one slot for an evergreen pin (guide, concern, brand) so the guides board gets something most days
+    ever = next((c for c in cand if c[0] == 3), None)
+    if ever and not any(c[0] == -1 for c in cand):
+        cand.remove(ever)
+        cand.insert(0, ever)
     picked, n_ever = [], 0
     for prio, p, it, url, sig in cand:
         if len(picked) >= PIN_CAP:
