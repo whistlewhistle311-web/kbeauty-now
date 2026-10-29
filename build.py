@@ -160,29 +160,54 @@ def ranking_page(rk, updated):
 
 
 def product_pages(data):
+    """One page per product ever ranked. Products that drop out keep their page (marked with the last date seen)
+    so indexed URLs never 404. History lives in data/products.json."""
+    hist_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'products.json')
+    hist = json.load(open(hist_path)) if os.path.exists(hist_path) else {}
+    today = data['updatedAt'][:10]
     prods = {}
     for rk in data['rankings']:
         label = CAT[rk['slug']][0] if rk['type'] == 'category' else f"Skincare for {SKIN[rk['slug']]}"
         href = f"{BASE}c/{rk['slug']}/" if rk['type'] == 'category' else f"{BASE}skin/{rk['slug']}/"
-        for r in rk['rows']:
-            p = prods.setdefault(r['id'], {'r': r, 'ranks': []})
+        for i, r in enumerate(rk['rows']):
+            p = prods.setdefault(str(r['id']), {'r': r, 'ranks': [], 'near': []})
             p['ranks'].append((label, href, r['rank']))
-    pages = {}
+            for j in (range(max(0, i - 2), min(len(rk['rows']), i + 3)) if rk['slug'] not in ('all', 'skincare') else ()):
+                o = rk['rows'][j]
+                if o['id'] != r['id'] and all(str(o['id']) != n['id'] for n in p['near']):
+                    p['near'].append({'id': str(o['id']), 'name': f"{brand_label(o).split(' (')[0]} {name_label(o)}"})
     for pid, p in prods.items():
-        r = p['r']
+        hist[pid] = {'r': p['r'], 'ranks': p['ranks'], 'near': p['near'][:6], 'last': today}
+    json.dump(hist, open(hist_path, 'w'), ensure_ascii=False)
+    pages = {}
+    for pid, h in hist.items():
+        r, current = h['r'], h['last'] == today
         nm = f"{brand_label(r).split(' (')[0]} {name_label(r)}"
-        ranks = ''.join(f'<li>#{rk} in <a href="{h}">{esc(l)}</a></li>' for l, h, rk in sorted(p['ranks'], key=lambda x: x[2]))
+        ranks = ''.join(f'<li>#{rk} in <a href="{hh}">{esc(l)}</a></li>' for l, hh, rk in sorted(h['ranks'], key=lambda x: x[2]))
         tags = ''.join(f'<span>{esc(t)}</span>' for t in r['topics'])
         price = f"₩{r['priceKrw']:,} ({usd(r['priceKrw'])})" if r['priceKrw'] else 'not listed'
+        praise = ''
+        if r['topics']:
+            tl = [t.lower() for t in r['topics'][:3]]
+            praise = (f"<h2>What Korean reviewers say</h2><p>On Hwahae, the topics Korean users mention most for this product are "
+                      f"{esc(', '.join(tl[:-1]) + (' and ' if len(tl) > 1 else '') + tl[-1])}. "
+                      f"With {r['reviews']:,} reviews and an average of {r['rating']:.2f} out of 5, it is "
+                      f"{'one of the most reviewed products in its category' if r['reviews'] >= 5000 else 'a well-rated pick with a smaller review base'}.</p>")
+        status = (f"<h2>Where it ranks in Korea today</h2><ul>{ranks}</ul>" if current else
+                  f"<h2>Ranking history</h2><p>This product was last in a Hwahae top 20 on {esc(h['last'])}, where it ranked:</p><ul>{ranks}</ul>"
+                  f"<p>It is not in today's top 20. See <a href=\"{BASE}\">today's rankings</a>.</p>")
+        near = ''.join(f'<li><a href="{BASE}p/{n["id"]}/">{esc(n["name"])}</a></li>' for n in h['near'] if n['id'] in hist)
+        near = f'<h2>Ranked near it</h2><ul>{near}</ul>' if near else ''
         body = f"""<p class="kicker">Hwahae ranking profile</p><h1>{esc(nm)}</h1>
 <p class="ko">{esc(r['brand'])} {esc(r['name'])}</p>
 <div class="card"><div class="facts">★ <strong>{r['rating']:.2f}</strong> on Hwahae from {r['reviews']:,} Korean reviews</div>
 <div class="facts">Korean list price: {price}{(' · ' + esc(r['size'])) if r['size'] else ''}</div>
 <div class="tags">{tags}</div><div class="links">{search_links(r)}</div></div>
-<h2>Where it ranks in Korea today</h2><ul>{ranks}</ul>
+{praise}{status}{near}
+<h2>Buying it outside Korea</h2><p>Hwahae prices are Korean list prices; international shops usually charge more after shipping. Check the size matches ({esc(r['size']) if r['size'] else 'sizes vary by market'}) and buy from authorised sellers to avoid fakes.</p>
 <p class="meta">Tags are the review topics Korean Hwahae users mention most for this product. Ratings and ranks change daily.</p>"""
         title = f"{nm}: Hwahae Rating {r['rating']:.2f} and Korea Ranking"
-        desc = f"{nm} is rated {r['rating']:.2f} from {r['reviews']:,} Korean reviews on Hwahae. See where it ranks in Korea today, its Korean price and what reviewers praise."
+        desc = f"{nm} is rated {r['rating']:.2f} from {r['reviews']:,} Korean reviews on Hwahae. See where it ranks in Korea, its Korean price and what reviewers praise."
         pages[f"p/{pid}/"] = page(title, desc, f"p/{pid}/", body, data['updatedAt'])
     return pages
 
