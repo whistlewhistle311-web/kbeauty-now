@@ -11,22 +11,12 @@
   {
    "id": "c5XpOhA6an0YpwrYa",
    "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
-   "pricingInfos": [
-    {
-     "pricingModel": "FREE",
-     "reasonForChange": "Back to free while we confirm Naver API terms on paid tools."
-    }
-   ]
+   "isPublic": false
   },
   {
    "id": "TwA7N7X916RY2EUkm",
    "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
-   "pricingInfos": [
-    {
-     "pricingModel": "FREE",
-     "reasonForChange": "Back to free while we confirm Naver API terms on paid tools."
-    }
-   ]
+   "isPublic": false
   },
   {
    "id": "whyzB2FJrg3ApaSMo",
