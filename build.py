@@ -75,7 +75,7 @@ def usd(krw):
 
 
 AWIN_AFFID = '3138543'
-AWIN_MID = {'yesstyle': None}  # set to the advertiser id once the programme approves us
+AWIN_MID = {'yesstyle': '15448'}  # YesStyle UK on Awin, approved 2026-10-29
 LINK_NOTE = ('Store links are search links. Some are affiliate links: we may earn a commission at no extra cost to you, and it never changes the ranking order.'
              if any(AWIN_MID.values()) else 'Store links are search links.')
 
@@ -128,7 +128,7 @@ def page(title, desc, path, body, updated):
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 Need this data as JSON for your shop or trend report? The same rankings are available as an API on <a href="https://apify.com/koreadata-lab/hwahae-kbeauty-ranking-tracker">Apify (Hwahae K-Beauty Ranking Tracker)</a>.
-{LINK_NOTE} K-Beauty Now is independent and not affiliated with Hwahae, Olive Young or YesStyle.</footer></main></body></html>"""
+{LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.</footer></main></body></html>"""
 
 
 def ranking_page(rk, updated):
