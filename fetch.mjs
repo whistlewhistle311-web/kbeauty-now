@@ -13,6 +13,14 @@ const CATS = [
 ];
 const SKINS = [['건성', 'dry'], ['지성', 'oily'], ['복합성', 'combination'], ['민감성', 'sensitive'], ['여드름', 'acne-prone']];
 
+// Kill switch: put "off" in ops/hwahae_mode.txt to stop reading Hwahae at once (the site keeps the last saved data).
+try {
+    if (fs.readFileSync(new URL('./ops/hwahae_mode.txt', import.meta.url), 'utf8').trim() === 'off') {
+        console.log('hwahae_mode=off: not fetching, keeping saved data');
+        process.exit(0);
+    }
+} catch { /* no file: normal mode */ }
+
 const client = new PoliteClient({ minIntervalMs: 3000, maxRetries: 3, headers: { 'Accept-Language': 'ko-KR,ko;q=0.9' } });
 const robots = parseRobots(await client.request('https://www.hwahae.co.kr/robots.txt', { responseType: 'text' }).catch(() => ''));
 const get = async (url) => {
