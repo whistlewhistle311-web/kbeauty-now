@@ -108,7 +108,7 @@ def page(title, desc, path, body, updated):
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{url}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <style>{CSS}</style></head><body>
-<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}</div></header>
+<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/korean-sunscreen/">Sunscreen guide</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
@@ -165,6 +165,38 @@ def product_pages(data):
     return pages
 
 
+def extra_pages(data):
+    by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
+    up = data['updatedAt']
+    pages = {}
+    about = f"""<p class="kicker">About</p><h1>About K-Beauty Now</h1>
+<p class="lede">K-Beauty Now shows what Korean shoppers actually rate highly, in English, so you can pick Korean skincare without guessing from ads.</p>
+<h2>Where the data comes from</h2>
+<p>Every morning we read the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app. Hwahae ranks products from reviews by its users, and splits rankings by category and by the skin type users register. We take the top 20 of each list. We do not use private data, reviewer profiles or review texts.</p>
+<h2>What we add</h2>
+<ul><li>English product names (translated by us) and official English brand names where we are sure of them. Where we are not sure, the brand is shown as a transliteration with the Korean in brackets.</li>
+<li>The review topics Korean users mention most, translated to English (for example Soothing, Non-sticky, No white cast).</li>
+<li>Approximate USD prices from Korean list prices.</li></ul>
+<h2>What we do not do</h2>
+<p>We do not test products ourselves and we do not write fake reviews. Rankings are Hwahae's, not ours. K-Beauty Now is independent and not affiliated with Hwahae.</p>
+<h2>Links</h2>
+<p>Store links help you find a product abroad. Some links may earn us a commission at no extra cost to you; this never changes the ranking order, which comes straight from Hwahae.</p>"""
+    pages['about/'] = page('About K-Beauty Now: How We Rank Korean Skincare', 'How K-Beauty Now turns Hwahae, Korea\'s biggest cosmetics review app, into daily English rankings.', 'about/', about, up)
+    sun = by.get(('category', 'sunscreen'))
+    if sun:
+        top = ''.join(row_html(r) for r in sun['rows'][:5])
+        g = f"""<p class="kicker">Guide · updated {esc(up[:10])}</p><h1>Best Korean sunscreen: what Koreans pick, and how to choose</h1>
+<p class="lede">Korean sunscreens are known for light textures and high protection. Here is how to read the labels, and the five sunscreens Korean Hwahae users rank highest today.</p>
+<h2>SPF50+ and PA++++</h2>
+<p>SPF measures protection from UVB (burning). PA measures protection from UVA (ageing and darkening); PA++++ is the highest grade on Korean labels. Most top Korean sunscreens are SPF50+ PA++++.</p>
+<h2>Mineral or chemical?</h2>
+<p>Korean labels call mineral (physical) sunscreens 무기자차 and chemical ones 유기자차. Mineral filters (zinc oxide, titanium dioxide) suit sensitive skin but can leave a white cast. Chemical filters feel lighter. Look for the review tag "No white cast" if that matters to you.</p>
+<h2>Top 5 on Hwahae today</h2><ol class="rank">{top}</ol>
+<p><a href="{BASE}c/sunscreen/">See the full top 20 Korean sunscreens</a></p>"""
+        pages['guide/korean-sunscreen/'] = page('Best Korean Sunscreen (Updated Daily): SPF50+ PA++++ Picks from Hwahae', 'How to choose a Korean sunscreen (SPF50+, PA++++, mineral vs chemical) and the 5 sunscreens Korean Hwahae users rank highest today.', 'guide/korean-sunscreen/', g, up)
+    return pages
+
+
 def index_page(data):
     up = data['updatedAt']
     cards = []
@@ -192,7 +224,7 @@ def main():
         os.makedirs(f'{OUT}/{path}', exist_ok=True)
         open(f'{OUT}/{path}index.html', 'w').write(h)
         urls.append(BASE + path)
-    for path, h in product_pages(data).items():
+    for path, h in list(product_pages(data).items()) + list(extra_pages(data).items()):
         os.makedirs(f'{OUT}/{path}', exist_ok=True)
         open(f'{OUT}/{path}index.html', 'w').write(h)
         urls.append(BASE + path)
