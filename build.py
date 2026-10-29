@@ -448,7 +448,7 @@ def threads_posts(data):
         r = rows[0]
         t = ', '.join(x.lower() for x in r['topics'][:3])
         nm = lambda o: f"{brand_label(o).split(' (')[0]} {name_label(o).split(' SPF')[0].split(' (')[0]}"
-        text = (f"Korea's #1 {noun.rstrip('s')} right now, by Korean reviewers on Hwahae (the review app Koreans check before buying):\n\n"
+        text = (f"Korea's #1 {({'serums and essences': 'serum'}.get(noun) or noun.rstrip('s'))} right now, by Korean reviewers on Hwahae (the review app Koreans check before buying):\n\n"
                 f"1. {nm(r)}: {r['rating']:.2f} from {r['reviews']:,} reviews" + (f". Most-mentioned: {t}" if t else '') + "\n"
                 + ''.join(f"{i}. {nm(o)}\n" for i, o in enumerate(rows[1:3], 2)) +
                 "\nThis account auto-translates Hwahae's rankings into English every morning (AI-assisted, not sponsored). Full top 20 at the link in my profile.")
