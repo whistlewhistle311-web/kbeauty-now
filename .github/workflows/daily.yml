@@ -2,6 +2,7 @@ name: daily-rankings
 on:
   schedule:
     - cron: '17 21 * * *'   # 06:17 KST, after Hwahae's 05:00 ranking update
+    - cron: '17 3 * * *'    # 12:17 KST, catches days when Hwahae publishes late (same-day reruns are idempotent)
   workflow_dispatch:
 permissions:
   contents: write
