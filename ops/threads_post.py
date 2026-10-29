@@ -8,6 +8,9 @@ posts = json.load(open(os.path.join(data, 'threads.json')))
 logp = os.path.join(data, 'threads_log.json')
 log = json.load(open(logp)) if os.path.exists(logp) else []
 hour = datetime.datetime.now(datetime.timezone.utc).hour
+if len(sys.argv) > 1 and sys.argv[1] == 'check':
+    with urllib.request.urlopen('https://graph.threads.net/v1.0/me?fields=username&access_token=' + T, timeout=60) as r:
+        print('token ok for', json.load(r).get('username')); sys.exit(0)
 slot = int(sys.argv[1]) if len(sys.argv) > 1 else {23: 0, 0: 0, 4: 1, 5: 1, 11: 2, 12: 2}.get(hour, -1)
 if not T or slot < 0 or slot >= len(posts['posts']):
     print('skip: token' if not T else f'skip: hour {hour}'); sys.exit(0)
