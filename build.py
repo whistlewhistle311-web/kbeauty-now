@@ -123,7 +123,7 @@ def page(title, desc, path, body, updated):
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{url}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <style>{CSS}</style></head><body>
-<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/korean-sunscreen/">Sunscreen guide</a><a href="{BASE}about/">About</a></div></header>
+<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
@@ -180,6 +180,36 @@ def product_pages(data):
     return pages
 
 
+GUIDES = {
+    'korean-toner': ('toner', 'Best Korean Toner (Updated Daily): What Koreans Pick on Hwahae',
+        'Toner, toner pad or essence toner? How Korean toners work and the 5 toners Korean Hwahae users rank highest today.',
+        'Best Korean toner: what Koreans pick, and how to choose',
+        'In Korea a toner is not an astringent: it is the first hydrating step after cleansing. Here is how to pick one, and the five toners Korean Hwahae users rank highest today.',
+        '<h2>Three kinds of Korean toner</h2><ul><li><b>Hydrating toner</b> (스킨/토너): watery, applied with hands or a cotton pad right after cleansing.</li>'
+        '<li><b>Toner pad</b> (토너패드): pre-soaked pads, often with mild exfoliating acids (PHA, LHA) or soothing extracts. Good for a quick routine.</li>'
+        '<li><b>Essence toner</b>: thicker, sits between toner and serum. Useful for dry skin.</li></ul>'
+        '<h2>How to choose</h2><p>Dry skin: look for glycerin, panthenol or hyaluronic acid. Oily or acne-prone skin: lighter toners or pads with PHA/BHA, used a few times a week. Sensitive skin: short ingredient lists, mugwort (쑥) or centella (병풀). Check the review tags under each product: Korean users often mention Soothing, Moisturizing or Non-sticky.</p>'),
+    'korean-serum': ('serum', 'Best Korean Serum and Ampoule (Updated Daily): Hwahae Top Picks',
+        'Serum, essence or ampoule? What the Korean terms mean and the 5 serums Korean Hwahae users rank highest today.',
+        'Best Korean serum: what Koreans pick, and how to choose',
+        'Korean brands use serum, essence and ampoule for similar products. Here is what the words usually mean, and the five serums Korean Hwahae users rank highest today.',
+        '<h2>Serum, essence, ampoule</h2><p>There is no legal difference. In practice an <b>essence</b> is lighter, a <b>serum</b> is a little thicker, and an <b>ampoule</b> is marketed as the most concentrated. Choose by the active ingredient, not the word.</p>'
+        '<h2>Common Korean serum ingredients</h2><ul><li>Niacinamide: tone and oil control.</li><li>Vitamin C: brightening; can sting sensitive skin.</li><li>Centella, mugwort, heartleaf (어성초): soothing.</li><li>Retinal or retinol: anti-ageing; use at night and wear sunscreen by day.</li><li>Hyaluronic acid, panthenol: hydration.</li></ul>'),
+    'korean-moisturizer': ('cream', 'Best Korean Moisturizer (Updated Daily): Hwahae Top Creams',
+        'How to choose a Korean cream for dry, oily or sensitive skin, and the 5 creams Korean Hwahae users rank highest today.',
+        'Best Korean moisturizer: what Koreans pick, and how to choose',
+        'The cream is the step that seals in the toner and serum. Here is how to choose by skin type, and the five creams Korean Hwahae users rank highest today.',
+        '<h2>Choose by texture</h2><ul><li><b>Gel cream</b>: light, good for oily skin and hot weather.</li><li><b>Barrier cream</b> with ceramides: for dry or irritated skin, and for winter.</li><li><b>Soothing cream</b> with centella or panthenol: for redness and sensitive skin.</li></ul>'
+        '<p>For skin-type rankings, see <a href="https://whistlewhistle311-web.github.io/kbeauty-now/skin/dry/">dry skin</a>, <a href="https://whistlewhistle311-web.github.io/kbeauty-now/skin/oily/">oily skin</a> and <a href="https://whistlewhistle311-web.github.io/kbeauty-now/skin/sensitive/">sensitive skin</a>.</p>'),
+    'korean-cleanser': ('cleansing', 'Best Korean Cleanser (Updated Daily): Double Cleansing Picks from Hwahae',
+        'Korean double cleansing explained (oil first, then foam) and the 5 cleansers Korean Hwahae users rank highest today.',
+        'Best Korean cleanser: what Koreans pick, and how to double cleanse',
+        'Koreans usually cleanse twice at night: an oil or balm to remove sunscreen and makeup, then a water-based cleanser. Here is how, and the five cleansers Korean Hwahae users rank highest today.',
+        '<h2>Double cleansing in two steps</h2><ol><li><b>Oil, balm or cleansing water</b> (클렌징 오일/밤/워터) on dry skin, then rinse. This removes sunscreen and makeup.</li><li><b>Foam or gel cleanser</b> (폼클렌저) to remove sweat and the oil residue.</li></ol>'
+        '<p>In the morning one gentle cleanser is enough. If your skin feels tight after washing, pick a low-pH or "mild" foam; Korean reviews often tag these as Gentle or Not drying.</p>'),
+}
+
+
 def extra_pages(data):
     by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
     up = data['updatedAt']
@@ -209,11 +239,27 @@ def extra_pages(data):
 <h2>Top 5 on Hwahae today</h2><ol class="rank">{top}</ol>
 <p><a href="{BASE}c/sunscreen/">See the full top 20 Korean sunscreens</a></p>"""
         pages['guide/korean-sunscreen/'] = page('Best Korean Sunscreen (Updated Daily): SPF50+ PA++++ Picks from Hwahae', 'How to choose a Korean sunscreen (SPF50+, PA++++, mineral vs chemical) and the 5 sunscreens Korean Hwahae users rank highest today.', 'guide/korean-sunscreen/', g, up)
+
+    for slug, (cat, title, desc, h1, lede, body) in GUIDES.items():
+        rk = by.get(('category', cat))
+        if not rk:
+            continue
+        top = ''.join(row_html(r) for r in rk['rows'][:5])
+        g = (f'<p class="kicker">Guide · updated {esc(up[:10])}</p><h1>{h1}</h1><p class="lede">{lede}</p>{body}'
+             f'<h2>Top 5 on Hwahae today</h2><ol class="rank">{top}</ol>'
+             f'<p><a href="{BASE}c/{cat}/">See the full top 20 {CAT[cat][1]}</a></p>')
+        pages[f'guide/{slug}/'] = page(title, desc, f'guide/{slug}/', g, up)
+    names = {'korean-sunscreen': 'Korean sunscreen'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
+    hub = '<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p><div class="grid">' + ''.join(
+        f'<div class="card"><h3><a href="{BASE}{p}">{esc(names.get(p.split("/")[1], p))}</a></h3></div>' for p in pages if p.startswith('guide/')) + '</div>'
+    pages['guide/'] = page('Korean Skincare Buying Guides: Sunscreen, Toner, Serum, Moisturizer, Cleanser', 'Practical guides to each step of a Korean skincare routine, with the products Korean Hwahae users rank highest today.', 'guide/', hub, up)
     return pages
 
 
 def pins_and_rss(data):
     up = data['updatedAt'][:10]
+    import email.utils, datetime
+    pub = email.utils.format_datetime(datetime.datetime.fromisoformat(up + 'T06:00:00+09:00'))
     pins, items = [], []
     for rk in data['rankings']:
         if rk['type'] == 'category':
@@ -228,7 +274,7 @@ def pins_and_rss(data):
             for r in rk['rows'][:5]]})
         top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}" for r in rk['rows'][:3])
         items.append(f"<item><title>{esc(t)} ({up})</title><link>{href}</link><guid isPermaLink=\"false\">{rk['type']}-{rk['slug']}-{up}</guid>"
-                     f"<description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
+                     f"<pubDate>{pub}</pubDate><description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
