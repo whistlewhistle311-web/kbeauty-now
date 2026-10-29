@@ -114,14 +114,14 @@ def row_html(r):
 <div class="tags">{tags}</div><div class="links">{search_links(r)}</div></div></li>"""
 
 
-def page(title, desc, path, body, updated):
+def page(title, desc, path, body, updated, head=''):
     url = BASE + path
     nav = ''.join(f'<a href="{BASE}c/{s}/">{v[0]}</a>' for s, v in CAT.items() if s in ('skincare', 'sunscreen', 'serum', 'toner', 'cushion'))
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="0oISjJafxIxC-LdVeihPqTQ3o9DoxV5FSNgvVZB-tps">
 <meta name="p:domain_verify" content="62fc4bdb9182a51a7a89f9e270417f58"/>
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{url}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">{head}
 <style>{CSS}</style></head><body>
 <header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
@@ -149,7 +149,14 @@ def ranking_page(rk, updated):
     body = f"""<p class="kicker">Hwahae ranking · updated {esc(updated[:10])}</p><h1>{esc(h1)}</h1>
 <p class="lede">{esc(blurb)} Rank changes are Hwahae's own movement since the previous ranking. Tags are the review topics Korean users mention most.</p>
 <ol class="rank">{rows}</ol>"""
-    return path, page(title, desc, path, body, updated)
+    ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': h1, 'itemListOrder': 'https://schema.org/ItemListOrderAscending',
+          'numberOfItems': len(rk['rows']),
+          'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'url': f"{BASE}p/{r['id']}/", 'name': f"{brand_label(r)} {name_label(r)}"}
+                              for i, r in enumerate(rk['rows'])]}
+    img = f"{BASE}pins/{rk['type']}-{rk['slug']}-{updated[:10]}.jpg"
+    head = (f'<meta property="og:image" content="{img}"><meta name="twitter:card" content="summary_large_image">'
+            f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")}</script>')
+    return path, page(title, desc, path, body, updated, head)
 
 
 def product_pages(data):
