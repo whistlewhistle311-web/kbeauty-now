@@ -71,5 +71,7 @@ if (prev && kept > prev.rankings.length / 2) {
 }
 if (kept) console.warn('kept yesterday for', kept, 'lists');
 fs.writeFileSync(path.join(dir, 'latest.json'), JSON.stringify(out, null, 1));
-fs.writeFileSync(path.join(dir, `${out.fetchedAt.slice(0, 10)}.json`), JSON.stringify(out));
+// snapshot is named by Hwahae's own ranking date (KST), not the UTC fetch time (06:17 KST is still yesterday in UTC)
+const day = String(out.updatedAt || '').slice(0, 10) || new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+fs.writeFileSync(path.join(dir, `${day}.json`), JSON.stringify(out));
 console.log('saved', out.rankings.length, 'rankings');

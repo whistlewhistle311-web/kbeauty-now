@@ -548,7 +548,7 @@ def week_page(data):
     Only built once 7 days of history exist, so it never shows made-up movement."""
     import datetime
     hist_load()
-    today = data['fetchedAt'][:10]
+    today = data['updatedAt'][:10]
     want = (datetime.date.fromisoformat(today) - datetime.timedelta(days=7)).isoformat()
     older = [d for d in HIST_DAYS if d <= want]
     if not older:
@@ -996,7 +996,7 @@ def main():
     import hashlib
     data = json.load(open(os.path.join(os.path.dirname(__file__), 'data', 'latest.json')))
     os.makedirs(OUT, exist_ok=True)
-    day = data['fetchedAt'][:10]
+    day = data['updatedAt'][:10]
     hpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'page_hash.json')
     try:
         hashes = json.load(open(hpath))
