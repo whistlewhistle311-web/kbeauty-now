@@ -76,9 +76,23 @@ def usd(krw):
 
 
 AWIN_AFFID = '3138543'
-AWIN_MID = {'yesstyle': '15448'}  # YesStyle UK on Awin, approved 2026-10-29
+AWIN_ALL = {'yesstyle': '15448'}  # YesStyle UK on Awin (applied 2026-10-29)
+_here = os.path.dirname(os.path.abspath(__file__))
+try:  # only use Awin links once Awin itself reports the programme as joined (ops/awin_sync.py, hourly)
+    _joined = {str(p['id']) for p in json.load(open(os.path.join(_here, 'data', 'awin_stats.json'))).get('joined', [])}
+except Exception:
+    _joined = set()
+AWIN_MID = {k: v for k, v in AWIN_ALL.items() if v in _joined}
+try:
+    AMAZON_TAG = open(os.path.join(_here, 'ops', 'amazon_tag.txt')).read().strip()
+except Exception:
+    AMAZON_TAG = ''
 LINK_NOTE = ('Store links are search links. Some are affiliate links: we may earn a commission at no extra cost to you, and it never changes the ranking order.'
-             if any(AWIN_MID.values()) else 'Store links are search links.')
+             if (any(AWIN_MID.values()) or AMAZON_TAG) else 'Store links are search links.')
+
+
+def amazon(q):
+    return f'https://www.amazon.com/s?k={urllib.parse.quote_plus(q)}&tag={AMAZON_TAG}'
 
 
 def awin(url, shop):
@@ -91,6 +105,8 @@ def awin(url, shop):
 
 def buy_button(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+    if AMAZON_TAG:
+        return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">Check price on Amazon</a></p>'
     url, rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
     return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(url)}" rel="{rel}">Check price on YesStyle</a></p>'
 
@@ -99,7 +115,8 @@ def search_links(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     oy = 'https://global.oliveyoung.com/display/search?query=' + urllib.parse.quote(q)
     ys, ys_rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
-    return f'<a href="{oy}" rel="nofollow">Olive Young Global</a><a href="{esc(ys)}" rel="{ys_rel}">YesStyle</a><a href="{esc(r["url"])}" rel="nofollow">Hwahae page (KR)</a>'
+    amz = f'<a href="{esc(amazon(q))}" rel="sponsored nofollow">Amazon</a>' if AMAZON_TAG else ''
+    return f'{amz}<a href="{oy}" rel="nofollow">Olive Young Global</a><a href="{esc(ys)}" rel="{ys_rel}">YesStyle</a><a href="{esc(r["url"])}" rel="nofollow">Hwahae page (KR)</a>'
 
 
 def delta(r):
