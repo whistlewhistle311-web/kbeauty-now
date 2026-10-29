@@ -233,6 +233,8 @@ def product_pages(data):
                   f"<p>It is not in today's top 20. See <a href=\"{BASE}\">today's rankings</a>.</p>")
         near = ''.join(f'<li><a href="{BASE}p/{n["id"]}/">{esc(n["name"])}</a></li>' for n in h['near'] if n['id'] in hist)
         near = f'<h2>Ranked near it</h2><ul>{near}</ul>' if near else ''
+        cl = [f'<a href="{BASE}concern/{CONCERNS[t][0]}/">{esc(t.lower())}</a>' for t in r['topics'] if t in CONCERNS]
+        clink = f'<p class="meta">Other products Korean reviewers call {" · ".join(cl)}</p>' if cl else ''
         bl = brand_label(r).split(' (')[0]
         bcount = sum(1 for x in hist.values() if brand_label(x['r']).split(' (')[0] == bl)
         blink = f'<p class="meta">More from this brand: <a href="{BASE}brand/{brand_slug(bl)}/">best {esc(bl)} products</a></p>' if bcount >= 2 else ''
@@ -241,7 +243,7 @@ def product_pages(data):
 <div class="card"><div class="facts">★ <strong>{r['rating']:.2f}</strong> on Hwahae from {r['reviews']:,} Korean reviews</div>
 <div class="facts">Korean list price: {price}{(' · ' + esc(r['size'])) if r['size'] else ''}</div>
 <div class="tags">{tags}</div>{buy_button(r)}<div class="links">{search_links(r)}</div></div>
-{praise}{status}{near}{blink}
+{praise}{status}{near}{blink}{clink}
 <h2>Buying it outside Korea</h2><p>Hwahae prices are Korean list prices; international shops usually charge more after shipping. Check the size matches ({esc(r['size']) if r['size'] else 'sizes vary by market'}) and buy from authorised sellers to avoid fakes.</p>
 <p class="meta">Tags are the review topics Korean Hwahae users mention most for this product. Ratings and ranks change daily.</p>"""
         title = f"{nm}: Hwahae Rating {r['rating']:.2f} and Korea Ranking"
