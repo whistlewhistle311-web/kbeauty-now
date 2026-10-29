@@ -114,6 +114,13 @@ def row_html(r):
 <div class="tags">{tags}</div><div class="links">{search_links(r)}</div></div></li>"""
 
 
+def default_img(path, updated):
+    slug = path.strip('/').split('/')[-1]
+    if path.startswith('guide/') and slug in GUIDE_PINS:
+        return f'guide-{slug}-{updated[:7]}.jpg'
+    return f'category-all-{updated[:10]}.jpg'
+
+
 def page(title, desc, path, body, updated, head=''):
     url = BASE + path
     nav = ''.join(f'<a href="{BASE}c/{s}/">{v[0]}</a>' for s, v in CAT.items() if s in ('skincare', 'sunscreen', 'serum', 'toner', 'cushion'))
@@ -122,7 +129,7 @@ def page(title, desc, path, body, updated, head=''):
 <meta name="p:domain_verify" content="62fc4bdb9182a51a7a89f9e270417f58"/>
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{url}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta property="og:type" content="article"><meta property="og:site_name" content="K-Beauty Now">
-<meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/category-all-{updated[:10]}.jpg">'}
+<meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/{default_img(path, updated)}">'}
 <style>{CSS}</style></head><body>
 <header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
