@@ -1,0 +1,49 @@
+{
+ "at": "2026-10-29T12:24Z",
+ "actors": [
+  {
+   "name": "daangn-used-price-index",
+   "title": "Daangn (Karrot) Used Price Index - Korea Second-hand Prices",
+   "users30": 1,
+   "users": 2,
+   "runs": 2,
+   "pricing": "PAY_PER_EVENT"
+  },
+  {
+   "name": "hwahae-kbeauty-ranking-tracker",
+   "title": "Hwahae K-Beauty Ranking Tracker - Korean Skincare Bestsellers",
+   "users30": 1,
+   "users": 2,
+   "runs": 2,
+   "pricing": "PAY_PER_EVENT"
+  },
+  {
+   "name": "naver-news-blog-search-api",
+   "title": "Naver News, Blog & Cafe Monitor (Official API)",
+   "users30": 1,
+   "users": 2,
+   "runs": 2,
+   "pricing": "FREE"
+  },
+  {
+   "name": "naver-shopping-insight-search-trends",
+   "title": "Naver Shopping Insight & Search Trends (DataLab API)",
+   "users30": 1,
+   "users": 2,
+   "runs": 3,
+   "pricing": "PAY_PER_EVENT"
+  },
+  {
+   "name": "kakao-map-places-api",
+   "title": "Kakao Map Places Extractor (Official Local API, No 45 Cap)",
+   "users30": 0,
+   "users": 1,
+   "runs": 2,
+   "pricing": "FREE"
+  }
+ ],
+ "account": {
+  "note": "no token"
+ },
+ "log": []
+}

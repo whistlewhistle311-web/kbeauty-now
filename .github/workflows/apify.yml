@@ -1,0 +1,22 @@
+name: apify-sync
+on:
+  workflow_dispatch:
+  push:
+    paths: ['ops/apify_actors.json']
+  schedule:
+    - cron: '41 */6 * * *'
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python ops/apify_sync.py
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+      - run: |
+          git config user.name "kbn-bot"; git config user.email "bot@users.noreply.github.com"
+          git pull -q --rebase || true
+          git add data/apify_stats.json
+          git diff --cached --quiet || { git commit -m "Apify stats $(date -u +%FT%H:%M)"; git push; }
