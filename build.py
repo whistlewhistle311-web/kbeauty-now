@@ -158,7 +158,7 @@ def page(title, desc, path, body, updated, head=''):
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta property="og:type" content="article"><meta property="og:site_name" content="K-Beauty Now">
 <meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/{default_img(path, updated)}">'}
 <style>{CSS}</style></head><body>
-<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
+<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}brand/">Brands</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
@@ -233,17 +233,71 @@ def product_pages(data):
                   f"<p>It is not in today's top 20. See <a href=\"{BASE}\">today's rankings</a>.</p>")
         near = ''.join(f'<li><a href="{BASE}p/{n["id"]}/">{esc(n["name"])}</a></li>' for n in h['near'] if n['id'] in hist)
         near = f'<h2>Ranked near it</h2><ul>{near}</ul>' if near else ''
+        bl = brand_label(r).split(' (')[0]
+        bcount = sum(1 for x in hist.values() if brand_label(x['r']).split(' (')[0] == bl)
+        blink = f'<p class="meta">More from this brand: <a href="{BASE}brand/{brand_slug(bl)}/">best {esc(bl)} products</a></p>' if bcount >= 2 else ''
         body = f"""<p class="kicker">Hwahae ranking profile</p><h1>{esc(nm)}</h1>
 <p class="ko">{esc(r['brand'])} {esc(r['name'])}</p>
 <div class="card"><div class="facts">★ <strong>{r['rating']:.2f}</strong> on Hwahae from {r['reviews']:,} Korean reviews</div>
 <div class="facts">Korean list price: {price}{(' · ' + esc(r['size'])) if r['size'] else ''}</div>
 <div class="tags">{tags}</div>{buy_button(r)}<div class="links">{search_links(r)}</div></div>
-{praise}{status}{near}
+{praise}{status}{near}{blink}
 <h2>Buying it outside Korea</h2><p>Hwahae prices are Korean list prices; international shops usually charge more after shipping. Check the size matches ({esc(r['size']) if r['size'] else 'sizes vary by market'}) and buy from authorised sellers to avoid fakes.</p>
 <p class="meta">Tags are the review topics Korean Hwahae users mention most for this product. Ratings and ranks change daily.</p>"""
         title = f"{nm}: Hwahae Rating {r['rating']:.2f} and Korea Ranking"
         desc = f"{nm} is rated {r['rating']:.2f} from {r['reviews']:,} Korean reviews on Hwahae. See where it ranks in Korea, its Korean price and what reviewers praise."
         pages[f"p/{pid}/"] = page(title, desc, f"p/{pid}/", body, data['updatedAt'])
+    pages.update(brand_pages(hist, today, data['updatedAt']))
+    return pages
+
+
+def brand_slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def brand_pages(hist, today, updated):
+    """One page per brand with 2+ products ever ranked on Hwahae, plus a brand index."""
+    groups = {}
+    for pid, h in hist.items():
+        b = brand_label(h['r']).split(' (')[0]
+        groups.setdefault(b, []).append((pid, h))
+    pages, idx = {}, []
+    for b, items in sorted(groups.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        slug = brand_slug(b)
+        if len(items) < 2 or not slug:
+            continue
+        items.sort(key=lambda t: (t[1]['last'] != today, min(x[2] for x in t[1]['ranks']), -t[1]['r']['reviews']))
+        ko = items[0][1]['r']['brand']
+        live = sum(1 for _, h in items if h['last'] == today)
+        reviews = sum(h['r']['reviews'] for _, h in items)
+        cards = []
+        for pid, h in items:
+            r = h['r']
+            best = min(h['ranks'], key=lambda x: x[2])
+            where = f'#{best[2]} in <a href="{best[1]}">{esc(best[0])}</a>' + ('' if h['last'] == today else f' (last seen {esc(h["last"])})')
+            q = f"{b} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+            amz = f'<a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
+            tg = ', '.join(t.lower() for t in r['topics'][:3])
+            cards.append(f'<div class="card"><p class="kicker">{where}</p><h3><a href="{BASE}p/{pid}/">{esc(name_label(r))}</a></h3>'
+                         f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tg)}.' if tg else '.') + f'</p><p>{amz}</p></div>')
+        shop = (f'<p><a class="buy" href="{esc(amazon(b + " korean skincare"))}" rel="sponsored nofollow">Shop {esc(b)} on Amazon</a></p>' if AMAZON_TAG else '')
+        body = (f'<p class="kicker">Brand · updated {esc(updated[:10])}</p><h1>Best {esc(b)} products, ranked by Korean reviewers</h1>'
+                f'<p class="ko">{esc(ko)}</p>'
+                f'<p class="lede">{len(items)} {esc(b)} products have made a Hwahae top 20 (Korea\'s biggest cosmetics review app) since we started tracking, '
+                f'{live} of them today. Together they carry {reviews:,} Korean reviews. Best-ranked first.</p>{shop}'
+                f'<div class="grid">{"".join(cards)}</div><p class="meta">{esc(LINK_NOTE)}</p>'
+                f'<p><a href="{BASE}brand/">All brands</a> · <a href="{BASE}">Today\'s rankings</a></p>')
+        ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': f'Best {b} products on Hwahae',
+              'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'url': f"{BASE}p/{pid}/"} for i, (pid, _) in enumerate(items)]}
+        head = f'<meta property="og:image" content="{BASE}pins/category-all-{updated[:10]}.jpg"><script type="application/ld+json">{json.dumps(ld).replace("</", "<\\/")}</script>'
+        pages[f'brand/{slug}/'] = page(f'Best {b} Products (Updated Daily): Ranked by Korean Reviewers on Hwahae',
+                                       f'The {b} ({ko}) products Korean reviewers rank highest on Hwahae, with ratings, review counts and what they praise. Updated daily.',
+                                       f'brand/{slug}/', body, updated, head)
+        idx.append((b, slug, len(items), live))
+    lst = ''.join(f'<div class="card"><h3><a href="{BASE}brand/{sl}/">{esc(b)}</a></h3><p class="meta">{n} ranked products, {lv} in today\'s top 20s</p></div>' for b, sl, n, lv in idx)
+    pages['brand/'] = page('Korean Skincare Brands Ranked by Korean Reviewers (Hwahae)',
+                           'Every Korean beauty brand with several products in Hwahae\'s top 20 rankings, with their best-rated products. Updated daily.',
+                           'brand/', f'<p class="kicker">Brands</p><h1>Korean beauty brands Korean reviewers rank highest</h1><p class="lede">Brands with two or more products in a Hwahae top 20. Click a brand for its best-ranked products.</p><div class="grid">{lst}</div>', updated)
     return pages
 
 
@@ -501,6 +555,25 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc(title)}</title><link>{BASE}guide/{slug}/</link><guid isPermaLink=\"false\">guide-{slug}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(title + '. ' + ' '.join(tips) + ' Korea' + chr(39) + 's #1 right now: ' + pick + '.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    # brand pins: top brands by number of ranked products, refreshed monthly
+    try:
+        hist = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'products.json')))
+    except Exception:
+        hist = {}
+    groups = {}
+    for pid, h in hist.items():
+        groups.setdefault(brand_label(h['r']).split(' (')[0], []).append(h)
+    for b, hs in sorted(groups.items(), key=lambda kv: -len(kv[1]))[:8]:
+        if len(hs) < 3 or not brand_slug(b):
+            continue
+        hs.sort(key=lambda h: (min(x[2] for x in h['ranks']), -h['r']['reviews']))
+        f = f"brand-{brand_slug(b)}-{month}.jpg"
+        pins.append({'title': f'Best {b} products, ranked by Korean reviewers', 'date': up, 'file': f, 'items': [
+            {'brand': b, 'name': name_label(h['r']).split(' SPF')[0].split(' (')[0], 'rating': h['r']['rating'], 'reviews': h['r']['reviews']} for h in hs[:5]]})
+        top = ', '.join(name_label(h['r']).split(' SPF')[0].split(' (')[0] for h in hs[:3])
+        items.append(f"<item><title>{esc('Best ' + b + ' products, ranked by Korean reviewers')}</title><link>{BASE}brand/{brand_slug(b)}/</link><guid isPermaLink=\"false\">brand-{brand_slug(b)}-{month}</guid>"
+                     f"<pubDate>{pub}</pubDate><description>{esc(f'{len(hs)} {b} products have made a Hwahae top 20 in Korea. Top picks: {top}. Ratings and review counts from Korean reviewers.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
            f'<description>Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.</description>{"".join(items)}</channel></rss>')
@@ -522,6 +595,7 @@ def index_page(data):
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-routine/">Korean skincare routine</a></h3><p class="meta">The 5 steps in order, with Korea's #1 pick for each.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
+<div class="card"><h3><a href="{BASE}brand/">Best by brand</a></h3><p class="meta">Torriden, Round Lab, Anua and more, ranked by Korean reviewers.</p></div>
 <div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>
 <div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
 <h2>By category</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'category')}</div>
