@@ -3,25 +3,25 @@
   {
    "id": "nKECptsi2Y0QaaFbP",
    "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)",
-   "build": true,
+   "build": false,
    "version": "0.0"
   },
   {
    "id": "8UUeDflm8Baj330cq",
    "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)",
-   "build": true,
+   "build": false,
    "version": "0.0"
   },
   {
    "id": "c5XpOhA6an0YpwrYa",
    "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
-   "build": true,
+   "build": false,
    "version": "0.0"
   },
   {
    "id": "TwA7N7X916RY2EUkm",
    "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
-   "build": true,
+   "build": false,
    "version": "0.0"
   },
   {
@@ -32,7 +32,7 @@
   },
   {
    "id": "G5w0rYlAyXdJQOC09",
-   "build": true,
+   "build": false,
    "version": "0.0"
   }
  ]
