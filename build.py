@@ -124,11 +124,11 @@ def buy_button(r):
     return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(url)}" rel="{rel}">Check price on YesStyle</a></p>'
 
 
-def search_links(r):
+def search_links(r, amazon_link=True):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     oy = 'https://global.oliveyoung.com/display/search?query=' + urllib.parse.quote(q)
     ys, ys_rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
-    amz = f'<a href="{esc(amazon(q, r.get("id")))}" rel="sponsored nofollow">Amazon</a>' if AMAZON_TAG else ''
+    amz = f'<a href="{esc(amazon(q, r.get("id")))}" rel="sponsored nofollow">Amazon</a>' if (AMAZON_TAG and amazon_link) else ''
     return f'{amz}<a href="{oy}" rel="nofollow">Olive Young Global</a><a href="{esc(ys)}" rel="{ys_rel}">YesStyle</a><a href="{esc(r["url"])}" rel="nofollow">Hwahae page (KR)</a>'
 
 
@@ -303,7 +303,7 @@ def product_pages(data):
 <p class="ko">{esc(r['brand'])} {esc(r['name'])}</p>
 <div class="card"><div class="facts">★ <strong>{r['rating']:.2f}</strong> on Hwahae from {r['reviews']:,} Korean reviews</div>
 <div class="facts">Korean list price: {price}{(' · ' + esc(r['size'])) if r['size'] else ''}</div>
-<div class="tags">{tags}</div>{buy_button(r)}<div class="links">{search_links(r)}</div></div>
+<div class="tags">{tags}</div>{buy_button(r)}<div class="links">{search_links(r, amazon_link=False)}</div></div>
 {praise}{status}{track}{near}{blink}{clink}
 <h2>Buying it outside Korea</h2><p>Hwahae prices are Korean list prices; international shops usually charge more after shipping. Check the size matches ({esc(r['size']) if r['size'] else 'sizes vary by market'}) and buy from authorised sellers to avoid fakes.</p>
 <p class="meta">Tags are the review topics Korean Hwahae users mention most for this product. Ratings and ranks change daily.</p>"""
