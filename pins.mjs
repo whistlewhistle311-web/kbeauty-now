@@ -7,7 +7,21 @@ fs.mkdirSync('docs/pins', { recursive: true });
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1000, height: 1500 } });
+const GUIDE_CSS = `body{margin:0;width:1000px;height:1500px;background:#fbf4ee;font-family:"Noto Sans","Noto Sans KR",Arial,sans-serif;color:#2a2420}
+.wrap{padding:80px 72px;box-sizing:border-box;height:100%;display:flex;flex-direction:column}
+.k{font-size:26px;letter-spacing:4px;color:#b04a5a;font-weight:700;text-transform:uppercase}
+h1{font-size:84px;line-height:1.03;margin:18px 0 44px;letter-spacing:-1.5px}
+ul{list-style:none;padding:0;margin:0;flex:1}li{background:#fff;border-radius:22px;padding:30px 34px;margin-bottom:22px;font-size:38px;font-weight:650;line-height:1.25;word-break:keep-all}
+.pick{background:#b04a5a;color:#fff;border-radius:22px;padding:28px 34px;font-size:30px;margin-bottom:40px}.pick b{display:block;font-size:38px;margin-top:6px}
+.f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}`;
 for (const pin of data.pins) {
+  if (pin.tips) {
+    const li = pin.tips.map((t) => `<li>${esc(t)}</li>`).join('');
+    await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${GUIDE_CSS}</style></head><body><div class="wrap"><div class="k">K-beauty guide</div><h1>${esc(pin.title)}</h1><ul>${li}</ul>
+<div class="pick">Korea's #1 right now (Hwahae)<b>${esc(pin.pick)}</b></div><div class="f"><span>K-Beauty Now</span><span>Full guide at kbeauty-now</span></div></div></body></html>`);
+    await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
+    continue;
+  }
     const rows = pin.items.map((it, i) => `<li><span class="n">${i + 1}</span><div><div class="b">${esc(it.brand)}</div><div class="p">${esc(it.name)}</div><div class="m">★ ${it.rating.toFixed(2)} · ${it.reviews.toLocaleString('en-US')} Korean reviews</div></div></li>`).join('');
     await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>
 body{margin:0;width:1000px;height:1500px;background:#fbf4ee;font-family:"Noto Sans","Noto Sans KR",Arial,sans-serif;color:#2a2420}
@@ -29,6 +43,6 @@ console.log('pins', data.pins.length);
 // keep the last 14 days of pin images so the repo stays small
 const cutoff = Date.now() - 14 * 864e5;
 for (const f of fs.readdirSync('docs/pins')) {
-    const m = f.match(/(\d{4}-\d{2}-\d{2})\.(png|jpg)$/);
+    const m = f.match(/(\d{4}-\d{2}-\d{2})\.(png|jpg)$/); // guide pins (YYYY-MM) are kept
     if (m && Date.parse(m[1]) < cutoff) fs.unlinkSync(`docs/pins/${f}`);
 }

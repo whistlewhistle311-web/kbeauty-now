@@ -210,6 +210,15 @@ GUIDES = {
 }
 
 
+GUIDE_PINS = {  # evergreen pins, refreshed monthly (guid changes each month)
+    'korean-sunscreen': ('sunscreen', 'How to choose a Korean sunscreen', ['PA++++ is the top UVA grade.', 'Mineral (무기자차) suits sensitive skin.', 'Chemical (유기자차) feels lighter.', 'Look for the No white cast tag.']),
+    'korean-toner': ('toner', 'How to choose a Korean toner', ['Korean toner hydrates, it is not an astringent.', 'Toner pads with PHA: quick gentle exfoliation.', 'Dry skin: glycerin, panthenol, hyaluronic acid.', 'Sensitive skin: centella or mugwort.']),
+    'korean-serum': ('serum', 'Korean serum, essence or ampoule?', ['The names have no legal difference.', 'Pick by active ingredient, not the word.', 'Niacinamide: tone and oil control.', 'Centella, heartleaf: soothing.']),
+    'korean-moisturizer': ('cream', 'How to choose a Korean moisturizer', ['Gel cream: oily skin, hot weather.', 'Ceramide barrier cream: dry skin, winter.', 'Centella or panthenol: redness.', 'Seal in toner and serum with it.']),
+    'korean-cleanser': ('cleansing', 'Korean double cleansing in 2 steps', ['1. Oil or balm on dry skin, then rinse.', '2. Foam or gel cleanser.', 'Morning: one gentle cleanser is enough.', 'Tight after washing? Try a low-pH foam.']),
+}
+
+
 def extra_pages(data):
     by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
     up = data['updatedAt']
@@ -263,7 +272,7 @@ def pins_and_rss(data):
     pins, items = [], []
     for rk in data['rankings']:
         if rk['type'] == 'category':
-            t = f"Top {CAT[rk['slug']][1].replace('Korean ', 'Korean ')} in Korea"
+            t = f"Korea's top-rated {CAT[rk['slug']][1].replace('Korean ', '')}"
             href = f"{BASE}c/{rk['slug']}/"
         else:
             t = f"Best Korean skincare for {SKIN[rk['slug']]}"
@@ -275,6 +284,19 @@ def pins_and_rss(data):
         top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}" for r in rk['rows'][:3])
         items.append(f"<item><title>{esc(t)} ({up})</title><link>{href}</link><guid isPermaLink=\"false\">{rk['type']}-{rk['slug']}-{up}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    month = up[:7]
+    by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
+    for slug, (cat, title, tips) in GUIDE_PINS.items():
+        rk = by.get(('category', cat))
+        if not rk:
+            continue
+        r = rk['rows'][0]
+        pick = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+        f = f"guide-{slug}-{month}.jpg"
+        pins.append({'title': title, 'date': up, 'file': f, 'tips': tips, 'pick': pick})
+        items.append(f"<item><title>{esc(title)}</title><link>{BASE}guide/{slug}/</link><guid isPermaLink=\"false\">guide-{slug}-{month}</guid>"
+                     f"<pubDate>{pub}</pubDate><description>{esc(title + '. ' + ' '.join(tips) + ' Korea' + chr(39) + 's #1 right now: ' + pick + '.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
