@@ -158,6 +158,7 @@ def default_img(path, updated):
     return f'category-all-{updated[:10]}.jpg'
 
 
+WEEK_CARD = ['']  # filled by week_page() once 7 days of history exist
 NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sitemap
 
 
@@ -311,6 +312,7 @@ def product_pages(data):
         pages[f"p/{pid}/"] = page(title, desc, f"p/{pid}/", body, data['updatedAt'])
     pages.update(brand_pages(hist, today, data['updatedAt']))
     pages.update(concern_pages(hist, today, data['updatedAt']))
+    pages.update(week_page(data))
     return pages
 
 
@@ -486,6 +488,75 @@ def trending(data, n=15):
             if r['id'] not in best or score > best[r['id']][0]:
                 best[r['id']] = (score, r, where, rk)
     return sorted(best.values(), key=lambda t: (-t[0], t[1]['rank']))[:n]
+
+
+def week_page(data):
+    """This week in Korea: compares today's Hwahae top 20s with the snapshot 7 days earlier (data/YYYY-MM-DD.json).
+    Only built once 7 days of history exist, so it never shows made-up movement."""
+    import datetime
+    hist_load()
+    today = data['fetchedAt'][:10]
+    want = (datetime.date.fromisoformat(today) - datetime.timedelta(days=7)).isoformat()
+    older = [d for d in HIST_DAYS if d <= want]
+    if not older:
+        return {}
+    then_day = older[-1]
+    then = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', f'{then_day}.json')))
+    window = [d for d in HIST_DAYS if then_day <= d <= today]
+    prev = {(rk['type'], rk['slug']): {r['id']: r['rank'] for r in rk['rows']} for rk in then['rankings']}
+    climbs, news, outs = [], [], []
+    for rk in data['rankings']:
+        if rk['type'] != 'category' or rk['slug'] in ('all', 'skincare'):
+            continue
+        p = prev.get(('category', rk['slug']), {})
+        if not p:
+            continue
+        noun = CAT[rk['slug']][1]
+        cur = {r['id'] for r in rk['rows']}
+        for r in rk['rows']:
+            if r['id'] in p and p[r['id']] - r['rank'] > 0:
+                climbs.append((p[r['id']] - r['rank'], p[r['id']], r, noun, rk['slug']))
+            elif r['id'] not in p:
+                news.append((r['rank'], r, noun, rk['slug']))
+        for t in then['rankings']:
+            if t['type'] == 'category' and t['slug'] == rk['slug']:
+                outs += [(o, noun) for o in t['rows'] if o['id'] not in cur and o['rank'] <= 10]
+    steady = []
+    for rk in data['rankings']:
+        if rk['type'] == 'category' and rk['slug'] == 'all':
+            for r in rk['rows']:
+                n = len([d for d in hist_load().get(str(r['id']), {}).get('dates', ()) if d in window])
+                if n == len(window):
+                    steady.append(r)
+    if not (climbs or news):
+        return {}
+    climbs.sort(key=lambda t: (-t[0], t[2]['rank']))
+    news.sort(key=lambda t: t[0])
+
+    def li(r, note):
+        return (f'<li><a href="{BASE}p/{r["id"]}/">{esc(brand_label(r))} {esc(name_label(r))}</a> '
+                f'<span class="meta">{note} · ★ {r["rating"]:.2f}, {r["reviews"]:,} reviews</span></li>')
+    body = (f'<p class="kicker">This week · {esc(then_day)} to {esc(today)}</p><h1>This week in Korean skincare: what moved on Hwahae</h1>'
+            f'<p class="lede">We save every Hwahae top 20 each morning. This page compares today with {(datetime.date.fromisoformat(today) - datetime.date.fromisoformat(then_day)).days} days ago, '
+            'so you can see which products Korean users are moving up, and which ones just arrived.</p>')
+    if climbs:
+        body += '<h2>Biggest climbers</h2><ol>' + ''.join(
+            li(r, f'#{was} → #{r["rank"]} in <a href="{BASE}c/{sl}/">{esc(noun)}</a>') for up, was, r, noun, sl in climbs[:10]) + '</ol>'
+    if news:
+        body += '<h2>New in a top 20 this week</h2><ol>' + ''.join(
+            li(r, f'#{rank} in <a href="{BASE}c/{sl}/">{esc(noun)}</a>') for rank, r, noun, sl in news[:10]) + '</ol>'
+    if steady:
+        body += (f'<h2>Held the overall top 20 every day</h2><p>In the overall Hwahae ranking on all {len(window)} days we tracked:</p><ol>'
+                 + ''.join(li(r, f'#{r["rank"]} today') for r in steady[:10]) + '</ol>')
+    if outs:
+        body += '<h2>Dropped out of a top 20</h2><p>Was top 10 a week ago, not in the top 20 today:</p><ul>' + ''.join(
+            f'<li>{esc(brand_label(o))} {esc(name_label(o))} <span class="meta">(was #{o["rank"]} in {esc(noun)})</span></li>' for o, noun in outs[:8]) + '</ul>'
+    body += f'<p class="meta">{esc(LINK_NOTE)}</p>'
+    WEEK_CARD[0] = (f'<div class="card"><h3><a href="{BASE}this-week/">This week in Korea</a></h3>'
+                    '<p class="meta">Biggest climbers and new arrivals over the last 7 days.</p></div>')
+    return {'this-week/': page(f'This Week in Korean Skincare: Biggest Movers on Hwahae ({today})',
+                               'Which Korean skincare products climbed, arrived or held the Hwahae top 20 this week, from daily snapshots.',
+                               'this-week/', body, data['updatedAt'])}
 
 
 def extra_pages(data):
@@ -780,7 +851,7 @@ def index_page(data):
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
 <div class="card"><h3><a href="{BASE}concern/">Shop by concern</a></h3><p class="meta">Non-sticky, soothing, no breakouts, pores, dehydrated skin.</p></div>
 <div class="card"><h3><a href="{BASE}brand/">Best by brand</a></h3><p class="meta">Torriden, Round Lab, Anua and more, ranked by Korean reviewers.</p></div>
-<div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>
+<div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>{WEEK_CARD[0]}
 <div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
 <h2>By category</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'category')}</div>
 <h2>By skin type</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'skin')}</div>"""
