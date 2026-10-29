@@ -4,7 +4,7 @@ on:
   push:
     paths: ['ops/apify_actors.json']
   schedule:
-    - cron: '41 */6 * * *'
+    - cron: '41 * * * *'
 permissions:
   contents: write
 jobs:
