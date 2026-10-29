@@ -552,6 +552,21 @@ def week_page(data):
         body += '<h2>Dropped out of a top 20</h2><p>Was top 10 a week ago, not in the top 20 today:</p><ul>' + ''.join(
             f'<li>{esc(brand_label(o))} {esc(name_label(o))} <span class="meta">(was #{o["rank"]} in {esc(noun)})</span></li>' for o, noun in outs[:8]) + '</ul>'
     body += f'<p class="meta">{esc(LINK_NOTE)}</p>'
+    # Reddit draft for r/AsianBeauty-style weekly data posts: plain text, data first, one link at the end. Never posted automatically.
+    md = [f"Title: What moved on Hwahae (Korea's biggest cosmetics review app) this week, {then_day} to {today}", '',
+          "I track the public Hwahae top 20s every day. Here is what changed over the last week. Ratings and review counts are from Korean users.", '']
+    if climbs:
+        md += ['**Biggest climbers**', ''] + [f"- {brand_label(r).split(' (')[0]} {name_label(r)}: #{was} to #{r['rank']} in {noun} ({r['rating']:.2f}, {r['reviews']:,} reviews)"
+                                            for up_, was, r, noun, sl in climbs[:7]] + ['']
+    if news:
+        md += ['**New in a top 20**', ''] + [f"- {brand_label(r).split(' (')[0]} {name_label(r)}: #{rank} in {noun}" for rank, r, noun, sl in news[:7]] + ['']
+    if steady:
+        md += [f'**In the overall top 20 every day ({len(window)} days)**', ''] + [f"- {brand_label(r).split(' (')[0]} {name_label(r)} (#{r['rank']} today)" for r in steady[:7]] + ['']
+    md += ["Full daily lists (English names, Korean prices) if anyone wants them: " + BASE + "this-week/"]
+    try:
+        open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'reddit_draft.md'), 'w').write('\n'.join(md))
+    except Exception:
+        pass
     WEEK_CARD[0] = (f'<div class="card"><h3><a href="{BASE}this-week/">This week in Korea</a></h3>'
                     '<p class="meta">Biggest climbers and new arrivals over the last 7 days.</p></div>')
     return {'this-week/': page(f'This Week in Korean Skincare: Biggest Movers on Hwahae ({today})',
