@@ -550,6 +550,11 @@ def threads_posts(data):
                 + ''.join(f"{i}. {nm(o)}\n" for i, o in enumerate(rows[1:3], 2)) +
                 f"\nFull top 20 and where to buy: {BASE}c/{rk['slug']}/\n\nAuto-translated from Hwahae every morning (AI-assisted, not sponsored).")
         text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', text)  # 'S.NATURE' would be auto-linked as a domain
+        if len(text) > 495:  # Threads limit is 500 characters
+            text = re.sub(r'\. Most-mentioned: [^\n]*', '', text, count=1)
+        if len(text) > 495:
+            text = text.replace(' (the review app Koreans check before buying)', '')
+        text = text[:500]
         posts.append({'category': rk['slug'], 'topic': 'K Beauty', 'text': text})
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'threads.json')
     json.dump({'date': up, 'posts': posts}, open(path, 'w'), ensure_ascii=False, indent=1)
