@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://whistlewhistle311-web.github.io/kbeauty-now/sitemap.xml
