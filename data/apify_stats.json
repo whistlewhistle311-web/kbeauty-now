@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T14:02Z",
+ "at": "2026-10-29T14:05Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -18,19 +18,19 @@
    "pricing": "PAY_PER_EVENT"
   },
   {
-   "name": "naver-news-blog-search-api",
-   "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
-   "users30": 1,
-   "users": 2,
-   "runs": 2,
-   "pricing": "PAY_PER_EVENT"
-  },
-  {
    "name": "naver-shopping-insight-search-trends",
    "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
    "users30": 1,
    "users": 2,
    "runs": 3,
+   "pricing": "PAY_PER_EVENT"
+  },
+  {
+   "name": "naver-news-blog-search-api",
+   "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
+   "users30": 1,
+   "users": 2,
+   "runs": 2,
    "pricing": "PAY_PER_EVENT"
   },
   {
@@ -47,9 +47,15 @@
  },
  "log": [
   "nKECptsi2Y0QaaFbP updated ['title']",
+  "nKECptsi2Y0QaaFbP build failed: HTTP Error 404: Not Found",
   "8UUeDflm8Baj330cq updated ['title']",
-  "c5XpOhA6an0YpwrYa update failed: HTTP Error 403: Forbidden",
-  "TwA7N7X916RY2EUkm update failed: HTTP Error 403: Forbidden",
-  "whyzB2FJrg3ApaSMo updated ['title']"
+  "8UUeDflm8Baj330cq build failed: HTTP Error 404: Not Found",
+  "c5XpOhA6an0YpwrYa updated ['title']",
+  "c5XpOhA6an0YpwrYa build failed: HTTP Error 404: Not Found",
+  "TwA7N7X916RY2EUkm updated ['title']",
+  "TwA7N7X916RY2EUkm build failed: HTTP Error 404: Not Found",
+  "whyzB2FJrg3ApaSMo updated ['title']",
+  "whyzB2FJrg3ApaSMo build failed: HTTP Error 404: Not Found",
+  "G5w0rYlAyXdJQOC09 build failed: HTTP Error 404: Not Found"
  ]
 }
