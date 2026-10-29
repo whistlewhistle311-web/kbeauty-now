@@ -58,7 +58,7 @@ li{display:flex;gap:28px;background:#fff;border-radius:22px;padding:26px 30px;ma
 .n{font-size:64px;font-weight:800;color:#b04a5a;width:56px}
 .b{font-size:26px;color:#6b665f;text-transform:uppercase;letter-spacing:1px}.p{font-size:34px;font-weight:700;line-height:1.2}.m{font-size:24px;color:#6b665f;margin-top:4px}
 .f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}
-</style></head><body><div class="wrap"><div class="k">Ranked by Korean reviewers</div><h1>${esc(pin.title)}</h1><div class="s">Hwahae top 5 · ${esc(pin.date)}</div><ol>${rows}</ol>
+</style></head><body><div class="wrap"><div class="k">Ranked by Korean reviewers</div><h1>${esc(pin.title)}</h1><div class="s">${esc(pin.sub || "Hwahae top 5")} · ${esc(pin.date)}</div><ol>${rows}</ol>
 <div class="f"><span>K-Beauty Now</span><span>Full top 20 at kbeauty-now</span></div></div></body></html>`);
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
 }

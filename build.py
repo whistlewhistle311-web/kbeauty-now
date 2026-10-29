@@ -550,7 +550,7 @@ def pins_and_rss(data):
             t = f"Best Korean skincare for {SKIN[rk['slug']]}"
             href = f"{BASE}skin/{rk['slug']}/"
         f = f"{rk['type']}-{rk['slug']}-{up}.jpg"
-        pins.append({'title': t, 'date': up, 'file': f, 'items': [
+        pins.append({'title': t, 'sub': 'Most mentioned by Korean reviewers', 'date': up, 'file': f, 'items': [
             {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rating': r['rating'], 'reviews': r['reviews']}
             for r in rk['rows'][:5]]})
         top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}" for r in rk['rows'][:3])
@@ -560,7 +560,7 @@ def pins_and_rss(data):
     mv = trending(data, 5)
     if len(mv) >= 3:
         f = f"trending-{up}.jpg"
-        pins.append({'title': 'Trending in Korea: fastest-climbing K-beauty today', 'date': up, 'file': f, 'items': [
+        pins.append({'title': 'Trending in Korea: fastest-climbing K-beauty today', 'sub': 'Fastest climbers on Hwahae', 'date': up, 'file': f, 'items': [
             {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rating': r['rating'], 'reviews': r['reviews']}
             for _, r, _, _ in mv]})
         top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]} ({delta(r)})" for _, r, _, _ in mv[:3])
@@ -620,7 +620,7 @@ def pins_and_rss(data):
             continue
         hs.sort(key=lambda h: (min(x[2] for x in h['ranks']), -h['r']['reviews']))
         f = f"brand-{brand_slug(b)}-{month}.jpg"
-        pins.append({'title': f'Best {b} products, ranked by Korean reviewers', 'date': up, 'file': f, 'items': [
+        pins.append({'title': f'Best {b} products, ranked by Korean reviewers', 'sub': 'Best-ranked on Hwahae', 'date': up, 'file': f, 'items': [
             {'brand': b, 'name': name_label(h['r']).split(' SPF')[0].split(' (')[0], 'rating': h['r']['rating'], 'reviews': h['r']['reviews']} for h in hs[:5]]})
         top = ', '.join(name_label(h['r']).split(' SPF')[0].split(' (')[0] for h in hs[:3])
         items.append(f"<item><title>{esc('Best ' + b + ' products, ranked by Korean reviewers')}</title><link>{BASE}brand/{brand_slug(b)}/</link><guid isPermaLink=\"false\">brand-{brand_slug(b)}-{month}</guid>"
@@ -634,7 +634,7 @@ def pins_and_rss(data):
             continue
         f = f"concern-{slug}-{month}.jpg"
         t = h1.split(':')[0].replace(', according to Korean reviewers', '')
-        pins.append({'title': t, 'date': up, 'file': f, 'items': [
+        pins.append({'title': t, 'sub': 'Most mentioned by Korean reviewers', 'date': up, 'file': f, 'items': [
             {'brand': brand_label(h['r']).split(' (')[0], 'name': name_label(h['r']).split(' SPF')[0].split(' (')[0], 'rating': h['r']['rating'], 'reviews': h['r']['reviews']} for h in hs[:5]]})
         items.append(f"<item><title>{esc(t)}</title><link>{BASE}concern/{slug}/</link><guid isPermaLink=\"false\">concern-{slug}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(lede + ' Ranked from Hwahae, Korea' + chr(39) + 's biggest cosmetics review app.')}</description>"
