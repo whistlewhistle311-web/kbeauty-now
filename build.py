@@ -89,6 +89,8 @@ except Exception:
     AMAZON_TAG = ''
 LINK_NOTE = ('Store links are search links. Some are affiliate links: we may earn a commission at no extra cost to you, and it never changes the ranking order.'
              if (any(AWIN_MID.values()) or AMAZON_TAG) else 'Store links are search links.')
+if AMAZON_TAG:
+    LINK_NOTE += ' As an Amazon Associate, K-Beauty Now earns from qualifying purchases.'
 
 
 def amazon(q):
@@ -106,7 +108,8 @@ def awin(url, shop):
 def buy_button(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     if AMAZON_TAG:
-        return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">Check price on Amazon</a></p>'
+        return (f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">Check price on Amazon</a></p>'
+                '<p class="meta" style="margin:0">Affiliate link: as an Amazon Associate we earn from qualifying purchases.</p>')
     url, rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
     return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(url)}" rel="{rel}">Check price on YesStyle</a></p>'
 
