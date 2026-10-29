@@ -2,23 +2,19 @@
  "actors": [
   {
    "id": "nKECptsi2Y0QaaFbP",
-   "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)",
-   "pictureUrl": "https://whistlewhistle311-web.github.io/icons/kakao.png"
+   "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)"
   },
   {
    "id": "8UUeDflm8Baj330cq",
-   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)",
-   "pictureUrl": "https://whistlewhistle311-web.github.io/icons/hwahae.png"
+   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)"
   },
   {
    "id": "c5XpOhA6an0YpwrYa",
-   "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
-   "pictureUrl": "https://whistlewhistle311-web.github.io/icons/news.png"
+   "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)"
   },
   {
    "id": "TwA7N7X916RY2EUkm",
-   "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
-   "pictureUrl": "https://whistlewhistle311-web.github.io/icons/datalab.png"
+   "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API"
   }
  ]
 }
