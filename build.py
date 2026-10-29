@@ -358,6 +358,32 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc(t)} ({up})</title><link>{href}</link><guid isPermaLink=\"false\">{rk['type']}-{rk['slug']}-{up}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    # product pins: top 3 of each category, refreshed weekly (guid carries the ISO week)
+    yr, wk, _ = datetime.date.fromisoformat(up).isocalendar()
+    week = f"{yr}-W{wk:02d}"
+    done = set()
+    for rk in data['rankings']:
+        if rk['type'] != 'category' or rk['slug'] in ('all', 'skincare'):
+            continue
+        noun = CAT[rk['slug']][1].replace('Korean ', '').rstrip('s')
+        noun = {'serums and essence': 'serum', 'moisturizer': 'moisturizer', 'face mask': 'face mask'}.get(noun, noun)
+        for r in rk['rows'][:3]:
+            if r['id'] in done:
+                continue
+            done.add(r['id'])
+            b, n = brand_label(r).split(' (')[0], name_label(r).split(' (')[0]
+            f = f"product-{r['id']}-{week}.jpg"
+            title = f"{b} {n}: #{r['rank']} Korean {noun} on Hwahae"
+            pins.append({'title': title, 'date': up, 'file': f, 'product': {
+                'kicker': f"#{r['rank']} {noun} in Korea", 'brand': b, 'name': n, 'ko': f"{r['brand']} {r['name']}",
+                'rating': r['rating'], 'reviews': r['reviews'], 'tags': r['topics'][:3], 'price': usd(r['priceKrw']),
+                'others': [{'rank': o['rank'], 'name': f"{brand_label(o).split(' (')[0]} {name_label(o).split(' SPF')[0].split(' (')[0]}"}
+                           for o in rk['rows'][:4] if o['id'] != r['id']][:3], 'noun': noun}})
+            desc = (f"{b} {n} is #{r['rank']} in Korean {noun}s on Hwahae, rated {r['rating']:.2f} from {r['reviews']:,} Korean reviews. "
+                    f"Korean reviewers mention: {', '.join(t.lower() for t in r['topics'][:3])}. English name, Korean price and where to buy.")
+            items.append(f"<item><title>{esc(title)}</title><link>{BASE}p/{r['id']}/</link><guid isPermaLink=\"false\">product-{r['id']}-{week}</guid>"
+                         f"<pubDate>{pub}</pubDate><description>{esc(desc)}</description>"
+                         f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     month = up[:7]
     by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
     for slug, (cat, title, tips) in GUIDE_PINS.items():
