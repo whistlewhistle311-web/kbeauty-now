@@ -197,6 +197,30 @@ def extra_pages(data):
     return pages
 
 
+def pins_and_rss(data):
+    up = data['updatedAt'][:10]
+    pins, items = [], []
+    for rk in data['rankings']:
+        if rk['type'] == 'category':
+            t = f"Top {CAT[rk['slug']][1].replace('Korean ', 'Korean ')} in Korea"
+            href = f"{BASE}c/{rk['slug']}/"
+        else:
+            t = f"Best Korean skincare for {SKIN[rk['slug']]}"
+            href = f"{BASE}skin/{rk['slug']}/"
+        f = f"{rk['type']}-{rk['slug']}-{up}.png"
+        pins.append({'title': t, 'date': up, 'file': f, 'items': [
+            {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rating': r['rating'], 'reviews': r['reviews']}
+            for r in rk['rows'][:5]]})
+        top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}" for r in rk['rows'][:3])
+        items.append(f"<item><title>{esc(t)} ({up})</title><link>{href}</link><guid isPermaLink=\"false\">{rk['type']}-{rk['slug']}-{up}</guid>"
+                     f"<description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/png\" length=\"0\"/></item>")
+    json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
+    rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
+           f'<description>Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.</description>{"".join(items)}</channel></rss>')
+    return rss
+
+
 def index_page(data):
     up = data['updatedAt']
     cards = []
@@ -229,6 +253,7 @@ def main():
         open(f'{OUT}/{path}index.html', 'w').write(h)
         urls.append(BASE + path)
     open(f'{OUT}/index.html', 'w').write(index_page(data))
+    open(f'{OUT}/rss.xml', 'w').write(pins_and_rss(data))
     day = data['fetchedAt'][:10]
     open(f'{OUT}/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                           + ''.join(f'<url><loc>{u}</loc><lastmod>{day}</lastmod></url>' for u in urls) + '</urlset>')

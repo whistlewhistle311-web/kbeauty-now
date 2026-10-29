@@ -16,11 +16,13 @@ jobs:
         with: { python-version: '3.12' }
       - run: node fetch.mjs
       - run: python build.py docs
+      - run: npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+      - run: node pins.mjs
       - name: commit
         run: |
           git config user.name "kbeauty-now-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A data docs untranslated.txt
+          git add -A data docs untranslated.txt pins.json
           git diff --cached --quiet || git commit -m "Daily ranking update $(date -u +%F)"
           git push
       - name: notify IndexNow
