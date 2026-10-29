@@ -40,7 +40,8 @@ ol.rank li{background:var(--card);border:1px solid var(--line);border-radius:10p
 .n{font-size:22px;font-weight:700;color:var(--accent);line-height:1.1}.d{font-size:12px;color:var(--muted)}
 .pn{font-weight:650}.ko{word-break:keep-all;color:var(--muted);font-size:14px}
 .facts{font-size:14px}.tags span{display:inline-block;background:var(--soft);border-radius:99px;padding:1px 9px;margin:4px 6px 0 0;font-size:12.5px}
-.links{font-size:13.5px;margin-top:6px}.links a{color:var(--accent);margin-right:12px}
+.links{font-size:13.5px;margin-top:6px}
+a.buy,.card a.buy{display:inline-block;background:var(--accent);color:var(--card)!important;text-decoration:none;font-weight:650;border-radius:10px;padding:10px 18px}.links a{color:var(--accent);margin-right:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
 .card h3{margin:0 0 6px;font-size:17px}.card a{color:var(--accent)}
@@ -86,6 +87,12 @@ def awin(url, shop):
         return url, 'nofollow'
     return (f'https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={AWIN_AFFID}&ued=' + urllib.parse.quote(url, safe=''),
             'sponsored nofollow')
+
+
+def buy_button(r):
+    q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+    url, rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
+    return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(url)}" rel="{rel}">Check price on YesStyle</a></p>'
 
 
 def search_links(r):
@@ -210,7 +217,7 @@ def product_pages(data):
 <p class="ko">{esc(r['brand'])} {esc(r['name'])}</p>
 <div class="card"><div class="facts">★ <strong>{r['rating']:.2f}</strong> on Hwahae from {r['reviews']:,} Korean reviews</div>
 <div class="facts">Korean list price: {price}{(' · ' + esc(r['size'])) if r['size'] else ''}</div>
-<div class="tags">{tags}</div><div class="links">{search_links(r)}</div></div>
+<div class="tags">{tags}</div>{buy_button(r)}<div class="links">{search_links(r)}</div></div>
 {praise}{status}{near}
 <h2>Buying it outside Korea</h2><p>Hwahae prices are Korean list prices; international shops usually charge more after shipping. Check the size matches ({esc(r['size']) if r['size'] else 'sizes vary by market'}) and buy from authorised sellers to avoid fakes.</p>
 <p class="meta">Tags are the review topics Korean Hwahae users mention most for this product. Ratings and ranks change daily.</p>"""
