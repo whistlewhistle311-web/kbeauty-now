@@ -777,13 +777,24 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc(t)}</title><link>{BASE}concern/{slug}/</link><guid isPermaLink=\"false\">concern-{slug}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(lede + ' Ranked from Hwahae, Korea' + chr(39) + 's biggest cosmetics review app.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    all_items = list(items)
     pins, items = select_pins(pins, items, up)
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
     # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
     evergreen = ('guide/', 'concern/', 'brand/')
-    guide_items = [it for it in items if re.search(r'<link>[^<]*/(%s)' % '|'.join(evergreen), it)]
-    main_items = [it for it in items if it not in guide_items]
+    is_ever = lambda it: re.search(r'<link>[^<]*/(%s)' % '|'.join(evergreen), it)
+    main_items = [it for it in items if not is_ever(it)]
+    # guides feed: every evergreen pin chosen in the last 30 days (a feed must never be empty; guids keep repeats out)
+    try:
+        st = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'pin_state.json')))
+    except Exception:
+        st = {}
+    d0 = datetime.date.fromisoformat(up)
+    recent = {u for u, v in st.items() if (d0 - datetime.date.fromisoformat(v['date'])).days <= 30}
+    guide_items = [it for it in all_items if is_ever(it) and re.search(r'<link>([^<]+)</link>', it).group(1) in recent]
+    if not guide_items:  # first run: seed with the routine guide so Pinterest accepts the feed
+        guide_items = [it for it in all_items if '/guide/korean-skincare-routine/' in it][:1]
 
     def feed(title, desc, its):
         return (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{title}</title><link>{BASE}</link>'
