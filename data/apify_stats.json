@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T12:36Z",
+ "at": "2026-10-29T12:37Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -47,8 +47,8 @@
  },
  "log": [
   "nKECptsi2Y0QaaFbP update failed: HTTP Error 400: Bad Request",
-  "8UUeDflm8Baj330cq updated ['title']",
+  "8UUeDflm8Baj330cq update failed: HTTP Error 400: Bad Request",
   "c5XpOhA6an0YpwrYa update failed: HTTP Error 400: Bad Request",
-  "TwA7N7X916RY2EUkm updated ['title']"
+  "TwA7N7X916RY2EUkm update failed: HTTP Error 400: Bad Request"
  ]
 }
