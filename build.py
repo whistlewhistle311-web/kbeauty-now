@@ -138,7 +138,7 @@ def page(title, desc, path, body, updated, head=''):
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta property="og:type" content="article"><meta property="og:site_name" content="K-Beauty Now">
 <meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/{default_img(path, updated)}">'}
 <style>{CSS}</style></head><body>
-<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
+<header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
 <main>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
@@ -281,6 +281,20 @@ for _k, _t, _need, _avoid, _key in [
         f'<p>New to the order of steps? See the <a href="https://whistlewhistle311-web.github.io/kbeauty-now/guide/korean-skincare-routine/">Korean skincare routine guide</a>.</p>')
 
 
+def trending(data, n=15):
+    """Biggest climbers and new entries across every Hwahae list, one row per product (best move kept)."""
+    best = {}
+    for rk in data['rankings']:
+        where = CAT[rk['slug']][0] if rk['type'] == 'category' else SKIN[rk['slug']].capitalize()
+        for r in rk['rows']:
+            score = 100 if r['isNew'] else (r['delta'] or 0)
+            if score <= 0:
+                continue
+            if r['id'] not in best or score > best[r['id']][0]:
+                best[r['id']] = (score, r, where, rk)
+    return sorted(best.values(), key=lambda t: (-t[0], t[1]['rank']))[:n]
+
+
 def extra_pages(data):
     by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
     up = data['updatedAt']
@@ -346,6 +360,21 @@ def extra_pages(data):
     pages['guide/korean-skincare-routine/'] = page('Korean Skincare Routine Order (Updated Daily): 5 Steps and Korea\'s #1 Pick for Each',
         'The Korean skincare routine in the right order: cleanser, toner, serum, moisturizer, sunscreen, with the product Korean Hwahae users rank #1 for each step today.',
         'guide/korean-skincare-routine/', routine, up)
+    movers = trending(data)
+    if movers:
+        items = ''.join(
+            f'<li><div><div class="n">{r["rank"]}</div><div class="d">{delta(r)}</div></div><div>'
+            f'<div class="pn"><a href="{BASE}p/{r["id"]}/" style="color:inherit;text-decoration:none">{esc(brand_label(r))} · {esc(name_label(r))}</a></div>'
+            f'<div class="facts">#{r["rank"]} in {esc(where)} · ★ {r["rating"]:.2f} · {r["reviews"]:,} reviews</div>'
+            f'<div class="tags">{"".join(f"<span>{esc(t)}</span>" for t in r["topics"])}</div><div class="links">{search_links(r)}</div></div></li>'
+            for _, r, where, rk in movers)
+        tr = (f'<p class="kicker">Trending · updated {esc(up[:10])}</p><h1>Trending Korean skincare right now: what is climbing in Korea</h1>'
+              '<p class="lede">The products moving up fastest across all of Hwahae\'s rankings today, plus new entries. "▲5" means up five places since Hwahae\'s previous ranking. '
+              'Products that climb in Korea often reach Western shops and TikTok months later.</p>'
+              f'<ol class="rank">{items}</ol><p><a href="{BASE}c/all/">See the overall top 20</a> · <a href="{BASE}guide/">Buying guides</a></p>')
+        pages['trending/'] = page('Trending Korean Skincare Right Now: Fastest Climbers on Hwahae (Updated Daily)',
+            'The Korean skincare and makeup products climbing fastest on Hwahae, Korea\'s biggest cosmetics review app, today. English names, ratings and where to buy.',
+            'trending/', tr, up)
     names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
     hub = '<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p><div class="grid">' + ''.join(
         f'<div class="card"><h3><a href="{BASE}{p}">{esc(names.get(p.split("/")[1], p))}</a></h3></div>' for p in sorted((p for p in pages if p.startswith('guide/')), key=lambda p: (p != 'guide/korean-skincare-routine/', 'skin' in p))) + '</div>'
@@ -372,6 +401,16 @@ def pins_and_rss(data):
         top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}" for r in rk['rows'][:3])
         items.append(f"<item><title>{esc(t)} ({up})</title><link>{href}</link><guid isPermaLink=\"false\">{rk['type']}-{rk['slug']}-{up}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    mv = trending(data, 5)
+    if len(mv) >= 3:
+        f = f"trending-{up}.jpg"
+        pins.append({'title': 'Trending in Korea: fastest-climbing K-beauty today', 'date': up, 'file': f, 'items': [
+            {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rating': r['rating'], 'reviews': r['reviews']}
+            for _, r, _, _ in mv]})
+        top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]} ({delta(r)})" for _, r, _, _ in mv[:3])
+        items.append(f"<item><title>Trending Korean skincare right now ({up})</title><link>{BASE}trending/</link><guid isPermaLink=\"false\">trending-{up}</guid>"
+                     f"<pubDate>{pub}</pubDate><description>{esc('Climbing fastest on Hwahae today: ' + top + '. What Korea is buying before it trends abroad.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     # product pins: top 3 of each category, refreshed weekly (guid carries the ISO week)
     yr, wk, _ = datetime.date.fromisoformat(up).isocalendar()
@@ -433,6 +472,7 @@ def index_page(data):
 <h2>Start here</h2><div class="grid">
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-routine/">Korean skincare routine</a></h3><p class="meta">The 5 steps in order, with Korea's #1 pick for each.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
+<div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>
 <div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
 <h2>By category</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'category')}</div>
 <h2>By skin type</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'skin')}</div>"""
