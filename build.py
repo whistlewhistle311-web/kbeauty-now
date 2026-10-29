@@ -312,6 +312,7 @@ def product_pages(data):
         pages[f"p/{pid}/"] = page(title, desc, f"p/{pid}/", body, data['updatedAt'])
     pages.update(brand_pages(hist, today, data['updatedAt']))
     pages.update(concern_pages(hist, today, data['updatedAt']))
+    pages.update(ingredient_pages(hist, today, data['updatedAt']))
     pages.update(week_page(data))
     return pages
 
@@ -332,6 +333,57 @@ CONCERNS = {  # review topic -> (slug, h1, lede)
     'Exfoliates well': ('exfoliating', 'Gentle exfoliating Korean skincare Korean reviewers rate highest', 'Products Korean Hwahae users most often say exfoliate well.'),
     'Long-lasting': ('long-lasting', 'Long-lasting Korean makeup, according to Korean reviewers', 'Products Korean Hwahae users most often describe as long-lasting.'),
 }
+
+
+INGREDIENTS = {  # slug: (label, name regex, what it is)
+    'hyaluronic-acid': ('Hyaluronic acid', r'hyalu', 'Hyaluronic acid is a humectant: it holds water in the top layer of the skin. Korean toners, serums and creams often combine several molecule sizes, which is why many product names say "low molecular".'),
+    'ceramide': ('Ceramide', r'ceramide|\bcera\b', 'Ceramides are lipids that occur naturally in the skin barrier. Creams and lotions with ceramides are a common pick in Korea for dry, tight or easily irritated skin, especially in winter.'),
+    'centella-cica': ('Centella (cica)', r'cica|centella|madecass', 'Centella asiatica, sold in Korea as "cica", and its compounds such as madecassoside are used in calming products for red or irritated skin.'),
+    'pdrn': ('PDRN', r'pdrn', 'PDRN (polydeoxyribonucleotide) is made from DNA fragments, often from salmon. It became one of the biggest K-beauty trends of 2025 and 2026, marketed for repair and firmness; evidence for skincare use is still limited, so treat it as a hydrating ingredient first.'),
+    'heartleaf': ('Heartleaf', r'heartleaf', 'Heartleaf (Houttuynia cordata, 어성초) extract is a Korean favourite in soothing toners and pads, often picked for oily and blemish-prone skin.'),
+    'panthenol': ('Panthenol', r'panthenol', 'Panthenol (provitamin B5) attracts water and is used in soothing and barrier products.'),
+    'niacinamide': ('Niacinamide', r'niacinamide', 'Niacinamide (vitamin B3) is used for uneven tone, oiliness and the look of pores.'),
+    'squalane': ('Squalane', r'squalane', 'Squalane is a light, stable oil that softens the skin without feeling heavy.'),
+}
+
+
+def ingredient_pages(hist, today, updated):
+    """Ingredient pages only exist once at least 8 ranked products contain the ingredient (no thin pages)."""
+    pages, idx = {}, []
+    for slug, (label, rx, what) in INGREDIENTS.items():
+        items = [(pid, h) for pid, h in hist.items() if re.search(rx, name_label(h['r']), re.I)]
+        if len(items) < 8:
+            continue
+        items.sort(key=lambda t: (t[1]['last'] != today, min(x[2] for x in t[1]['ranks']), -t[1]['r']['reviews']))
+        cards = []
+        for pid, h in items[:20]:
+            r = h['r']
+            b = brand_label(r).split(' (')[0]
+            best = min(h['ranks'], key=lambda x: x[2])
+            q = f"{b} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+            amz = f'<a class="buy" href="{esc(amazon(q, r["id"]))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
+            tags = ', '.join(t.lower() for t in r['topics'][:3])
+            now = '' if h['last'] == today else f' (last seen {esc(h["last"])})'
+            cards.append(f'<div class="card"><p class="kicker">#{best[2]} in <a href="{best[1]}">{esc(best[0])}</a>{now}</p>'
+                         f'<h3><a href="{BASE}p/{pid}/">{esc(b)} {esc(name_label(r))}</a></h3>'
+                         f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tags)}.' if tags else '.') + f'</p><p>{amz}</p></div>')
+        h1 = f'Best Korean {label.lower()} skincare, ranked by Korean reviewers'
+        body = (f'<p class="kicker">By ingredient · updated {esc(updated[:10])}</p><h1>{esc(h1)}</h1>'
+                f'<p class="lede">{esc(what)}</p>'
+                f'<p>Below: every product with {esc(label.lower())} in its name that has made a Hwahae top 20 since we started tracking, '
+                'products in today\'s rankings first, then by best rank. Hwahae is Korea\'s biggest cosmetics review app.</p>'
+                f'<div class="grid">{"".join(cards)}</div><p class="meta">We list products by name; check the full ingredient list on the package or shop page. {esc(LINK_NOTE)}</p>'
+                f'<p><a href="{BASE}ingredient/">All ingredients</a> · <a href="{BASE}concern/">By concern</a> · <a href="{BASE}guide/">Buying guides</a></p>')
+        pages[f'ingredient/{slug}/'] = page(f'Best Korean {label} Skincare: Ranked by Korean Reviewers (Hwahae)',
+                                           f'{len(items)} Korean {label.lower()} products that made a Hwahae top 20, with ratings, review counts and where to buy.',
+                                           f'ingredient/{slug}/', body, updated)
+        idx.append((slug, label, len(items)))
+    if idx:
+        lst = ''.join(f'<div class="card"><h3><a href="{BASE}ingredient/{sl}/">{esc(lb)}</a></h3><p class="meta">{n} ranked products</p></div>' for sl, lb, n in idx)
+        pages['ingredient/'] = page('Korean Skincare by Ingredient: Ranked by Korean Reviewers',
+                                    'Korean skincare grouped by key ingredient (hyaluronic acid, ceramide, cica and more), ranked from Hwahae.',
+                                    'ingredient/', f'<p class="kicker">By ingredient</p><h1>Korean skincare by ingredient</h1><p class="lede">Products that made a Hwahae top 20, grouped by the key ingredient in their name. A page appears once at least 8 ranked products share an ingredient.</p><div class="grid">{lst}</div>', updated)
+    return pages
 
 
 def concern_pages(hist, today, updated):
@@ -899,6 +951,7 @@ def index_page(data):
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
 <div class="card"><h3><a href="{BASE}concern/">Shop by concern</a></h3><p class="meta">Non-sticky, soothing, no breakouts, pores, dehydrated skin.</p></div>
+<div class="card"><h3><a href="{BASE}ingredient/">By ingredient</a></h3><p class="meta">Hyaluronic acid, ceramide, cica: Korea's top-rated picks.</p></div>
 <div class="card"><h3><a href="{BASE}brand/">Best by brand</a></h3><p class="meta">Torriden, Round Lab, Anua and more, ranked by Korean reviewers.</p></div>
 <div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>{WEEK_CARD[0]}
 <div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
