@@ -207,14 +207,14 @@ def pins_and_rss(data):
         else:
             t = f"Best Korean skincare for {SKIN[rk['slug']]}"
             href = f"{BASE}skin/{rk['slug']}/"
-        f = f"{rk['type']}-{rk['slug']}-{up}.png"
+        f = f"{rk['type']}-{rk['slug']}-{up}.jpg"
         pins.append({'title': t, 'date': up, 'file': f, 'items': [
             {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rating': r['rating'], 'reviews': r['reviews']}
             for r in rk['rows'][:5]]})
         top = ', '.join(f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}" for r in rk['rows'][:3])
         items.append(f"<item><title>{esc(t)} ({up})</title><link>{href}</link><guid isPermaLink=\"false\">{rk['type']}-{rk['slug']}-{up}</guid>"
                      f"<description>{esc('Hwahae top 5 today: ' + top + '. Ranked by Korean reviewers.')}</description>"
-                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/png\" length=\"0\"/></item>")
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     rss = (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>K-Beauty Now</title><link>{BASE}</link>'
            f'<description>Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.</description>{"".join(items)}</channel></rss>')

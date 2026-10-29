@@ -22,13 +22,13 @@ li{display:flex;gap:28px;background:#fff;border-radius:22px;padding:26px 30px;ma
 .f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}
 </style></head><body><div class="wrap"><div class="k">Ranked by Korean reviewers</div><h1>${esc(pin.title)}</h1><div class="s">Hwahae top 5 · ${esc(pin.date)}</div><ol>${rows}</ol>
 <div class="f"><span>K-Beauty Now</span><span>Full top 20 at kbeauty-now</span></div></div></body></html>`);
-    await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'png' });
+    await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
 }
 await b.close();
 console.log('pins', data.pins.length);
 // keep the last 14 days of pin images so the repo stays small
 const cutoff = Date.now() - 14 * 864e5;
 for (const f of fs.readdirSync('docs/pins')) {
-    const m = f.match(/(\d{4}-\d{2}-\d{2})\.png$/);
+    const m = f.match(/(\d{4}-\d{2}-\d{2})\.(png|jpg)$/);
     if (m && Date.parse(m[1]) < cutoff) fs.unlinkSync(`docs/pins/${f}`);
 }
