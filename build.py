@@ -434,6 +434,29 @@ def index_page(data):
                 '', body, up)
 
 
+def threads_posts(data):
+    """Daily text posts for Threads (one per category, rotating), saved to data/threads.json."""
+    import datetime
+    up = data['updatedAt'][:10]
+    cats = [rk for rk in data['rankings'] if rk['type'] == 'category' and rk['slug'] not in ('all', 'skincare')]
+    day = datetime.date.fromisoformat(up).toordinal()
+    posts = []
+    for k in range(3):
+        rk = cats[(day * 3 + k) % len(cats)]
+        noun = CAT[rk['slug']][1].replace('Korean ', '')
+        rows = rk['rows']
+        r = rows[0]
+        t = ', '.join(x.lower() for x in r['topics'][:3])
+        nm = lambda o: f"{brand_label(o).split(' (')[0]} {name_label(o).split(' SPF')[0].split(' (')[0]}"
+        text = (f"Korea's #1 {noun.rstrip('s')} right now, by Korean reviewers on Hwahae (the review app Koreans check before buying):\n\n"
+                f"1. {nm(r)}: {r['rating']:.2f} from {r['reviews']:,} reviews" + (f". Most-mentioned: {t}" if t else '') + "\n"
+                + ''.join(f"{i}. {nm(o)}\n" for i, o in enumerate(rows[1:3], 2)) +
+                "\nThis account auto-translates Hwahae's rankings into English every morning (AI-assisted, not sponsored). Full top 20 at the link in my profile.")
+        posts.append({'category': rk['slug'], 'topic': 'K Beauty', 'text': text})
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'threads.json')
+    json.dump({'date': up, 'posts': posts}, open(path, 'w'), ensure_ascii=False, indent=1)
+
+
 def main():
     data = json.load(open(os.path.join(os.path.dirname(__file__), 'data', 'latest.json')))
     os.makedirs(OUT, exist_ok=True)
@@ -449,6 +472,7 @@ def main():
         urls.append(BASE + path)
     open(f'{OUT}/index.html', 'w').write(index_page(data))
     open(f'{OUT}/rss.xml', 'w').write(pins_and_rss(data))
+    threads_posts(data)
     day = data['fetchedAt'][:10]
     open(f'{OUT}/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                           + ''.join(f'<url><loc>{u}</loc><lastmod>{day}</lastmod></url>' for u in urls) + '</urlset>')
