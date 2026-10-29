@@ -35,8 +35,12 @@ def board_ids():
         bookmark = res.get('bookmark')
         if not bookmark:
             break
+    norm = lambda x: re.sub(r'[^a-z]', '', x.lower())
     for name in BOARDS.values():
-        if name not in have:
+        match = next((v for k, v in have.items() if norm(k) == norm(name)), None)
+        if match:
+            have[name] = match
+        else:
             have[name] = call('POST', '/boards', {'name': name, 'privacy': 'PUBLIC',
                                                   'description': 'Korea\'s top-rated K-beauty from Hwahae, translated into English daily by K-Beauty Now.'})['id']
     return have
