@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T14:01Z",
+ "at": "2026-10-29T14:02Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -48,8 +48,8 @@
  "log": [
   "nKECptsi2Y0QaaFbP updated ['title']",
   "8UUeDflm8Baj330cq updated ['title']",
-  "c5XpOhA6an0YpwrYa update failed: HTTP Error 400: Bad Request",
-  "TwA7N7X916RY2EUkm update failed: HTTP Error 400: Bad Request",
+  "c5XpOhA6an0YpwrYa update failed: HTTP Error 403: Forbidden",
+  "TwA7N7X916RY2EUkm update failed: HTTP Error 403: Forbidden",
   "whyzB2FJrg3ApaSMo updated ['title']"
  ]
 }
