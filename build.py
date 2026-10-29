@@ -181,7 +181,8 @@ def page(title, desc, path, body, updated, head=''):
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Pages are built automatically every day from Hwahae data; product names are translated by K-Beauty Now with AI assistance and checked against official brand names where we can verify them; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 Need this data as JSON for your shop or trend report? The same rankings are available as an API on <a href="https://apify.com/koreadata-lab/hwahae-kbeauty-ranking-tracker">Apify (Hwahae K-Beauty Ranking Tracker)</a>.
-{LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.</footer></main></body></html>"""
+{LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.
+<br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a></footer></main></body></html>"""
 
 
 def ranking_page(rk, updated):
