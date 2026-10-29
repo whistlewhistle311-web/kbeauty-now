@@ -19,7 +19,7 @@ cfg = json.load(open(os.path.join(here, 'apify_actors.json')))
 log = []
 if TOKEN:
     for a in cfg.get('actors', []):
-        patch = {k: a[k] for k in ('title', 'description', 'seoTitle', 'seoDescription') if k in a}
+        patch = {k: a[k] for k in ('title', 'description', 'seoTitle', 'seoDescription', 'pricingInfos') if k in a}
         if patch:
             try:
                 call('PUT', f"/acts/{a['id']}", patch); log.append(f"{a['id']} updated {sorted(patch)}")

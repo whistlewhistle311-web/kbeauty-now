@@ -1,6 +1,66 @@
-{"actors": [
- {"id": "nKECptsi2Y0QaaFbP", "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)"},
- {"id": "8UUeDflm8Baj330cq", "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)"},
- {"id": "c5XpOhA6an0YpwrYa", "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)"},
- {"id": "TwA7N7X916RY2EUkm", "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API"}
-]}
+{
+ "actors": [
+  {
+   "id": "nKECptsi2Y0QaaFbP",
+   "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)",
+   "pricingInfos": [
+    {
+     "pricingModel": "PAY_PER_EVENT",
+     "reasonForChange": "Moving to simple per-result pricing with platform usage included, so you pay one predictable price per row and nothing for compute.",
+     "pricingPerEvent": {
+      "actorChargeEvents": {
+       "apify-actor-start": {
+        "eventTitle": "Actor Start",
+        "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
+        "isOneTimeEvent": true,
+        "eventPriceUsd": 5e-05
+       },
+       "apify-default-dataset-item": {
+        "eventTitle": "place",
+        "eventDescription": "One place (name, address, phone, category, coordinates) saved to the dataset.",
+        "isOneTimeEvent": false,
+        "eventPriceUsd": 0.003,
+        "isPrimaryEvent": true
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "8UUeDflm8Baj330cq",
+   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)"
+  },
+  {
+   "id": "c5XpOhA6an0YpwrYa",
+   "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
+   "pricingInfos": [
+    {
+     "pricingModel": "PAY_PER_EVENT",
+     "reasonForChange": "Moving to simple per-result pricing with platform usage included, so you pay one predictable price per row and nothing for compute.",
+     "pricingPerEvent": {
+      "actorChargeEvents": {
+       "apify-actor-start": {
+        "eventTitle": "Actor Start",
+        "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
+        "isOneTimeEvent": true,
+        "eventPriceUsd": 5e-05
+       },
+       "apify-default-dataset-item": {
+        "eventTitle": "result",
+        "eventDescription": "One news, blog or cafe item saved to the dataset.",
+        "isOneTimeEvent": false,
+        "eventPriceUsd": 0.002,
+        "isPrimaryEvent": true
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "TwA7N7X916RY2EUkm",
+   "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API"
+  }
+ ]
+}
