@@ -8,7 +8,7 @@ import json, os, re, sys, time, urllib.request, urllib.error
 
 TOKEN = os.environ.get('PINTEREST_TOKEN', '').strip()
 API = 'https://api.pinterest.com/v5'
-BASE = 'https://whistlewhistle311-web.github.io/kbeauty-now/'
+BASE = 'https://koreanbeautynow.com/'
 BOARDS = {'category': 'Korea Top-Rated K-Beauty', 'skin': 'Korean Skincare by Skin Type'}
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MAX_PER_RUN = 15

@@ -3,7 +3,7 @@ import html, json, os, re, sys, urllib.parse
 from names_en import N
 BRANDS = json.load(open(os.path.join(os.path.dirname(__file__), 'brands_en.json')))
 
-BASE = os.environ.get('SITE_BASE', 'https://whistlewhistle311-web.github.io/kbeauty-now/')
+BASE = os.environ.get('SITE_BASE', 'https://koreanbeautynow.com/')
 OUT = sys.argv[1] if len(sys.argv) > 1 else 'site'
 KRW_PER_USD = 1337  # Gumroad's KRW conversion on 2026-10-29 ($9 = 12,032 KRW)
 esc = html.escape
@@ -88,13 +88,22 @@ try:
     AMAZON_TAG = open(os.path.join(_here, 'ops', 'amazon_tag.txt')).read().strip()
 except Exception:
     AMAZON_TAG = ''
-LINK_NOTE = ('Store links are search links. Some are affiliate links: we may earn a commission at no extra cost to you, and it never changes the ranking order.'
+LINK_NOTE = ('Most store links are search links. Some are affiliate links: we may earn a commission at no extra cost to you, and it never changes the ranking order.'
              if (any(AWIN_MID.values()) or AMAZON_TAG) else 'Store links are search links.')
 if AMAZON_TAG:
     LINK_NOTE += ' As an Amazon Associate, K-Beauty Now earns from qualifying purchases.'
 
 
-def amazon(q):
+try:  # hand-checked product pages on Amazon US (brand + product name match); everything else stays a search link
+    ASIN = json.load(open(os.path.join(_here, 'data', 'asin.json')))
+except Exception:
+    ASIN = {}
+
+
+def amazon(q, pid=None):
+    a = ASIN.get(str(pid)) if pid is not None else None
+    if a:
+        return f'https://www.amazon.com/dp/{a}?tag={AMAZON_TAG}'
     return f'https://www.amazon.com/s?k={urllib.parse.quote_plus(q)}&tag={AMAZON_TAG}'
 
 
@@ -109,7 +118,7 @@ def awin(url, shop):
 def buy_button(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     if AMAZON_TAG:
-        return (f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">Check price on Amazon</a></p>'
+        return (f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(amazon(q, r.get("id")))}" rel="sponsored nofollow">Check price on Amazon</a></p>'
                 '<p class="meta" style="margin:0">Affiliate link: as an Amazon Associate we earn from qualifying purchases.</p>')
     url, rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
     return f'<p style="margin:12px 0 4px"><a class="buy" href="{esc(url)}" rel="{rel}">Check price on YesStyle</a></p>'
@@ -119,7 +128,7 @@ def search_links(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     oy = 'https://global.oliveyoung.com/display/search?query=' + urllib.parse.quote(q)
     ys, ys_rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
-    amz = f'<a href="{esc(amazon(q))}" rel="sponsored nofollow">Amazon</a>' if AMAZON_TAG else ''
+    amz = f'<a href="{esc(amazon(q, r.get("id")))}" rel="sponsored nofollow">Amazon</a>' if AMAZON_TAG else ''
     return f'{amz}<a href="{oy}" rel="nofollow">Olive Young Global</a><a href="{esc(ys)}" rel="{ys_rel}">YesStyle</a><a href="{esc(r["url"])}" rel="nofollow">Hwahae page (KR)</a>'
 
 
@@ -338,7 +347,7 @@ def concern_pages(hist, today, updated):
             b = brand_label(r).split(' (')[0]
             best = min(h['ranks'], key=lambda x: x[2])
             q = f"{b} {name_label(r).split(' SPF')[0].split(' (')[0]}"
-            amz = f'<a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
+            amz = f'<a class="buy" href="{esc(amazon(q, r["id"]))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
             pos = r['topics'].index(topic) + 1
             cards.append(f'<div class="card"><p class="kicker">#{best[2]} in <a href="{best[1]}">{esc(best[0])}</a></p>'
                          f'<h3><a href="{BASE}p/{pid}/">{esc(b)} {esc(name_label(r))}</a></h3>'
@@ -385,7 +394,7 @@ def brand_pages(hist, today, updated):
             best = min(h['ranks'], key=lambda x: x[2])
             where = f'#{best[2]} in <a href="{best[1]}">{esc(best[0])}</a>' + ('' if h['last'] == today else f' (last seen {esc(h["last"])})')
             q = f"{b} {name_label(r).split(' SPF')[0].split(' (')[0]}"
-            amz = f'<a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
+            amz = f'<a class="buy" href="{esc(amazon(q, r["id"]))}" rel="sponsored nofollow">See it on Amazon</a>' if AMAZON_TAG else ''
             tg = ', '.join(t.lower() for t in r['topics'][:3])
             cards.append(f'<div class="card"><p class="kicker">{where}</p><h3><a href="{BASE}p/{pid}/">{esc(name_label(r))}</a></h3>'
                          f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tg)}.' if tg else '.') + f'</p><p>{amz}</p></div>')
@@ -430,7 +439,7 @@ GUIDES = {
         'Best Korean moisturizer: what Koreans pick, and how to choose',
         'The cream is the step that seals in the toner and serum. Here is how to choose by skin type, and the five creams Korean Hwahae users rank highest today.',
         '<h2>Choose by texture</h2><ul><li><b>Gel cream</b>: light, good for oily skin and hot weather.</li><li><b>Barrier cream</b> with ceramides: for dry or irritated skin, and for winter.</li><li><b>Soothing cream</b> with centella or panthenol: for redness and sensitive skin.</li></ul>'
-        '<p>For skin-type rankings, see <a href="https://whistlewhistle311-web.github.io/kbeauty-now/skin/dry/">dry skin</a>, <a href="https://whistlewhistle311-web.github.io/kbeauty-now/skin/oily/">oily skin</a> and <a href="https://whistlewhistle311-web.github.io/kbeauty-now/skin/sensitive/">sensitive skin</a>.</p>'),
+        '<p>For skin-type rankings, see <a href="https://koreanbeautynow.com/skin/dry/">dry skin</a>, <a href="https://koreanbeautynow.com/skin/oily/">oily skin</a> and <a href="https://koreanbeautynow.com/skin/sensitive/">sensitive skin</a>.</p>'),
     'korean-cleanser': ('cleansing', 'Best Korean Cleanser (Updated Daily): Double Cleansing Picks from Hwahae',
         'Korean double cleansing explained (oil first, then foam) and the 5 cleansers Korean Hwahae users rank highest today.',
         'Best Korean cleanser: what Koreans pick, and how to double cleanse',
@@ -462,7 +471,7 @@ for _k, _t, _need, _avoid, _key in [
         f'Korean skincare for {_t}: what works, and what Koreans pick',
         f'Hwahae lets users register their skin type, so its rankings show what people with {_t} actually rate highly. Here is how to build a routine for {_t}, and today\'s top 5.',
         f'<h2>How to build the routine</h2><p>{_need}</p><h2>Ingredients to look for</h2><p>{_key}.</p><h2>What to avoid</h2><p>{_avoid}</p>'
-        f'<p>New to the order of steps? See the <a href="https://whistlewhistle311-web.github.io/kbeauty-now/guide/korean-skincare-routine/">Korean skincare routine guide</a>.</p>')
+        f'<p>New to the order of steps? See the <a href="https://koreanbeautynow.com/guide/korean-skincare-routine/">Korean skincare routine guide</a>.</p>')
 
 
 def trending(data, n=15):
@@ -576,7 +585,7 @@ def extra_pages(data):
                 cards.append(f'<div class="card"><p class="kicker">#{r["rank"]} {esc(label.lower())} in Korea</p>'
                              f'<h3><a href="{BASE}p/{r["id"]}/">{esc(brand_label(r))} {esc(name_label(r))}</a></h3>'
                              f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tags)}.' if tags else '.') + '</p>'
-                             f'<p><a class="buy" href="{esc(amazon(q))}" rel="sponsored nofollow">See it on Amazon</a></p></div>')
+                             f'<p><a class="buy" href="{esc(amazon(q, r["id"]))}" rel="sponsored nofollow">See it on Amazon</a></p></div>')
             secs.append(f'<h2>{esc(label)}</h2><div class="grid">{"".join(cards)}</div>')
         am = (f'<p class="kicker">Buying guide · updated {esc(up[:10])}</p><h1>Best Korean skincare on Amazon, picked by Korean reviewers</h1>'
               '<p class="lede">Amazon is full of Korean skincare, but its bestseller lists mix in sponsored and Western-made products. '

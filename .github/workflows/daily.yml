@@ -29,14 +29,14 @@ jobs:
         run: |
           KEY=$(cat indexnow.key)
           URLS=$(python -c "import re;print(','.join('\"'+u+'\"' for u in re.findall(r'<loc>([^<]+)</loc>',open('docs/sitemap.xml').read())))")
-          curl -s -X POST https://api.indexnow.org/indexnow -H "Content-Type: application/json" -d "{\"host\":\"whistlewhistle311-web.github.io\",\"key\":\"$KEY\",\"keyLocation\":\"https://whistlewhistle311-web.github.io/kbeauty-now/$KEY.txt\",\"urlList\":[$URLS]}" || true
+          curl -s -X POST https://api.indexnow.org/indexnow -H "Content-Type: application/json" -d "{\"host\":\"koreanbeautynow.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://koreanbeautynow.com/$KEY.txt\",\"urlList\":[$URLS]}" || true
       - name: post pins to Pinterest
         env:
           PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
         run: |
           if [ -z "$PINTEREST_TOKEN" ]; then echo "no token"; exit 0; fi
           F=$(python -c "import json;print(json.load(open('pins.json'))['pins'][0]['file'])")
-          for i in $(seq 1 30); do curl -sfI "https://whistlewhistle311-web.github.io/kbeauty-now/pins/$F" >/dev/null && break; sleep 10; done
+          for i in $(seq 1 30); do curl -sfI "https://koreanbeautynow.com/pins/$F" >/dev/null && break; sleep 10; done
           python pin_post.py
           git add data/posted.json
           git diff --cached --quiet || { git commit -m "Pinterest posted $(date -u +%F)"; git push; }
