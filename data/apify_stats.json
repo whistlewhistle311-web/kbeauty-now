@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T14:34Z",
+ "at": "2026-10-29T14:38Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -45,11 +45,5 @@
  "account": {
   "plan": "FREE"
  },
- "log": [
-  "nKECptsi2Y0QaaFbP updated ['title']",
-  "8UUeDflm8Baj330cq updated ['title']",
-  "c5XpOhA6an0YpwrYa updated ['title']",
-  "TwA7N7X916RY2EUkm updated ['title']",
-  "whyzB2FJrg3ApaSMo updated ['title']"
- ]
+ "log": []
 }
