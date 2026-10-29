@@ -74,11 +74,25 @@ def usd(krw):
     return f'≈ ${krw / KRW_PER_USD:,.0f}' if krw else ''
 
 
+AWIN_AFFID = '3138543'
+AWIN_MID = {'yesstyle': None}  # set to the advertiser id once the programme approves us
+LINK_NOTE = ('Store links are search links. Some are affiliate links: we may earn a commission at no extra cost to you, and it never changes the ranking order.'
+             if any(AWIN_MID.values()) else 'Store links are search links.')
+
+
+def awin(url, shop):
+    mid = AWIN_MID.get(shop)
+    if not mid:
+        return url, 'nofollow'
+    return (f'https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={AWIN_AFFID}&ued=' + urllib.parse.quote(url, safe=''),
+            'sponsored nofollow')
+
+
 def search_links(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     oy = 'https://global.oliveyoung.com/display/search?query=' + urllib.parse.quote(q)
-    ys = 'https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q)
-    return f'<a href="{oy}" rel="nofollow">Olive Young Global</a><a href="{ys}" rel="nofollow">YesStyle</a><a href="{esc(r["url"])}" rel="nofollow">Hwahae page (KR)</a>'
+    ys, ys_rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
+    return f'<a href="{oy}" rel="nofollow">Olive Young Global</a><a href="{esc(ys)}" rel="{ys_rel}">YesStyle</a><a href="{esc(r["url"])}" rel="nofollow">Hwahae page (KR)</a>'
 
 
 def delta(r):
@@ -114,7 +128,7 @@ def page(title, desc, path, body, updated):
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are refreshed daily. Ranking updated {esc(updated)} KST.
 Product names are translated by K-Beauty Now; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 Need this data as JSON for your shop or trend report? The same rankings are available as an API on <a href="https://apify.com/koreadata-lab/hwahae-kbeauty-ranking-tracker">Apify (Hwahae K-Beauty Ranking Tracker)</a>.
-Store links are search links. K-Beauty Now is independent and not affiliated with Hwahae, Olive Young or YesStyle.</footer></main></body></html>"""
+{LINK_NOTE} K-Beauty Now is independent and not affiliated with Hwahae, Olive Young or YesStyle.</footer></main></body></html>"""
 
 
 def ranking_page(rk, updated):
