@@ -640,7 +640,7 @@ def extra_pages(data):
         pages['trending/'] = page('Trending Korean Skincare Right Now: Fastest Climbers on Hwahae (Updated Daily)',
             'The Korean skincare and makeup products climbing fastest on Hwahae, Korea\'s biggest cosmetics review app, today. English names, ratings and where to buy.',
             'trending/', tr, up)
-    # Amazon picks: Korea's #1-#2 per routine step, each with an Amazon search button (only when the Amazon tag is set)
+    # Amazon picks: per routine step, the two best-ranked top-10 products sold on Amazon US (only when the Amazon tag is set)
     if AMAZON_TAG:
         steps_a = [('sunscreen', 'Sunscreen'), ('toner', 'Toner'), ('serum', 'Serum and essence'), ('cream', 'Moisturizer'),
                    ('cleansing', 'Cleanser'), ('masks', 'Sheet masks and pads'), ('cushion', 'Cushion foundation')]
@@ -650,7 +650,11 @@ def extra_pages(data):
             if not rk:
                 continue
             cards = []
-            for r in rk['rows'][:2]:
+            # this page is for buying on Amazon: prefer the highest-ranked top-10 products we matched to an Amazon product page
+            on_amz = [r for r in rk['rows'][:10] if str(r['id']) in ASIN]
+            picks = (on_amz + [r for r in rk['rows'] if r not in on_amz])[:2]
+            picks.sort(key=lambda r: r['rank'])
+            for r in picks:
                 q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
                 tags = ', '.join(t.lower() for t in r['topics'][:3])
                 cards.append(f'<div class="card"><p class="kicker">#{r["rank"]} {esc(label.lower())} in Korea</p>'
@@ -661,7 +665,7 @@ def extra_pages(data):
         am = (f'<p class="kicker">Buying guide · updated {esc(up[:10])}</p><h1>Best Korean skincare on Amazon, picked by Korean reviewers</h1>'
               '<p class="lede">Amazon is full of Korean skincare, but its bestseller lists mix in sponsored and Western-made products. '
               'This list starts from the other side: the products Korean shoppers rate highest on Hwahae, Korea\'s biggest cosmetics review app, today, '
-              'two per routine step, each linked to an Amazon search so you can compare sellers and prices.</p>'
+              'two per routine step: the highest-ranked ones we found on Amazon US, linked to the Amazon product page (or to an Amazon search when we could not match one).</p>'
               '<p class="meta">Check the seller before you buy: look for the brand\'s official store or "Ships from Amazon" to avoid fakes. Formulas sold abroad can differ slightly from the Korean version.</p>'
               + ''.join(secs) +
               f'<p class="meta">{esc(LINK_NOTE)}</p><p><a href="{BASE}guide/korean-skincare-routine/">Korean routine order</a> · <a href="{BASE}trending/">What is trending in Korea</a></p>')
