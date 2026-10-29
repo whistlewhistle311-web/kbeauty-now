@@ -138,7 +138,7 @@ def row_html(r):
     ko = '' if name_label(r) == r['name'] else f'<div class="ko">{esc(r["brand"])} {esc(r["name"])}</div>'
     return f"""<li><div><div class="n">{r['rank']}</div><div class="d">{delta(r)}</div></div>
 <div><div class="pn"><a href="{BASE}p/{r['id']}/" style="color:inherit;text-decoration:none">{esc(brand_label(r))} · {esc(name_label(r))}</a></div>{ko}
-<div class="facts">★ {r['rating']:.2f} · {r['reviews']:,} reviews{(' · ' + esc(r['size'])) if r['size'] else ''}{(' · ' + price) if price else ''}</div>
+<div class="facts">{(f'{len(hist_load()[str(r["id"])]["dates"])} days in a top 20 · ') if len(hist_load().get(str(r['id']), {}).get('dates', ())) >= 2 else ''}★ {r['rating']:.2f} · {r['reviews']:,} reviews{(' · ' + esc(r['size'])) if r['size'] else ''}{(' · ' + price) if price else ''}</div>
 <div class="tags">{tags}</div><div class="links">{search_links(r)}</div></div></li>"""
 
 
@@ -154,7 +154,7 @@ NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sit
 
 def page(title, desc, path, body, updated, head=''):
     url = BASE + path
-    if path.startswith(('p/', 'brand/')):  # templated; reopen once each carries rank history (see audit 2026-10-29)
+    if path.startswith('brand/'):  # templated; reopen once each carries rank history (see audit 2026-10-29)
         NOINDEX.add(path)
     if path in NOINDEX:
         head = '<meta name="robots" content="noindex,follow">' + head
@@ -202,6 +202,37 @@ def ranking_page(rk, updated):
     return path, page(title, desc, path, body, updated, head)
 
 
+def load_history():
+    """Per product: dates seen in any Hwahae top 20, first date, best rank (label, rank). From data/YYYY-MM-DD.json."""
+    import glob
+    hist, days = {}, []
+    for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', '20??-??-??.json'))):
+        d = os.path.basename(f)[:10]
+        try:
+            snap = json.load(open(f))
+        except Exception:
+            continue
+        days.append(d)
+        for rk in snap['rankings']:
+            label = CAT[rk['slug']][0] if rk['type'] == 'category' else f"Skincare for {SKIN[rk['slug']]}"
+            for r in rk['rows']:
+                h = hist.setdefault(str(r['id']), {'dates': set(), 'best': (label, 99)})
+                h['dates'].add(d)
+                if r['rank'] < h['best'][1]:
+                    h['best'] = (label, r['rank'])
+    return hist, days
+
+
+HIST, HIST_DAYS = None, []
+
+
+def hist_load():
+    global HIST, HIST_DAYS
+    if HIST is None:
+        HIST, HIST_DAYS = load_history()
+    return HIST
+
+
 def product_pages(data):
     """One page per product ever ranked. Products that drop out keep their page (marked with the last date seen)
     so indexed URLs never 404. History lives in data/products.json."""
@@ -222,9 +253,21 @@ def product_pages(data):
     for pid, p in prods.items():
         hist[pid] = {'r': p['r'], 'ranks': p['ranks'], 'near': p['near'][:6], 'last': today}
     json.dump(hist, open(hist_path, 'w'), ensure_ascii=False)
+    hist_load()
     pages = {}
     for pid, h in hist.items():
         r, current = h['r'], h['last'] == today
+        hh = HIST.get(pid)
+        if hh and HIST_DAYS:
+            seen = len(hh['dates'])
+            first = min(hh['dates'])
+            track = (f'<h2>Track record</h2><p>Tracked daily since {esc(HIST_DAYS[0])}. This product has been in a Hwahae top 20 on '
+                     f'<strong>{seen} of {len(HIST_DAYS)}</strong> days tracked, first seen {esc(first)}. Best rank so far: '
+                     f'<strong>#{hh["best"][1]}</strong> in {esc(hh["best"][0])}.</p>')
+        else:
+            seen, track = 0, ''
+        if seen < 10:  # reopen to search only once the page carries real history
+            NOINDEX.add(f"p/{pid}/")
         nm = f"{brand_label(r).split(' (')[0]} {name_label(r)}"
         ranks = ''.join(f'<li>#{rk} in <a href="{hh}">{esc(l)}</a></li>' for l, hh, rk in sorted(h['ranks'], key=lambda x: x[2]))
         tags = ''.join(f'<span>{esc(t)}</span>' for t in r['topics'])
@@ -251,7 +294,7 @@ def product_pages(data):
 <div class="card"><div class="facts">★ <strong>{r['rating']:.2f}</strong> on Hwahae from {r['reviews']:,} Korean reviews</div>
 <div class="facts">Korean list price: {price}{(' · ' + esc(r['size'])) if r['size'] else ''}</div>
 <div class="tags">{tags}</div>{buy_button(r)}<div class="links">{search_links(r)}</div></div>
-{praise}{status}{near}{blink}{clink}
+{praise}{status}{track}{near}{blink}{clink}
 <h2>Buying it outside Korea</h2><p>Hwahae prices are Korean list prices; international shops usually charge more after shipping. Check the size matches ({esc(r['size']) if r['size'] else 'sizes vary by market'}) and buy from authorised sellers to avoid fakes.</p>
 <p class="meta">Tags are the review topics Korean Hwahae users mention most for this product. Ratings and ranks change daily.</p>"""
         title = f"{nm}: Hwahae Rating {r['rating']:.2f} and Korea Ranking"
