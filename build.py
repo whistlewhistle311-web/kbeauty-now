@@ -1027,6 +1027,11 @@ def main():
     lastmod[''] = day
     open(f'{OUT}/rss.xml', 'w').write(pins_and_rss(data))
     threads_posts(data)
+    # English names for ops/shorts.mjs (vertical video slideshows)
+    json.dump({'labels': {sl: CAT[sl][1].replace('Korean ', '') for sl in CAT},
+               'products': {str(r['id']): {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' (')[0]}
+                            for rk in data['rankings'] for r in rk['rows']}},
+              open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'shorts_names.json'), 'w'), ensure_ascii=False)
     json.dump(hashes, open(hpath, 'w'), indent=0, sort_keys=True)
     open(f'{OUT}/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                           + ''.join(f'<url><loc>{BASE}{u}</loc><lastmod>{lastmod.get(u, day)}</lastmod></url>' for u in urls) + '</urlset>')
