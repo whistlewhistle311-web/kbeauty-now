@@ -148,8 +148,13 @@ def default_img(path, updated):
     return f'category-all-{updated[:10]}.jpg'
 
 
+NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sitemap
+
+
 def page(title, desc, path, body, updated, head=''):
     url = BASE + path
+    if path in NOINDEX:
+        head = '<meta name="robots" content="noindex,follow">' + head
     nav = ''.join(f'<a href="{BASE}c/{s}/">{v[0]}</a>' for s, v in CAT.items() if s in ('skincare', 'sunscreen', 'serum', 'toner', 'cushion'))
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="0oISjJafxIxC-LdVeihPqTQ3o9DoxV5FSNgvVZB-tps">
@@ -278,6 +283,8 @@ def concern_pages(hist, today, updated):
         items = [(pid, h) for pid, h in hist.items() if topic in h['r']['topics']]
         if len(items) < 4:
             continue
+        if len(items) < 8:
+            NOINDEX.add(f'concern/{slug}/')
         items.sort(key=lambda t: (t[1]['last'] != today, t[1]['r']['topics'].index(topic), -t[1]['r']['rating'] * min(t[1]['r']['reviews'], 20000)))
         cards = []
         for pid, h in items[:20]:
@@ -320,6 +327,8 @@ def brand_pages(hist, today, updated):
         slug = brand_slug(b)
         if len(items) < 2 or not slug:
             continue
+        if len(items) < 4:
+            NOINDEX.add(f'brand/{slug}/')
         items.sort(key=lambda t: (t[1]['last'] != today, min(x[2] for x in t[1]['ranks']), -t[1]['r']['reviews']))
         ko = items[0][1]['r']['brand']
         live = sum(1 for _, h in items if h['last'] == today)
@@ -714,7 +723,8 @@ def main():
     for path, h in list(product_pages(data).items()) + list(extra_pages(data).items()):
         os.makedirs(f'{OUT}/{path}', exist_ok=True)
         open(f'{OUT}/{path}index.html', 'w').write(h)
-        urls.append(BASE + path)
+        if path not in NOINDEX:
+            urls.append(BASE + path)
     open(f'{OUT}/index.html', 'w').write(index_page(data))
     open(f'{OUT}/rss.xml', 'w').write(pins_and_rss(data))
     threads_posts(data)
