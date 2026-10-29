@@ -418,11 +418,15 @@ def index_page(data):
     for rk in data['rankings']:
         name = CAT[rk['slug']][0] if rk['type'] == 'category' else f"Skincare for {SKIN[rk['slug']]}"
         href = f"{BASE}c/{rk['slug']}/" if rk['type'] == 'category' else f"{BASE}skin/{rk['slug']}/"
-        top = ''.join(f'<li>{esc(brand_label(r).split(" (")[0])} {esc(name_label(r).split(" SPF")[0])}</li>' for r in rk['rows'][:5])
+        top = ''.join(f'<li><a href="{BASE}p/{r["id"]}/" style="color:inherit">{esc(brand_label(r).split(" (")[0])} {esc(name_label(r).split(" SPF")[0])}</a></li>' for r in rk['rows'][:5])
         cards.append(f'<div class="card"><h3><a href="{href}">{esc(name)}</a></h3><ol>{top}</ol></div>')
     body = f"""<p class="kicker">Updated daily from Hwahae</p><h1>What Koreans are actually buying in K-beauty</h1>
 <p class="lede">Hwahae (화해) is the review app Koreans check before buying cosmetics. This site turns its public top-20 rankings into English every day: product names, ratings, review counts, prices and what reviewers praise, by category and by skin type.</p>
 <p class="meta">Last ranking update: {esc(up)} KST</p>
+<h2>Start here</h2><div class="grid">
+<div class="card"><h3><a href="{BASE}guide/korean-skincare-routine/">Korean skincare routine</a></h3><p class="meta">The 5 steps in order, with Korea's #1 pick for each.</p></div>
+<div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
+<div class="card"><h3><a href="{BASE}guide/">Guides by skin type</a></h3><p class="meta">Dry, oily, combination, sensitive and acne-prone skin.</p></div></div>
 <h2>By category</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'category')}</div>
 <h2>By skin type</h2><div class="grid">{''.join(c for c, rk in zip(cards, data['rankings']) if rk['type'] == 'skin')}</div>"""
     return page('K-Beauty Now: Korea\'s Top-Rated Skincare and Makeup, Updated Daily',
