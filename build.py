@@ -791,12 +791,12 @@ def compare_pages(data):
         lis = ''.join(f"""<li><div><div class="n">{i + 1}</div></div><div><div class="pn"><a href="{BASE}p/{r['id']}/" style="color:inherit;text-decoration:none">{esc(brand_label(r))} · {esc(name_label(r))}</a></div>
 <div class="facts"><strong>₩{per100(r):,.0f} per 100 ml ({usd(per100(r))})</strong> · ₩{r['priceKrw']:,} for {esc(re.split(r'\s*/', str(r['size']))[0])} · ★ {r['rating']:.2f} · {r['reviews']:,} reviews · #{r['rank']} in the top 20</div>
 <div class="tags">{''.join(f'<span>{esc(t)}</span>' for t in r['topics'])}</div><div class="links">{search_links(r)}</div></div></li>""" for i, r in enumerate(items))
-        body = f"""<p class="kicker">Best value · updated {esc(up[:10])}</p><h1>Best value {esc(noun)} in Korea, by price per 100 ml</h1>
+        body = f"""<p class="kicker">Best value · updated {esc(up[:10])}</p><h1>Best value {esc(noun)}, by price per 100 ml</h1>
 <p class="lede">Every product here is in Hwahae's top 20 {esc(noun)} today and rated 4.5 or higher by Korean reviewers. We sorted them by Korean list price per 100 ml, cheapest first, so big bottles and pricey minis compare fairly.</p>
 <ol class="rank">{lis}</ol>
 <p class="meta">Prices are Hwahae's Korean list prices; prices abroad are usually higher and change often, so check the size before you buy. Multi-packs are left out because their per-ml price is unclear. {esc(LINK_NOTE)}</p>
 <p><a href="{BASE}c/{cat}/">Full top 20 {esc(noun)}</a> · <a href="{BASE}compare/">Head-to-head comparisons</a></p>"""
-        pages[f'value/{cat}/'] = page(f'Best Value {noun} in Korea: Price per 100 ml ({up[:10]})',
+        pages[f'value/{cat}/'] = page(f'Best Value {noun} by Price per 100 ml ({up[:10]})',
                                      f'The best-rated {noun} in Korea sorted by price per 100 ml. Hwahae top 20, rated 4.5+, Korean list prices with USD.',
                                      f'value/{cat}/', body, up)
         vlinks.append((cat, noun))
