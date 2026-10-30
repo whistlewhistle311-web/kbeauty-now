@@ -22,7 +22,8 @@ CAT = {  # slug: (title, h1 noun, blurb)
 }
 SKIN = {'dry': 'dry skin', 'oily': 'oily skin', 'combination': 'combination skin', 'sensitive': 'sensitive skin', 'acne-prone': 'acne-prone skin'}
 
-CSS = """
+CSS = """table.cmp{border-collapse:collapse;width:100%;table-layout:fixed;margin:12px 0;font-size:14px;overflow-wrap:anywhere}table.cmp th,table.cmp td{border-bottom:1px solid #eadfd6;padding:9px 8px;text-align:left;vertical-align:top}table.cmp tr:first-child th{font-size:16px}table.cmp th:first-child{color:#6b665f;font-weight:600;width:28%}
+
 :root{--ink:#22201d;--muted:#6b665f;--line:#e6e1da;--bg:#fbf8f4;--card:#fff;--accent:#b04a5a;--soft:#f4ede6}
 @media (prefers-color-scheme:dark){:root{--ink:#ece7e1;--muted:#a9a29a;--line:#36312c;--bg:#171513;--card:#201d1a;--accent:#e58a98;--soft:#2a2521}}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
@@ -203,6 +204,11 @@ def ranking_page(rk, updated):
     body = f"""<p class="kicker">Hwahae ranking · updated {esc(updated[:10])}</p><h1>{esc(h1)}</h1>
 <p class="lede">{esc(blurb)} Rank changes are Hwahae's own movement since the previous ranking. Tags are the review topics Korean users mention most.</p>
 <ol class="rank">{rows}</ol>"""
+    if rk['type'] == 'category' and rk['slug'] in COMPARE_CATS and len(rk['rows']) >= 3:
+        cl = ''.join(f'<li><a href="{BASE}{compare_path(a, b)}">{esc(short_name(a))} vs {esc(short_name(b))}</a></li>' for a, b in top_pairs(rk['rows']))
+        body += f'<h2>Top 3 head to head</h2><ul>{cl}</ul>'
+        if rk['slug'] in VALUE_CATS:
+            body += f'<p><a href="{BASE}value/{rk["slug"]}/">Best value by price per 100 ml</a></p>'
     ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': h1, 'itemListOrder': 'https://schema.org/ItemListOrderAscending',
           'numberOfItems': len(rk['rows']),
           'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'url': f"{BASE}p/{r['id']}/", 'name': f"{brand_label(r)} {name_label(r)}"}
@@ -627,6 +633,191 @@ def week_page(data):
                                'this-week/', body, data['updatedAt'])}
 
 
+COMPARE_CATS = ('toner', 'serum', 'cream', 'cleansing', 'sunscreen', 'cushion', 'lip', 'masks')
+VALUE_CATS = ('toner', 'serum', 'cream', 'cleansing', 'sunscreen')  # sold by volume, so price per 100 ml is fair
+
+
+def size_ml(r):
+    """Volume in ml (or g) from Hwahae's size text; None for multi-packs and sheet counts."""
+    s = str(r.get('size') or '')
+    if not s or re.search(r'[*+매개]|x\s*\d', s, re.I):
+        return None
+    m = re.search(r'(\d+(?:\.\d+)?)\s*(ml|g)\b', s, re.I)
+    return float(m.group(1)) if m and float(m.group(1)) > 0 else None
+
+
+def short_name(r):
+    return f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+
+
+def product_slug(r):
+    return '-'.join(brand_slug(short_name(r)).split('-')[:8])
+
+
+def compare_path(a, b):
+    return f"compare/{product_slug(a)}-vs-{product_slug(b)}/"
+
+
+def top_pairs(rows):
+    top = rows[:3]
+    return [(top[i], top[j]) for i in range(len(top)) for j in range(i + 1, len(top))]
+
+
+def per100(r):
+    ml = size_ml(r)
+    return r['priceKrw'] / ml * 100 if (ml and r.get('priceKrw')) else None
+
+
+def compare_pages(data):
+    """Head-to-head pages for the top 3 of each category (3 pairs each), plus price-per-100 ml value pages.
+    Pairs are remembered in data/compare_pairs.json so a page stays up (with its last data) after the pair drops out."""
+    base = os.path.dirname(os.path.abspath(__file__))
+    ppath = os.path.join(base, 'data', 'compare_pairs.json')
+    try:
+        pairs = json.load(open(ppath))
+    except Exception:
+        pairs = {}
+    hist = json.load(open(os.path.join(base, 'data', 'products.json')))
+    up, today = data['updatedAt'], data['updatedAt'][:10]
+    by = {rk['slug']: rk for rk in data['rankings'] if rk['type'] == 'category'}
+    for slug in COMPARE_CATS:
+        rk = by.get(slug)
+        if not rk:
+            continue
+        for a, b in top_pairs(rk['rows']):
+            path = compare_path(a, b)
+            pairs.setdefault(path, {'a': str(a['id']), 'b': str(b['id']), 'cat': slug, 'since': today})
+            pairs[path]['last'] = today
+    json.dump(pairs, open(ppath, 'w'), indent=0, sort_keys=True)
+    hl = hist_load()
+    pages = {}
+    for path, pr in pairs.items():
+        ha, hb = hist.get(pr['a']), hist.get(pr['b'])
+        if not ha or not hb:
+            continue
+        a, b = ha['r'], hb['r']
+        cat = pr['cat']
+        noun = CAT[cat][1]
+        rows = by.get(cat, {}).get('rows', [])
+        rank = {str(r['id']): r['rank'] for r in rows}
+        na, nb = short_name(a), short_name(b)
+        current = pr.get('last') == today
+        days = lambda r: len(hl.get(str(r['id']), {}).get('dates', ()))
+
+        def cell_rank(r):
+            return f"#{rank[str(r['id'])]}" if str(r['id']) in rank else 'not in today\'s top 20'
+
+        def money(r):
+            return f"₩{r['priceKrw']:,} ({usd(r['priceKrw'])})" if r.get('priceKrw') else 'not listed'
+
+        def p100(r):
+            v = per100(r)
+            return f"₩{v:,.0f} ({usd(v)})" if v else 'n/a'
+
+        trs = [('Rank in ' + CAT[cat][0] + ' today', cell_rank(a), cell_rank(b)),
+               ('Hwahae rating', f"★ {a['rating']:.2f}", f"★ {b['rating']:.2f}"),
+               ('Korean reviews', f"{a['reviews']:,}", f"{b['reviews']:,}"),
+               ('Korean list price', money(a), money(b)),
+               ('Size', esc(str(a.get('size') or 'n/a')), esc(str(b.get('size') or 'n/a'))),
+               ('Price per 100 ml', p100(a), p100(b)),
+               *([('Days in a Hwahae top 20', str(days(a)), str(days(b)))] if min(days(a), days(b)) >= 7 else []),
+               ('What reviewers mention most', esc(', '.join(t.lower() for t in a['topics']) or 'n/a'), esc(', '.join(t.lower() for t in b['topics']) or 'n/a'))]
+        table = ('<div style="overflow-x:auto"><table class="cmp"><tr><th></th>'
+                 f'<th><a href="{BASE}p/{pr["a"]}/">{esc(na)}</a></th><th><a href="{BASE}p/{pr["b"]}/">{esc(nb)}</a></th></tr>'
+                 + ''.join(f'<tr><th>{esc(k)}</th><td>{x}</td><td>{y}</td></tr>' for k, x, y in trs) + '</table></div>')
+        # plain-language read of the numbers
+        pts = []
+        dr = a['rating'] - b['rating']
+        if abs(dr) < 0.05:
+            pts.append(f"Ratings are practically tied ({a['rating']:.2f} vs {b['rating']:.2f}).")
+        else:
+            hi, lo = (na, nb) if dr > 0 else (nb, na)
+            pts.append(f"{hi} is rated higher ({max(a['rating'], b['rating']):.2f} vs {min(a['rating'], b['rating']):.2f}).")
+        if a['reviews'] and b['reviews']:
+            big, small = (a, b) if a['reviews'] >= b['reviews'] else (b, a)
+            ratio = big['reviews'] / max(small['reviews'], 1)
+            if ratio >= 1.5:
+                pts.append(f"{short_name(big)} has {ratio:.1f}x as many Korean reviews, so its rating rests on a bigger base.")
+            else:
+                pts.append('Both have a similar number of Korean reviews.')
+        va, vb = per100(a), per100(b)
+        if va and vb and abs(va - vb) / max(va, vb) >= 0.1:
+            ch = (na, va, vb) if va < vb else (nb, vb, va)
+            pts.append(f"{ch[0]} costs less per 100 ml in Korea (₩{ch[1]:,.0f} vs ₩{ch[2]:,.0f}).")
+        elif va and vb:
+            pts.append('Price per 100 ml is within 10% of each other.')
+        ta, tb = set(a['topics']), set(b['topics'])
+        both, only_a, only_b = ta & tb, [t for t in a['topics'] if t not in tb], [t for t in b['topics'] if t not in ta]
+        pick = ''
+        if only_a or only_b:
+            pick = '<h2>Which one fits you</h2><ul>'
+            if only_a:
+                pick += f"<li><strong>{esc(na)}</strong> if you care most about: {esc(', '.join(t.lower() for t in only_a))}.</li>"
+            if only_b:
+                pick += f"<li><strong>{esc(nb)}</strong> if you care most about: {esc(', '.join(t.lower() for t in only_b))}.</li>"
+            pick += '</ul>'
+            if both:
+                pick += f"<p>Korean reviewers praise both for: {esc(', '.join(t.lower() for t in both))}.</p>"
+        elif both:
+            pick = f"<h2>Which one fits you</h2><p>Korean reviewers praise both for the same things ({esc(', '.join(t.lower() for t in both))}), so price, size and availability are the better tiebreakers.</p>"
+        others = [p for p, q in pairs.items() if q['cat'] == cat and p != path and q.get('last') == today]
+        more = ''.join(f'<li><a href="{BASE}{p}">{esc(short_name(hist[pairs[p]["a"]]["r"]))} vs {esc(short_name(hist[pairs[p]["b"]]["r"]))}</a></li>'
+                       for p in others if pairs[p]['a'] in hist and pairs[p]['b'] in hist)
+        status = (f"Both are in Hwahae's top 3 {esc(noun)} today." if current else
+                  f"This pair was last in Hwahae's top 3 {esc(noun)} on {esc(pr.get('last', ''))}; figures below are from then. See <a href=\"{BASE}c/{cat}/\">today's top 20</a>.")
+        body = f"""<p class="kicker">Head to head · {esc(CAT[cat][0])} · updated {esc(up[:10])}</p><h1>{esc(na)} vs {esc(nb)}</h1>
+<p class="lede">{status} Here is how they compare on Hwahae, Korea's biggest cosmetics review app, from Korean reviews rather than ads.</p>
+{table}
+<h2>The short version</h2><ul>{''.join(f'<li>{esc(p)}</li>' for p in pts)}</ul>
+{pick}
+<div class="grid"><div class="card"><h3><a href="{BASE}p/{pr['a']}/">{esc(na)}</a></h3>{buy_button(a)}</div>
+<div class="card"><h3><a href="{BASE}p/{pr['b']}/">{esc(nb)}</a></h3>{buy_button(b)}</div></div>
+{f'<h2>More {esc(noun)} comparisons</h2><ul>{more}</ul>' if more else ''}
+<p><a href="{BASE}c/{cat}/">Full top 20 {esc(noun)}</a>{f' · <a href="{BASE}value/{cat}/">Best value {esc(noun)}</a>' if cat in VALUE_CATS else ''} · <a href="{BASE}compare/">All comparisons</a></p>
+<p class="meta">We have not tested these products ourselves. This page compares Hwahae's public ratings, review counts, Korean list prices and the review topics Korean users mention most. {esc(LINK_NOTE)}</p>"""
+        title = f"{na} vs {nb}: Korean Reviews Compared"
+        desc = f"{na} vs {nb}: Hwahae rating, number of Korean reviews, Korean price per 100 ml and what reviewers praise, side by side."
+        pages[path] = page(title, desc, path, body, up)
+    # value pages: today's top 20 with rating 4.5+, sorted by Korean price per 100 ml
+    vlinks = []
+    for cat in VALUE_CATS:
+        rk = by.get(cat)
+        if not rk:
+            continue
+        items = sorted((r for r in rk['rows'] if r['rating'] >= 4.5 and per100(r)), key=per100)[:10]
+        if len(items) < 5:
+            continue
+        noun = CAT[cat][1]
+        lis = ''.join(f"""<li><div><div class="n">{i + 1}</div></div><div><div class="pn"><a href="{BASE}p/{r['id']}/" style="color:inherit;text-decoration:none">{esc(brand_label(r))} · {esc(name_label(r))}</a></div>
+<div class="facts"><strong>₩{per100(r):,.0f} per 100 ml ({usd(per100(r))})</strong> · ₩{r['priceKrw']:,} for {esc(re.split(r'\s*/', str(r['size']))[0])} · ★ {r['rating']:.2f} · {r['reviews']:,} reviews · #{r['rank']} in the top 20</div>
+<div class="tags">{''.join(f'<span>{esc(t)}</span>' for t in r['topics'])}</div><div class="links">{search_links(r)}</div></div></li>""" for i, r in enumerate(items))
+        body = f"""<p class="kicker">Best value · updated {esc(up[:10])}</p><h1>Best value {esc(noun)} in Korea, by price per 100 ml</h1>
+<p class="lede">Every product here is in Hwahae's top 20 {esc(noun)} today and rated 4.5 or higher by Korean reviewers. We sorted them by Korean list price per 100 ml, cheapest first, so big bottles and pricey minis compare fairly.</p>
+<ol class="rank">{lis}</ol>
+<p class="meta">Prices are Hwahae's Korean list prices; prices abroad are usually higher and change often, so check the size before you buy. Multi-packs are left out because their per-ml price is unclear. {esc(LINK_NOTE)}</p>
+<p><a href="{BASE}c/{cat}/">Full top 20 {esc(noun)}</a> · <a href="{BASE}compare/">Head-to-head comparisons</a></p>"""
+        pages[f'value/{cat}/'] = page(f'Best Value {noun} in Korea: Price per 100 ml ({up[:10]})',
+                                     f'The best-rated {noun} in Korea sorted by price per 100 ml. Hwahae top 20, rated 4.5+, Korean list prices with USD.',
+                                     f'value/{cat}/', body, up)
+        vlinks.append((cat, noun))
+    groups = {}
+    for p, q in pairs.items():
+        if q['a'] in hist and q['b'] in hist and p in pages:
+            groups.setdefault(q['cat'], []).append((q.get('last') != today, p, q))
+    hub = ''
+    for cat in COMPARE_CATS:
+        if cat in groups:
+            lis = ''.join(f'<li><a href="{BASE}{p}">{esc(short_name(hist[q["a"]]["r"]))} vs {esc(short_name(hist[q["b"]]["r"]))}</a>{" (older pair)" if old else ""}</li>'
+                          for old, p, q in sorted(groups[cat]))
+            hub += f'<div class="card"><h3>{esc(CAT[cat][0])}</h3><ul>{lis}</ul></div>'
+    val = ''.join(f'<li><a href="{BASE}value/{c}/">Best value {esc(n)}</a></li>' for c, n in vlinks)
+    pages['compare/'] = page('Korean Skincare Compared: Head-to-Head by Korean Reviews',
+                             'Side-by-side comparisons of the top 3 products in each Hwahae category: ratings, reviews, price per 100 ml and what Korean reviewers praise.',
+                             'compare/', f'<p class="kicker">Head to head</p><h1>Korean skincare, compared</h1><p class="lede">The top 3 of each Hwahae category, side by side: rating, number of Korean reviews, price per 100 ml and what reviewers praise. Updated every day.</p><div class="grid">{hub}</div>'
+                             + (f'<h2>Best value by price per 100 ml</h2><ul>{val}</ul>' if val else ''), up)
+    return pages
+
+
 def extra_pages(data):
     by = {(rk['type'], rk['slug']): rk for rk in data['rankings']}
     up = data['updatedAt']
@@ -852,7 +1043,7 @@ def pins_and_rss(data):
     all_items = list(items)
     # pick by the real KST date, not the ranking date: Hwahae can go days without updating, and evergreen
     # pins (guides, concerns, brands) should still go out daily; unchanged rankings are skipped by their sig
-    kst_today = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).date().isoformat()
+    kst_today = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)).date().isoformat()
     pins, items = select_pins(pins, items, kst_today)
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
@@ -955,6 +1146,7 @@ def index_page(data):
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
 <div class="card"><h3><a href="{BASE}concern/">Shop by concern</a></h3><p class="meta">Non-sticky, soothing, no breakouts, pores, dehydrated skin.</p></div>
+<div class="card"><h3><a href="{BASE}compare/">Head to head</a></h3><p class="meta">Korea's top 3 in each category, compared side by side.</p></div>
 <div class="card"><h3><a href="{BASE}ingredient/">By ingredient</a></h3><p class="meta">Hyaluronic acid, ceramide, cica: Korea's top-rated picks.</p></div>
 <div class="card"><h3><a href="{BASE}brand/">Best by brand</a></h3><p class="meta">Torriden, Round Lab, Anua and more, ranked by Korean reviewers.</p></div>
 <div class="card"><h3><a href="{BASE}trending/">Trending in Korea</a></h3><p class="meta">What is climbing fastest on Hwahae today.</p></div>{WEEK_CARD[0]}
@@ -1026,6 +1218,9 @@ def main():
         write(path, h)
         if path not in NOINDEX:
             urls.append(path)
+    for path, h in compare_pages(data).items():  # needs data/products.json from product_pages
+        write(path, h)
+        urls.append(path)
     home = index_page(data)
     open(f'{OUT}/index.html', 'w').write(home)
     lastmod[''] = day
