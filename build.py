@@ -22,7 +22,8 @@ CAT = {  # slug: (title, h1 noun, blurb)
 }
 SKIN = {'dry': 'dry skin', 'oily': 'oily skin', 'combination': 'combination skin', 'sensitive': 'sensitive skin', 'acne-prone': 'acne-prone skin'}
 
-CSS = """table.cmp{border-collapse:collapse;width:100%;table-layout:fixed;margin:12px 0;font-size:14px;overflow-wrap:anywhere}table.cmp th,table.cmp td{border-bottom:1px solid #eadfd6;padding:9px 8px;text-align:left;vertical-align:top}table.cmp tr:first-child th{font-size:16px}table.cmp th:first-child{color:#6b665f;font-weight:600;width:28%}
+CSS = """ol.shop{padding-left:22px}ol.shop li{margin:10px 0}
+table.cmp{border-collapse:collapse;width:100%;table-layout:fixed;margin:12px 0;font-size:14px;overflow-wrap:anywhere}table.cmp th,table.cmp td{border-bottom:1px solid #eadfd6;padding:9px 8px;text-align:left;vertical-align:top}table.cmp tr:first-child th{font-size:16px}table.cmp th:first-child{color:#6b665f;font-weight:600;width:28%}
 
 :root{--ink:#22201d;--muted:#6b665f;--line:#e6e1da;--bg:#fbf8f4;--card:#fff;--accent:#b04a5a;--soft:#f4ede6}
 @media (prefers-color-scheme:dark){:root{--ink:#ece7e1;--muted:#a9a29a;--line:#36312c;--bg:#171513;--card:#201d1a;--accent:#e58a98;--soft:#2a2521}}
@@ -828,6 +829,34 @@ def compare_pages(data):
                                      f'The best-rated {noun} in Korea sorted by price per 100 ml. Hwahae top 20, rated 4.5+, Korean list prices with USD.',
                                      f'value/{cat}/', body, up, head)
         vlinks.append((cat, noun))
+    # Seoul shopping list: #1 and #2 per category with Korean names to show in store
+    order = [('cleansing', 'Cleanser'), ('toner', 'Toner'), ('serum', 'Serum'), ('cream', 'Moisturizer'), ('sunscreen', 'Sunscreen'),
+             ('masks', 'Face mask'), ('cushion', 'Cushion'), ('lip', 'Lip')]
+    secs, total = [], 0
+    for cat, step in order:
+        rk = by.get(cat)
+        if not rk:
+            continue
+        lis = ''
+        for r in rk['rows'][:2]:
+            total += r['priceKrw'] if r is rk['rows'][0] and r.get('priceKrw') else 0
+            lis += (f'<li><div class="pn"><a href="{BASE}p/{r["id"]}/">{esc(short_name(r))}</a></div>'
+                    f'<div class="ko" style="font-size:18px">{esc(r["brand"])} {esc(r["name"])}</div>'
+                    f'<div class="facts">#{r["rank"]} on Hwahae · ★ {r["rating"]:.2f} · {r["reviews"]:,} reviews'
+                    + (f' · ₩{r["priceKrw"]:,} ({usd(r["priceKrw"])})' if r.get('priceKrw') else '')
+                    + (f' · {esc(re.split(chr(92) + "s*/", str(r["size"]))[0])}' if r.get('size') else '') + '</div></li>')
+        secs.append(f'<h2>{esc(step)} <span class="meta">· <a href="{BASE}c/{cat}/">full top 20</a></span></h2><ol class="shop">{lis}</ol>')
+    body = (f'<p class="kicker">Seoul shopping list · updated {esc(up[:10])}</p><h1>What to buy in Korea: a skincare shopping list from Korean reviews</h1>'
+            '<p class="lede">The #1 and #2 product in each category on Hwahae, Korea\'s biggest cosmetics review app, with the Korean name to show '
+            'shop staff and the Korean list price. Most top-ranked Hwahae products are sold at big Korean drugstore chains, but stock varies, so check in store.</p>'
+            f'<p><strong>A full routine of every #1 (cleanser to sunscreen, plus mask, cushion and lip): about ₩{total:,} ({usd(total)}) at Korean list prices.</strong></p>'
+            + ''.join(secs) +
+            '<p class="meta">Tip: take a screenshot of this page; the Korean names (in grey) are what you show or search in the shop. Prices are Hwahae list prices and shops often run discounts. '
+            'We have not tested these products; rankings are Hwahae\'s, from Korean reviews.</p>'
+            f'<p><a href="{BASE}value/toner/">Best value by price per 100 ml</a> · <a href="{BASE}compare/">Head-to-head comparisons</a> · <a href="{BASE}guide/korean-skincare-routine/">Korean skincare routine</a></p>')
+    pages['guide/seoul-shopping-list/'] = page(f'What to Buy in Korea: Skincare Shopping List with Korean Names and Prices ({up[:10]})',
+                                               'Korea\'s #1 and #2 skincare in every category from Hwahae, with Korean names to show in store and Korean prices. Updated daily.',
+                                               'guide/seoul-shopping-list/', body, up)
     groups = {}
     for p, q in pairs.items():
         if q['a'] in hist and q['b'] in hist and p in pages:
@@ -1214,6 +1243,7 @@ def index_page(data):
 <div class="card"><h3><a href="{BASE}guide/korean-sunscreen/">Best Korean sunscreen</a></h3><p class="meta">SPF50+ PA++++, mineral or chemical, and today's top 5.</p></div>
 <div class="card"><h3><a href="{BASE}guide/korean-skincare-on-amazon/">Korean skincare on Amazon</a></h3><p class="meta">Korea's top-rated picks per step, linked to Amazon.</p></div>
 <div class="card"><h3><a href="{BASE}concern/">Shop by concern</a></h3><p class="meta">Non-sticky, soothing, no breakouts, pores, dehydrated skin.</p></div>
+<div class="card"><h3><a href="{BASE}guide/seoul-shopping-list/">Seoul shopping list</a></h3><p class="meta">Korea's #1 and #2 per category, with Korean names to show in store.</p></div>
 <div class="card"><h3><a href="{BASE}compare/">Head to head</a></h3><p class="meta">Korea's top 3 in each category, compared side by side.</p></div>
 <div class="card"><h3><a href="{BASE}ingredient/">By ingredient</a></h3><p class="meta">Hyaluronic acid, ceramide, cica: Korea's top-rated picks.</p></div>
 <div class="card"><h3><a href="{BASE}brand/">Best by brand</a></h3><p class="meta">Torriden, Round Lab, Anua and more, ranked by Korean reviewers.</p></div>
@@ -1256,7 +1286,24 @@ def threads_posts(data):
     # every other day the nightly slot (2) carries a value post instead: price per 100 ml across the top-rated shelf
     by = {rk['slug']: rk for rk in data['rankings'] if rk['type'] == 'category'}
     vc = [c for c in VALUE_CATS if c in by]
-    if day % 2 and vc:
+    if day % 3 == 2:  # every third night: #1 vs #2 head to head
+        cc = [c for c in COMPARE_CATS if c in by and len(by[c]['rows']) >= 2]
+        if cc and len(posts) > 2:
+            c = cc[(day // 3) % len(cc)]
+            a, b = by[c]['rows'][0], by[c]['rows'][1]
+            noun = CAT[c][1].replace('Korean ', '')
+            def line(r):
+                v = per100(r)
+                return (f"{short_name(r)}: {r['rating']:.2f} from {r['reviews']:,} reviews" + (f", ₩{v:,.0f} per 100 ml" if v and c in VALUE_CATS else '')
+                        + (f". Reviewers mention: {', '.join(t.lower() for t in r['topics'][:2])}" if r['topics'] else ''))
+            text = (f"#1 vs #2 {noun} in Korea right now (Hwahae, the review app Koreans check before buying):\n\n"
+                    f"#1 {line(a)}\n\n#2 {line(b)}\n\nWhich fits you, side by side: {BASE}{compare_path(a, b)}\n\n"
+                    "Translated from Hwahae with AI help. Not sponsored.")
+            text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', text)
+            if len(text) > 495:
+                text = re.sub(r'\. Reviewers mention: [^\n]*', '', text)
+            posts[2] = {'category': 'compare-' + c, 'topic': 'K Beauty', 'text': text[:500]}
+    elif day % 3 == 1 and vc:
         c = vc[(day // 2) % len(vc)]
         vs = sorted((r for r in by[c]['rows'] if r['rating'] >= 4.5 and per100(r)), key=per100)
         if len(vs) >= 4:

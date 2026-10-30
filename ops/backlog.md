@@ -5,10 +5,10 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 ## Open
 0b. Daily (first wake after 12:00 KST): record reel and TikTok views in the ledger 현황 tab (rows '인스타 릴스' and '틱톡': users=followers, impressions=views, posts=count, note=per-video views, avg watch time, skip rate, style a/b/routine). Judge the A/B on 11/6.
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
-1. Seoul shopping list page (guide/seoul-shopping-list/): Korea's #1 and #2 per category with Korean prices and sizes, printable, for travelers searching "what to buy in Korea skincare" / "Olive Young shopping list". Don't claim Olive Young stocks each item; say most top Hwahae products are sold at big Korean drugstores and to check in store. Monthly pin for it.
-2. Threads: rotate the nightly post across three types (top 5, value per 100 ml, #1 vs #2 compare) instead of two.
+1. Monthly pin for guide/seoul-shopping-list/ (GUIDE_PINS-style, list of #1s with Korean prices) on the guides board.
 
 ## Done
+- 2026-10-30 guide/seoul-shopping-list/ (each category's #1 and #2 with Korean names and prices, routine total ₩182,000) + home card. Threads nightly post rotates top 5 / value / #1 vs #2.
 - 2026-10-30 og:image on compare/value pages uses the month's pin when rendered. Posting rotation table in the playbook. IndexNow already sends the whole sitemap (compare/ and value/ included).
 - 2026-10-30 Pinterest feed rss-skin.xml connected to the board 'Korean Skincare by Skin Type'.
 - 2026-10-30 r/dataisbeautiful: rules = [OC] tag, plain title, source + tool in first comment (no stated karma rule). Chart + post text drafted in ops/drafts/. Reddit is blocked for the browser extension, so a human has to post it; offer it to 휘, don't push.
