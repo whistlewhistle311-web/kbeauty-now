@@ -8,15 +8,15 @@
 "2026-10-29"
 ],
 "brand/abib/": [
-"c142d684cdacf848",
+"9395b02ba40ce8f8",
 "2026-10-29"
 ],
 "brand/aestura/": [
-"3998f9ec7c1f6655",
+"3c53f6f6b8a5534a",
 "2026-10-29"
 ],
 "brand/anua/": [
-"299baf7414e0bf6b",
+"b0aa6e33a870f722",
 "2026-10-29"
 ],
 "brand/atopalm/": [
@@ -24,7 +24,7 @@
 "2026-10-29"
 ],
 "brand/beplain/": [
-"950d513e365b2588",
+"1332187994bc0c06",
 "2026-10-29"
 ],
 "brand/bioderma/": [
@@ -40,7 +40,7 @@
 "2026-10-29"
 ],
 "brand/freemay/": [
-"1ec7574c6a1742af",
+"4bc47904422b0762",
 "2026-10-29"
 ],
 "brand/hera/": [
@@ -52,7 +52,7 @@
 "2026-10-29"
 ],
 "brand/illiyoon/": [
-"b39b44cbd111f28e",
+"1848233c15af7a03",
 "2026-10-29"
 ],
 "brand/innisfree/": [
@@ -76,7 +76,7 @@
 "2026-10-29"
 ],
 "brand/lindsay/": [
-"3aa24770a810e228",
+"6d0465b74cf89e02",
 "2026-10-29"
 ],
 "brand/make-p-rem/": [
@@ -84,7 +84,7 @@
 "2026-10-29"
 ],
 "brand/mediheal/": [
-"383a8d3ae89f0674",
+"bb031306066a1efa",
 "2026-10-29"
 ],
 "brand/nomadia/": [
@@ -92,11 +92,11 @@
 "2026-10-29"
 ],
 "brand/round-lab/": [
-"57ec78e234657b1e",
+"67f8e04fefe143c0",
 "2026-10-29"
 ],
 "brand/s-nature/": [
-"4b63bead793bd2f5",
+"8debc1a00c89f468",
 "2026-10-29"
 ],
 "brand/shionle/": [
@@ -104,7 +104,7 @@
 "2026-10-29"
 ],
 "brand/sidmool/": [
-"a8c4332e64bc9ed2",
+"7bc826b5c9523d42",
 "2026-10-29"
 ],
 "brand/the-lab-by-blanc-doux/": [
@@ -112,11 +112,11 @@
 "2026-10-29"
 ],
 "brand/tonymoly/": [
-"b9eca848db5f8d39",
+"1b3bca5cbcf8aa9d",
 "2026-10-29"
 ],
 "brand/torriden/": [
-"5deb105d663a778b",
+"d14a4182c1d3345c",
 "2026-10-29"
 ],
 "brand/uiq/": [
@@ -124,11 +124,11 @@
 "2026-10-29"
 ],
 "brand/wellage/": [
-"8b6646759c7cc9a2",
+"bb82b23e90c3ca17",
 "2026-10-29"
 ],
 "brand/ybk/": [
-"cece2007298affb1",
+"892259a9af14d2e6",
 "2026-10-29"
 ],
 "brand/ysl-beauty/": [
@@ -136,43 +136,143 @@
 "2026-10-29"
 ],
 "c/all/": [
-"e02baccc1facf06b",
+"35b62d6a8b8198ba",
 "2026-10-29"
 ],
 "c/cleansing/": [
-"4facb070448c8094",
+"7996842f38e27064",
 "2026-10-29"
 ],
 "c/cream/": [
-"8501d3d7070883b8",
+"9d29cc9294f699df",
 "2026-10-29"
 ],
 "c/cushion/": [
-"f7f507b2afc5cddd",
+"8696ade6666eff5f",
 "2026-10-29"
 ],
 "c/lip/": [
-"4c324a345e6beab3",
+"367211f56a533daa",
 "2026-10-29"
 ],
 "c/masks/": [
-"aa7edcc7cdf76387",
+"a9af0d1674286b25",
 "2026-10-29"
 ],
 "c/serum/": [
-"b57454a2ba241b75",
+"1d7b79e1999ef37d",
 "2026-10-29"
 ],
 "c/skincare/": [
-"90827251a1a1c682",
+"0cf64c70c053ab3e",
 "2026-10-29"
 ],
 "c/sunscreen/": [
-"2c87acf80f2b539d",
+"b9a51cb1e9dcad15",
 "2026-10-29"
 ],
 "c/toner/": [
-"8bb22a8602c6014f",
+"7b2db402b48679c8",
+"2026-10-29"
+],
+"compare/": [
+"482d9930e440c184",
+"2026-10-29"
+],
+"compare/abib-hyaluronic-boom-serum-water-drop-vs-anua-pdrn-hyaluronic-acid-capsule-100-serum/": [
+"b40cfce18401b0d0",
+"2026-10-29"
+],
+"compare/abib-hyaluronic-boom-serum-water-drop-vs-wellage-real-hyaluronic-blue-100-ampoule/": [
+"479def3ce915f7c5",
+"2026-10-29"
+],
+"compare/aestura-atobarrier-365-cream-vs-s-nature-aqua-squalane-moisture-cream/": [
+"b46eeeabf6b5fe18",
+"2026-10-29"
+],
+"compare/aestura-atobarrier-365-cream-vs-wellage-real-hyaluronic-soothing-cream/": [
+"d7f56d1898dcf8d6",
+"2026-10-29"
+],
+"compare/anua-texture-cushion-vs-isoi-skincare-vegan-cushion/": [
+"643a3545dfc54083",
+"2026-10-29"
+],
+"compare/atopalm-zinc-mild-up-sunscreen-vs-isntree-hyaluronic-acid-fresh-sun-serum/": [
+"1e94684b06b92a4a",
+"2026-10-29"
+],
+"compare/beplain-mung-bean-ph-balanced-cleansing-foam-vs-lagom-oat-micellar-cleansing-milk/": [
+"66e7ac3ce40e3d74",
+"2026-10-29"
+],
+"compare/beplain-mung-bean-ph-balanced-cleansing-foam-vs-shionle-kelp-ampoule-cleansing-foam/": [
+"c267f17200d59e08",
+"2026-10-29"
+],
+"compare/jung-saem-mool-beauty-essential-skin-nuder-cushion-vs-anua-texture-cushion/": [
+"1689eb14cb57c332",
+"2026-10-29"
+],
+"compare/jung-saem-mool-beauty-essential-skin-nuder-cushion-vs-isoi-skincare-vegan-cushion/": [
+"e0f3096b2dd18004",
+"2026-10-29"
+],
+"compare/lindsay-modeling-mask-cup-pack-vs-mediheal-madecassoside-essential-mask/": [
+"fd9a0fc1b1e15197",
+"2026-10-29"
+],
+"compare/lindsay-modeling-mask-cup-pack-vs-torriden-dive-in-low-molecular-hyaluronic-acid-mask/": [
+"50f66699eafd4d5b",
+"2026-10-29"
+],
+"compare/mediheal-madecassoside-essential-mask-vs-torriden-dive-in-low-molecular-hyaluronic-acid-mask/": [
+"bbfdb3f5d3617a71",
+"2026-10-29"
+],
+"compare/round-lab-birch-juice-moisturizing-sunscreen-vs-atopalm-zinc-mild-up-sunscreen/": [
+"8cb8e93a9b468658",
+"2026-10-29"
+],
+"compare/round-lab-birch-juice-moisturizing-sunscreen-vs-isntree-hyaluronic-acid-fresh-sun-serum/": [
+"ae2acbd85c22f019",
+"2026-10-29"
+],
+"compare/s-nature-aqua-oasis-toner-vs-round-lab-1025-dokdo-toner/": [
+"834b2be756de3305",
+"2026-10-29"
+],
+"compare/s-nature-aqua-squalane-moisture-cream-vs-wellage-real-hyaluronic-soothing-cream/": [
+"4919cb81e8782833",
+"2026-10-29"
+],
+"compare/shionle-kelp-ampoule-cleansing-foam-vs-lagom-oat-micellar-cleansing-milk/": [
+"b0cb502397469a03",
+"2026-10-29"
+],
+"compare/sidmool-jojoba-lip-essence-vs-miael-light-veil-tint/": [
+"722128779d1267e7",
+"2026-10-29"
+],
+"compare/tonymoly-ceramide-mochi-toner-vs-round-lab-1025-dokdo-toner/": [
+"427040485fe995ef",
+"2026-10-29"
+],
+"compare/tonymoly-ceramide-mochi-toner-vs-s-nature-aqua-oasis-toner/": [
+"6c59a7f9654fdf0f",
+"2026-10-29"
+],
+"compare/torriden-solid-in-ceramide-lip-essence-vs-miael-light-veil-tint/": [
+"56637cc33a434790",
+"2026-10-29"
+],
+"compare/torriden-solid-in-ceramide-lip-essence-vs-sidmool-jojoba-lip-essence/": [
+"d7f348a85d38b13f",
+"2026-10-29"
+],
+"compare/wellage-real-hyaluronic-blue-100-ampoule-vs-anua-pdrn-hyaluronic-acid-capsule-100-serum/": [
+"841e850a2e903ae2",
 "2026-10-29"
 ],
 "concern/": [
@@ -180,27 +280,27 @@
 "2026-10-29"
 ],
 "concern/breakouts/": [
-"43fe63213272490a",
+"cfbf12e2f1afd22a",
 "2026-10-29"
 ],
 "concern/dehydrated-skin/": [
-"f1c8f7eaa508f53e",
+"ef514e0685f66aa8",
 "2026-10-29"
 ],
 "concern/exfoliating/": [
-"ebd3b786e8a66405",
+"c52b7ae9a2143ad3",
 "2026-10-29"
 ],
 "concern/glowy/": [
-"1e8c5c41f9d46b28",
+"f25b233db11ad854",
 "2026-10-29"
 ],
 "concern/hydrating/": [
-"1b31c648b1a11f09",
+"323798b16d6066f0",
 "2026-10-29"
 ],
 "concern/lightweight/": [
-"cef037054911a3fd",
+"b0b4509b388bb849",
 "2026-10-29"
 ],
 "concern/long-lasting/": [
@@ -208,31 +308,31 @@
 "2026-10-29"
 ],
 "concern/moisturizing/": [
-"c4c0381029dff908",
+"6cc87446fc439f45",
 "2026-10-29"
 ],
 "concern/no-breakouts/": [
-"23527fb982de8cf3",
+"be096666c2477a6a",
 "2026-10-29"
 ],
 "concern/non-irritating/": [
-"44c6de539f760f5d",
+"313a267da2ae6bb4",
 "2026-10-29"
 ],
 "concern/non-sticky/": [
-"28105bd447d62ab2",
+"773ef8e0188182c1",
 "2026-10-29"
 ],
 "concern/oil-free/": [
-"c7a61496b392d4fb",
+"42ca4697af7c296b",
 "2026-10-29"
 ],
 "concern/pores/": [
-"501d2deb1ba02ea1",
+"2ff01af5a40c406b",
 "2026-10-29"
 ],
 "concern/soothing/": [
-"c1e6bc420d5e9603",
+"cf754d6d8befbf80",
 "2026-10-29"
 ],
 "guide/": [
@@ -240,19 +340,19 @@
 "2026-10-29"
 ],
 "guide/korean-cleanser/": [
-"86e81b8ce0870421",
+"dd416069b71d4db3",
 "2026-10-29"
 ],
 "guide/korean-moisturizer/": [
-"b32927ac6cb1b341",
+"4dee5d4e66eded72",
 "2026-10-29"
 ],
 "guide/korean-serum/": [
-"18efafdb716b4007",
+"3be394e51502c372",
 "2026-10-29"
 ],
 "guide/korean-skincare-on-amazon/": [
-"479516bddb5deb64",
+"b688d6272fd38637",
 "2026-10-29"
 ],
 "guide/korean-skincare-routine/": [
@@ -260,31 +360,31 @@
 "2026-10-29"
 ],
 "guide/korean-sunscreen/": [
-"3f66058fe4e7fbf9",
+"f4069cd981fa9ec0",
 "2026-10-29"
 ],
 "guide/korean-toner/": [
-"a59adc5d5d40eb03",
+"b835bc8b42bf1749",
 "2026-10-29"
 ],
 "guide/skincare-for-acne-prone-skin/": [
-"eb16b1153ee25131",
+"b6af5928e42285cb",
 "2026-10-29"
 ],
 "guide/skincare-for-combination-skin/": [
-"76d7fee7256d241a",
+"52b26af1eec1ec4d",
 "2026-10-29"
 ],
 "guide/skincare-for-dry-skin/": [
-"2154bb95abf947d0",
+"e3e10e2eec7821d2",
 "2026-10-29"
 ],
 "guide/skincare-for-oily-skin/": [
-"4a5066e4f0b5b37e",
+"e6af540d3c900346",
 "2026-10-29"
 ],
 "guide/skincare-for-sensitive-skin/": [
-"f72d158f5012e966",
+"9798e91220526a12",
 "2026-10-29"
 ],
 "ingredient/": [
@@ -292,23 +392,23 @@
 "2026-10-29"
 ],
 "ingredient/centella-cica/": [
-"3753d416531ea0b3",
+"25301f9997f46ef1",
 "2026-10-29"
 ],
 "ingredient/ceramide/": [
-"992809876d7136ae",
+"81116d70c9364174",
 "2026-10-29"
 ],
 "ingredient/hyaluronic-acid/": [
-"4606d4a7aef8a668",
+"60da66a2cf5cb137",
 "2026-10-29"
 ],
 "p/1779219/": [
-"8c99af86e97081b4",
+"7c08300c706020ed",
 "2026-10-29"
 ],
 "p/1806141/": [
-"96f1fa3039c12bd9",
+"d7079e7eba00f03b",
 "2026-10-29"
 ],
 "p/1815817/": [
@@ -316,7 +416,7 @@
 "2026-10-29"
 ],
 "p/1817580/": [
-"af3090d40ce35590",
+"9840412f0c624d8e",
 "2026-10-29"
 ],
 "p/1835492/": [
@@ -344,15 +444,15 @@
 "2026-10-29"
 ],
 "p/1880696/": [
-"d6cd52a9bcde9d57",
+"d8683ca2aaa8b35c",
 "2026-10-29"
 ],
 "p/1889139/": [
-"70ad92e737cbd149",
+"36edfac73d5d41ee",
 "2026-10-29"
 ],
 "p/1890624/": [
-"05e3e2eef9094a2b",
+"041fe98a877a577a",
 "2026-10-29"
 ],
 "p/1894554/": [
@@ -392,11 +492,11 @@
 "2026-10-29"
 ],
 "p/1918760/": [
-"047cdd2cf1afd9d9",
+"e3cfe99d2a595613",
 "2026-10-29"
 ],
 "p/1920665/": [
-"8b1f2f3131f3a3b0",
+"9c3e07661b54837c",
 "2026-10-29"
 ],
 "p/1935006/": [
@@ -408,7 +508,7 @@
 "2026-10-29"
 ],
 "p/1936993/": [
-"17f5b6186ad36ac6",
+"c47aea46d3dfd767",
 "2026-10-29"
 ],
 "p/1937475/": [
@@ -432,7 +532,7 @@
 "2026-10-29"
 ],
 "p/1945270/": [
-"f0b48e75100acf9c",
+"faa2eff9112e914a",
 "2026-10-29"
 ],
 "p/1948859/": [
@@ -444,11 +544,11 @@
 "2026-10-29"
 ],
 "p/1950255/": [
-"5cdd918b65659599",
+"1b2a54f84391bba2",
 "2026-10-29"
 ],
 "p/1950672/": [
-"956cf6b7248d3573",
+"f24642fd7e254b9d",
 "2026-10-29"
 ],
 "p/1977273/": [
@@ -484,7 +584,7 @@
 "2026-10-29"
 ],
 "p/1986669/": [
-"8f17c754f7ada338",
+"057ce1fe3dbd0a08",
 "2026-10-29"
 ],
 "p/1993733/": [
@@ -496,7 +596,7 @@
 "2026-10-29"
 ],
 "p/1994808/": [
-"8658da1dda518f25",
+"b0dff9054f392bd5",
 "2026-10-29"
 ],
 "p/1995168/": [
@@ -504,11 +604,11 @@
 "2026-10-29"
 ],
 "p/1995809/": [
-"182bfa7c24c123a6",
+"a5dbabc5c9a185c6",
 "2026-10-29"
 ],
 "p/1996087/": [
-"0175c9cb8312a06e",
+"0b0f897756acfd2e",
 "2026-10-29"
 ],
 "p/1997242/": [
@@ -528,7 +628,7 @@
 "2026-10-29"
 ],
 "p/2001721/": [
-"4951740adfa5fb9c",
+"f67f62c203bf65ae",
 "2026-10-29"
 ],
 "p/2004213/": [
@@ -540,7 +640,7 @@
 "2026-10-29"
 ],
 "p/2007562/": [
-"2f567a29e4a0c8da",
+"02b16fa909f54a2d",
 "2026-10-29"
 ],
 "p/2008328/": [
@@ -580,11 +680,11 @@
 "2026-10-29"
 ],
 "p/2025216/": [
-"7dbda3a813865108",
+"42cb4e6a8dab650f",
 "2026-10-29"
 ],
 "p/2026453/": [
-"3acffff93599453a",
+"02c8d2da2e7c9b77",
 "2026-10-29"
 ],
 "p/2032327/": [
@@ -604,7 +704,7 @@
 "2026-10-29"
 ],
 "p/2047439/": [
-"1b22faeaf6e3431b",
+"c483e7416590f882",
 "2026-10-29"
 ],
 "p/2048814/": [
@@ -620,11 +720,11 @@
 "2026-10-29"
 ],
 "p/2058490/": [
-"d8a37e310f1cb540",
+"0fc20f9d9de2bf6b",
 "2026-10-29"
 ],
 "p/2058844/": [
-"2b95ab39b0d4dc11",
+"cf5703bfac88b70a",
 "2026-10-29"
 ],
 "p/2059964/": [
@@ -672,7 +772,7 @@
 "2026-10-29"
 ],
 "p/2090492/": [
-"4428b57f6226882a",
+"05e36efa3f6d8c0d",
 "2026-10-29"
 ],
 "p/2091467/": [
@@ -720,7 +820,7 @@
 "2026-10-29"
 ],
 "p/2107391/": [
-"923a6e208b6bfaf6",
+"875b47301877373d",
 "2026-10-29"
 ],
 "p/2108567/": [
@@ -732,11 +832,11 @@
 "2026-10-29"
 ],
 "p/2109968/": [
-"a01b6af87daf45c5",
+"2f4ce1230800aecf",
 "2026-10-29"
 ],
 "p/2113285/": [
-"5d5b0e3d855b50d0",
+"a4bbd0b4fc8a90ce",
 "2026-10-29"
 ],
 "p/2115801/": [
@@ -780,11 +880,11 @@
 "2026-10-29"
 ],
 "p/2130253/": [
-"d0485a62d2fb5e77",
+"9197522a6f7320c8",
 "2026-10-29"
 ],
 "p/2131293/": [
-"23994c5f63e88dac",
+"9d9eb9047a4fc4dc",
 "2026-10-29"
 ],
 "p/2131638/": [
@@ -796,7 +896,7 @@
 "2026-10-29"
 ],
 "p/2131960/": [
-"fd92a669edf169e1",
+"44e629393e847351",
 "2026-10-29"
 ],
 "p/2133211/": [
@@ -824,7 +924,7 @@
 "2026-10-29"
 ],
 "p/2148589/": [
-"d2c947b7460082d8",
+"ca40d6446483f25e",
 "2026-10-29"
 ],
 "p/2148949/": [
@@ -836,7 +936,7 @@
 "2026-10-29"
 ],
 "p/2153055/": [
-"2a97959a208c7ca6",
+"f66cd755ba2a95f9",
 "2026-10-29"
 ],
 "p/2160461/": [
@@ -860,11 +960,11 @@
 "2026-10-29"
 ],
 "p/2169823/": [
-"3f9e1a5e25bb4e7a",
+"e080d44d601fb824",
 "2026-10-29"
 ],
 "p/2177164/": [
-"e7b46cdd487ebfc1",
+"5bfc6030105ff2a4",
 "2026-10-29"
 ],
 "p/2181021/": [
@@ -908,11 +1008,11 @@
 "2026-10-29"
 ],
 "p/2197271/": [
-"ef8871d084112c45",
+"d69a54af995fc91a",
 "2026-10-29"
 ],
 "p/2197950/": [
-"43cb0712a14ac02e",
+"0922b9f24a149c3f",
 "2026-10-29"
 ],
 "p/2199919/": [
@@ -928,7 +1028,7 @@
 "2026-10-29"
 ],
 "p/2203507/": [
-"50c82b72099413e2",
+"35f825de4bf6441a",
 "2026-10-29"
 ],
 "p/2204303/": [
@@ -936,11 +1036,11 @@
 "2026-10-29"
 ],
 "p/2205251/": [
-"6fbdbdcae4770b6d",
+"de9583a130174e4a",
 "2026-10-29"
 ],
 "p/2206999/": [
-"2b86faf4e7b33693",
+"8b4aec0d155e41af",
 "2026-10-29"
 ],
 "p/2207006/": [
@@ -968,31 +1068,51 @@
 "2026-10-29"
 ],
 "p/2208708/": [
-"078fc979c1c1f123",
+"157d3adc05718fbb",
 "2026-10-29"
 ],
 "skin/acne-prone/": [
-"80f41e7ebd4d6bbd",
+"9ae945c9e02750a2",
 "2026-10-29"
 ],
 "skin/combination/": [
-"6ec3b4c666a17571",
+"8b69f9aa54201e01",
 "2026-10-29"
 ],
 "skin/dry/": [
-"2da51ab4107b89a2",
+"e813745605497d4d",
 "2026-10-29"
 ],
 "skin/oily/": [
-"0cc002c8b659a33d",
+"3ad68c20a9225c4c",
 "2026-10-29"
 ],
 "skin/sensitive/": [
-"692e2a2aaee7c8b7",
+"b67fd8587cc4f32f",
 "2026-10-29"
 ],
 "trending/": [
-"77371194488025e6",
+"0ab14fe257ac6be7",
+"2026-10-29"
+],
+"value/cleansing/": [
+"b3a2f05dd512a47a",
+"2026-10-29"
+],
+"value/cream/": [
+"260907dec8b34f0c",
+"2026-10-29"
+],
+"value/serum/": [
+"4dbe349921b54f1a",
+"2026-10-29"
+],
+"value/sunscreen/": [
+"12fd9569924046a3",
+"2026-10-29"
+],
+"value/toner/": [
+"0c93b33d388a36bb",
 "2026-10-29"
 ]
 }

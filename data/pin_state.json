@@ -39,6 +39,14 @@
 "date": "2026-10-29",
 "sig": "Atobarrier 365 Cream|Aqua Squalane Moisture Cream|Real Hyaluronic Soothing Cream|Dive-In Low Molecular Hyaluronic Acid Soothing Cream|PDRN Hyaluronic Acid 100 Moisture Cream"
 },
+"https://koreanbeautynow.com/c/cushion/": {
+"date": "2026-10-30",
+"sig": "Essential Skin Nuder Cushion|Texture Cushion|Skincare Vegan Cushion|Oligo Hyaluronic Acid Healthy Cream Cushion|Black Cushion Foundation"
+},
+"https://koreanbeautynow.com/c/lip/": {
+"date": "2026-10-30",
+"sig": "Solid-In Ceramide Lip Essence|Jojoba Lip Essence|Light Veil Tint|Bamboo Hyalu Lip Essence|Juvé Lip Serum"
+},
 "https://koreanbeautynow.com/c/masks/": {
 "date": "2026-10-29",
 "sig": "Modeling Mask Cup Pack|Madecassoside Essential Mask|Dive-In Low Molecular Hyaluronic Acid Mask|Carrot Carotene Calming Water Pad|Aqua Squalane Moisture Cream Wrapping Mask"
@@ -51,9 +59,33 @@
 "date": "2026-10-29",
 "sig": "Ceramide Mochi Toner|Hyaluronic Boom Serum Water Drop|Atobarrier 365 Cream|Aqua Oasis Toner|Real Hyaluronic Blue 100 Ampoule"
 },
+"https://koreanbeautynow.com/c/sunscreen/": {
+"date": "2026-10-30",
+"sig": "Birch Juice Moisturizing Sunscreen|Zinc Mild Up Sunscreen|Hyaluronic Acid Fresh Sun Serum|Aqua 365 UV Sunscreen|Dive-In Mild Mineral Sunscreen"
+},
 "https://koreanbeautynow.com/c/toner/": {
 "date": "2026-10-29",
 "sig": "Ceramide Mochi Toner|Aqua Oasis Toner|1025 Dokdo Toner|Ultra Low Molecular Hyaluronic Acid Toner|Oligo Hyaluronic Acid Deep Toner"
+},
+"https://koreanbeautynow.com/guide/korean-skincare-routine/": {
+"date": "2026-10-30",
+"sig": "guide-korean-skincare-routine-2026-10"
+},
+"https://koreanbeautynow.com/skin/combination/": {
+"date": "2026-10-30",
+"sig": "Hyaluronic Boom Serum Water Drop|Atobarrier 365 Cream|Aqua Oasis Toner|Real Hyaluronic Soothing Cream|Real Hyaluronic Blue 100 Ampoule"
+},
+"https://koreanbeautynow.com/skin/dry/": {
+"date": "2026-10-30",
+"sig": "Ceramide Mochi Toner|Atobarrier 365 Cream|Hyaluronic Boom Serum Water Drop|PDRN Hyaluronic Acid Capsule 100 Serum|Aqua Oasis Toner"
+},
+"https://koreanbeautynow.com/skin/oily/": {
+"date": "2026-10-30",
+"sig": "Aqua Oasis Toner|Ceramide Mochi Toner|Dive-In Low Molecular Hyaluronic Acid Soothing Cream|Hyaluronic Boom Serum Water Drop|Real Hyaluronic Blue 100 Ampoule"
+},
+"https://koreanbeautynow.com/skin/sensitive/": {
+"date": "2026-10-30",
+"sig": "Hyaluronic Boom Serum Water Drop|Ceramide Mochi Toner|Atobarrier 365 Cream|Aqua Oasis Toner|Real Hyaluronic Blue 100 Ampoule"
 },
 "https://koreanbeautynow.com/trending/": {
 "date": "2026-10-29",
