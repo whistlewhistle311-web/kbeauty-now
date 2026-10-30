@@ -637,7 +637,11 @@ def week_page(data):
         md += ['**New in a top 20**', ''] + [f"- {brand_label(r).split(' (')[0]} {name_label(r)}: #{rank} in {noun}" for rank, r, noun, sl in news[:7]] + ['']
     if steady:
         md += [f'**In the overall top 20 every day ({len(window)} days)**', ''] + [f"- {brand_label(r).split(' (')[0]} {name_label(r)} (#{r['rank']} today)" for r in steady[:7]] + ['']
-    md += ["Full daily lists (English names, Korean prices) if anyone wants them: " + BASE + "this-week/"]
+    md += ["Full daily lists (English names, Korean prices) if anyone wants them: " + BASE + "this-week/", '',
+           "Disclosure: I run that site. It translates Hwahae's public rankings with AI help, and some shop links on it are affiliate links. "
+           "Nothing here is sponsored and the ranking order is Hwahae's, not mine.", '',
+           "<!-- Posting notes: r/AsianBeauty needs 20 comment karma on the sub, a 1:10 self-promo ratio, max 2 self-promo posts a week, "
+           "the Original Content flair, and affiliate disclosure in the text. Do not post until the account genuinely meets that. -->"]
     try:
         open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'reddit_draft.md'), 'w').write('\n'.join(md))
     except Exception:
