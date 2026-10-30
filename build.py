@@ -1200,7 +1200,9 @@ def index_page(data):
 def threads_posts(data):
     """Daily text posts for Threads (one per category, rotating), saved to data/threads.json."""
     import datetime
-    up = data['updatedAt'][:10]
+    # keyed by the real KST date: Hwahae can skip days, and a stale ranking date would make the poster
+    # think today's post already went out (threads_log keys are date-slot)
+    up = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)).date().isoformat()
     cats = [rk for rk in data['rankings'] if rk['type'] == 'category' and rk['slug'] not in ('all', 'skincare')]
     day = datetime.date.fromisoformat(up).toordinal()
     posts = []
@@ -1222,6 +1224,22 @@ def threads_posts(data):
             text = text.replace(' (the review app Koreans check before buying)', '')
         text = text[:500]
         posts.append({'category': rk['slug'], 'topic': 'K Beauty', 'text': text})
+    # every other day the nightly slot (2) carries a value post instead: price per 100 ml across the top-rated shelf
+    by = {rk['slug']: rk for rk in data['rankings'] if rk['type'] == 'category'}
+    vc = [c for c in VALUE_CATS if c in by]
+    if day % 2 and vc:
+        c = vc[(day // 2) % len(vc)]
+        vs = sorted((r for r in by[c]['rows'] if r['rating'] >= 4.5 and per100(r)), key=per100)
+        if len(vs) >= 4:
+            noun = CAT[c][1]
+            lo, hi = per100(vs[0]), per100(vs[-1])
+            text = (f"Best value {noun}, by what Koreans pay per 100 ml (Hwahae top 20, all rated 4.5+):\n\n"
+                    + ''.join(f"{i}. {short_name(r)}: ₩{per100(r):,.0f} ({usd(per100(r))})\n" for i, r in enumerate(vs[:3], 1))
+                    + f"\nSame top-rated shelf, up to {hi / lo:.0f}x price gap per ml. Full list: {BASE}value/{c}/\n\n"
+                    "Korean list prices from Hwahae, translated with AI help. Not sponsored.")
+            text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', text)[:500]
+            if len(posts) > 2:
+                posts[2] = {'category': 'value-' + c, 'topic': 'K Beauty', 'text': text}
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'threads.json')
     json.dump({'date': up, 'posts': posts}, open(path, 'w'), ensure_ascii=False, indent=1)
 
