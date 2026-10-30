@@ -5,12 +5,13 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 ## Open
 0b. Daily (first wake after 12:00 KST): record reel and TikTok views in the ledger 현황 tab (rows '인스타 릴스' and '틱톡': users=followers, impressions=views, posts=count, note=per-video views, avg watch time, skip rate, style a/b/routine). Judge the A/B on 11/6.
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
-1. Pinterest profile and board descriptions with search keywords (Korean skincare, K-beauty, Korean sunscreen).
-2. Video style c: "hyped in the US vs actually #1 in Korea" (needs a list of US-hyped K-beauty products; compare with Hwahae ranks).
-3. Video style d: concern map ("Dry skin → Korea's #1 for it") from concern pages, fast 1.6 s slides.
-4. Idea, low priority: an [OC] chart for r/dataisbeautiful (e.g. price per 100 ml across Korea's top-rated toners), source cited in a comment. Check its account-age/karma rules first; only if the account qualifies honestly.
+1. Video style c: "hyped in the US vs actually #1 in Korea" (needs a list of US-hyped K-beauty products; compare with Hwahae ranks).
+2. Video style d: concern map ("Dry skin → Korea's #1 for it") from concern pages, fast 1.6 s slides.
+3. Idea, low priority: an [OC] chart for r/dataisbeautiful (e.g. price per 100 ml across Korea's top-rated toners), source cited in a comment. Check its account-age/karma rules first; only if the account qualifies honestly.
+4. Pinterest: board 'Korean Skincare by Skin type' has 0 pins (no feed points at it). Either route skin-* pins there with a third RSS feed, or archive it. Empty boards look abandoned.
 
 ## Done
+- 2026-10-30 Pinterest: profile and main board already keyword-rich; guides board description written (routine, sunscreen, value per 100 ml, comparisons, concerns, brands).
 - 2026-10-30 Reddit: r/AsianBeauty requires 20 real comment karma, 1:10 self-promo ratio, 2 posts/week, OC flair, affiliate disclosure. We won't fake karma, so no post until the account honestly qualifies; the weekly draft now carries an operator + affiliate disclosure and these notes.
 - 2026-10-30 Compare pins (#1 vs #2 per category, 8, monthly) on the guides board.
 - 2026-10-30 Outlier research (vidIQ) + ops/reel_playbook.md (formats, hooks, hashtag sets); routine video style ("full routine of #1s costs $92 in Seoul").
