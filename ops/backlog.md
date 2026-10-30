@@ -4,7 +4,7 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 
 ## Open
 1. Direct Amazon links for top-10 products without an ASIN (35 of 82 on 2026-10-30). Search in the amazon.com tab, accept only an exact brand + product + size match, add to data/asin.json. Direct product links convert better than search links.
-2. JSON-LD on compare/ and value/ pages (ItemList for value pages, two Product items with aggregateRating for compare pages) so Google can show rich results.
+2. JSON-LD ItemList on value/ pages and compare/ hub (no aggregateRating: the ratings are Hwahae's, and Google's review-snippet rules don't allow third-party ratings presented as ours).
 3. Threads: alternate the daily post between the top 5 and a value or compare insight (price per 100 ml gaps make good posts).
 4. Hashtag research for Reels and TikTok (vidIQ keyword research) and a fixed tested hashtag set per category in the caption builder.
 5. Pinterest: compare pins ("A vs B", two columns) on the guides board, monthly.
