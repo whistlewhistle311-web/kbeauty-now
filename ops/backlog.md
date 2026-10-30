@@ -9,6 +9,7 @@ RULE (2026-10-30): no new K-beauty pages. Work only on video format tests, measu
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
 1. Product images: only via Amazon's own tools for Associates (PA-API needs 3 sales first) or brand-provided images; never hotlink Hwahae. Revisit after the first 3 sales.
 2. Contact without exposing a personal email: Cloudflare Email Routing contact@koreanbeautynow.com → forward (needs MX records; DNS changes are 휘's click).
+4. Ledger 현황 tab gets the same TOPIK/K-Beauty "자동 집계" rows appended every hour (writer not in this repo; likely an Apps Script or an external task on the sheet). Find it and make it update one row per day instead of appending, so the tab stays readable.
 3. Pinterest username exposes 'whistlewhistle311': rename to koreanbeautynow (휘's account setting) and update links.
 
 ## Done
