@@ -13,6 +13,7 @@ RULE (2026-10-30): no new K-beauty pages. Work only on video format tests, measu
 3. Pinterest username exposes 'whistlewhistle311': rename to koreanbeautynow (휘's account setting) and update links.
 
 ## Done
+- 2026-10-30 Involve Asia rejected K-Beauty Now (10/29): minimum traffic 11k visits/month + 10 posts in 30 days, or traffic proof. Daily check stopped. Re-apply only after the site passes 11k/month (Cloudflare Web Analytics).
 - 2026-10-30 Hub pages /guide/, /ingredient/, /concern/ got a real paragraph each (how to use, name-match caveat, reviews are not medical claims).
 - 2026-10-30 Independent audit (subagent) → fixed: Amazon button on every card, affiliate note at top of every page, two-row mobile nav, home H1 "What Korean reviewers rate highest", "Korea store price", English sizes, Korean bracket notes dropped from names, acne claim reworded, privacy page, Apify promo removed from footer, track record hidden until 14 days, compare pairs + duplicate skin guides noindex (sitemap 76 → 48).
 - 2026-10-30 Amazon ASIN audit against live Amazon titles: removed 14 links (shade-specific cushions/tints/gloss, packs of 2, TONYMOLY 'Milky' toner variant, S.NATURE pore moisturizer mismatch). Rule: no direct link for shade or multi-pack products; same product in a different size is OK.
