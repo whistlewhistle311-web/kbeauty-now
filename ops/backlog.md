@@ -10,9 +10,9 @@ RULE (2026-10-30): no new K-beauty pages. Work only on video format tests, measu
 1. Product images: only via Amazon's own tools for Associates (PA-API needs 3 sales first) or brand-provided images; never hotlink Hwahae. Revisit after the first 3 sales.
 2. Contact without exposing a personal email: Cloudflare Email Routing contact@koreanbeautynow.com → forward (needs MX records; DNS changes are 휘's click).
 3. Pinterest username exposes 'whistlewhistle311': rename to koreanbeautynow (휘's account setting) and update links.
-4. Hub pages /guide/, /ingredient/, /concern/ are thin (70-140 words): one useful paragraph each, written, not templated.
 
 ## Done
+- 2026-10-30 Hub pages /guide/, /ingredient/, /concern/ got a real paragraph each (how to use, name-match caveat, reviews are not medical claims).
 - 2026-10-30 Independent audit (subagent) → fixed: Amazon button on every card, affiliate note at top of every page, two-row mobile nav, home H1 "What Korean reviewers rate highest", "Korea store price", English sizes, Korean bracket notes dropped from names, acne claim reworded, privacy page, Apify promo removed from footer, track record hidden until 14 days, compare pairs + duplicate skin guides noindex (sitemap 76 → 48).
 - 2026-10-30 Amazon ASIN audit against live Amazon titles: removed 14 links (shade-specific cushions/tints/gloss, packs of 2, TONYMOLY 'Milky' toner variant, S.NATURE pore moisturizer mismatch). Rule: no direct link for shade or multi-pack products; same product in a different size is OK.
 - 2026-10-30 Hwahae rankings did not refresh on Fri 10/30 05:00 (last: Thu 10/29 05:00), so 'updated daily' was not true. Reworded sitewide to 'checked daily against Hwahae' and dropped '(Updated Daily)' from titles. If Hwahae turns out weekly (check Thu 11/5), say 'Hwahae updates weekly' outright. IG/TikTok/Pinterest bios still say 'daily' (bios: fix by hand later).

@@ -439,7 +439,9 @@ def ingredient_pages(hist, today, updated):
         lst = ''.join(f'<div class="card"><h3><a href="{BASE}ingredient/{sl}/">{esc(lb)}</a></h3><p class="meta">{n} ranked products</p></div>' for sl, lb, n in idx)
         pages['ingredient/'] = page('Korean Skincare by Ingredient: Ranked by Korean Reviewers',
                                     'Korean skincare grouped by key ingredient (hyaluronic acid, ceramide, cica and more), ranked from Hwahae.',
-                                    'ingredient/', f'<p class="kicker">By ingredient</p><h1>Korean skincare by ingredient</h1><p class="lede">Products that made a Hwahae top 20, grouped by the key ingredient in their name. A page appears once at least 8 ranked products share an ingredient.</p><div class="grid">{lst}</div>', updated)
+                                    'ingredient/', f'<p class="kicker">By ingredient</p><h1>Korean skincare by ingredient</h1><p class="lede">Products that made a Hwahae top 20, grouped by the key ingredient in their name. A page appears once at least 8 ranked products share an ingredient.</p>'
+                                    f'<p>A word of caution: we match on the product name, so a product called "ceramide cream" is listed even if the ceramide content is small, '
+                                    f'and products that contain an ingredient without naming it are missed. Use these pages to find candidates, then read the full ingredient list on the package.</p><div class="grid">{lst}</div>', updated)
     return pages
 
 
@@ -474,7 +476,10 @@ def concern_pages(hist, today, updated):
     lst = ''.join(f'<div class="card"><h3><a href="{BASE}concern/{sl}/">{esc(h1.split(",")[0].split(":")[0])}</a></h3><p class="meta">{n} products</p></div>' for sl, h1, n in idx)
     pages['concern/'] = page('Korean Skincare by Concern: What Korean Reviewers Say Works',
                              'Korean skincare grouped by what Korean reviewers actually say about it: moisturizing, non-sticky, soothing, no breakouts, pores and more.',
-                             'concern/', f'<p class="kicker">By concern</p><h1>Korean skincare by concern</h1><p class="lede">Grouped by the review topics Korean Hwahae users mention most.</p><div class="grid">{lst}</div>', updated)
+                             'concern/', f'<p class="kicker">By concern</p><h1>Korean skincare by concern</h1><p class="lede">Grouped by the review topics Korean Hwahae users mention most.</p>'
+                             f'<p>Hwahae tags each product with what its reviewers bring up most often, such as "non-sticky" or "fixes inner dryness". '
+                             f'These pages collect the ranked products where that topic comes up near the top. They reflect how Korean users describe their own experience, '
+                             f'not tested results or medical claims, so treat them as a shortlist and check how your own skin reacts.</p><div class="grid">{lst}</div>', updated)
     return pages
 
 
@@ -1034,7 +1039,10 @@ def extra_pages(data):
             'The Korean skincare products Korean reviewers rank highest on Hwahae today, two per routine step, each with a link to find it on Amazon.',
             'guide/korean-skincare-on-amazon/', am, up)
     names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order', 'korean-skincare-on-amazon': 'Best Korean skincare on Amazon'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
-    hub = '<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p><div class="grid">' + ''.join(
+    hub = ('<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p>'
+           '<p>How to use them: start with the step you are missing rather than replacing everything. Most Korean routines that hold up are short: '
+           'a gentle cleanser, a hydrating toner, one serum for your main concern, a moisturizer and sunscreen every morning. '
+           'The rankings tell you what Korean reviewers rate highly overall; they do not know your skin, so patch-test anything new and change one product at a time.</p><div class="grid">') + ''.join(
         f'<div class="card"><h3><a href="{BASE}{p}">{esc(names.get(p.split("/")[1], p))}</a></h3></div>' for p in sorted((p for p in pages if p.startswith('guide/')), key=lambda p: (p != 'guide/korean-skincare-routine/', 'skin' in p))) + '</div>'
     pages['guide/'] = page('Korean Skincare Buying Guides: Sunscreen, Toner, Serum, Moisturizer, Cleanser', 'Practical guides to each step of a Korean skincare routine, with the products Korean Hwahae users rank highest today.', 'guide/', hub, up)
     return pages
