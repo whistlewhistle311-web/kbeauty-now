@@ -46,7 +46,7 @@ for (const pin of data.pins) {
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
     continue;
   }
-    const rows = pin.items.map((it, i) => `<li><span class="n">${i + 1}</span><div><div class="b">${esc(it.brand)}</div><div class="p">${esc(it.name)}</div><div class="m">★ ${it.rating.toFixed(2)} · ${it.reviews.toLocaleString('en-US')} Korean reviews</div></div></li>`).join('');
+    const rows = pin.items.map((it, i) => `<li><span class="n">${i + 1}</span><div><div class="b">${esc(it.brand)}</div><div class="p">${esc(it.name)}</div><div class="m">${it.meta ? esc(it.meta) : `★ ${it.rating.toFixed(2)} · ${it.reviews.toLocaleString('en-US')} Korean reviews`}</div></div></li>`).join('');
     await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>
 body{margin:0;width:1000px;height:1500px;background:#fbf4ee;font-family:"Noto Sans","Noto Sans KR",Arial,sans-serif;color:#2a2420}
 .wrap{padding:80px 72px;box-sizing:border-box;height:100%;display:flex;flex-direction:column}
@@ -60,7 +60,7 @@ li{display:flex;gap:28px;background:#fff;border-radius:22px;padding:26px 30px;ma
 .f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}
 .cta{background:#b04a5a;color:#fff;border-radius:22px;padding:28px 34px;font-size:32px;font-weight:700;margin:8px 0 34px}
 </style></head><body><div class="wrap"><div class="k">Ranked by Korean reviewers</div><h1 style="font-size:${pin.title.length > 40 ? 60 : 72}px">${esc(pin.title)}</h1><div class="s">${esc(pin.sub || "Hwahae top 5")} · ${esc(pin.date)}</div><ol>${rows}</ol>
-<div class="cta">Full top 20, Korean prices and where to buy →</div><div class="f"><span>K-Beauty Now</span><span><b>koreanbeautynow.com</b></span></div></div></body></html>`);
+<div class="cta">${esc(pin.cta || "Full top 20, Korean prices and where to buy →")}</div><div class="f"><span>K-Beauty Now</span><span><b>koreanbeautynow.com</b></span></div></div></body></html>`);
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
 }
 await b.close();

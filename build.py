@@ -1040,6 +1040,24 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc(t)}</title><link>{BASE}concern/{slug}/</link><guid isPermaLink=\"false\">concern-{slug}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(lede + ' Ranked from Hwahae, Korea' + chr(39) + 's biggest cosmetics review app.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    # value pins (price per 100 ml), monthly; they go to the guides board
+    for cat in VALUE_CATS:
+        rk = by.get(('category', cat))
+        if not rk:
+            continue
+        vs = sorted((r for r in rk['rows'] if r['rating'] >= 4.5 and per100(r)), key=per100)[:5]
+        if len(vs) < 5:
+            continue
+        noun = CAT[cat][1]
+        t = f'Best value {noun}: what Koreans pay per 100 ml'
+        f = f"value-{cat}-{month}.jpg"
+        pins.append({'title': t, 'sub': 'Hwahae top 20, rated 4.5+', 'date': up, 'file': f, 'cta': 'All 10 best-value picks and where to buy →', 'items': [
+            {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rating': r['rating'], 'reviews': r['reviews'],
+             'meta': f"₩{per100(r):,.0f} per 100 ml ({usd(per100(r))}) · ★ {r['rating']:.2f}"} for r in vs]})
+        top = ', '.join(short_name(r) for r in vs[:3])
+        items.append(f"<item><title>{esc(t)}</title><link>{BASE}value/{cat}/</link><guid isPermaLink=\"false\">value-{cat}-{month}</guid>"
+                     f"<pubDate>{pub}</pubDate><description>{esc(f'The best-rated {noun.lower()} in Korea, sorted by Korean price per 100 ml. Cheapest top-rated picks: {top}.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     all_items = list(items)
     # pick by the real KST date, not the ranking date: Hwahae can go days without updating, and evergreen
     # pins (guides, concerns, brands) should still go out daily; unchanged rankings are skipped by their sig
@@ -1048,7 +1066,7 @@ def pins_and_rss(data):
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
     # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
-    evergreen = ('guide/', 'concern/', 'brand/')
+    evergreen = ('guide/', 'concern/', 'brand/', 'value/')
     is_ever = lambda it: re.search(r'<link>[^<]*/(%s)' % '|'.join(evergreen), it)
     main_items = [it for it in items if not is_ever(it)]
     # guides feed: every evergreen pin chosen in the last 30 days (a feed must never be empty; guids keep repeats out)
@@ -1087,7 +1105,7 @@ def select_pins(pins, items, today):
     for p, it in zip(pins, items):
         url = re.search(r'<link>([^<]+)</link>', it).group(1)
         guid = re.search(r'>([^<]+)</guid>', it).group(1)
-        if 'items' in p and not guid.startswith(('brand-', 'concern-')):
+        if 'items' in p and not guid.startswith(('brand-', 'concern-', 'value-')):
             kind, cool, prio = ('trending', 7, 0) if guid.startswith('trending-') else ('ranking', 7, 1)
             sig = '|'.join(x['name'] for x in p['items'])
         elif 'product' in p:
