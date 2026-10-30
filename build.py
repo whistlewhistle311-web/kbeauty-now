@@ -160,6 +160,8 @@ def default_img(path, updated):
     return f'category-all-{updated[:10]}.jpg'
 
 
+# Cloudflare Web Analytics (cookieless page views; the token is public by design)
+CF_BEACON = '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "b4b5c7d729cd4dae931d4d02279c251d"}\'></script>'
 WEEK_CARD = ['']  # filled by week_page() once 7 days of history exist
 NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sitemap
 
@@ -184,7 +186,7 @@ def page(title, desc, path, body, updated, head=''):
 Pages are built automatically every day from Hwahae data; product names are translated by K-Beauty Now with AI assistance and checked against official brand names where we can verify them; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 Need this data as JSON for your shop or trend report? The same rankings are available as an API on <a href="https://apify.com/koreadata-lab/hwahae-kbeauty-ranking-tracker">Apify (Hwahae K-Beauty Ranking Tracker)</a>.
 {LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.
-<br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a></footer></main></body></html>"""
+<br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a></footer></main>{CF_BEACON}</body></html>"""
 
 
 def ranking_page(rk, updated):
@@ -890,6 +892,8 @@ def extra_pages(data):
 <p>How it is made: a script collects the public rankings every morning and builds these pages automatically. Translations are AI-assisted; we verify official English brand names against brand and retailer pages and leave a transliteration when we cannot confirm one.</p>
 <h2>What we do not do</h2>
 <p>We do not test products ourselves and we do not write fake reviews. Rankings are Hwahae's, not ours. K-Beauty Now is independent and not affiliated with Hwahae.</p>
+<h2>Analytics</h2>
+<p>We count page views with Cloudflare Web Analytics, which sets no cookies and does not track individual visitors.</p>
 <h2>Links</h2>
 <p>Store links help you find a product abroad. Some links may earn us a commission at no extra cost to you; this never changes the ranking order, which comes straight from Hwahae.</p>"""
     pages['about/'] = page('About K-Beauty Now: How We Rank Korean Skincare', 'How K-Beauty Now turns Hwahae, Korea\'s biggest cosmetics review app, into daily English rankings.', 'about/', about, up)
