@@ -1,5 +1,5 @@
 {
- "at": "2026-10-30T06:33Z",
+ "at": "2026-10-30T07:39Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -39,6 +39,14 @@
    "users30": 0,
    "users": 1,
    "runs": 2,
+   "pricing": "PAY_PER_EVENT"
+  },
+  {
+   "name": "danawa-price-compare",
+   "title": "Korea Price Comparison (Danawa) - Naver Shopping Alternative",
+   "users30": 0,
+   "users": 1,
+   "runs": 1,
    "pricing": "PAY_PER_EVENT"
   }
  ],
