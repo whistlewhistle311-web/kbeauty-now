@@ -7,6 +7,8 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 
 const slug = process.argv[2] || 'sunscreen';
 const outDir = process.argv[3] || 'shorts';
+// A/B test: 'a' = countdown title, 'b' = price hook ("Korea's #1 toner costs $13"). Default: b for the KST-morning post, a for the night post
+const style = process.argv[4] || (new Date(Date.now() + 9 * 3600e3).getUTCHours() < 12 ? 'b' : 'a');
 const data = JSON.parse(fs.readFileSync(new URL('../data/latest.json', import.meta.url)));
 const names = JSON.parse(fs.readFileSync(new URL('../data/shorts_names.json', import.meta.url)));
 const rk = data.rankings.find((r) => r.type === 'category' && r.slug === slug);
@@ -27,8 +29,15 @@ h1{font-size:120px;line-height:1.02;margin:30px 0;letter-spacing:-2px}
 .pr{margin-top:34px;font-size:58px;font-weight:800;color:#2a2420}.pr small{font-size:42px;color:#6b665f;font-weight:500}
 .u{margin-top:60px;background:#b04a5a;color:#fff;border-radius:30px;padding:44px 50px;font-size:60px;font-weight:800}`;
 const slides = [];
-slides.push(`<div class="w"><div class="k">Ranked by Korean reviewers</div><h1>Korea's top 5 ${esc(label)}, and what Koreans pay</h1>
+const SING = { toner: 'toner', serum: 'serum', cream: 'moisturizer', cleansing: 'cleanser', masks: 'face mask', sunscreen: 'sunscreen', cushion: 'cushion', lip: 'lip product', all: 'K-beauty product', skincare: 'skincare product' };
+const top1 = rk.rows[0];
+if (style === 'b' && top1.priceKrw) {
+    slides.push(`<div class="w"><div class="k">What Koreans actually pay</div><h1>Korea's #1 ${esc(SING[slug] || label)} costs $${Math.round(top1.priceKrw / 1337)} in Seoul</h1>
+<div class="s">Top 5 by Korean reviewers on Hwahae, with Seoul prices. ${esc(day)}</div></div>`);
+} else {
+    slides.push(`<div class="w"><div class="k">Ranked by Korean reviewers</div><h1>Korea's top 5 ${esc(label)}, and what Koreans pay</h1>
 <div class="s">From Hwahae, the review app Koreans check before buying. ${esc(day)}</div></div>`);
+}
 const KRW_PER_USD = 1337;
 const price = (r) => (r.priceKrw ? `<div class="pr">In Korea: $${Math.round(r.priceKrw / KRW_PER_USD)} <small>· ₩${r.priceKrw.toLocaleString('en-US')}${r.size ? ' · ' + esc(String(r.size).split(' /')[0]) : ''}</small></div>` : '');
 for (const r of rk.rows.slice(0, 5).reverse()) {
@@ -66,7 +75,7 @@ for (let i = 1; i < slides.length; i++) {
     f += `${last}[z${i}]xfade=transition=slideleft:duration=0.4:offset=${off.toFixed(2)}${o};`;
     last = o;
 }
-const out = `${outDir}/${slug}-${day}.mp4`;
+const out = `${outDir}/${slug}-${day}${style === 'b' ? '-b' : ''}.mp4`;
 args.push('-filter_complex', f.replace(/;$/, ''), '-map', '[v]', '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', out);
 execFileSync('ffmpeg', args, { stdio: 'ignore' });
 fs.rmSync(tmp, { recursive: true });
