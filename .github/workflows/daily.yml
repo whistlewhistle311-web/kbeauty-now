@@ -25,7 +25,7 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add -A data docs untranslated.txt pins.json
           git diff --cached --quiet || git commit -m "Daily ranking update $(date -u +%F)"
-          git push
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push && break; sleep $((i*5)); done
       - name: notify IndexNow
         run: |
           KEY=$(cat indexnow.key)
@@ -40,4 +40,4 @@ jobs:
           for i in $(seq 1 30); do curl -sfI "https://koreanbeautynow.com/pins/$F" >/dev/null && break; sleep 10; done
           python pin_post.py
           git add data/posted.json
-          git diff --cached --quiet || { git commit -m "Pinterest posted $(date -u +%F)"; git push; }
+          git diff --cached --quiet || { git commit -m "Pinterest posted $(date -u +%F)"; for i in 1 2 3 4 5; do git pull -q --rebase && git push && break; sleep $((i*5)); done; }

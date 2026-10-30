@@ -25,4 +25,4 @@ jobs:
           git config user.name "kbn-bot"; git config user.email "bot@users.noreply.github.com"
           git pull -q --rebase || true
           git add data/apify_stats.json data/gumroad_stats.json data/awin_stats.json
-          git diff --cached --quiet || { git commit -m "Apify stats $(date -u +%FT%H:%M)"; git push; }
+          git diff --cached --quiet || { git commit -m "Apify stats $(date -u +%FT%H:%M)"; for i in 1 2 3 4 5; do git pull -q --rebase && git push && break; sleep $((i*5)); done; }
