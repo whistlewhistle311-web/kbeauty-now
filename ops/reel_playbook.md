@@ -22,7 +22,7 @@ Read this before every reel or TikTok post.
 
 ## Caption
 - First line = the hook in words (it shows under the video). Then the 5→1 list or the routine steps with Seoul prices.
-- End: "Full top 20, Korean prices and where to buy: link in bio (koreanbeautynow.com). Ranked by Korean reviewers on Hwahae. Not sponsored."
+- End: "Full top 20, Korean prices and where to buy: link in bio, then tap "<chip>" (koreanbeautynow.com). Ranked by Korean reviewers on Hwahae. Not sponsored." The chip names the home-page button for this video (TAP in ops/shorts.mjs, JUMP in build.py): Sunscreen / Toner / Serum / Moisturizer / Cleanser / Masks / Cushion / Lip / Top 20, routine → Full routine, hype → Korea's #1s on Amazon, concern → By concern. The bio link itself must be https://koreanbeautynow.com/ (home, where the chips are).
 - Hashtags (6 to 8): always #kbeauty #koreanskincare #hwahae #skincareroutine, plus 2 to 4 for the category:
   - sunscreen: #koreansunscreen #sunscreen #spf
   - toner: #koreantoner #toner #glassskin

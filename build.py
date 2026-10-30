@@ -21,8 +21,15 @@ CAT = {  # slug: (title, h1 noun, blurb)
     'lip': ('Lip', 'Korean lip products', 'Tints, balms and lip masks.'),
 }
 SKIN = {'dry': 'dry skin', 'oily': 'oily skin', 'combination': 'combination skin', 'sensitive': 'sensitive skin', 'acne-prone': 'acne-prone skin'}
+# Home "came from a video?" chips (label, path, highlighted). Same labels as TAP in ops/shorts.mjs.
+JUMP = [("Korea's #1s on Amazon", 'guide/korean-skincare-on-amazon/', True), ('Full routine', 'guide/korean-skincare-routine/', True),
+        ('Sunscreen', 'c/sunscreen/', False), ('Toner', 'c/toner/', False), ('Serum', 'c/serum/', False), ('Moisturizer', 'c/cream/', False),
+        ('Cleanser', 'c/cleansing/', False), ('Masks', 'c/masks/', False), ('Cushion', 'c/cushion/', False), ('Lip', 'c/lip/', False),
+        ('By concern', 'concern/', False), ('Top 20', 'c/all/', False)]
 
-CSS = """.cbw{margin-top:10px}.buy.cb{display:block;text-align:center;padding:11px 14px;margin:0 0 6px}.cbw .alt{font-size:13px;color:#6b665f}.cbw .alt a{color:#6b665f}.disc{font-size:13px;color:#6b665f;margin:0 0 14px}
+CSS = """.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.jump a{border:1px solid var(--accent);border-radius:99px;padding:6px 13px;font-size:14px;font-weight:600;text-decoration:none;background:var(--card)}.jump a.hot{background:var(--accent);color:var(--card)}
+#iab{display:none;background:var(--soft);border-radius:8px;padding:8px 12px;font-size:13.5px;margin:0 0 12px}
+.cbw{margin-top:10px}.buy.cb{display:block;text-align:center;padding:11px 14px;margin:0 0 6px}.cbw .alt{font-size:13px;color:#6b665f}.cbw .alt a{color:#6b665f}.disc{font-size:13px;color:#6b665f;margin:0 0 14px}
 ol.shop{padding-left:22px}ol.shop li{margin:10px 0}
 table.cmp{border-collapse:collapse;width:100%;table-layout:fixed;margin:12px 0;font-size:14px;overflow-wrap:anywhere}table.cmp th,table.cmp td{border-bottom:1px solid #eadfd6;padding:9px 8px;text-align:left;vertical-align:top}table.cmp tr:first-child th{font-size:16px}table.cmp th:first-child{color:#6b665f;font-weight:600;width:28%}
 
@@ -191,6 +198,10 @@ def default_img(path, updated):
 
 # Cloudflare Web Analytics (cookieless page views; the token is public by design)
 CF_BEACON = '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "b4b5c7d729cd4dae931d4d02279c251d"}\'></script>'
+# In-app browsers (Instagram, TikTok, Facebook, Threads) are not signed in to Amazon, so a visitor from a reel lands on
+# Amazon logged out and rarely buys there. Show a one-line tip to those visitors only, and only on pages with an Amazon link.
+IAB_JS = ('<script>try{if(/Instagram|FBAN|FBAV|musical_ly|BytedanceWebview|TikTok|Barcelona/i.test(navigator.userAgent)'
+          '&&document.querySelector(\'a[href*="amazon.com"]\'))document.getElementById("iab").style.display="block"}catch(e){}</script>')
 WEEK_CARD = ['']  # filled by week_page() once 7 days of history exist
 NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sitemap
 
@@ -212,11 +223,11 @@ def page(title, desc, path, body, updated, head=''):
 <meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/{default_img(path, updated)}">'}
 <style>{CSS}</style></head><body>
 <header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}brand/">Brands</a><a href="{BASE}concern/">Concerns</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
-<main><p class="disc">Some store links on this site are affiliate links (Amazon and others): we may earn a commission at no cost to you. It never changes the order, which is Hwahae's.</p>{body}
+<main><p class="disc">Some store links on this site are affiliate links (Amazon and others): we may earn a commission at no cost to you. It never changes the order, which is Hwahae's.</p><p id="iab">In Instagram or TikTok? Tap ··· → "Open in browser" first, so Amazon opens signed in.</p>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are checked every day; pages change as soon as Hwahae refreshes its rankings. Hwahae ranking dated {esc(updated)} KST.
 Pages are built automatically every day from Hwahae data; product names are translated by K-Beauty Now with AI assistance and checked against official brand names where we can verify them; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 <a href="{BASE}privacy/">Privacy</a> · {LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.
-<br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a></footer></main>{CF_BEACON}</body></html>"""
+<br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a></footer></main>{IAB_JS}{CF_BEACON}</body></html>"""
 
 
 def ranking_page(rk, updated):
@@ -883,7 +894,10 @@ def compare_pages(data):
                     f'<div class="ko" style="font-size:18px">{esc(r["brand"])} {esc(r["name"])}</div>'
                     f'<div class="facts">#{r["rank"]} on Hwahae · ★ {r["rating"]:.2f} · {r["reviews"]:,} reviews'
                     + (f' · ₩{r["priceKrw"]:,} ({usd(r["priceKrw"])})' if r.get('priceKrw') else '')
-                    + (f' · {esc(re.split(chr(92) + "s*/", str(r["size"]))[0])}' if r.get('size') else '') + '</div></li>')
+                    + (f' · {esc(re.split(chr(92) + "s*/", str(r["size"]))[0])}' if r.get('size') else '') + '</div>'
+                    # only hand-matched Amazon product pages here (no search links): readers browsing from home can still buy
+                    + (f'<div class="links"><a href="{esc(amazon(short_name(r), r["id"]))}" rel="sponsored nofollow">Not in Seoul? See it on Amazon</a></div>'
+                       if AMAZON_TAG and str(r['id']) in ASIN else '') + '</li>')
         secs.append(f'<h2>{esc(step)} <span class="meta">· <a href="{BASE}c/{cat}/">full top 20</a></span></h2><ol class="shop">{lis}</ol>')
     body = (f'<p class="kicker">Seoul shopping list · updated {esc(up[:10])}</p><h1>What to buy in Korea: a skincare shopping list from Korean reviews</h1>'
             '<p class="lede">The #1 and #2 product in each category on Hwahae, Korea\'s biggest cosmetics review app, with the Korean name to show '
@@ -1287,8 +1301,11 @@ def index_page(data):
     if allrk:
         TOP3 = ('<h2>Korea\'s top 3 today</h2><ol class="rank">' + ''.join(row_html(r) for r in allrk['rows'][:3])
                 + f'</ol><p><a href="{BASE}c/all/">See the full top 20</a></p>')
+    # Reels/TikTok end on "Link in bio → tap '<label>'" (ops/shorts.mjs TAP): keep these labels in sync with it.
+    jump = ''.join(f'<a href="{BASE}{p}"{" class=hot" if hot else ""}>{esc(l)}</a>' for l, p, hot in JUMP)
     body = f"""<p class="kicker">Checked daily against Hwahae</p><h1>What Korean reviewers rate highest in K-beauty</h1>
-<p class="lede">Hwahae (화해) is the review app Koreans check before buying cosmetics. This site turns its public top-20 rankings into English and checks for new ones every day: product names, ratings, review counts, prices and what reviewers praise, by category and by skin type.</p>
+<p class="lede">Hwahae (화해) is the review app Koreans check before buying cosmetics. We put its top-20 rankings into English: names, ratings, prices and what reviewers praise.</p>
+<p class="meta" style="margin-bottom:4px">Came from a video? Tap what you saw:</p><nav class="jump">{jump}</nav>
 <p class="meta">Last ranking update: {esc(up)} KST</p>
 {TOP3}
 <h2>Start here</h2><div class="grid">

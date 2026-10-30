@@ -94,8 +94,11 @@ for (const r of (['hype', 'concern'].includes(slug) ? [] : slug === 'routine' ? 
     slides.push(`<div class="w">${r.step ? `<div class="k" style="font-size:52px">Step ${r.stepNo} · ${esc(r.step)}</div><div class="n" style="font-size:150px;margin-top:20px">#1</div>` : `<div class="n">#${r.rank}</div>`}<div class="b">${esc(n.brand)}</div><div class="p">${esc(n.name)}</div>
 <div class="r">★ ${r.rating.toFixed(2)} <small>· ${r.reviews.toLocaleString('en-US')} Korean reviews</small></div>${price(r)}<div class="t">${tags}</div></div>`);
 }
+// The bio link opens the home page; tell viewers which home chip to tap (same labels as JUMP in build.py)
+const TAP = { sunscreen: 'Sunscreen', toner: 'Toner', serum: 'Serum', cream: 'Moisturizer', cleansing: 'Cleanser', masks: 'Masks', cushion: 'Cushion',
+    lip: 'Lip', all: 'Top 20', skincare: 'Top 20', routine: 'Full routine', hype: "Korea's #1s on Amazon", concern: 'By concern' };
 slides.push(`<div class="w"><div class="k">Full top 20, Korean prices, where to buy</div><h1 style="font-size:84px;letter-spacing:-1px">koreanbeautynow.com</h1>
-<div class="s">Checked daily against Hwahae. Not sponsored.</div><div class="u">Link in bio</div></div>`);
+<div class="s">Checked daily against Hwahae. Not sponsored.</div><div class="u">Link in bio → tap “${esc(TAP[slug] || 'Top 20')}”</div></div>`);
 
 fs.mkdirSync(outDir, { recursive: true });
 const tmp = fs.mkdtempSync(outDir + '/tmp-');
