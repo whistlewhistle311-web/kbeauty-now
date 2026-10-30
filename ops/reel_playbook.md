@@ -9,6 +9,12 @@ Read this before every reel or TikTok post.
 - `node ops/shorts.mjs hype <outdir>`: "What America buys vs what's #1 in Korea" (US favorites from ops/us_favorites.json against today's Hwahae ranks; e.g. Beauty of Joseon Relief Sun is #19 in Korea, COSRX Snail Mucin and Anua Heartleaf 77 are not in the top 20). Only state ranks the data shows; never say the US pick is bad. Hashtags: #kbeauty #koreanskincare #hwahae #skincareroutine #cosrx #beautyofjoseon #anua.
 - `node ops/shorts.mjs concern <outdir>`: "Your skin problem → what Koreans actually use" (6 concerns: dehydrated, redness, breakouts, pores, sticky finish, sensitive; the best-ranked product Korean reviewers praise most for each). Hashtags: #kbeauty #koreanskincare #hwahae #skincareroutine #sensitiveskin #acne #skinbarrier.
 
+## Posting rotation (KST)
+- Night 22:37 (US morning): category countdown, style a, next category in order sunscreen → toner → serum → cream → cleansing → masks → cushion → lip → all. Saturday night: hype.
+- Morning 09:37 (US evening): Mon category style b · Tue hype · Wed concern · Thu category style b · Fri routine · Sat concern · Sun routine.
+- Same video goes to TikTok right after (휘 presses publish). Check the last 4 captions so the same category/format doesn't repeat back to back.
+- 2026-10-30 night: hype (first run). 2026-10-31 (Sat) morning: routine (first run, overrides the table).
+
 ## What works for small accounts (vidIQ outlier search, 2026-10-30, Oct posts, under 50K followers)
 - 600K to 13M views on 2K to 40K follower accounts came from: "Koreans have been gatekeeping", "what is actually #1 in Korea" vs what is hyped in the US, "concern → ingredient/product" quick maps, "products worth your $$" listicles.
 - Fast pacing, music only, text overlays, often looped. Hook text on screen in the first second.

@@ -797,7 +797,9 @@ def compare_pages(data):
 <p class="meta">We have not tested these products ourselves. This page compares Hwahae's public ratings, review counts, Korean list prices and the review topics Korean users mention most. {esc(LINK_NOTE)}</p>"""
         title = f"{na} vs {nb}: Korean Reviews Compared"
         desc = f"{na} vs {nb}: Hwahae rating, number of Korean reviews, Korean price per 100 ml and what reviewers praise, side by side."
-        pages[path] = page(title, desc, path, body, up)
+        pin = f"compare-{cat}-{up[:7]}.jpg"  # the #1 vs #2 pin, when this is that pair and it has been rendered
+        og = pin if (rank.get(pr['a']) == 1 and rank.get(pr['b']) == 2 and os.path.exists(f'{OUT}/pins/{pin}')) else default_img(path, up)
+        pages[path] = page(title, desc, path, body, up, f'<meta property="og:image" content="{BASE}pins/{og}"><meta name="twitter:card" content="summary_large_image">')
     # value pages: today's top 20 with rating 4.5+, sorted by Korean price per 100 ml
     vlinks = []
     for cat in VALUE_CATS:
@@ -819,7 +821,8 @@ def compare_pages(data):
         ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': f'Best value {noun}, by price per 100 ml',
               'itemListOrder': 'https://schema.org/ItemListOrderAscending', 'numberOfItems': len(items),
               'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'url': f"{BASE}p/{r['id']}/", 'name': short_name(r)} for i, r in enumerate(items)]}
-        head = (f'<meta property="og:image" content="{BASE}pins/{default_img(f"value/{cat}/", up)}">'
+        vpin = f"value-{cat}-{up[:7]}.jpg"
+        head = (f'<meta property="og:image" content="{BASE}pins/{vpin if os.path.exists(f"{OUT}/pins/{vpin}") else default_img(f"value/{cat}/", up)}"><meta name="twitter:card" content="summary_large_image">'
                 f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")}</script>')
         pages[f'value/{cat}/'] = page(f'Best Value {noun} by Price per 100 ml ({up[:10]})',
                                      f'The best-rated {noun} in Korea sorted by price per 100 ml. Hwahae top 20, rated 4.5+, Korean list prices with USD.',

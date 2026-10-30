@@ -5,11 +5,9 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 ## Open
 0b. Daily (first wake after 12:00 KST): record reel and TikTok views in the ledger 현황 tab (rows '인스타 릴스' and '틱톡': users=followers, impressions=views, posts=count, note=per-video views, avg watch time, skip rate, style a/b/routine). Judge the A/B on 11/6.
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
-1. og:image for compare/ and value/ pages: use that month's compare-/value- pin when it exists (better link previews when shared).
-2. Posting rotation in ops/reel_playbook.md: which format on which slot (routine, hype, concern, category countdowns) so each format runs at least weekly and the A/B stays readable.
-3. Check IndexNow in daily.yml covers new compare/ and value/ URLs (Bing).
 
 ## Done
+- 2026-10-30 og:image on compare/value pages uses the month's pin when rendered. Posting rotation table in the playbook. IndexNow already sends the whole sitemap (compare/ and value/ included).
 - 2026-10-30 Pinterest feed rss-skin.xml connected to the board 'Korean Skincare by Skin Type'.
 - 2026-10-30 r/dataisbeautiful: rules = [OC] tag, plain title, source + tool in first comment (no stated karma rule). Chart + post text drafted in ops/drafts/. Reddit is blocked for the browser extension, so a human has to post it; offer it to 휘, don't push.
 - 2026-10-30 Workflows retry push after pull --rebase (daily-rankings failed once racing apify-sync).
