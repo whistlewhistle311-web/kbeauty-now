@@ -850,7 +850,10 @@ def pins_and_rss(data):
                      f"<pubDate>{pub}</pubDate><description>{esc(lede + ' Ranked from Hwahae, Korea' + chr(39) + 's biggest cosmetics review app.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     all_items = list(items)
-    pins, items = select_pins(pins, items, up)
+    # pick by the real KST date, not the ranking date: Hwahae can go days without updating, and evergreen
+    # pins (guides, concerns, brands) should still go out daily; unchanged rankings are skipped by their sig
+    kst_today = (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).date().isoformat()
+    pins, items = select_pins(pins, items, kst_today)
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
     # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
@@ -880,7 +883,7 @@ PIN_CAP = 8  # per day; Pinterest treats repetitive automated pins as spam
 
 def select_pins(pins, items, today):
     """Publish only pins that carry something new: a ranking whose top 5 changed, at most once a week per URL,
-    weekly product pins at most once every 4 weeks per product, evergreen pins at most monthly and one a day.
+    weekly product pins at most once every 4 weeks per product, evergreen pins at most monthly and two a day.
     Same-day rebuilds are idempotent (today's picks are kept). State: data/pin_state.json."""
     import datetime as dt
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'pin_state.json')
@@ -920,7 +923,7 @@ def select_pins(pins, items, today):
         if len(picked) >= PIN_CAP:
             break
         if prio == 3:
-            if n_ever >= 1:
+            if n_ever >= 2:
                 continue
             n_ever += 1
         picked.append((p, it, url, sig))
