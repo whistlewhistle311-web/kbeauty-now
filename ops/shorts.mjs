@@ -11,7 +11,11 @@ const outDir = process.argv[3] || 'shorts';
 const style = process.argv[4] || (new Date(Date.now() + 9 * 3600e3).getUTCHours() < 12 ? 'b' : 'a');
 const data = JSON.parse(fs.readFileSync(new URL('../data/latest.json', import.meta.url)));
 const names = JSON.parse(fs.readFileSync(new URL('../data/shorts_names.json', import.meta.url)));
-const rk = data.rankings.find((r) => r.type === 'category' && r.slug === slug);
+// slug 'routine': a full 5-step routine built from each step's #1 (cleanser, toner, serum, moisturizer, sunscreen)
+const STEPS = [['cleansing', 'Cleanser'], ['toner', 'Toner'], ['serum', 'Serum'], ['cream', 'Moisturizer'], ['sunscreen', 'Sunscreen']];
+const rk = slug === 'routine'
+    ? { rows: STEPS.map(([s, step], i) => ({ ...data.rankings.find((r) => r.type === 'category' && r.slug === s).rows[0], step, stepNo: i + 1 })) }
+    : data.rankings.find((r) => r.type === 'category' && r.slug === slug);
 if (!rk) throw new Error('no ranking ' + slug);
 const label = names.labels[slug] || slug;
 const day = data.updatedAt.slice(0, 10);
@@ -31,7 +35,11 @@ h1{font-size:120px;line-height:1.02;margin:30px 0;letter-spacing:-2px}
 const slides = [];
 const SING = { toner: 'toner', serum: 'serum', cream: 'moisturizer', cleansing: 'cleanser', masks: 'face mask', sunscreen: 'sunscreen', cushion: 'cushion', lip: 'lip product', all: 'K-beauty product', skincare: 'skincare product' };
 const top1 = rk.rows[0];
-if (style === 'b' && top1.priceKrw) {
+const total = rk.rows.slice(0, 5).reduce((a, r) => a + (r.priceKrw || 0), 0);
+if (slug === 'routine') {
+    slides.push(`<div class="w"><div class="k">Only Korea's #1s</div><h1>A full Korean skincare routine costs $${Math.round(total / 1337)} in Seoul</h1>
+<div class="s">The #1 product for every step, ranked by Korean reviewers on Hwahae. ${esc(day)}</div></div>`);
+} else if (style === 'b' && top1.priceKrw) {
     slides.push(`<div class="w"><div class="k">What Koreans actually pay</div><h1>Korea's #1 ${esc(SING[slug] || label)} costs $${Math.round(top1.priceKrw / 1337)} in Seoul</h1>
 <div class="s">Top 5 by Korean reviewers on Hwahae, with Seoul prices. ${esc(day)}</div></div>`);
 } else {
@@ -40,10 +48,10 @@ if (style === 'b' && top1.priceKrw) {
 }
 const KRW_PER_USD = 1337;
 const price = (r) => (r.priceKrw ? `<div class="pr">In Korea: $${Math.round(r.priceKrw / KRW_PER_USD)} <small>· ₩${r.priceKrw.toLocaleString('en-US')}${r.size ? ' · ' + esc(String(r.size).split(' /')[0]) : ''}</small></div>` : '');
-for (const r of rk.rows.slice(0, 5).reverse()) {
+for (const r of (slug === 'routine' ? rk.rows : rk.rows.slice(0, 5).reverse())) {
     const n = names.products[String(r.id)] || { brand: r.brandEn || r.brand, name: r.name };
     const tags = (r.topics || []).slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join('');
-    slides.push(`<div class="w"><div class="n">#${r.rank}</div><div class="b">${esc(n.brand)}</div><div class="p">${esc(n.name)}</div>
+    slides.push(`<div class="w">${r.step ? `<div class="k" style="font-size:52px">Step ${r.stepNo} · ${esc(r.step)}</div><div class="n" style="font-size:150px;margin-top:20px">#1</div>` : `<div class="n">#${r.rank}</div>`}<div class="b">${esc(n.brand)}</div><div class="p">${esc(n.name)}</div>
 <div class="r">★ ${r.rating.toFixed(2)} <small>· ${r.reviews.toLocaleString('en-US')} Korean reviews</small></div>${price(r)}<div class="t">${tags}</div></div>`);
 }
 slides.push(`<div class="w"><div class="k">Full top 20, Korean prices, where to buy</div><h1 style="font-size:84px;letter-spacing:-1px">koreanbeautynow.com</h1>
@@ -75,7 +83,7 @@ for (let i = 1; i < slides.length; i++) {
     f += `${last}[z${i}]xfade=transition=slideleft:duration=0.4:offset=${off.toFixed(2)}${o};`;
     last = o;
 }
-const out = `${outDir}/${slug}-${day}${style === 'b' ? '-b' : ''}.mp4`;
+const out = `${outDir}/${slug}-${day}${style === 'b' && slug !== 'routine' ? '-b' : ''}.mp4`;
 args.push('-filter_complex', f.replace(/;$/, ''), '-map', '[v]', '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', out);
 execFileSync('ffmpeg', args, { stdio: 'ignore' });
 fs.rmSync(tmp, { recursive: true });
