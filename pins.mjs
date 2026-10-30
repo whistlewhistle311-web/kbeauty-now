@@ -39,6 +39,27 @@ for (const pin of data.pins) {
     await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
     continue;
   }
+  if (pin.vs) {
+    const col = (q) => `<div class="c"><div class="rk">#${q.rank}</div><div class="b">${esc(q.brand)}</div><div class="p">${esc(q.name)}</div>
+<div class="r">★ ${q.rating.toFixed(2)}</div><div class="m">${q.reviews.toLocaleString('en-US')} Korean reviews</div>${q.price ? `<div class="m">${esc(q.price)} in Seoul</div>` : ''}${q.per100 ? `<div class="m">${esc(q.per100)}</div>` : ''}
+<div class="tg">${q.tags.map((t) => `<span>${esc(t)}</span>`).join('')}</div></div>`;
+    await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;width:1000px;height:1500px;background:#fbf4ee;font-family:"Noto Sans","Noto Sans KR",Arial,sans-serif;color:#2a2420}
+.wrap{padding:80px 60px;box-sizing:border-box;height:100%;display:flex;flex-direction:column}
+.k{font-size:26px;letter-spacing:4px;color:#b04a5a;font-weight:700;text-transform:uppercase}
+h1{font-size:64px;line-height:1.05;margin:18px 0 40px;letter-spacing:-1px}
+.row{display:flex;gap:24px;flex:1;align-items:stretch}.vs{align-self:center;font-size:40px;font-weight:900;color:#b04a5a}
+.c{flex:1;background:#fff;border-radius:24px;padding:36px 30px;display:flex;flex-direction:column}
+.rk{font-size:80px;font-weight:900;color:#b04a5a;line-height:1}.b{font-size:24px;color:#6b665f;text-transform:uppercase;letter-spacing:1px;margin-top:24px}
+.p{font-size:38px;font-weight:800;line-height:1.15;margin:8px 0 26px}.r{font-size:56px;font-weight:800}.m{font-size:26px;color:#6b665f;margin-top:8px}
+.tg{margin-top:auto;display:flex;flex-direction:column;gap:12px}.tg span{background:#f1e4da;border-radius:99px;padding:12px 20px;font-size:24px;font-weight:650;align-self:flex-start}
+.cta{background:#b04a5a;color:#fff;border-radius:22px;padding:28px 34px;font-size:32px;font-weight:700;margin:34px 0}
+.f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}
+</style></head><body><div class="wrap"><div class="k">${esc(pin.kicker)}</div><h1 style="font-size:${pin.title.length > 60 ? 50 : 64}px">${esc(pin.title)}</h1><div class="row">${col(pin.vs[0])}<div class="vs">VS</div>${col(pin.vs[1])}</div>
+<div class="cta">Which fits your skin? Full comparison →</div><div class="f"><span>K-Beauty Now</span><span><b>koreanbeautynow.com</b></span></div></div></body></html>`);
+    await p.screenshot({ path: `docs/pins/${pin.file}`, type: 'jpeg', quality: 82 });
+    continue;
+  }
   if (pin.tips) {
     const li = pin.tips.map((t) => `<li>${esc(t)}</li>`).join('');
     await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${GUIDE_CSS}</style></head><body><div class="wrap"><div class="k">K-beauty guide</div><h1>${esc(pin.title)}</h1><ul>${li}</ul>

@@ -1079,6 +1079,22 @@ def pins_and_rss(data):
         items.append(f"<item><title>{esc(t)}</title><link>{BASE}value/{cat}/</link><guid isPermaLink=\"false\">value-{cat}-{month}</guid>"
                      f"<pubDate>{pub}</pubDate><description>{esc(f'The best-rated {noun.lower()} in Korea, sorted by Korean price per 100 ml. Cheapest top-rated picks: {top}.')}</description>"
                      f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
+    # compare pins: #1 vs #2 of each category, monthly, on the guides board
+    for cat in COMPARE_CATS:
+        rk = by.get(('category', cat))
+        if not rk or len(rk['rows']) < 2:
+            continue
+        a, b = rk['rows'][0], rk['rows'][1]
+        path = compare_path(a, b)
+        side = lambda r: {'brand': brand_label(r).split(' (')[0], 'name': name_label(r).split(' SPF')[0].split(' (')[0], 'rank': r['rank'],
+                          'rating': r['rating'], 'reviews': r['reviews'], 'price': (f"₩{r['priceKrw']:,} ({usd(r['priceKrw'])})" if r.get('priceKrw') else ''),
+                          'per100': (f"₩{per100(r):,.0f} per 100 ml" if per100(r) and cat in VALUE_CATS else ''), 'tags': r['topics'][:3]}
+        t = f"{short_name(a)} vs {short_name(b)}"
+        f = f"compare-{cat}-{month}.jpg"
+        pins.append({'title': t, 'date': up, 'file': f, 'vs': [side(a), side(b)], 'kicker': f"Korea's #1 vs #2 {CAT[cat][1].replace('Korean ', '').lower()}"})
+        items.append(f"<item><title>{esc(t + ': Korean reviews compared')}</title><link>{BASE}{path}</link><guid isPermaLink=\"false\">compare-{cat}-{month}</guid>"
+                     f"<pubDate>{pub}</pubDate><description>{esc(f'Korea' + chr(39) + f's #1 and #2 {CAT[cat][1].lower()} on Hwahae, side by side: rating, number of Korean reviews, Korean price and what reviewers praise.')}</description>"
+                     f"<enclosure url=\"{BASE}pins/{f}\" type=\"image/jpeg\" length=\"0\"/></item>")
     all_items = list(items)
     # pick by the real KST date, not the ranking date: Hwahae can go days without updating, and evergreen
     # pins (guides, concerns, brands) should still go out daily; unchanged rankings are skipped by their sig
@@ -1087,7 +1103,7 @@ def pins_and_rss(data):
     json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
     # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
-    evergreen = ('guide/', 'concern/', 'brand/', 'value/')
+    evergreen = ('guide/', 'concern/', 'brand/', 'value/', 'compare/')
     is_ever = lambda it: re.search(r'<link>[^<]*/(%s)' % '|'.join(evergreen), it)
     main_items = [it for it in items if not is_ever(it)]
     # guides feed: every evergreen pin chosen in the last 30 days (a feed must never be empty; guids keep repeats out)
