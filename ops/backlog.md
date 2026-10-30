@@ -4,15 +4,15 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 
 ## Open
 1. Direct Amazon links for top-10 products without an ASIN (35 of 82 on 2026-10-30). Search in the amazon.com tab, accept only an exact brand + product + size match, add to data/asin.json. Direct product links convert better than search links.
-2. JSON-LD ItemList on value/ pages and compare/ hub (no aggregateRating: the ratings are Hwahae's, and Google's review-snippet rules don't allow third-party ratings presented as ours).
-3. Threads: alternate the daily post between the top 5 and a value or compare insight (price per 100 ml gaps make good posts).
-4. Hashtag research for Reels and TikTok (vidIQ keyword research) and a fixed tested hashtag set per category in the caption builder.
-5. Pinterest: compare pins ("A vs B", two columns) on the guides board, monthly.
-6. Rewrite the 11/5 Reddit draft as an operator-disclosed post for a subreddit that allows self-promotion threads.
-7. Record reel and TikTok views daily in the ledger 현황 tab (vidIQ owner insights), so the A/B test (morning style b, night style a) can be judged on 11/6.
-8. Pinterest profile and board descriptions with search keywords (Korean skincare, K-beauty, Korean sunscreen).
+2. Threads: alternate the daily post between the top 5 and a value or compare insight (price per 100 ml gaps make good posts).
+3. Hashtag research for Reels and TikTok (vidIQ keyword research) and a fixed tested hashtag set per category in the caption builder.
+4. Pinterest: compare pins ("A vs B", two columns) on the guides board, monthly.
+5. Rewrite the 11/5 Reddit draft as an operator-disclosed post for a subreddit that allows self-promotion threads.
+6. Record reel and TikTok views daily in the ledger 현황 tab (vidIQ owner insights), so the A/B test (morning style b, night style a) can be judged on 11/6.
+7. Pinterest profile and board descriptions with search keywords (Korean skincare, K-beauty, Korean sunscreen).
 
 ## Done
+- 2026-10-30 ItemList JSON-LD on value pages.
 - 2026-10-30 Product pages link to the head-to-head pages they appear in.
 - 2026-10-30 Compare pages (24) + compare hub + value pages (5); links from category pages and home.
 - 2026-10-30 Korean price on reel slides; style b price-hook video; A/B by time of day.

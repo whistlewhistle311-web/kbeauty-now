@@ -812,9 +812,14 @@ def compare_pages(data):
 <ol class="rank">{lis}</ol>
 <p class="meta">Prices are Hwahae's Korean list prices; prices abroad are usually higher and change often, so check the size before you buy. Multi-packs are left out because their per-ml price is unclear. {esc(LINK_NOTE)}</p>
 <p><a href="{BASE}c/{cat}/">Full top 20 {esc(noun)}</a> · <a href="{BASE}compare/">Head-to-head comparisons</a></p>"""
+        ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': f'Best value {noun}, by price per 100 ml',
+              'itemListOrder': 'https://schema.org/ItemListOrderAscending', 'numberOfItems': len(items),
+              'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'url': f"{BASE}p/{r['id']}/", 'name': short_name(r)} for i, r in enumerate(items)]}
+        head = (f'<meta property="og:image" content="{BASE}pins/{default_img(f"value/{cat}/", up)}">'
+                f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")}</script>')
         pages[f'value/{cat}/'] = page(f'Best Value {noun} by Price per 100 ml ({up[:10]})',
                                      f'The best-rated {noun} in Korea sorted by price per 100 ml. Hwahae top 20, rated 4.5+, Korean list prices with USD.',
-                                     f'value/{cat}/', body, up)
+                                     f'value/{cat}/', body, up, head)
         vlinks.append((cat, noun))
     groups = {}
     for p, q in pairs.items():
