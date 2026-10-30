@@ -5,9 +5,10 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 ## Open
 0b. Daily (first wake after 12:00 KST): record reel and TikTok views in the ledger 현황 tab (rows '인스타 릴스' and '틱톡': users=followers, impressions=views, posts=count, note=per-video views, avg watch time, skip rate, style a/b/routine). Judge the A/B on 11/6.
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
-1. Idea, low priority: an [OC] chart for r/dataisbeautiful (e.g. price per 100 ml across Korea's top-rated toners), source cited in a comment. Check its account-age/karma rules first; only if the account qualifies honestly.
 
 ## Done
+- 2026-10-30 r/dataisbeautiful: rules = [OC] tag, plain title, source + tool in first comment (no stated karma rule). Chart + post text drafted in ops/drafts/. Reddit is blocked for the browser extension, so a human has to post it; offer it to 휘, don't push.
+- 2026-10-30 Workflows retry push after pull --rebase (daily-rankings failed once racing apify-sync).
 - 2026-10-30 Video 'concern' (skin problem → Korea's pick). Skin-type pins get their own feed docs/rss-skin.xml for the board 'Korean Skincare by Skin Type'.
 - 2026-10-30 Video 'hype': US favorites vs Korea's #1 (4 categories), first post tonight 22:37.
 - 2026-10-30 Pinterest: profile and main board already keyword-rich; guides board description written (routine, sunscreen, value per 100 ml, comparisons, concerns, brands).
