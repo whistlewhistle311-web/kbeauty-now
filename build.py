@@ -271,6 +271,20 @@ def product_pages(data):
         hist[pid] = {'r': p['r'], 'ranks': p['ranks'], 'near': p['near'][:6], 'last': today}
     json.dump(hist, open(hist_path, 'w'), ensure_ascii=False)
     hist_load()
+    # head-to-head pages each product appears in (stored pairs plus today's top-3 pairs)
+    try:
+        cpairs = json.load(open(os.path.join(os.path.dirname(hist_path), 'compare_pairs.json')))
+    except Exception:
+        cpairs = {}
+    for rk in data['rankings']:
+        if rk['type'] == 'category' and rk['slug'] in COMPARE_CATS:
+            for a, b in top_pairs(rk['rows']):
+                cpairs.setdefault(compare_path(a, b), {'a': str(a['id']), 'b': str(b['id'])})
+    vs = {}
+    for path, q in cpairs.items():
+        if q['a'] in hist and q['b'] in hist:
+            vs.setdefault(q['a'], []).append((path, q['b']))
+            vs.setdefault(q['b'], []).append((path, q['a']))
     pages = {}
     for pid, h in hist.items():
         r, current = h['r'], h['last'] == today
@@ -301,6 +315,8 @@ def product_pages(data):
                   f"<p>It is not in today's top 20. See <a href=\"{BASE}\">today's rankings</a>.</p>")
         near = ''.join(f'<li><a href="{BASE}p/{n["id"]}/">{esc(n["name"])}</a></li>' for n in h['near'] if n['id'] in hist)
         near = f'<h2>Ranked near it</h2><ul>{near}</ul>' if near else ''
+        cmp_ = ''.join(f'<li><a href="{BASE}{path}">{esc(short_name(r))} vs {esc(short_name(hist[o]["r"]))}</a></li>' for path, o in vs.get(pid, []))
+        near = (f'<h2>Compared head to head</h2><ul>{cmp_}</ul>' if cmp_ else '') + near
         cl = [f'<a href="{BASE}concern/{CONCERNS[t][0]}/">{esc(t.lower())}</a>' for t in r['topics'] if t in CONCERNS]
         clink = f'<p class="meta">Other products Korean reviewers call {" · ".join(cl)}</p>' if cl else ''
         bl = brand_label(r).split(' (')[0]
