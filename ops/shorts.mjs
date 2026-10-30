@@ -46,8 +46,8 @@ for (let i = 0; i < slides.length; i++) {
     await p.screenshot({ path: `${tmp}/s${i}.png` });
 }
 await b.close();
-// 2.6s per slide (first and last 3s), 0.4s crossfades
-const dur = slides.map((_, i) => (i === 0 || i === slides.length - 1 ? 3 : 2.6));
+// 2.6s per slide (title 1.8s, end 3s), 0.4s slides
+const dur = slides.map((_, i) => (i === 0 ? 1.8 : i === slides.length - 1 ? 3 : 2.6));  // short title: viewers decide in the first second
 const args = ['-y'];
 slides.forEach((_, i) => args.push('-i', `${tmp}/s${i}.png`));  // one frame each; zoompan makes the motion frames
 // slow push-in on every slide (keeps the frame moving, which helps Reels retention)
