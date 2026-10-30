@@ -1,0 +1,6 @@
+[
+ {"cat": "sunscreen", "us": "Beauty of Joseon Relief Sun", "rx": "beauty of joseon.*relief sun"},
+ {"cat": "serum", "us": "COSRX Snail Mucin 96 Essence", "rx": "cosrx.*snail"},
+ {"cat": "toner", "us": "Anua Heartleaf 77 Toner", "rx": "anua.*heartleaf"},
+ {"cat": "lip", "us": "Laneige Lip Sleeping Mask", "rx": "laneige.*lip sleeping"}
+]
