@@ -5,6 +5,8 @@ Every loop wake: do the checks, then take the top open item, finish it (build, c
 ## Open
 0b. Daily (first wake after 12:00 KST): record reel and TikTok views in the ledger 현황 tab (rows '인스타 릴스' and '틱톡': users=followers, impressions=views, posts=count, note=per-video views, avg watch time, skip rate, style a/b/routine). Judge the A/B on 11/6.
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
+1. Seoul shopping list page (guide/seoul-shopping-list/): Korea's #1 and #2 per category with Korean prices and sizes, printable, for travelers searching "what to buy in Korea skincare" / "Olive Young shopping list". Don't claim Olive Young stocks each item; say most top Hwahae products are sold at big Korean drugstores and to check in store. Monthly pin for it.
+2. Threads: rotate the nightly post across three types (top 5, value per 100 ml, #1 vs #2 compare) instead of two.
 
 ## Done
 - 2026-10-30 og:image on compare/value pages uses the month's pin when rendered. Posting rotation table in the playbook. IndexNow already sends the whole sitemap (compare/ and value/ included).
