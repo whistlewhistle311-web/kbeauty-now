@@ -21,7 +21,19 @@ const hype = US.map((u) => {
     const hit = rows.find((r) => new RegExp(u.rx, 'i').test(nm(r)));
     return { ...u, top: rows[0], usRank: hit ? hit.rank : null };
 });
-const rk = slug === 'hype' ? { rows: hype.map((h) => h.top) } : slug === 'routine'
+// slug 'concern': skin problem -> the best-ranked product Korean reviewers most praise for it
+const CONC = [['Fixes inner dryness', 'Tight, dehydrated skin?'], ['Soothing', 'Redness and irritation?'], ['Clears breakouts', 'Breakouts?'],
+    ['Pore care', 'Big pores?'], ['Non-sticky', 'Hate a sticky finish?'], ['Non-irritating', 'Sensitive skin?']];
+const conc = [];
+if (slug === 'concern') {
+    const pool = data.rankings.filter((r) => r.type === 'category' && !['all', 'skincare', 'cushion', 'lip'].includes(r.slug)).flatMap((r) => r.rows.map((x) => ({ ...x, cat: r.slug })));
+    const used = new Set();
+    for (const [topic, q] of CONC) {
+        const c = pool.filter((x) => (x.topics || []).includes(topic) && !used.has(x.id)).sort((a, b) => a.topics.indexOf(topic) - b.topics.indexOf(topic) || a.rank - b.rank)[0];
+        if (c) { used.add(c.id); conc.push({ q, topic, r: c }); }
+    }
+}
+const rk = slug === 'concern' ? { rows: conc.map((c) => c.r) } : slug === 'hype' ? { rows: hype.map((h) => h.top) } : slug === 'routine'
     ? { rows: STEPS.map(([s, step], i) => ({ ...data.rankings.find((r) => r.type === 'category' && r.slug === s).rows[0], step, stepNo: i + 1 })) }
     : data.rankings.find((r) => r.type === 'category' && r.slug === slug);
 if (!rk) throw new Error('no ranking ' + slug);
@@ -46,7 +58,16 @@ const price = (r) => (r.priceKrw ? `<div class="pr">In Korea: $${Math.round(r.pr
 const SING = { toner: 'toner', serum: 'serum', cream: 'moisturizer', cleansing: 'cleanser', masks: 'face mask', sunscreen: 'sunscreen', cushion: 'cushion', lip: 'lip product', all: 'K-beauty product', skincare: 'skincare product' };
 const top1 = rk.rows[0];
 const total = rk.rows.slice(0, 5).reduce((a, r) => a + (r.priceKrw || 0), 0);
-if (slug === 'hype') {
+if (slug === 'concern') {
+    slides.push(`<div class="w"><div class="k">Ranked by Korean reviewers</div><h1>Your skin problem → what Koreans actually use</h1>
+<div class="s">The top-ranked pick Korean reviewers praise most for each, from Hwahae. ${esc(day)}</div></div>`);
+    for (const c of conc) {
+        const n = names.products[String(c.r.id)] || { brand: c.r.brandEn || c.r.brand, name: c.r.name };
+        slides.push(`<div class="w"><h1 style="font-size:110px;margin:0 0 50px">${esc(c.q)}</h1><div class="b">Koreans reach for</div>
+<div class="p">${esc(n.brand)} ${esc(n.name.split(' SPF')[0])}</div><div class="r">#${c.r.rank} ${esc(SING[c.r.cat] || c.r.cat)} in Korea · ★ ${c.r.rating.toFixed(2)}</div>
+${price(c.r)}<div class="t"><span>Reviewers say: ${esc(c.topic.toLowerCase())}</span></div></div>`);
+    }
+} else if (slug === 'hype') {
     slides.push(`<div class="w"><div class="k">K-beauty, honestly</div><h1>What America buys vs what's #1 in Korea</h1>
 <div class="s">US favorites against today's Hwahae rankings, from Korean reviewers. ${esc(day)}</div></div>`);
     for (const h of hype) {
@@ -67,7 +88,7 @@ if (slug === 'hype') {
     slides.push(`<div class="w"><div class="k">Ranked by Korean reviewers</div><h1>Korea's top 5 ${esc(label)}, and what Koreans pay</h1>
 <div class="s">From Hwahae, the review app Koreans check before buying. ${esc(day)}</div></div>`);
 }
-for (const r of (slug === 'hype' ? [] : slug === 'routine' ? rk.rows : rk.rows.slice(0, 5).reverse())) {
+for (const r of (['hype', 'concern'].includes(slug) ? [] : slug === 'routine' ? rk.rows : rk.rows.slice(0, 5).reverse())) {
     const n = names.products[String(r.id)] || { brand: r.brandEn || r.brand, name: r.name };
     const tags = (r.topics || []).slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join('');
     slides.push(`<div class="w">${r.step ? `<div class="k" style="font-size:52px">Step ${r.stepNo} · ${esc(r.step)}</div><div class="n" style="font-size:150px;margin-top:20px">#1</div>` : `<div class="n">#${r.rank}</div>`}<div class="b">${esc(n.brand)}</div><div class="p">${esc(n.name)}</div>
@@ -86,7 +107,7 @@ for (let i = 0; i < slides.length; i++) {
 }
 await b.close();
 // 2.6s per slide (title 1.8s, end 3s), 0.4s slides
-const dur = slides.map((_, i) => (i === 0 ? 1.8 : i === slides.length - 1 ? 3 : 2.6));  // short title: viewers decide in the first second
+const dur = slides.map((_, i) => (i === 0 ? 1.8 : i === slides.length - 1 ? 3 : slug === 'concern' ? 2.0 : 2.6));  // short title: viewers decide in the first second
 const args = ['-y'];
 slides.forEach((_, i) => args.push('-i', `${tmp}/s${i}.png`));  // one frame each; zoompan makes the motion frames
 // slow push-in on every slide (keeps the frame moving, which helps Reels retention)
@@ -102,7 +123,7 @@ for (let i = 1; i < slides.length; i++) {
     f += `${last}[z${i}]xfade=transition=slideleft:duration=0.4:offset=${off.toFixed(2)}${o};`;
     last = o;
 }
-const out = `${outDir}/${slug}-${day}${style === 'b' && !['routine', 'hype'].includes(slug) ? '-b' : ''}.mp4`;
+const out = `${outDir}/${slug}-${day}${style === 'b' && !['routine', 'hype', 'concern'].includes(slug) ? '-b' : ''}.mp4`;
 args.push('-filter_complex', f.replace(/;$/, ''), '-map', '[v]', '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', out);
 execFileSync('ffmpeg', args, { stdio: 'ignore' });
 fs.rmSync(tmp, { recursive: true });

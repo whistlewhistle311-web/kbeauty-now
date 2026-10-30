@@ -1109,7 +1109,9 @@ def pins_and_rss(data):
     # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
     evergreen = ('guide/', 'concern/', 'brand/', 'value/', 'compare/')
     is_ever = lambda it: re.search(r'<link>[^<]*/(%s)' % '|'.join(evergreen), it)
-    main_items = [it for it in items if not is_ever(it)]
+    is_skin = lambda it: '<guid isPermaLink="false">skin-' in it
+    main_items = [it for it in items if not is_ever(it) and not is_skin(it)]
+
     # guides feed: every evergreen pin chosen in the last 30 days (a feed must never be empty; guids keep repeats out)
     try:
         st = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'pin_state.json')))
@@ -1121,9 +1123,13 @@ def pins_and_rss(data):
     if not guide_items:  # first run: seed with the routine guide so Pinterest accepts the feed
         guide_items = [it for it in all_items if '/guide/korean-skincare-routine/' in it][:1]
 
+    # skin-type rankings get their own feed for the board 'Korean Skincare by Skin Type' (keeps every board alive)
+    skin_items = [it for it in items if is_skin(it)] or [it for it in all_items if is_skin(it)][:1]
+
     def feed(title, desc, its):
         return (f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{title}</title><link>{BASE}</link>'
                 f'<description>{desc}</description>{"".join(its)}</channel></rss>')
+    open(f'{OUT}/rss-skin.xml', 'w').write(feed('K-Beauty Now by skin type', 'Korea\'s top-rated skincare for dry, oily, combination, sensitive and acne-prone skin, from Hwahae.', skin_items))
     open(f'{OUT}/rss-guides.xml', 'w').write(feed('K-Beauty Now guides', 'How to choose Korean skincare, by step, concern and brand, from Hwahae rankings.', guide_items))
     return feed('K-Beauty Now', 'Korea\'s top-rated K-beauty from Hwahae, in English, updated daily.', main_items)
 
