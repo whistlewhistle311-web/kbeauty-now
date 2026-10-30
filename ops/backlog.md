@@ -3,9 +3,10 @@
 Every loop wake: do the checks, then take the top open item, finish it (build, check on a phone-width screenshot, push), tick it here with the date, and log one line in the ledger. Add new items when you find them. Highest expected traffic or money first.
 
 ## Open
+RULE (2026-10-30): no new K-beauty pages. Work only on video format tests, measurement and fixes. Checkpoint 2026-11-13: if reel/TikTok average views < 300 and site visits < 50/day (Cloudflare Web Analytics), keep K-beauty on autopilot and stop adding work.
+0c. Daily: record site page views/visits (Cloudflare Web Analytics, koreanbeautynow.com) in the ledger 현황 tab, row 'K-Beauty 사이트 방문'.
 0b. Daily (first wake after 12:00 KST): record reel and TikTok views in the ledger 현황 tab (rows '인스타 릴스' and '틱톡': users=followers, impressions=views, posts=count, note=per-video views, avg watch time, skip rate, style a/b/routine). Judge the A/B on 11/6.
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
-1. Monthly pin for guide/seoul-shopping-list/ (GUIDE_PINS-style, list of #1s with Korean prices) on the guides board.
 
 ## Done
 - 2026-10-30 guide/seoul-shopping-list/ (each category's #1 and #2 with Korean names and prices, routine total ₩182,000) + home card. Threads nightly post rotates top 5 / value / #1 vs #2.
