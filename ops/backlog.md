@@ -9,6 +9,7 @@ RULE (2026-10-30): no new K-beauty pages. Work only on video format tests, measu
 0. Weekly (Mondays): Amazon ASIN check for new top-10 entrants only (exact brand + product match, else keep the search link).
 
 ## Done
+- 2026-10-30 Hwahae rankings did not refresh on Fri 10/30 05:00 (last: Thu 10/29 05:00), so 'updated daily' was not true. Reworded sitewide to 'checked daily against Hwahae' and dropped '(Updated Daily)' from titles. If Hwahae turns out weekly (check Thu 11/5), say 'Hwahae updates weekly' outright. IG/TikTok/Pinterest bios still say 'daily' (bios: fix by hand later).
 - 2026-10-30 Apify Store survey (public API): outside naver-shopping-scraper (2,132 users/30d, zen-studio) and naver-product-detail (2,054, delicious_zebu), every Korean niche has 0-70 users split across 3-6 near-identical actors (coupang 30-70 each, olive young 11-21, hwahae 2-9, musinsa/kream/bunjang/zigbang/jobs/books 0-7). kdatafactory and others already cover almost every site. Decision: no new actors; building more supply into a saturated, tiny market repeats the K-beauty mistake. Keep the 5 live + Danawa (publish 15:45) as they are.
 - 2026-10-30 guide/seoul-shopping-list/ (each category's #1 and #2 with Korean names and prices, routine total ₩182,000) + home card. Threads nightly post rotates top 5 / value / #1 vs #2.
 - 2026-10-30 og:image on compare/value pages uses the month's pin when rendered. Posting rotation table in the playbook. IndexNow already sends the whole sitemap (compare/ and value/ included).

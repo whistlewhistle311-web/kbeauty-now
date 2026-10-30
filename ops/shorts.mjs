@@ -95,7 +95,7 @@ for (const r of (['hype', 'concern'].includes(slug) ? [] : slug === 'routine' ? 
 <div class="r">★ ${r.rating.toFixed(2)} <small>· ${r.reviews.toLocaleString('en-US')} Korean reviews</small></div>${price(r)}<div class="t">${tags}</div></div>`);
 }
 slides.push(`<div class="w"><div class="k">Full top 20, Korean prices, where to buy</div><h1 style="font-size:84px;letter-spacing:-1px">koreanbeautynow.com</h1>
-<div class="s">Updated every morning from Hwahae. Not sponsored.</div><div class="u">Link in bio</div></div>`);
+<div class="s">Checked daily against Hwahae. Not sponsored.</div><div class="u">Link in bio</div></div>`);
 
 fs.mkdirSync(outDir, { recursive: true });
 const tmp = fs.mkdtempSync(outDir + '/tmp-');
