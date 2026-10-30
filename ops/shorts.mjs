@@ -22,7 +22,7 @@ const hype = US.map((u) => {
     return { ...u, top: rows[0], usRank: hit ? hit.rank : null };
 });
 // slug 'concern': skin problem -> the best-ranked product Korean reviewers most praise for it
-const CONC = [['Fixes inner dryness', 'Tight, dehydrated skin?'], ['Soothing', 'Redness and irritation?'], ['Clears breakouts', 'Breakouts?'],
+const CONC = [['Fixes inner dryness', 'Tight, dehydrated skin?'], ['Soothing', 'Redness and irritation?'], ['Clears breakouts', 'Blemish-prone skin?'],
     ['Pore care', 'Big pores?'], ['Non-sticky', 'Hate a sticky finish?'], ['Non-irritating', 'Sensitive skin?']];
 const conc = [];
 if (slug === 'concern') {
@@ -65,7 +65,7 @@ if (slug === 'concern') {
         const n = names.products[String(c.r.id)] || { brand: c.r.brandEn || c.r.brand, name: c.r.name };
         slides.push(`<div class="w"><h1 style="font-size:110px;margin:0 0 50px">${esc(c.q)}</h1><div class="b">Koreans reach for</div>
 <div class="p">${esc(n.brand)} ${esc(n.name.split(' SPF')[0])}</div><div class="r">#${c.r.rank} ${esc(SING[c.r.cat] || c.r.cat)} in Korea · ★ ${c.r.rating.toFixed(2)}</div>
-${price(c.r)}<div class="t"><span>Reviewers say: ${esc(c.topic.toLowerCase())}</span></div></div>`);
+${price(c.r)}<div class="t"><span>Reviewers mention: ${esc(c.topic === 'Clears breakouts' ? 'helps with breakouts' : c.topic.toLowerCase())}</span></div></div>`);
     }
 } else if (slug === 'hype') {
     slides.push(`<div class="w"><div class="k">K-beauty, honestly</div><h1>What America buys vs what's #1 in Korea</h1>

@@ -22,7 +22,8 @@ CAT = {  # slug: (title, h1 noun, blurb)
 }
 SKIN = {'dry': 'dry skin', 'oily': 'oily skin', 'combination': 'combination skin', 'sensitive': 'sensitive skin', 'acne-prone': 'acne-prone skin'}
 
-CSS = """ol.shop{padding-left:22px}ol.shop li{margin:10px 0}
+CSS = """.cbw{margin-top:10px}.buy.cb{display:block;text-align:center;padding:11px 14px;margin:0 0 6px}.cbw .alt{font-size:13px;color:#6b665f}.cbw .alt a{color:#6b665f}.disc{font-size:13px;color:#6b665f;margin:0 0 14px}
+ol.shop{padding-left:22px}ol.shop li{margin:10px 0}
 table.cmp{border-collapse:collapse;width:100%;table-layout:fixed;margin:12px 0;font-size:14px;overflow-wrap:anywhere}table.cmp th,table.cmp td{border-bottom:1px solid #eadfd6;padding:9px 8px;text-align:left;vertical-align:top}table.cmp tr:first-child th{font-size:16px}table.cmp th:first-child{color:#6b665f;font-weight:600;width:28%}
 
 :root{--ink:#22201d;--muted:#6b665f;--line:#e6e1da;--bg:#fbf8f4;--card:#fff;--accent:#b04a5a;--soft:#f4ede6}
@@ -33,7 +34,7 @@ main{max-width:880px;margin:0 auto;padding:28px 16px 72px}
 header.top{border-bottom:1px solid var(--line);background:var(--card)}
 header.top div{max-width:880px;margin:0 auto;padding:12px 16px;display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
 header.top a{color:var(--ink);text-decoration:none}header.top a.home{font-weight:700;margin-right:auto}
-@media(max-width:640px){header.top div{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;white-space:nowrap}header.top div::-webkit-scrollbar{display:none}header.top a.home{margin-right:8px}}
+@media(max-width:640px){header.top div{gap:8px 14px;font-size:14px}header.top a.home{flex-basis:100%;margin-right:0}}
 h1{font-size:clamp(26px,5.5vw,38px);line-height:1.2;margin:6px 0 10px;letter-spacing:-.02em}
 h2{font-size:22px;margin:40px 0 10px}
 .lede{color:var(--muted);font-size:17px}.meta{font-size:13px;color:var(--muted)}
@@ -71,7 +72,25 @@ def brand_label(r):
 
 
 def name_label(r):
-    return N.get(r['name']) or r['name']
+    n = N.get(r['name']) or r['name']
+    return re.sub(r'\s*[\[(][^\])]*[가-힣][^\])]*[\])]\s*', ' ', n).strip() or n
+
+
+def size_en(sz):
+    """Hwahae size text in English: 24ml*10매 -> 24 ml x 10 sheets, 14g 2개입 -> 14 g, 2-pack, 본품15g+리필15g -> 15 g + 15 g refill."""
+    s = re.split(r'\s*/', str(sz or ''))[0].strip()
+    if re.search(r'fl\.?\s*oz', s, re.I) and re.search(r'[\d.]+\s*m[lL]', s):
+        s = re.search(r'[\d.]+\s*m[lL]', s).group(0)
+    s = re.sub(r'본품\s*', '', s)
+    s = re.sub(r'\+\s*리필\s*([\d.]+\s*(?:ml|g|mL))', r' + \1 refill', s)
+    s = re.sub(r'\*\s*(\d+)\s*매', r' x \1 sheets', s)
+    s = re.sub(r'\s*\(?\s*(\d+)\s*매\s*\)?', r' (\1 sheets)', s)
+    s = re.sub(r'\*\s*(\d+)\s*(?:개입|개|ea)', r' x \1', s, flags=re.I)
+    s = re.sub(r'\s*(\d+)\s*개입', r', \1-pack', s)
+    s = re.sub(r'(\d)(ml|mL|ML|g)\b', r'\1 \2', s).replace('mL', 'ml').replace('ML', 'ml')
+    s = re.sub(r'[가-힣]+', '', s)
+    s = re.sub(r'\(\s*[\d,\s]*\)', '', s).strip(' ,')
+    return re.sub(r' x 1$', '', s)
 
 
 def usd(krw):
@@ -143,14 +162,24 @@ def delta(r):
     return f'▲{d}' if d > 0 else f'▼{-d}'
 
 
+def card_buy(r):
+    """Primary Amazon button on list cards, store search links as small secondary links."""
+    q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+    oy = 'https://global.oliveyoung.com/display/search?query=' + urllib.parse.quote(q)
+    ys, ys_rel = awin('https://www.yesstyle.com/en/list.html?q=' + urllib.parse.quote(q), 'yesstyle')
+    btn = f'<a class="buy cb" href="{esc(amazon(q, r.get("id")))}" rel="sponsored nofollow">Check price on Amazon</a>' if AMAZON_TAG else ''
+    return (f'<div class="cbw">{btn}<span class="alt">or search <a href="{oy}" rel="nofollow">Olive&nbsp;Young&nbsp;Global</a> · '
+            f'<a href="{esc(ys)}" rel="{ys_rel}">YesStyle</a></span></div>')
+
+
 def row_html(r):
-    price = f"₩{r['priceKrw']:,} {usd(r['priceKrw'])}" if r['priceKrw'] else ''
+    price = f"Korea store price ₩{r['priceKrw']:,} ({usd(r['priceKrw'])})" if r['priceKrw'] else ''
     tags = ''.join(f'<span>{esc(t)}</span>' for t in r['topics'])
     ko = '' if name_label(r) == r['name'] else f'<div class="ko">{esc(r["brand"])} {esc(r["name"])}</div>'
     return f"""<li><div><div class="n">{r['rank']}</div><div class="d">{delta(r)}</div></div>
 <div><div class="pn"><a href="{BASE}p/{r['id']}/" style="color:inherit;text-decoration:none">{esc(brand_label(r))} · {esc(name_label(r))}</a></div>{ko}
-<div class="facts">{(f'{len(hist_load()[str(r["id"])]["dates"])} days in a top 20 · ') if len(hist_load().get(str(r['id']), {}).get('dates', ())) >= 2 else ''}★ {r['rating']:.2f} · {r['reviews']:,} reviews{(' · ' + esc(r['size'])) if r['size'] else ''}{(' · ' + price) if price else ''}</div>
-<div class="tags">{tags}</div><div class="links">{search_links(r)}</div></div></li>"""
+<div class="facts">{(f'{len(hist_load()[str(r["id"])]["dates"])} days in a top 20 · ') if len(hist_load().get(str(r['id']), {}).get('dates', ())) >= 2 else ''}★ {r['rating']:.2f} · {r['reviews']:,} reviews{(' · ' + esc(size_en(r['size']))) if r['size'] else ''}{(' · ' + price) if price else ''}</div>
+<div class="tags">{tags}</div>{card_buy(r)}</div></li>"""
 
 
 def default_img(path, updated):
@@ -168,6 +197,8 @@ NOINDEX = set()  # thin pages: reachable by link, kept out of search and the sit
 
 def page(title, desc, path, body, updated, head=''):
     url = BASE + path
+    if re.match(r'guide/skincare-for-.+-skin/$', path):  # same ranking as skin/<type>/ (audit 2026-10-30)
+        NOINDEX.add(path)
     if path.startswith('brand/'):  # templated; reopen once each carries rank history (see audit 2026-10-29)
         NOINDEX.add(path)
     if path in NOINDEX:
@@ -181,11 +212,10 @@ def page(title, desc, path, body, updated, head=''):
 <meta property="article:modified_time" content="{esc(updated[:10])}"><meta property="article:author" content="K-Beauty Now">{head or f'<meta property="og:image" content="{BASE}pins/{default_img(path, updated)}">'}
 <style>{CSS}</style></head><body>
 <header class="top"><div><a class="home" href="{BASE}">K-Beauty Now</a>{nav}<a href="{BASE}trending/">Trending</a><a href="{BASE}brand/">Brands</a><a href="{BASE}concern/">Concerns</a><a href="{BASE}guide/">Guides</a><a href="{BASE}about/">About</a></div></header>
-<main>{body}
+<main><p class="disc">Some store links on this site are affiliate links (Amazon and others): we may earn a commission at no cost to you. It never changes the order, which is Hwahae's.</p>{body}
 <footer>Rankings come from the public ranking pages of Hwahae (화해), Korea's largest cosmetics review app, and are checked every day; pages change as soon as Hwahae refreshes its rankings. Hwahae ranking dated {esc(updated)} KST.
 Pages are built automatically every day from Hwahae data; product names are translated by K-Beauty Now with AI assistance and checked against official brand names where we can verify them; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
-Need this data as JSON for your shop or trend report? The same rankings are available as an API on <a href="https://apify.com/koreadata-lab/hwahae-kbeauty-ranking-tracker">Apify (Hwahae K-Beauty Ranking Tracker)</a>.
-{LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.
+<a href="{BASE}privacy/">Privacy</a> · {LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.
 <br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a></footer></main>{CF_BEACON}</body></html>"""
 
 
@@ -203,7 +233,8 @@ def ranking_page(rk, updated):
         title = f'Best Korean Skincare for {sk.title()}: Hwahae Top 20 ({updated[:10]})'
         desc = f'Top 20 Korean skincare products for {sk} on Hwahae, ranked from reviews by people with {sk}. English names, ratings and prices.'
         path = f"skin/{rk['slug']}/"
-        blurb = f'Ranked using reviews from Hwahae users who registered {sk}.'
+        blurb = (f'Ranked using reviews from Hwahae users who registered {sk}. Many of the same products top every skin-type list, '
+                 'so the useful signal is which ones rank higher or lower here than for other skin types.')
     body = f"""<p class="kicker">Hwahae ranking · updated {esc(updated[:10])}</p><h1>{esc(h1)}</h1>
 <p class="lede">{esc(blurb)} Rank changes are Hwahae's own movement since the previous ranking. Tags are the review topics Korean users mention most.</p>
 <ol class="rank">{rows}</ol>"""
@@ -292,7 +323,7 @@ def product_pages(data):
     for pid, h in hist.items():
         r, current = h['r'], h['last'] == today
         hh = HIST.get(pid)
-        if hh and HIST_DAYS:
+        if hh and len(HIST_DAYS) >= 14:
             seen = len(hh['dates'])
             first = min(hh['dates'])
             track = (f'<h2>Track record</h2><p>Tracked daily since {esc(HIST_DAYS[0])}. This product has been in a Hwahae top 20 on '
@@ -352,7 +383,7 @@ CONCERNS = {  # review topic -> (slug, h1, lede)
     'Non-irritating': ('non-irritating', 'Non-irritating Korean skincare for sensitive skin', 'Products Korean Hwahae users most often describe as non-irritating.'),
     'Soothing': ('soothing', 'The most soothing Korean skincare for redness, according to Korean reviewers', 'Products Korean Hwahae users most often describe as soothing.'),
     'No breakouts': ('no-breakouts', "Korean skincare that doesn't cause breakouts, according to Korean reviewers", 'Products Korean Hwahae users most often say did not break them out.'),
-    'Clears breakouts': ('breakouts', 'Korean skincare for breakouts: what Korean reviewers say clears acne', 'Products Korean Hwahae users most often say helped clear breakouts.'),
+    'Clears breakouts': ('breakouts', 'Korean picks for blemish-prone skin, by what Korean reviewers mention', 'Products Hwahae users with blemish-prone skin mention most for breakouts. Reviews are personal experience, not medical claims; see a dermatologist for acne.'),
     'Pore care': ('pores', 'Korean skincare for pores, according to Korean reviewers', 'Products Korean Hwahae users most often mention for pore care.'),
     'Oil-free feel': ('oil-free', 'Oil-free feel Korean skincare for oily skin', 'Products Korean Hwahae users most often say feel oil-free.'),
     'Glowy': ('glowy', 'Glowy Korean skincare and makeup, according to Korean reviewers', 'Products Korean Hwahae users most often describe as glowy.'),
@@ -802,6 +833,7 @@ def compare_pages(data):
         desc = f"{na} vs {nb}: Hwahae rating, number of Korean reviews, Korean price per 100 ml and what reviewers praise, side by side."
         pin = f"compare-{cat}-{up[:7]}.jpg"  # the #1 vs #2 pin, when this is that pair and it has been rendered
         og = pin if (rank.get(pr['a']) == 1 and rank.get(pr['b']) == 2 and os.path.exists(f'{OUT}/pins/{pin}')) else default_img(path, up)
+        NOINDEX.add(path)  # templated; reopen once a pair has a short written verdict (audit 2026-10-30)
         pages[path] = page(title, desc, path, body, up, f'<meta property="og:image" content="{BASE}pins/{og}"><meta name="twitter:card" content="summary_large_image">')
     # value pages: today's top 20 with rating 4.5+, sorted by Korean price per 100 ml
     vlinks = []
@@ -896,6 +928,15 @@ def extra_pages(data):
 <p>We count page views with Cloudflare Web Analytics, which sets no cookies and does not track individual visitors.</p>
 <h2>Links</h2>
 <p>Store links help you find a product abroad. Some links may earn us a commission at no extra cost to you; this never changes the ranking order, which comes straight from Hwahae.</p>"""
+    pages['privacy/'] = page('Privacy Policy: K-Beauty Now', 'What K-Beauty Now collects (almost nothing), analytics and affiliate links.', 'privacy/',
+        '<p class="kicker">Privacy</p><h1>Privacy policy</h1>'
+        '<p>K-Beauty Now has no accounts, forms or comments, so we do not collect your name, email or any personal details.</p>'
+        '<h2>Analytics</h2><p>We count page views with Cloudflare Web Analytics. It does not use cookies or local storage and does not track you across sites; '
+        'it records things like the page visited, referrer, country and device type in aggregate.</p>'
+        '<h2>Affiliate links</h2><p>Some links go to stores such as Amazon. If you click one, that store may set its own cookies to credit us for a purchase, '
+        'under its own privacy policy. We earn a commission on some purchases at no extra cost to you; it never changes the ranking order.</p>'
+        '<h2>Hosting</h2><p>The site is hosted on GitHub Pages, which may log standard request data (such as IP address) for security.</p>'
+        f'<h2>Changes</h2><p>We will update this page if anything changes. Last updated {esc(up[:10])}.</p>', up)
     pages['about/'] = page('About K-Beauty Now: How We Rank Korean Skincare', 'How K-Beauty Now turns Hwahae, Korea\'s biggest cosmetics review app, into daily English rankings.', 'about/', about, up)
     sun = by.get(('category', 'sunscreen'))
     if sun:
@@ -951,11 +992,11 @@ def extra_pages(data):
             f'<li><div><div class="n">{r["rank"]}</div><div class="d">{delta(r)}</div></div><div>'
             f'<div class="pn"><a href="{BASE}p/{r["id"]}/" style="color:inherit;text-decoration:none">{esc(brand_label(r))} · {esc(name_label(r))}</a></div>'
             f'<div class="facts">#{r["rank"]} in {esc(where)} · ★ {r["rating"]:.2f} · {r["reviews"]:,} reviews</div>'
-            f'<div class="tags">{"".join(f"<span>{esc(t)}</span>" for t in r["topics"])}</div><div class="links">{search_links(r)}</div></div></li>'
+            f'<div class="tags">{"".join(f"<span>{esc(t)}</span>" for t in r["topics"])}</div>{card_buy(r)}</div></li>'
             for _, r, where, rk in movers)
         tr = (f'<p class="kicker">Trending · updated {esc(up[:10])}</p><h1>Trending Korean skincare right now: what is climbing in Korea</h1>'
               '<p class="lede">The products moving up fastest across all of Hwahae\'s rankings today, plus new entries. "▲5" means up five places since Hwahae\'s previous ranking. '
-              'Products that climb in Korea often reach Western shops and TikTok months later.</p>'
+              'One day of movement can be noise, so treat this as a watch list, not a verdict.</p>'
               f'<ol class="rank">{items}</ol><p><a href="{BASE}c/all/">See the overall top 20</a> · <a href="{BASE}guide/">Buying guides</a></p>')
         pages['trending/'] = page('Trending Korean Skincare Right Now: Fastest Climbers on Hwahae',
             'The Korean skincare and makeup products climbing fastest on Hwahae, Korea\'s biggest cosmetics review app, today. English names, ratings and where to buy.',
@@ -1238,7 +1279,7 @@ def index_page(data):
     if allrk:
         TOP3 = ('<h2>Korea\'s top 3 today</h2><ol class="rank">' + ''.join(row_html(r) for r in allrk['rows'][:3])
                 + f'</ol><p><a href="{BASE}c/all/">See the full top 20</a></p>')
-    body = f"""<p class="kicker">Checked daily against Hwahae</p><h1>What Koreans are actually buying in K-beauty</h1>
+    body = f"""<p class="kicker">Checked daily against Hwahae</p><h1>What Korean reviewers rate highest in K-beauty</h1>
 <p class="lede">Hwahae (화해) is the review app Koreans check before buying cosmetics. This site turns its public top-20 rankings into English and checks for new ones every day: product names, ratings, review counts, prices and what reviewers praise, by category and by skin type.</p>
 <p class="meta">Last ranking update: {esc(up)} KST</p>
 {TOP3}
@@ -1357,7 +1398,8 @@ def main():
             urls.append(path)
     for path, h in compare_pages(data).items():  # needs data/products.json from product_pages
         write(path, h)
-        urls.append(path)
+        if path not in NOINDEX:
+            urls.append(path)
     home = index_page(data)
     open(f'{OUT}/index.html', 'w').write(home)
     lastmod[''] = day
