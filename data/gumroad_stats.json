@@ -1,21 +1,85 @@
 {
- "at": "2026-10-31T15:29+00:00",
+ "at": "2026-10-31T19:31+00:00",
  "products": [
   {
-   "name": "Free TOPIK II Q54 Sample: Scoring, Blueprint and 1 Model Essay",
-   "price_cents": 0,
+   "name": "Plano para Sair das Dívidas: Bola de Neve vs Avalanche (Planilha Google Sheets e Excel)",
+   "price_cents": 500,
    "sales_count": 0,
    "sales_usd_cents": 0.0,
    "published": true,
-   "url": "https://whistledown8.gumroad.com/l/topik-q54-free-sample"
+   "url": "https://whistledown8.gumroad.com/l/plano-sair-das-dividas"
   },
   {
-   "name": "TOPIK II Writing Q54 Pack: 10 Model Essays, a 5-Paragraph Blueprint and a 50-Minute Plan",
+   "name": "Planilha de Gastos 2027 com Compras Parceladas: Controle Financeiro no Google Sheets e Excel",
+   "price_cents": 500,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/planilha-de-gastos-2027"
+  },
+  {
+   "name": "Plan para Salir de Deudas: Bola de Nieve vs Avalancha (Google Sheets y Excel en español)",
+   "price_cents": 500,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/plan-deudas"
+  },
+  {
+   "name": "Presupuesto 2027 con Meses sin Intereses: Plantilla de Google Sheets y Excel en español",
+   "price_cents": 500,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/presupuesto-2027"
+  },
+  {
+   "name": "Holiday Budget & Christmas Gift Tracker (Google Sheets + Excel)",
+   "price_cents": 500,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/holiday-budget-tracker"
+  },
+  {
+   "name": "Sinking Funds Tracker: Monthly Savings Planner for Google Sheets + Excel",
+   "price_cents": 700,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/sinking-funds-tracker"
+  },
+  {
+   "name": "Debt Payoff Planner: Snowball vs Avalanche Calculator (Google Sheets + Excel)",
+   "price_cents": 700,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/debt-payoff-planner"
+  },
+  {
+   "name": "Money Planner Bundle: Budget, Wedding, Debt Payoff and Sinking Funds (Google Sheets + Excel)",
+   "price_cents": 1900,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/budget-wedding-bundle"
+  },
+  {
+   "name": "Wedding Budget Planner: Payments Due, Guest List & RSVP Tracker (Google Sheets + Excel)",
    "price_cents": 900,
    "sales_count": 0,
    "sales_usd_cents": 0.0,
    "published": true,
-   "url": "https://whistledown8.gumroad.com/l/topik-q54-pack"
+   "url": "https://whistledown8.gumroad.com/l/wedding-budget-planner"
+  },
+  {
+   "name": "2027 Budget Planner with Installment & BNPL Tracker (Google Sheets + Excel)",
+   "price_cents": 700,
+   "sales_count": 0,
+   "sales_usd_cents": 0.0,
+   "published": true,
+   "url": "https://whistledown8.gumroad.com/l/2027-budget-planner"
   }
  ],
  "sales": []
