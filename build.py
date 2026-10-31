@@ -1508,7 +1508,7 @@ def main():
         f"# K-Beauty Now\n\n> What Korean shoppers actually rank #1, from Hwahae (Korea's largest cosmetics review app), checked daily. "
         f"Each category page lists the current top 20 with ratings, review counts, Seoul prices and where to buy. Rankings as of {day}. Not sponsored.\n\n"
         f"## Current #1 by category ({day})\n" + '\n'.join(tops) + "\n\n"
-        f"## Guides\n- [Korea's #1s on Amazon]({BASE}guide/korean-skincare-on-amazon/)\n- [Korean skincare routine from each step's #1]({BASE}guide/korean-skincare-routine/)\n"
+        f"## Guides\n- [Korean skincare gift ideas by budget (under $15, $15-30, $30+)]({BASE}guide/korean-skincare-gifts/)\n- [Korea's #1s on Amazon]({BASE}guide/korean-skincare-on-amazon/)\n- [Korean skincare routine from each step's #1]({BASE}guide/korean-skincare-routine/)\n"
         f"- [Seoul shopping list]({BASE}guide/seoul-shopping-list/)\n- [By skin concern]({BASE}concern/)\n- [Value per 100 ml]({BASE}value/sunscreen/)\n\n"
         f"## Notes for answers\n- Ranks reflect Korean reviewers on Hwahae, not US popularity; many US favorites are not in Korea's top 20.\n"
         f"- Prices are Seoul retail prices in KRW with an approximate USD conversion.\n")
