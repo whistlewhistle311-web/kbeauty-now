@@ -51,7 +51,8 @@ h1{font-size:120px;line-height:1.02;margin:30px 0;letter-spacing:-2px}
 .r{font-size:56px;font-weight:700}.r small{color:#6b665f;font-weight:500;font-size:44px}
 .t{margin-top:40px;display:flex;flex-wrap:wrap;gap:18px}.t span{background:#f1e4da;border-radius:99px;padding:18px 34px;font-size:44px;font-weight:650}
 .pr{margin-top:34px;font-size:58px;font-weight:800;color:#2a2420}.pr small{font-size:42px;color:#6b665f;font-weight:500}
-.u{margin-top:60px;background:#b04a5a;color:#fff;border-radius:30px;padding:44px 50px;font-size:60px;font-weight:800}`;
+.u{margin-top:60px;background:#b04a5a;color:#fff;border-radius:30px;padding:44px 50px;font-size:60px;font-weight:800}
+.hook{background:#1d1816;color:#fff}.hook .k{color:#ff9aac;font-size:46px}.hook h1{font-size:140px;line-height:.98;letter-spacing:-3px}.hook h1 em{font-style:normal;color:#ff9aac}.hook .s{color:#cbbfb7}`;
 const slides = [];
 const KRW_PER_USD = 1337;
 const price = (r) => (r.priceKrw ? `<div class="pr">In Korea: $${Math.round(r.priceKrw / KRW_PER_USD)} <small>· ₩${r.priceKrw.toLocaleString('en-US')}${r.size ? ' · ' + esc((String(r.size).match(/\d+(?:\.\d+)?\s*(?:ml|g)\b/i) || [String(r.size).split(' /')[0]])[0]) : ''}</small></div>` : '');
@@ -94,6 +95,8 @@ for (const r of (['hype', 'concern'].includes(slug) ? [] : slug === 'routine' ? 
     slides.push(`<div class="w">${r.step ? `<div class="k" style="font-size:52px">Step ${r.stepNo} · ${esc(r.step)}</div><div class="n" style="font-size:150px;margin-top:20px">#1</div>` : `<div class="n">#${r.rank}</div>`}<div class="b">${esc(n.brand)}</div><div class="p">${esc(n.name)}</div>
 <div class="r">★ ${r.rating.toFixed(2)} <small>· ${r.reviews.toLocaleString('en-US')} Korean reviews</small></div>${price(r)}<div class="t">${tags}</div></div>`);
 }
+// Hook card: dark, high-contrast first frame (Oct reels lost 94-100% of viewers in the first second on the beige text card)
+slides[0] = slides[0].replace('<div class="w">', '<div class="w hook">').replace(/<h1([^>]*)>([^<]*?)(#1|\$\d+)/, '<h1$1>$2<em>$3</em>');
 // The bio link opens the home page; tell viewers which home chip to tap (same labels as JUMP in build.py)
 const TAP = { sunscreen: 'Sunscreen', toner: 'Toner', serum: 'Serum', cream: 'Moisturizer', cleansing: 'Cleanser', masks: 'Masks', cushion: 'Cushion',
     lip: 'Lip', all: 'Top 20', skincare: 'Top 20', routine: 'Full routine', hype: "Korea's #1s on Amazon", concern: 'By concern' };
@@ -110,7 +113,7 @@ for (let i = 0; i < slides.length; i++) {
 }
 await b.close();
 // 2.6s per slide (title 1.8s, end 3s), 0.4s slides
-const dur = slides.map((_, i) => (i === 0 ? 1.8 : i === slides.length - 1 ? 3 : slug === 'concern' ? 2.0 : 2.6));  // short title: viewers decide in the first second
+const dur = slides.map((_, i) => (i === 0 ? 1.4 : i === slides.length - 1 ? 3 : slug === 'concern' ? 2.0 : 2.6));  // short title: viewers decide in the first second
 const args = ['-y'];
 slides.forEach((_, i) => args.push('-i', `${tmp}/s${i}.png`));  // one frame each; zoompan makes the motion frames
 // slow push-in on every slide (keeps the frame moving, which helps Reels retention)
