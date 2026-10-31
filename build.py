@@ -591,6 +591,7 @@ GUIDE_PINS = {  # evergreen pins, refreshed monthly (guid changes each month)
     'korean-toner': ('toner', 'How to choose a Korean toner', ['Korean toner hydrates, it is not an astringent.', 'Toner pads with PHA: quick gentle exfoliation.', 'Dry skin: glycerin, panthenol, hyaluronic acid.', 'Sensitive skin: centella or mugwort.']),
     'korean-serum': ('serum', 'Korean serum, essence or ampoule?', ['The names have no legal difference.', 'Pick by active ingredient, not the word.', 'Niacinamide: tone and oil control.', 'Centella, heartleaf: soothing.']),
     'korean-moisturizer': ('cream', 'How to choose a Korean moisturizer', ['Gel cream: oily skin, hot weather.', 'Ceramide barrier cream: dry skin, winter.', 'Centella or panthenol: redness.', 'Seal in toner and serum with it.']),
+    'korean-skincare-gifts': ('toner', 'Korean skincare gift ideas by budget', ['Under $15: toners, lip and masks.', '$15 to $30: Korea\'s #1 sunscreen and serum.', 'Every pick rated 4.6+ by 1,000+ Koreans.', 'Toners and masks suit most skin types.']),
     'korean-skincare-on-amazon': ('cream', 'Best Korean skincare on Amazon, picked by Korean reviewers', ['Start from what Koreans rate highest.', 'Buy from the brand store or Ships from Amazon.', 'Two top picks per routine step.', 'Checked daily against Hwahae.']),
     'korean-cleanser': ('cleansing', 'Korean double cleansing in 2 steps', ['1. Oil or balm on dry skin, then rinse.', '2. Foam or gel cleanser.', 'Morning: one gentle cleanser is enough.', 'Tight after washing? Try a low-pH foam.']),
 }
