@@ -4,6 +4,7 @@ Read this before every reel or TikTok post.
 
 ## Formats (ops/shorts.mjs)
 - `node ops/shorts.mjs <slug> <outdir>`: KST morning runs default to style b (price hook title), night runs to style a (countdown title). A/B judged on 11/6 by average watch time.
+- 10/31 owner insights: 3 reels, 60 plays, skip rate 66-100%, avg watch 0.8-1.7s. Changed the first frame to a dark hook card with the number in pink and cut the title to 1.4s (from the 10/31 night reel on). Compare skip rate on 11/6: beige card (10/29-10/31 morning) vs dark card.
 - `node ops/shorts.mjs routine <outdir>`: full 5-step routine from each step's #1 with the Seoul total ("A full Korean skincare routine costs $92 in Seoul"). Strongest hook we have; use it at least twice a week.
 
 - `node ops/shorts.mjs hype <outdir>`: "What America buys vs what's #1 in Korea" (US favorites from ops/us_favorites.json against today's Hwahae ranks; e.g. Beauty of Joseon Relief Sun is #19 in Korea, COSRX Snail Mucin and Anua Heartleaf 77 are not in the top 20). Only state ranks the data shows; never say the US pick is bad. Hashtags: #kbeauty #koreanskincare #hwahae #skincareroutine #cosrx #beautyofjoseon #anua.
