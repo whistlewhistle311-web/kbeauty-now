@@ -1422,7 +1422,7 @@ def threads_posts(data):
     import datetime
     # keyed by the real KST date: Hwahae can skip days, and a stale ranking date would make the poster
     # think today's post already went out (threads_log keys are date-slot)
-    up = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)).date().isoformat()
+    up = os.environ.get('KBN_TODAY') or (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)).date().isoformat()
     cats = [rk for rk in data['rankings'] if rk['type'] == 'category' and rk['slug'] not in ('all', 'skincare')]
     day = datetime.date.fromisoformat(up).toordinal()
     posts = []
@@ -1477,6 +1477,24 @@ def threads_posts(data):
             text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', text)[:500]
             if len(posts) > 2:
                 posts[2] = {'category': 'value-' + c, 'topic': 'K Beauty', 'text': text}
+    # Black Friday season (Nov 20 - Nov 30 KST): the midday slot points to the Amazon-matched watch list
+    if '2026-11-20' <= up <= '2026-11-30' and len(posts) > 1 and AMAZON_TAG and ASIN:
+        picks = []
+        for c in ('sunscreen', 'toner', 'serum', 'cream'):
+            rk = by.get(c)
+            r = next((x for x in rk['rows'] if str(x['id']) in ASIN), None) if rk else None
+            if r:
+                picks.append((CAT[c][1].replace('Korean ', '').replace('serums and essences', 'serum').rstrip('s'), r))
+        if len(picks) >= 3:
+            def bft(k):
+                return ("Black Friday K-beauty watch list: Korea's top-rated pick per step, matched to its Amazon US page\n\n"
+                        + ''.join(f"{n.capitalize()}: {short_name(r)}, {r['rating']:.2f} from {r['reviews']:,} reviews\n" for n, r in picks[:k])
+                        + f"\nWith Seoul prices to compare: {BASE}guide/k-beauty-black-friday/\n\nFrom Hwahae, AI-translated. Not sponsored.")
+            text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', bft(4))
+            if len(text) > 495:
+                text = re.sub(r'\b([A-Za-z])\.([A-Za-z]{2,})', r'\1. \2', bft(3))
+            assert len(text) <= 500 and 'k-beauty-black-friday/' in text
+            posts[1] = {'category': 'black-friday', 'topic': 'K Beauty', 'text': text}
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'threads.json')
     json.dump({'date': up, 'posts': posts}, open(path, 'w'), ensure_ascii=False, indent=1)
 
