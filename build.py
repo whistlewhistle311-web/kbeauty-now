@@ -143,6 +143,15 @@ def awin(url, shop):
             'sponsored nofollow')
 
 
+def quick_buy(a, b, na, nb):
+    """Above-the-fold price links for compare pages (10/31: buy buttons sat ~2 screens down on mobile)."""
+    if not AMAZON_TAG:
+        return ''
+    q = lambda r: f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+    return (f'<p class="meta" style="margin:-6px 0 18px">Check today\'s price on Amazon: <a href="{esc(amazon(q(a), a.get("id")))}" rel="sponsored nofollow">{esc(na)}</a>'
+            f' · <a href="{esc(amazon(q(b), b.get("id")))}" rel="sponsored nofollow">{esc(nb)}</a> (affiliate links)</p>')
+
+
 def buy_button(r):
     q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
     if AMAZON_TAG:
@@ -837,6 +846,7 @@ def compare_pages(data):
                   f"This pair was last in Hwahae's top 3 {esc(noun)} on {esc(pr.get('last', ''))}; figures below are from then. See <a href=\"{BASE}c/{cat}/\">today's top 20</a>.")
         body = f"""<p class="kicker">Head to head · {esc(CAT[cat][0])} · updated {esc(up[:10])}</p><h1>{esc(na)} vs {esc(nb)}</h1>
 <p class="lede">{status} Here is how they compare on Hwahae, Korea's biggest cosmetics review app, from Korean reviews rather than ads.</p>
+{quick_buy(a, b, na, nb)}
 {table}
 <h2>The short version</h2><ul>{''.join(f'<li>{esc(p)}</li>' for p in pts)}</ul>
 {pick}
