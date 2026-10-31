@@ -22,7 +22,7 @@ CAT = {  # slug: (title, h1 noun, blurb)
 }
 SKIN = {'dry': 'dry skin', 'oily': 'oily skin', 'combination': 'combination skin', 'sensitive': 'sensitive skin', 'acne-prone': 'acne-prone skin'}
 # Home "came from a video?" chips (label, path, highlighted). Same labels as TAP in ops/shorts.mjs.
-JUMP = [("Korea's #1s on Amazon", 'guide/korean-skincare-on-amazon/', True), ('Full routine', 'guide/korean-skincare-routine/', True),
+JUMP = [('Gift ideas', 'guide/korean-skincare-gifts/', True), ("Korea's #1s on Amazon", 'guide/korean-skincare-on-amazon/', True), ('Full routine', 'guide/korean-skincare-routine/', True),
         ('Sunscreen', 'c/sunscreen/', False), ('Toner', 'c/toner/', False), ('Serum', 'c/serum/', False), ('Moisturizer', 'c/cream/', False),
         ('Cleanser', 'c/cleansing/', False), ('Masks', 'c/masks/', False), ('Cushion', 'c/cushion/', False), ('Lip', 'c/lip/', False),
         ('By concern', 'concern/', False), ('Top 20', 'c/all/', False)]
@@ -1062,7 +1062,54 @@ def extra_pages(data):
         pages['guide/korean-skincare-on-amazon/'] = page('Best Korean Skincare on Amazon: Picks from Korean Reviewers',
             'The Korean skincare products Korean reviewers rank highest on Hwahae today, two per routine step, each with a link to find it on Amazon.',
             'guide/korean-skincare-on-amazon/', am, up)
-    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order', 'korean-skincare-on-amazon': 'Best Korean skincare on Amazon'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
+    # Gift guide (seasonal, added 2026-10-31): Hwahae favourites grouped by Korean price, preferring products matched to Amazon US
+    if AMAZON_TAG:
+        gcats = [('toner', 'toner'), ('serum', 'serum'), ('cream', 'moisturizer'), ('sunscreen', 'sunscreen'), ('cleansing', 'cleanser'),
+                 ('masks', 'face mask'), ('lip', 'lip product'), ('cushion', 'cushion')]
+        pool = []
+        for cat, noun in gcats:
+            rk = by.get(('category', cat))
+            if not rk:
+                continue
+            for r in rk['rows'][:10]:
+                if r.get('priceKrw') and r['rating'] >= 4.6 and r['reviews'] >= 1000:
+                    pool.append((cat, noun, r))
+        pool.sort(key=lambda x: (str(x[2]['id']) not in ASIN, x[2]['rank'], -x[2]['reviews']))
+        tiers = [('Under $15', 0, 15), ('$15 to $30', 15, 30), ('$30 and up', 30, 10 ** 6)]
+        used, gsecs = set(), []
+        for label, lo, hi in tiers:
+            picks = []
+            for cat, noun, r in pool:
+                pu = round(r['priceKrw'] / KRW_PER_USD)
+                if r['id'] in used or not (lo <= pu < hi) or any(c == cat for c, _, _ in picks):
+                    continue
+                picks.append((cat, noun, r)); used.add(r['id'])
+                if len(picks) == 4:
+                    break
+            if not picks:
+                continue
+            cards = []
+            for cat, noun, r in picks:
+                q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+                tags = ', '.join(t.lower() for t in r['topics'][:2])
+                cards.append(f'<div class="card"><p class="kicker">#{r["rank"]} {esc(noun)} in Korea · {usd(r["priceKrw"])} in Seoul</p>'
+                             f'<h3><a href="{BASE}p/{r["id"]}/">{esc(brand_label(r))} {esc(name_label(r))}</a></h3>'
+                             f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tags)}.' if tags else '.') + '</p>'
+                             f'<p><a class="buy" href="{esc(amazon(q, r["id"]))}" rel="sponsored nofollow">See it on Amazon</a></p></div>')
+            gsecs.append(f'<h2>{esc(label)} (Seoul price)</h2><div class="grid">{"".join(cards)}</div>')
+        if gsecs:
+            gift = (f'<p class="kicker">Gift guide · updated {esc(up[:10])}</p><h1>Korean skincare gift ideas, picked by Korean reviewers</h1>'
+                    '<p class="lede">Gift ideas for someone who loves K-beauty, grouped by what the product costs in Seoul. Every pick is in Hwahae\'s top 10 for its category today, '
+                    'rated 4.6 or higher by at least 1,000 Korean reviewers, and we prefer ones we could match to an Amazon US product page.</p>'
+                    '<p class="meta">Amazon US prices are usually higher than Seoul prices and change often, so check the price on the product page. Skincare is personal: '
+                    'toners, masks and lip products are the safest gifts because they suit most skin types; for serums and moisturizers, pick by what the reviewers mention.</p>'
+                    + ''.join(gsecs) +
+                    f'<h2>A full routine as one gift</h2><p>The <a href="{BASE}guide/korean-skincare-routine/">Korean routine guide</a> lists Korea\'s #1 for each of the five steps, if you want to give a complete set.</p>'
+                    f'<p class="meta">We have not tested these products ourselves. {esc(LINK_NOTE)}</p>')
+            pages['guide/korean-skincare-gifts/'] = page('Korean Skincare Gift Ideas by Budget: Picks from Korean Reviewers',
+                'Korean skincare gift ideas under $15, $15 to $30 and $30 and up, from the products Korean Hwahae reviewers rank highest today, with Amazon links.',
+                'guide/korean-skincare-gifts/', gift, up)
+    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order', 'korean-skincare-on-amazon': 'Best Korean skincare on Amazon', 'korean-skincare-gifts': 'Korean skincare gift ideas by budget'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
     hub = ('<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p>'
            '<p>How to use them: start with the step you are missing rather than replacing everything. Most Korean routines that hold up are short: '
            'a gentle cleanser, a hydrating toner, one serum for your main concern, a moisturizer and sunscreen every morning. '
