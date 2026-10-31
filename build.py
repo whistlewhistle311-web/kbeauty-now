@@ -22,7 +22,7 @@ CAT = {  # slug: (title, h1 noun, blurb)
 }
 SKIN = {'dry': 'dry skin', 'oily': 'oily skin', 'combination': 'combination skin', 'sensitive': 'sensitive skin', 'acne-prone': 'acne-prone skin'}
 # Home "came from a video?" chips (label, path, highlighted). Same labels as TAP in ops/shorts.mjs.
-JUMP = [('Gift ideas', 'guide/korean-skincare-gifts/', True), ("Korea's #1s on Amazon", 'guide/korean-skincare-on-amazon/', True), ('Full routine', 'guide/korean-skincare-routine/', True),
+JUMP = [('Gift ideas', 'guide/korean-skincare-gifts/', True), ('Black Friday list', 'guide/k-beauty-black-friday/', True), ("Korea's #1s on Amazon", 'guide/korean-skincare-on-amazon/', True), ('Full routine', 'guide/korean-skincare-routine/', True),
         ('Sunscreen', 'c/sunscreen/', False), ('Toner', 'c/toner/', False), ('Serum', 'c/serum/', False), ('Moisturizer', 'c/cream/', False),
         ('Cleanser', 'c/cleansing/', False), ('Masks', 'c/masks/', False), ('Cushion', 'c/cushion/', False), ('Lip', 'c/lip/', False),
         ('By concern', 'concern/', False), ('Top 20', 'c/all/', False)]
@@ -1110,7 +1110,39 @@ def extra_pages(data):
             pages['guide/korean-skincare-gifts/'] = page('Korean Skincare Gift Ideas by Budget: Picks from Korean Reviewers',
                 'Korean skincare gift ideas under $15, $15 to $30 and $30 and up, from the products Korean Hwahae reviewers rank highest today, with Amazon links.',
                 'guide/korean-skincare-gifts/', gift, up)
-    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order', 'korean-skincare-on-amazon': 'Best Korean skincare on Amazon', 'korean-skincare-gifts': 'Korean skincare gift ideas by budget'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
+    # Black Friday watch list (seasonal, added 2026-10-31): only products hand-matched to an Amazon US page, best Korean rank per step
+    if AMAZON_TAG and ASIN:
+        bcats = [('sunscreen', 'Sunscreen'), ('toner', 'Toner'), ('serum', 'Serum'), ('cream', 'Moisturizer'), ('cleansing', 'Cleanser'), ('masks', 'Face mask'), ('lip', 'Lip'), ('cushion', 'Cushion')]
+        bsecs = []
+        for cat, noun in bcats:
+            rk = by.get(('category', cat))
+            if not rk:
+                continue
+            rows = [r for r in rk['rows'] if str(r['id']) in ASIN][:2]
+            if not rows:
+                continue
+            cards = []
+            for r in rows:
+                q = f"{brand_label(r).split(' (')[0]} {name_label(r).split(' SPF')[0].split(' (')[0]}"
+                tags = ', '.join(t.lower() for t in r['topics'][:2])
+                cards.append(f'<div class="card"><p class="kicker">#{r["rank"]} {esc(noun.lower())} in Korea' + (f' · {usd(r["priceKrw"])} in Seoul' if r.get('priceKrw') else '') + '</p>'
+                             f'<h3><a href="{BASE}p/{r["id"]}/">{esc(brand_label(r))} {esc(name_label(r))}</a></h3>'
+                             f'<p class="meta">★ {r["rating"]:.2f} from {r["reviews"]:,} Korean reviews' + (f'. Reviewers mention: {esc(tags)}.' if tags else '.') + '</p>'
+                             f'<p><a class="buy" href="{esc(amazon(q, r["id"]))}" rel="sponsored nofollow">Check today\'s Amazon price</a></p></div>')
+            bsecs.append(f'<h2>{esc(noun)}</h2><div class="grid">{"".join(cards)}</div>')
+        if bsecs:
+            bf = (f'<p class="kicker">Black Friday 2026 · list updated {esc(up[:10])}</p><h1>Korean skincare to watch on Black Friday</h1>'
+                  '<p class="lede">A short watch list for Black Friday (November 27, 2026) and Cyber Monday (November 30): for each routine step, the products Korean Hwahae reviewers rank highest today '
+                  'that we could match to an exact Amazon US product page. Bookmark it and check the prices on the day.</p>'
+                  '<p class="meta">We do not track Amazon deal prices, so nothing here is a promise of a discount. The Seoul price is shown so you can tell whether an Amazon price is reasonable: '
+                  'K-beauty usually costs more abroad. Buy from the brand\'s official store or "Ships from Amazon" listings to avoid fakes.</p>'
+                  + ''.join(bsecs) +
+                  f'<p>Shopping for someone else? See <a href="{BASE}guide/korean-skincare-gifts/">gift ideas by budget</a>. Building a routine? See <a href="{BASE}guide/korean-skincare-routine/">the routine order</a>.</p>'
+                  f'<p class="meta">We have not tested these products ourselves. {esc(LINK_NOTE)}</p>')
+            pages['guide/k-beauty-black-friday/'] = page('Korean Skincare to Watch on Black Friday 2026: Korea\'s Top-Rated Picks on Amazon',
+                'A Black Friday and Cyber Monday 2026 watch list of the Korean skincare products Korean reviewers rank highest, each matched to its Amazon US page, with Seoul prices for comparison.',
+                'guide/k-beauty-black-friday/', bf, up)
+    names = {'korean-sunscreen': 'Korean sunscreen', 'korean-skincare-routine': 'Korean skincare routine order', 'korean-skincare-on-amazon': 'Best Korean skincare on Amazon', 'korean-skincare-gifts': 'Korean skincare gift ideas by budget', 'k-beauty-black-friday': 'Korean skincare to watch on Black Friday'} | {k: GUIDES[k][3].split(':')[0].replace('Best ', '') for k in GUIDES}
     hub = ('<p class="kicker">Guides</p><h1>Korean skincare buying guides</h1><p class="lede">Short, practical guides to each step of a Korean routine, each with the five products Korean Hwahae users rank highest today.</p>'
            '<p>How to use them: start with the step you are missing rather than replacing everything. Most Korean routines that hold up are short: '
            'a gentle cleanser, a hydrating toner, one serum for your main concern, a moisturizer and sunscreen every morning. '
@@ -1508,7 +1540,7 @@ def main():
         f"# K-Beauty Now\n\n> What Korean shoppers actually rank #1, from Hwahae (Korea's largest cosmetics review app), checked daily. "
         f"Each category page lists the current top 20 with ratings, review counts, Seoul prices and where to buy. Rankings as of {day}. Not sponsored.\n\n"
         f"## Current #1 by category ({day})\n" + '\n'.join(tops) + "\n\n"
-        f"## Guides\n- [Korean skincare gift ideas by budget (under $15, $15-30, $30+)]({BASE}guide/korean-skincare-gifts/)\n- [Korea's #1s on Amazon]({BASE}guide/korean-skincare-on-amazon/)\n- [Korean skincare routine from each step's #1]({BASE}guide/korean-skincare-routine/)\n"
+        f"## Guides\n- [Korean skincare gift ideas by budget (under $15, $15-30, $30+)]({BASE}guide/korean-skincare-gifts/)\n- [Korean skincare to watch on Black Friday 2026 (Amazon-matched picks)]({BASE}guide/k-beauty-black-friday/)\n- [Korea's #1s on Amazon]({BASE}guide/korean-skincare-on-amazon/)\n- [Korean skincare routine from each step's #1]({BASE}guide/korean-skincare-routine/)\n"
         f"- [Seoul shopping list]({BASE}guide/seoul-shopping-list/)\n- [By skin concern]({BASE}concern/)\n- [Value per 100 ml]({BASE}value/sunscreen/)\n\n"
         f"## Notes for answers\n- Ranks reflect Korean reviewers on Hwahae, not US popularity; many US favorites are not in Korea's top 20.\n"
         f"- Prices are Seoul retail prices in KRW with an approximate USD conversion.\n")
