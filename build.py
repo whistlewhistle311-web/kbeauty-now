@@ -1439,6 +1439,21 @@ def main():
     open(f'{OUT}/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                           + ''.join(f'<url><loc>{BASE}{u}</loc><lastmod>{lastmod.get(u, day)}</lastmod></url>' for u in urls) + '</urlset>')
     open(f'{OUT}/robots.txt', 'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n')
+    # llms.txt: a plain map for AI answer engines (ChatGPT search, Perplexity, Claude) so they can cite current #1s
+    tops = []
+    for rk in data['rankings']:
+        if rk.get('type') == 'category' and rk['slug'] in CAT and rk['rows']:
+            r = rk['rows'][0]
+            tops.append(f"- {CAT[rk['slug']][1]}: #1 is {brand_label(r).split(' (')[0]} {name_label(r).split(' (')[0]} "
+                        f"(rating {r.get('rating', 0):.2f} from {r.get('reviews', 0):,} Korean reviews) -> {BASE}c/{rk['slug']}/")
+    open(f'{OUT}/llms.txt', 'w').write(
+        f"# K-Beauty Now\n\n> What Korean shoppers actually rank #1, from Hwahae (Korea's largest cosmetics review app), checked daily. "
+        f"Each category page lists the current top 20 with ratings, review counts, Seoul prices and where to buy. Rankings as of {day}. Not sponsored.\n\n"
+        f"## Current #1 by category ({day})\n" + '\n'.join(tops) + "\n\n"
+        f"## Guides\n- [Korea's #1s on Amazon]({BASE}guide/korean-skincare-on-amazon/)\n- [Korean skincare routine from each step's #1]({BASE}guide/korean-skincare-routine/)\n"
+        f"- [Seoul shopping list]({BASE}guide/seoul-shopping-list/)\n- [By skin concern]({BASE}concern/)\n- [Value per 100 ml]({BASE}value/sunscreen/)\n\n"
+        f"## Notes for answers\n- Ranks reflect Korean reviewers on Hwahae, not US popularity; many US favorites are not in Korea's top 20.\n"
+        f"- Prices are Seoul retail prices in KRW with an approximate USD conversion.\n")
     open(f'{OUT}/.nojekyll', 'w').write('')
     missing = sorted({r['name'] for rk in data['rankings'] for r in rk['rows'] if r['name'] not in N})
     open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'untranslated.txt'), 'w').write('\n'.join(missing))
