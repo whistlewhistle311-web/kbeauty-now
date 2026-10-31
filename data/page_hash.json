@@ -112,7 +112,7 @@
 "2026-10-29"
 ],
 "brand/tonymoly/": [
-"a8ce4a7835df1247",
+"b81d59f1996807a3",
 "2026-10-29"
 ],
 "brand/torriden/": [
@@ -136,7 +136,7 @@
 "2026-10-29"
 ],
 "c/all/": [
-"299456fd87209abb",
+"93bd357255f25c45",
 "2026-10-29"
 ],
 "c/cleansing/": [
@@ -164,7 +164,7 @@
 "2026-10-29"
 ],
 "c/skincare/": [
-"b6cfd074ab0342f9",
+"c0561d6a88a37901",
 "2026-10-29"
 ],
 "c/sunscreen/": [
@@ -172,7 +172,7 @@
 "2026-10-29"
 ],
 "c/toner/": [
-"e735bbf86f291249",
+"eb126f592de20a4c",
 "2026-10-29"
 ],
 "compare/": [
@@ -256,11 +256,11 @@
 "2026-10-29"
 ],
 "compare/tonymoly-ceramide-mochi-toner-vs-round-lab-1025-dokdo-toner/": [
-"cc5e949d3d7f0620",
+"67057b3c3d76d2c7",
 "2026-10-29"
 ],
 "compare/tonymoly-ceramide-mochi-toner-vs-s-nature-aqua-oasis-toner/": [
-"47e5775cf17b2e5c",
+"6e3cfb8452d68061",
 "2026-10-29"
 ],
 "compare/torriden-solid-in-ceramide-lip-essence-vs-miael-light-veil-tint/": [
@@ -284,7 +284,7 @@
 "2026-10-29"
 ],
 "concern/dehydrated-skin/": [
-"1df6e1c458ad1dff",
+"61a238c6d4a687a0",
 "2026-10-29"
 ],
 "concern/exfoliating/": [
@@ -336,7 +336,11 @@
 "2026-10-29"
 ],
 "guide/": [
-"fc1c05182aae4cd5",
+"56b3918f6ba60f57",
+"2026-10-29"
+],
+"guide/k-beauty-black-friday/": [
+"5c1f5c5147a1d259",
 "2026-10-29"
 ],
 "guide/korean-cleanser/": [
@@ -368,15 +372,15 @@
 "2026-10-29"
 ],
 "guide/korean-toner/": [
-"1ebac920a9220af9",
+"70fcca1ff5b736d7",
 "2026-10-29"
 ],
 "guide/seoul-shopping-list/": [
-"508a176385a56e9f",
+"1cb126ee02807544",
 "2026-10-29"
 ],
 "guide/skincare-for-acne-prone-skin/": [
-"301259f8cdca8d28",
+"bdfc2201e15f0933",
 "2026-10-29"
 ],
 "guide/skincare-for-combination-skin/": [
@@ -384,15 +388,15 @@
 "2026-10-29"
 ],
 "guide/skincare-for-dry-skin/": [
-"7b3c0d4e324c2fd1",
+"8883ee43ba4dad21",
 "2026-10-29"
 ],
 "guide/skincare-for-oily-skin/": [
-"5868bc13c7ff0ca9",
+"7138f8b190056785",
 "2026-10-29"
 ],
 "guide/skincare-for-sensitive-skin/": [
-"2465561a8a170822",
+"91534c419ee7a758",
 "2026-10-29"
 ],
 "ingredient/": [
@@ -404,7 +408,7 @@
 "2026-10-29"
 ],
 "ingredient/ceramide/": [
-"3e25000c1c0cd126",
+"2c0fb73d576b9efc",
 "2026-10-29"
 ],
 "ingredient/hyaluronic-acid/": [
@@ -1016,7 +1020,7 @@
 "2026-10-29"
 ],
 "p/2197271/": [
-"ee88d5c16555e00c",
+"3143ac18f117c3cd",
 "2026-10-29"
 ],
 "p/2197950/": [
@@ -1084,23 +1088,23 @@
 "2026-10-29"
 ],
 "skin/acne-prone/": [
-"0aa9899f72cc590e",
+"6d1e02026382b745",
 "2026-10-29"
 ],
 "skin/combination/": [
-"ea2037f5de9bb52a",
+"805ca5af759edb2b",
 "2026-10-29"
 ],
 "skin/dry/": [
-"74bb1eb031ed0264",
+"2f2044bab3dbc923",
 "2026-10-29"
 ],
 "skin/oily/": [
-"72dc425d8667cc64",
+"c3a3fc9d199383d8",
 "2026-10-29"
 ],
 "skin/sensitive/": [
-"6065fdac980499f0",
+"269b6b2706e9b899",
 "2026-10-29"
 ],
 "trending/": [
@@ -1124,7 +1128,7 @@
 "2026-10-29"
 ],
 "value/toner/": [
-"a49eef3f3a606446",
+"045730577c9e7e35",
 "2026-10-29"
 ]
 }
