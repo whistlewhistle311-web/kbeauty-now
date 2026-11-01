@@ -237,7 +237,7 @@ def page(title, desc, path, body, updated, head=''):
 Pages are built automatically every day from Hwahae data; product names are translated by K-Beauty Now with AI assistance and checked against official brand names where we can verify them; brand names marked with Korean in brackets are transliterations, not official English names. Prices are Hwahae list prices in Korea; USD is approximate at {KRW_PER_USD:,} KRW per USD.
 <a href="{BASE}privacy/">Privacy</a> · {LINK_NOTE} K-Beauty Now is independent and is not run by Hwahae, Olive Young or YesStyle.
 <br>Daily top 5s: <a href="https://www.instagram.com/koreanbeautynow/" rel="me">Instagram</a> · <a href="https://www.threads.com/@koreanbeautynow" rel="me">Threads</a> · <a href="https://www.pinterest.com/whistlewhistle311kbeauty/" rel="me">Pinterest</a>
-<br>Learning Korean too? Our sister site has a free <a href="https://whistlewhistle311-web.github.io/topik-q54/">TOPIK II writing (Q54) guide</a> with a model essay.</footer></main>{IAB_JS}{CF_BEACON}</body></html>"""
+<br>Learning Korean too? Our sister site has a free <a href="https://whistlewhistle311-web.github.io/topik-q54/">TOPIK II writing (Q54) guide</a> with a model essay, and <a href="https://whistlewhistle311-web.github.io/tools/">free budget calculators</a> (50/30/20, debt payoff, a free <a href="https://whistlewhistle311-web.github.io/free-budget-spreadsheet/">2027 budget spreadsheet</a>).</footer></main>{IAB_JS}{CF_BEACON}</body></html>"""
 
 
 def ranking_page(rk, updated):
