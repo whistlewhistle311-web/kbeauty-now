@@ -969,6 +969,21 @@ def extra_pages(data):
         'under its own privacy policy. We earn a commission on some purchases at no extra cost to you; it never changes the ranking order.</p>'
         '<h2>Hosting</h2><p>The site is hosted on GitHub Pages, which may log standard request data (such as IP address) for security.</p>'
         f'<h2>Changes</h2><p>We will update this page if anything changes. Last updated {esc(up[:10])}.</p>', up)
+    pages['learn-korean/'] = page('Free Hangul Chart Printable (PDF): Learn to Read Korean', 'Free printable Hangul chart with consonants, vowels, syllable blocks and a tracing page. Learn to read Korean in a weekend.', 'learn-korean/',
+        '<p class="kicker">Learn Korean</p><h1>Free Hangul chart printable</h1>'
+        '<p>Reading Korean labels is easier than it looks. Hangul has 24 basic letters, and most people can sound out words after a weekend of practice. '
+        'This free 4-page PDF has everything you need to start.</p>'
+        '<p><a href="hangul-chart-free.pdf" download style="display:inline-block;background:var(--accent);color:var(--card);padding:12px 20px;border-radius:99px;font-weight:700;text-decoration:none">Download the free Hangul chart (PDF, 4 pages)</a></p>'
+        '<p><img src="sample.png" alt="Hangul consonant chart and tracing grid pages" width="1000" height="1500" style="max-width:100%;height:auto;border-radius:8px"></p>'
+        '<h2>What is inside</h2><ul><li>14 basic consonants with romanization and a sound tip for each</li>'
+        '<li>10 basic vowels and 11 combined vowels</li><li>A syllable block table (가, 나, 다 ...) so you can read any simple word</li>'
+        '<li>A tracing grid for the consonants</li></ul>'
+        '<h2>How to learn Hangul in a weekend</h2><ol><li>Day 1 morning: read the consonant chart out loud twice.</li>'
+        '<li>Day 1 evening: read the vowels, then the syllable table row by row.</li>'
+        '<li>Day 2: trace each letter, then try reading product names on your skincare: 수분 (moisture), 진정 (soothing), 선크림 (sunscreen).</li></ol>'
+        '<h2>Want more practice?</h2><p>The full workbook, <b>Korean for K-Drama Fans</b>, adds tracing pages for every letter, 60 everyday phrases with polite and casual notes, a quiz and blank writing sheets (24 pages). '
+        'It is our own paid product, sold on <a href="https://whistledown8.gumroad.com/" rel="nofollow">Gumroad</a>.</p>'
+        '<p style="font-size:13px;color:#777">Standard Seoul Korean, Revised Romanization. Drafted with AI assistance.</p>', up)
     pages['about/'] = page('About K-Beauty Now: How We Rank Korean Skincare', 'How K-Beauty Now turns Hwahae, Korea\'s biggest cosmetics review app, into daily English rankings.', 'about/', about, up)
     sun = by.get(('category', 'sunscreen'))
     if sun:
