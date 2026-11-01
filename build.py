@@ -984,6 +984,19 @@ def extra_pages(data):
         '<h2>Want more practice?</h2><p>The full workbook, <b>Korean for K-Drama Fans</b>, adds tracing pages for every letter, 60 everyday phrases with polite and casual notes, a quiz and blank writing sheets (24 pages). '
         'It is our own paid product, sold on <a href="https://whistledown8.gumroad.com/" rel="nofollow">Gumroad</a>.</p>'
         '<p style="font-size:13px;color:#777">Standard Seoul Korean, Revised Romanization. Drafted with AI assistance.</p>', up)
+    pages['aprender-coreano/'] = page('Tabla de hangul gratis para imprimir (PDF): aprende a leer coreano', 'Tabla de hangul gratis en PDF: consonantes, vocales con pronunciación explicada para hispanohablantes, tabla de sílabas y hoja de práctica. Sin registro.', 'aprender-coreano/',
+        '<p class="kicker">Aprender coreano</p><h1>Tabla de hangul gratis para imprimir</h1>'
+        '<p>Leer coreano es más fácil de lo que parece. El hangul tiene 24 letras básicas y casi todo el mundo puede leer palabras sencillas después de un fin de semana de práctica. '
+        'Esta hoja de 4 páginas explica cada sonido con ejemplos en español.</p>'
+        '<p><a href="tabla-hangul-gratis.pdf" download style="display:inline-block;background:var(--accent);color:var(--card);padding:12px 20px;border-radius:99px;font-weight:700;text-decoration:none">Descargar la tabla de hangul (PDF, 4 páginas)</a></p>'
+        '<p><img src="pin.jpg" alt="Tabla de consonantes coreanas y hoja de práctica de escritura" width="1000" height="1500" style="max-width:100%;height:auto;border-radius:8px"></p>'
+        '<h2>Qué incluye</h2><ul><li>14 consonantes con romanización y cómo suenan comparadas con el español</li>'
+        '<li>10 vocales básicas y las vocales compuestas</li><li>Tabla de sílabas (가, 나, 다...) para leer cualquier palabra sencilla</li><li>Hoja de práctica para escribir las consonantes</li></ul>'
+        '<h2>Un consejo para hispanohablantes</h2><p>En la romanización oficial, la <b>j</b> (ㅈ) se lee como una ch suave, no como la jota española: 진짜 (jinjja, «¿en serio?») suena parecido a «chin-cha». '
+        'Y la <b>eo</b> (ㅓ) es una o muy abierta: 서울 (Seoul) se dice «so-ul», no «se-úl».</p>'
+        '<h2>¿Quieres más práctica?</h2><p>El cuaderno completo <b>Korean for K-Drama Fans</b> (24 páginas, en inglés) añade práctica para todas las letras, 60 frases de la vida diaria con notas de formal e informal, un test y hojas en blanco. '
+        f'Es un producto nuestro de pago. Para empezar en inglés, mira también la <a href="{BASE}learn-korean/">tabla en inglés</a> y las <a href="{BASE}guide/korean-skincare-label-words/">30 palabras de las etiquetas de cosmética coreana</a>.</p>'
+        '<p style="font-size:13px;color:#777">Coreano estándar de Seúl, romanización revisada. Preparado con ayuda de herramientas de IA.</p>', up).replace('<html lang="en">', '<html lang="es">', 1)
     pages['about/'] = page('About K-Beauty Now: How We Rank Korean Skincare', 'How K-Beauty Now turns Hwahae, Korea\'s biggest cosmetics review app, into daily English rankings.', 'about/', about, up)
     sun = by.get(('category', 'sunscreen'))
     if sun:
