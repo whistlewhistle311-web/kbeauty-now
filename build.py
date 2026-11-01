@@ -985,7 +985,7 @@ def extra_pages(data):
         '<p><img src="cafe-phrases.jpg" alt="10 Korean phrases for ordering at a café with romanization and a short dialogue" width="1191" height="1684" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee"></p>'
         '<h2>Want more practice?</h2><p>The full workbook, <b>Korean for K-Drama Fans</b>, adds tracing pages for every letter, 60 everyday phrases with polite and casual notes, a quiz and blank writing sheets (24 pages). '
         'It is our own paid product, sold on <a href="https://whistledown8.gumroad.com/" rel="nofollow">Gumroad</a>.</p>'
-        f'<p>En español: <a href="{BASE}aprender-coreano/">tabla de hangul gratis</a>.</p>'
+        f'<p>En español: <a href="{BASE}aprender-coreano/">tabla de hangul gratis</a> · Em português: <a href="{BASE}pt/aprender-coreano/">tabela de hangul grátis</a>.</p>'
         '<p style="font-size:13px;color:#777">Standard Seoul Korean, Revised Romanization. Drafted with AI assistance.</p>', up)
     pages['aprender-coreano/'] = page('Tabla de hangul gratis para imprimir (PDF): aprende a leer coreano', 'Tabla de hangul gratis en PDF: consonantes, vocales con pronunciación explicada para hispanohablantes, tabla de sílabas y hoja de práctica. Sin registro.', 'aprender-coreano/',
         '<p class="kicker">Aprender coreano</p><h1>Tabla de hangul gratis para imprimir</h1>'
@@ -1000,6 +1000,19 @@ def extra_pages(data):
         '<h2>¿Quieres más práctica?</h2><p>El cuaderno completo <b>Korean for K-Drama Fans</b> (24 páginas, en inglés) añade práctica para todas las letras, 60 frases de la vida diaria con notas de formal e informal, un test y hojas en blanco. '
         f'Es un producto nuestro de pago. Para empezar en inglés, mira también la <a href="{BASE}learn-korean/">tabla en inglés</a> y las <a href="{BASE}guide/korean-skincare-label-words/">30 palabras de las etiquetas de cosmética coreana</a>.</p>'
         '<p style="font-size:13px;color:#777">Coreano estándar de Seúl, romanización revisada. Preparado con ayuda de herramientas de IA.</p>', up).replace('<html lang="en">', '<html lang="es">', 1)
+    pages['pt/aprender-coreano/'] = page('Tabela de hangul grátis para imprimir (PDF): aprenda a ler coreano', 'Tabela de hangul grátis em PDF: consoantes e vogais com a pronúncia explicada para quem fala português, tabela de sílabas e folha de prática. Sem cadastro.', 'pt/aprender-coreano/',
+        '<p class="kicker">Aprender coreano</p><h1>Tabela de hangul grátis para imprimir</h1>'
+        '<p>Ler coreano é mais fácil do que parece. O hangul tem 24 letras básicas e quase todo mundo consegue ler palavras simples depois de um fim de semana de prática. '
+        'Esta folha de 4 páginas explica cada som com exemplos em português.</p>'
+        '<p><a href="tabela-hangul-gratis.pdf" download style="display:inline-block;background:var(--accent);color:var(--card);padding:12px 20px;border-radius:99px;font-weight:700;text-decoration:none">Baixar a tabela de hangul (PDF, 4 páginas)</a></p>'
+        '<p><img src="pin.jpg" alt="Tabela de consoantes coreanas e folha de prática de escrita" width="1000" height="1500" style="max-width:100%;height:auto;border-radius:8px"></p>'
+        '<h2>O que vem na folha</h2><ul><li>14 consoantes com romanização e como soam comparadas ao português</li>'
+        '<li>10 vogais básicas e as vogais compostas</li><li>Tabela de sílabas (가, 나, 다...) para ler qualquer palavra simples</li><li>Folha de prática para escrever as consoantes</li></ul>'
+        '<h2>Uma dica para quem fala português</h2><p>Na romanização oficial, <b>j</b> (ㅈ) soa como «dj» e <b>ch</b> (ㅊ) como «tch»: 진짜 (jinjja, «sério?») soa parecido com «djin-dja». '
+        'E o <b>d</b> (ㄷ) nunca chia antes de i: 디 é «di», não «dji».</p>'
+        '<h2>Quer praticar mais?</h2><p>O caderno completo <b>Korean for K-Drama Fans</b> (24 páginas, em inglês) traz prática para todas as letras, 60 frases do dia a dia com notas de formal e informal, um teste e folhas em branco. '
+        f'É um produto nosso, pago. Veja também a <a href="{BASE}learn-korean/">tabela em inglês</a> e a <a href="{BASE}aprender-coreano/">versão em espanhol</a>.</p>'
+        '<p style="font-size:13px;color:#777">Coreano padrão de Seul, romanização revisada. Preparado com ajuda de ferramentas de IA.</p>', up).replace('<html lang="en">', '<html lang="pt-BR">', 1)
     pages['about/'] = page('About K-Beauty Now: How We Rank Korean Skincare', 'How K-Beauty Now turns Hwahae, Korea\'s biggest cosmetics review app, into daily English rankings.', 'about/', about, up)
     sun = by.get(('category', 'sunscreen'))
     if sun:
