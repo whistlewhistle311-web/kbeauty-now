@@ -1349,8 +1349,10 @@ def pins_and_rss(data):
     # pick by the real KST date, not the ranking date: Hwahae can go days without updating, and evergreen
     # pins (guides, concerns, brands) should still go out daily; unchanged rankings are skipped by their sig
     kst_today = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)).date().isoformat()
+    # every guide page's og:image points at its monthly guide pin, so render all of them, not only today's picks
+    og_pins = [p for p in pins if p['file'].startswith('guide-')]
     pins, items = select_pins(pins, items, kst_today)
-    json.dump({'pins': pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
+    json.dump({'pins': pins, 'og': og_pins}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pins.json'), 'w'), ensure_ascii=False)
     # two feeds so each Pinterest board stays on topic: rankings, trending and products -> rss.xml;
     # guides, concerns and brands -> rss-guides.xml (board "Korean Skincare Guides")
     evergreen = ('guide/', 'concern/', 'brand/', 'value/', 'compare/')

@@ -27,7 +27,11 @@ h1{font-size:86px;line-height:1.04;margin:14px 0 22px;letter-spacing:-1.5px}
 .also{margin-top:56px;font-size:28px;color:#6b665f;text-transform:uppercase;letter-spacing:2px;font-weight:700}
 .o{display:flex;gap:20px;align-items:center;border-bottom:2px solid #eadfd5;padding:20px 0;font-size:34px;font-weight:650}.o b{color:#b04a5a;width:56px}
 .sp{flex:1}.f{font-size:26px;color:#6b665f;display:flex;justify-content:space-between}`;
-for (const pin of data.pins) {
+const seen = new Set();
+const todo = [...data.pins, ...(data.og || []).filter((q) => !fs.existsSync(`docs/pins/${q.file}`))];
+for (const pin of todo) {
+  if (seen.has(pin.file)) continue;
+  seen.add(pin.file);
   if (pin.product) {
     const q = pin.product;
     const tags = q.tags.map((t) => `<span>${esc(t)}</span>`).join('');
