@@ -984,7 +984,8 @@ def extra_pages(data):
         '<h2>Try it: ordering at a Korean café</h2><p>Ten phrases you will use on day one in Seoul, with romanization and a short dialogue. Everything ends in 주세요 or -요, so it is polite with any staff member.</p>'
         '<p><img src="cafe-phrases.jpg" alt="10 Korean phrases for ordering at a café with romanization and a short dialogue" width="1191" height="1684" loading="lazy" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee"></p>'
         '<h2>Want more practice?</h2><p>The full workbook, <b>Korean for K-Drama Fans</b>, adds tracing pages for every letter, 60 everyday phrases with polite and casual notes, a quiz and blank writing sheets (24 pages). '
-        'It is our own paid product, sold on <a href="https://whistledown8.gumroad.com/" rel="nofollow">Gumroad</a>.</p>'
+        'It is our own paid product ($9, US Letter and A4 PDF).</p>'
+        '<p><a href="https://whistledown8.gumroad.com/l/korean-kdrama-workbook" rel="nofollow" style="display:inline-block;background:var(--ink,#222);color:#fff;padding:12px 20px;border-radius:99px;font-weight:700;text-decoration:none">See the full workbook on Gumroad</a></p>'
         f'<p>En español: <a href="{BASE}aprender-coreano/">tabla de hangul gratis</a> · Em português: <a href="{BASE}pt/aprender-coreano/">tabela de hangul grátis</a>.</p>'
         '<p style="font-size:13px;color:#777">Standard Seoul Korean, Revised Romanization. Drafted with AI assistance.</p>', up)
     pages['aprender-coreano/'] = page('Tabla de hangul gratis para imprimir (PDF): aprende a leer coreano', 'Tabla de hangul gratis en PDF: consonantes, vocales con pronunciación explicada para hispanohablantes, tabla de sílabas y hoja de práctica. Sin registro.', 'aprender-coreano/',
