@@ -29,5 +29,11 @@
   "key": "2026-11-01-2-skip",
   "reason": "scheduled run started 17:14 UTC instead of 11:43 (GitHub delay); old script picked the slot by UTC hour and skipped as 'hour 17' without logging. Fixed 11/2.",
   "at": "2026-11-01T17:14+00:00"
+ },
+ {
+  "key": "2026-11-02-2",
+  "id": "18115925729601073",
+  "category": "compare-toner",
+  "at": "2026-11-02T11:26+00:00"
  }
 ]
