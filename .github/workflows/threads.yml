@@ -4,7 +4,11 @@ on:
     inputs:
       slot: {description: 'post index 0-2', required: false, default: ''}
   schedule:
+    # 20:43 KST, with two backups. GitHub can start a scheduled run hours late or drop it;
+    # threads_post.py posts the evening slot whenever it runs and never posts the same day twice.
     - cron: '43 11 * * *'
+    - cron: '43 13 * * *'
+    - cron: '43 15 * * *'
 permissions:
   contents: write
 jobs:
