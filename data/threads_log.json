@@ -46,5 +46,11 @@
   "key": "2026-11-04-2-error",
   "error": "400 {\"error\":{\"message\":\"Fatal\",\"type\":\"OAuthException\",\"code\":-1,\"error_subcode\":4279047,\"is_transient\":false,\"error_user_title\":\"Invalid Link Attachment\",\"error_user_msg\":\"The post you're trying to publish has an invalid link attachment.\",\"fbtrace_id\":\"ADcwCJw49p8RSro22L6jaVk\"}}",
   "at": "2026-11-04T18:51+00:00"
+ },
+ {
+  "key": "2026-11-04-2",
+  "id": "18141065288504679",
+  "category": "value-cream",
+  "at": "2026-11-04T20:32+00:00"
  }
 ]
