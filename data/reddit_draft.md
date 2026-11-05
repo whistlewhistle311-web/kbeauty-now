@@ -4,13 +4,13 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 
 **Biggest climbers**
 
-- Torriden Dive-In Low Molecular Hyaluronic Acid Toner: #8 to #5 in Korean toners (4.80, 36,775 reviews)
-- S.NATURE Aqua Oasis Panthealan Calming Pad: #15 to #12 in Korean face masks (4.73, 1,215 reviews)
+- Torriden Dive-In Low Molecular Hyaluronic Acid Toner: #8 to #5 in Korean toners (4.79, 36,774 reviews)
+- S.NATURE Aqua Oasis Panthealan Calming Pad: #15 to #12 in Korean face masks (4.73, 1,216 reviews)
 - Etude Ginger Sugar Overnight Lip Mask: #12 to #10 in Korean lip products (4.46, 1,364 reviews)
 - beplain Milk Ceramide Lip Essence: #17 to #15 in Korean lip products (4.59, 209 reviews)
 - Bring Green Bamboo Hyalu Lip Essence: #4 to #3 in Korean lip products (4.70, 467 reviews)
-- Torriden Dive-In Low Molecular Hyaluronic Acid Serum: #6 to #5 in Korean serums and essences (4.69, 87,137 reviews)
-- Torriden Dive-In Low Molecular Hyaluronic Acid Cream: #7 to #6 in Korean moisturizers (4.62, 26,326 reviews)
+- Torriden Dive-In Low Molecular Hyaluronic Acid Serum: #6 to #5 in Korean serums and essences (4.70, 87,144 reviews)
+- Torriden Dive-In Low Molecular Hyaluronic Acid Cream: #7 to #6 in Korean moisturizers (4.62, 26,328 reviews)
 
 **New in a top 20**
 
