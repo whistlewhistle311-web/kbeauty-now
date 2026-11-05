@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-04T10:56:48.177Z",
+ "fetchedAt": "2026-11-05T01:27:45.247Z",
  "rankings": [
   {
    "type": "category",
@@ -19,7 +19,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -29,7 +29,7 @@
     },
     {
      "rank": 2,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2197950,
      "name": "히알루로닉 붐 세럼 워터 드롭",
@@ -39,7 +39,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -49,7 +49,7 @@
     },
     {
      "rank": 3,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2078467,
      "name": "아토베리어365 크림",
@@ -59,7 +59,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -79,7 +79,7 @@
      "size": "80ml",
      "priceKrw": 15000,
      "rating": 4.63,
-     "reviews": 51411,
+     "reviews": 51415,
      "url": "https://www.hwahae.co.kr/goods/78537",
      "topics": [
       "Has granules",
@@ -99,7 +99,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -109,7 +109,27 @@
     },
     {
      "rank": 6,
-     "delta": 1,
+     "delta": 2,
+     "isNew": false,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 7,
+     "delta": -1,
      "isNew": false,
      "id": 2153055,
      "name": "리얼 히알루로닉 블루 100 앰플",
@@ -119,7 +139,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -128,7 +148,7 @@
      ]
     },
     {
-     "rank": 7,
+     "rank": 8,
      "delta": -1,
      "isNew": false,
      "id": 2098300,
@@ -139,7 +159,7 @@
      "size": "120 ml",
      "priceKrw": 16000,
      "rating": 4.58,
-     "reviews": 7226,
+     "reviews": 7228,
      "url": "https://www.hwahae.co.kr/goods/70162",
      "topics": [
       "Slippery",
@@ -148,28 +168,8 @@
      ]
     },
     {
-     "rank": 8,
-     "delta": 4,
-     "isNew": false,
-     "id": 2007562,
-     "name": "페이스 앤 바디 로션 포 베이비",
-     "brand": "클라리케",
-     "brandEn": "Keulrarike",
-     "brandOfficial": false,
-     "size": "347ml",
-     "priceKrw": 45000,
-     "rating": 4.81,
-     "reviews": 1185,
-     "url": "https://www.hwahae.co.kr/products/2007562",
-     "topics": [
-      "Comforting",
-      "Non-sticky",
-      "Spreads well"
-     ]
-    },
-    {
      "rank": 9,
-     "delta": 5,
+     "delta": 0,
      "isNew": false,
      "id": 2203507,
      "name": "오트 미셀라 클렌징밀크",
@@ -189,7 +189,7 @@
     },
     {
      "rank": 10,
-     "delta": -2,
+     "delta": 0,
      "isNew": false,
      "id": 1889139,
      "name": "아쿠아 스쿠알란 수분크림",
@@ -199,7 +199,7 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
@@ -209,7 +209,7 @@
     },
     {
      "rank": 11,
-     "delta": -2,
+     "delta": 0,
      "isNew": false,
      "id": 2113285,
      "name": "PDRN 히알루론산 캡슐 100 세럼",
@@ -219,7 +219,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -229,7 +229,7 @@
     },
     {
      "rank": 12,
-     "delta": -2,
+     "delta": 0,
      "isNew": false,
      "id": 1880696,
      "name": "모델링마스크 컵팩 [쿨티트리]",
@@ -239,7 +239,7 @@
      "size": "28g",
      "priceKrw": 4000,
      "rating": 4.75,
-     "reviews": 23683,
+     "reviews": 23687,
      "url": "https://www.hwahae.co.kr/goods/66749",
      "topics": [
       "Clears breakouts",
@@ -249,7 +249,7 @@
     },
     {
      "rank": 13,
-     "delta": -2,
+     "delta": 0,
      "isNew": false,
      "id": 2177164,
      "name": "리얼 히알루로닉 수딩 크림",
@@ -259,7 +259,7 @@
      "size": "80ml",
      "priceKrw": 28000,
      "rating": 4.64,
-     "reviews": 3965,
+     "reviews": 3966,
      "url": "https://www.hwahae.co.kr/goods/75134",
      "topics": [
       "Fixes inner dryness",
@@ -269,7 +269,7 @@
     },
     {
      "rank": 14,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 1939812,
      "name": "다이브인 저분자 히알루론산 수딩 크림",
@@ -279,7 +279,7 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
@@ -299,7 +299,7 @@
      "size": "24ml*10매",
      "priceKrw": 20000,
      "rating": 4.7,
-     "reviews": 7675,
+     "reviews": 7677,
      "url": "https://www.hwahae.co.kr/goods/79366",
      "topics": [
       "Clears breakouts",
@@ -319,7 +319,7 @@
      "size": "350ML",
      "priceKrw": 16900,
      "rating": 4.79,
-     "reviews": 2834,
+     "reviews": 2836,
      "url": "https://www.hwahae.co.kr/goods/74971",
      "topics": [
       "Spreads well",
@@ -331,26 +331,6 @@
      "rank": 17,
      "delta": 1,
      "isNew": false,
-     "id": 1779219,
-     "name": "1025 독도 토너",
-     "brand": "라운드랩",
-     "brandEn": "Round Lab",
-     "brandOfficial": true,
-     "size": "200ml",
-     "priceKrw": 15000,
-     "rating": 4.43,
-     "reviews": 95448,
-     "url": "https://www.hwahae.co.kr/goods/48436",
-     "topics": [
-      "Exfoliates well",
-      "No stinging",
-      "Improves texture"
-     ]
-    },
-    {
-     "rank": 18,
-     "delta": -1,
-     "isNew": false,
      "id": 1841507,
      "name": "세이프 미 릴리프 모이스처 클렌징 밀크",
      "brand": "메이크프렘",
@@ -359,12 +339,32 @@
      "size": "200ml",
      "priceKrw": 24000,
      "rating": 4.66,
-     "reviews": 9379,
+     "reviews": 9382,
      "url": "https://www.hwahae.co.kr/goods/6617",
      "topics": [
       "No breakouts",
       "Good for double cleansing",
       "Hydrating"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": -1,
+     "isNew": false,
+     "id": 1779219,
+     "name": "1025 독도 토너",
+     "brand": "라운드랩",
+     "brandEn": "Round Lab",
+     "brandOfficial": true,
+     "size": "200ml",
+     "priceKrw": 15000,
+     "rating": 4.43,
+     "reviews": 95450,
+     "url": "https://www.hwahae.co.kr/goods/48436",
+     "topics": [
+      "Exfoliates well",
+      "No stinging",
+      "Improves texture"
      ]
     },
     {
@@ -379,7 +379,7 @@
      "size": "150 ml / 5.07 fl. oz.",
      "priceKrw": 15000,
      "rating": 4.72,
-     "reviews": 15608,
+     "reviews": 15611,
      "url": "https://www.hwahae.co.kr/goods/80000",
      "topics": [
       "Hydrating",
@@ -399,7 +399,7 @@
      "size": "50ml",
      "priceKrw": 25000,
      "rating": 4.6,
-     "reviews": 30296,
+     "reviews": 30298,
      "url": "https://www.hwahae.co.kr/goods/42771",
      "topics": [
       "Fresh / light",
@@ -427,7 +427,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -437,7 +437,7 @@
     },
     {
      "rank": 2,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2197950,
      "name": "히알루로닉 붐 세럼 워터 드롭",
@@ -447,7 +447,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -457,7 +457,7 @@
     },
     {
      "rank": 3,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2078467,
      "name": "아토베리어365 크림",
@@ -467,7 +467,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -487,7 +487,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -497,7 +497,27 @@
     },
     {
      "rank": 5,
-     "delta": 0,
+     "delta": null,
+     "isNew": true,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 6,
+     "delta": -1,
      "isNew": false,
      "id": 2153055,
      "name": "리얼 히알루로닉 블루 100 앰플",
@@ -507,7 +527,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -516,8 +536,8 @@
      ]
     },
     {
-     "rank": 6,
-     "delta": 0,
+     "rank": 7,
+     "delta": -1,
      "isNew": false,
      "id": 1889139,
      "name": "아쿠아 스쿠알란 수분크림",
@@ -527,7 +547,7 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
@@ -536,8 +556,8 @@
      ]
     },
     {
-     "rank": 7,
-     "delta": 0,
+     "rank": 8,
+     "delta": -1,
      "isNew": false,
      "id": 2113285,
      "name": "PDRN 히알루론산 캡슐 100 세럼",
@@ -547,7 +567,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -556,8 +576,8 @@
      ]
     },
     {
-     "rank": 8,
-     "delta": 0,
+     "rank": 9,
+     "delta": -1,
      "isNew": false,
      "id": 2177164,
      "name": "리얼 히알루로닉 수딩 크림",
@@ -567,7 +587,7 @@
      "size": "80ml",
      "priceKrw": 28000,
      "rating": 4.64,
-     "reviews": 3965,
+     "reviews": 3966,
      "url": "https://www.hwahae.co.kr/goods/75134",
      "topics": [
       "Fixes inner dryness",
@@ -576,8 +596,8 @@
      ]
     },
     {
-     "rank": 9,
-     "delta": 0,
+     "rank": 10,
+     "delta": -1,
      "isNew": false,
      "id": 1939812,
      "name": "다이브인 저분자 히알루론산 수딩 크림",
@@ -587,7 +607,7 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
@@ -596,8 +616,8 @@
      ]
     },
     {
-     "rank": 10,
-     "delta": 0,
+     "rank": 11,
+     "delta": -1,
      "isNew": false,
      "id": 2131293,
      "name": "세라마이드 아토 로션",
@@ -607,7 +627,7 @@
      "size": "350ML",
      "priceKrw": 16900,
      "rating": 4.79,
-     "reviews": 2834,
+     "reviews": 2836,
      "url": "https://www.hwahae.co.kr/goods/74971",
      "topics": [
       "Spreads well",
@@ -616,8 +636,8 @@
      ]
     },
     {
-     "rank": 11,
-     "delta": 0,
+     "rank": 12,
+     "delta": -1,
      "isNew": false,
      "id": 1779219,
      "name": "1025 독도 토너",
@@ -627,7 +647,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -636,8 +656,8 @@
      ]
     },
     {
-     "rank": 12,
-     "delta": 0,
+     "rank": 13,
+     "delta": -1,
      "isNew": false,
      "id": 2130253,
      "name": "PDRN 히알루론산 100 수분 크림",
@@ -656,8 +676,48 @@
      ]
     },
     {
-     "rank": 13,
-     "delta": 1,
+     "rank": 14,
+     "delta": 0,
+     "isNew": false,
+     "id": 1984093,
+     "name": "다이브인 저분자 히알루론산 크림",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "80 ml / 2.70 fl. oz.",
+     "priceKrw": 21000,
+     "rating": 4.62,
+     "reviews": 26326,
+     "url": "https://www.hwahae.co.kr/goods/46604",
+     "topics": [
+      "Fresh / light",
+      "Lightweight",
+      "Oil-free feel"
+     ]
+    },
+    {
+     "rank": 15,
+     "delta": 0,
+     "isNew": false,
+     "id": 2001721,
+     "name": "아쿠아 스쿠알란 세럼",
+     "brand": "에스네이처",
+     "brandEn": "S.NATURE",
+     "brandOfficial": true,
+     "size": "50ml",
+     "priceKrw": 21000,
+     "rating": 4.71,
+     "reviews": 12088,
+     "url": "https://www.hwahae.co.kr/goods/80165",
+     "topics": [
+      "Bouncy / chewy texture",
+      "Fixes inner dryness",
+      "Non-irritating"
+     ]
+    },
+    {
+     "rank": 16,
+     "delta": -3,
      "isNew": false,
      "id": 2208708,
      "name": "301 수분 크림",
@@ -676,47 +736,7 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": -1,
-     "isNew": false,
-     "id": 1984093,
-     "name": "다이브인 저분자 히알루론산 크림",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "80 ml / 2.70 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.62,
-     "reviews": 26320,
-     "url": "https://www.hwahae.co.kr/goods/46604",
-     "topics": [
-      "Fresh / light",
-      "Lightweight",
-      "Oil-free feel"
-     ]
-    },
-    {
-     "rank": 15,
-     "delta": 1,
-     "isNew": false,
-     "id": 2001721,
-     "name": "아쿠아 스쿠알란 세럼",
-     "brand": "에스네이처",
-     "brandEn": "S.NATURE",
-     "brandOfficial": true,
-     "size": "50ml",
-     "priceKrw": 21000,
-     "rating": 4.71,
-     "reviews": 12087,
-     "url": "https://www.hwahae.co.kr/goods/80165",
-     "topics": [
-      "Bouncy / chewy texture",
-      "Fixes inner dryness",
-      "Non-irritating"
-     ]
-    },
-    {
-     "rank": 16,
+     "rank": 17,
      "delta": -1,
      "isNew": false,
      "id": 1998256,
@@ -727,7 +747,7 @@
      "size": "160ml",
      "priceKrw": 26000,
      "rating": 4.77,
-     "reviews": 3130,
+     "reviews": 3131,
      "url": "https://www.hwahae.co.kr/goods/74198",
      "topics": [
       "Soothing",
@@ -736,8 +756,8 @@
      ]
     },
     {
-     "rank": 17,
-     "delta": 0,
+     "rank": 18,
+     "delta": -1,
      "isNew": false,
      "id": 1977273,
      "name": "MLE 로션",
@@ -755,8 +775,28 @@
      ]
     },
     {
-     "rank": 18,
-     "delta": 0,
+     "rank": 19,
+     "delta": 4,
+     "isNew": false,
+     "id": 2205251,
+     "name": "다이브인 저분자 히알루론산 세럼",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "50 ml / 1.69 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.69,
+     "reviews": 87137,
+     "url": "https://www.hwahae.co.kr/goods/79352",
+     "topics": [
+      "Hydrating",
+      "Spreads well",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": -2,
      "isNew": false,
      "id": 2109968,
      "name": "녹두 모공 타이트업 수딩 크림",
@@ -766,50 +806,11 @@
      "size": "60ml",
      "priceKrw": 26000,
      "rating": 4.58,
-     "reviews": 6200,
+     "reviews": 6201,
      "url": "https://www.hwahae.co.kr/goods/65070",
      "topics": [
       "Pore care",
       "Lightweight"
-     ]
-    },
-    {
-     "rank": 19,
-     "delta": 3,
-     "isNew": false,
-     "id": 2208490,
-     "name": "네오샷 스킨 부스트 세럼",
-     "brand": "기픈",
-     "brandEn": "Gipeun",
-     "brandOfficial": false,
-     "size": "30ml",
-     "priceKrw": 59000,
-     "rating": 4.62,
-     "reviews": 633,
-     "url": "https://www.hwahae.co.kr/products/2208490",
-     "topics": [
-      "No stinging",
-      "Blends in"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
-     "isNew": false,
-     "id": 2017136,
-     "name": "초저분자 히아루론산 토너",
-     "brand": "이즈앤트리",
-     "brandEn": "Isntree",
-     "brandOfficial": true,
-     "size": "300 ml / 10.14 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.7,
-     "reviews": 9918,
-     "url": "https://www.hwahae.co.kr/goods/62479",
-     "topics": [
-      "Fixes inner dryness",
-      "Lightweight",
-      "Non-sticky"
      ]
     }
    ]
@@ -832,7 +833,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -852,7 +853,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -872,7 +873,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -892,7 +893,7 @@
      "size": "300 ml / 10.14 fl. oz.",
      "priceKrw": 21000,
      "rating": 4.7,
-     "reviews": 9918,
+     "reviews": 9919,
      "url": "https://www.hwahae.co.kr/goods/62479",
      "topics": [
       "Fixes inner dryness",
@@ -902,7 +903,27 @@
     },
     {
      "rank": 5,
-     "delta": 0,
+     "delta": 3,
+     "isNew": false,
+     "id": 2206999,
+     "name": "다이브인 저분자 히알루론산 토너",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "300 ml / 10.14 fl. oz.",
+     "priceKrw": 21000,
+     "rating": 4.8,
+     "reviews": 36775,
+     "url": "https://www.hwahae.co.kr/goods/79631",
+     "topics": [
+      "Absorbs well",
+      "Non-irritating",
+      "Hydrating"
+     ]
+    },
+    {
+     "rank": 6,
+     "delta": -1,
      "isNew": false,
      "id": 2055040,
      "name": "올리고 히알루론산 딥 토너",
@@ -911,30 +932,12 @@
      "brandOfficial": true,
      "size": "200ml",
      "priceKrw": 23000,
-     "rating": 4.72,
-     "reviews": 4607,
+     "rating": 4.73,
+     "reviews": 4608,
      "url": "https://www.hwahae.co.kr/goods/56227",
      "topics": [
       "Fixes inner dryness",
       "Moisturizing",
-      "Absorbs well"
-     ]
-    },
-    {
-     "rank": 6,
-     "delta": 0,
-     "isNew": false,
-     "id": 2162518,
-     "name": "피치마이크로바이옴 78 피디알엔 토너",
-     "brand": "라보레브",
-     "brandEn": "Raborebeu",
-     "brandOfficial": false,
-     "size": "125ml",
-     "priceKrw": 28000,
-     "rating": 4.62,
-     "reviews": 1950,
-     "url": "https://www.hwahae.co.kr/goods/73624",
-     "topics": [
       "Absorbs well"
      ]
     },
@@ -959,27 +962,25 @@
     },
     {
      "rank": 8,
-     "delta": 2,
+     "delta": -2,
      "isNew": false,
-     "id": 2206999,
-     "name": "다이브인 저분자 히알루론산 토너",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "300 ml / 10.14 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.8,
-     "reviews": 36768,
-     "url": "https://www.hwahae.co.kr/goods/79631",
+     "id": 2162518,
+     "name": "피치마이크로바이옴 78 피디알엔 토너",
+     "brand": "라보레브",
+     "brandEn": "Raborebeu",
+     "brandOfficial": false,
+     "size": "125ml",
+     "priceKrw": 28000,
+     "rating": 4.62,
+     "reviews": 1950,
+     "url": "https://www.hwahae.co.kr/goods/73624",
      "topics": [
-      "Absorbs well",
-      "Non-irritating",
-      "Hydrating"
+      "Absorbs well"
      ]
     },
     {
      "rank": 9,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2207006,
      "name": "데이 발란스 플러스 토너",
@@ -999,7 +1000,7 @@
     },
     {
      "rank": 10,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2147954,
      "name": "하이드라 셀 부스팅 토너",
@@ -1019,7 +1020,7 @@
     },
     {
      "rank": 11,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2004646,
      "name": "어성초 진정해 수분 토너",
@@ -1041,26 +1042,6 @@
      "rank": 12,
      "delta": 1,
      "isNew": false,
-     "id": 2086848,
-     "name": "판테놀 베리어 토너",
-     "brand": "코스노리",
-     "brandEn": "Koseunori",
-     "brandOfficial": false,
-     "size": "205ml / 6.93 fl. oz.",
-     "priceKrw": 22000,
-     "rating": 4.73,
-     "reviews": 3457,
-     "url": "https://www.hwahae.co.kr/goods/74958",
-     "topics": [
-      "Fixes inner dryness",
-      "Moisturizing",
-      "Strengthens skin barrier"
-     ]
-    },
-    {
-     "rank": 13,
-     "delta": 1,
-     "isNew": false,
      "id": 2108567,
      "name": "나인 토너",
      "brand": "닥터트웬티프로젝트",
@@ -1069,7 +1050,7 @@
      "size": "300ml",
      "priceKrw": 29000,
      "rating": 4.64,
-     "reviews": 2239,
+     "reviews": 2240,
      "url": "https://www.hwahae.co.kr/goods/70460",
      "topics": [
       "Absorbs well",
@@ -1078,8 +1059,28 @@
      ]
     },
     {
+     "rank": 13,
+     "delta": -1,
+     "isNew": false,
+     "id": 2086848,
+     "name": "판테놀 베리어 토너",
+     "brand": "코스노리",
+     "brandEn": "Koseunori",
+     "brandOfficial": false,
+     "size": "205ml / 6.93 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.73,
+     "reviews": 3458,
+     "url": "https://www.hwahae.co.kr/goods/74958",
+     "topics": [
+      "Fixes inner dryness",
+      "Moisturizing",
+      "Strengthens skin barrier"
+     ]
+    },
+    {
      "rank": 14,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2059964,
      "name": "리얼 히알루로닉 토너",
@@ -1099,7 +1100,7 @@
     },
     {
      "rank": 15,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2190667,
      "name": "레드 블레미쉬 10-시카 캡슐 수딩 토너",
@@ -1119,7 +1120,7 @@
     },
     {
      "rank": 16,
-     "delta": 2,
+     "delta": 0,
      "isNew": false,
      "id": 1835492,
      "name": "다이브인 저분자 히알루론산 스킨부스터",
@@ -1159,7 +1160,7 @@
     },
     {
      "rank": 18,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2088923,
      "name": "플로라글로우 로즈 리퀴드 마스크",
@@ -1179,7 +1180,7 @@
     },
     {
      "rank": 19,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2120353,
      "name": "녹두 모공 클리어링 라하 토너",
@@ -1189,7 +1190,7 @@
      "size": "265ml",
      "priceKrw": 24000,
      "rating": 4.61,
-     "reviews": 706,
+     "reviews": 707,
      "url": "https://www.hwahae.co.kr/goods/66717",
      "topics": [
       "Pore care",
@@ -1198,7 +1199,7 @@
     },
     {
      "rank": 20,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 1895356,
      "name": "어성초 카밍 토너 스킨 부스터",
@@ -1236,7 +1237,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -1256,7 +1257,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -1276,7 +1277,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -1296,7 +1297,7 @@
      "size": "50ml",
      "priceKrw": 21000,
      "rating": 4.71,
-     "reviews": 12087,
+     "reviews": 12088,
      "url": "https://www.hwahae.co.kr/goods/80165",
      "topics": [
       "Bouncy / chewy texture",
@@ -1306,7 +1307,27 @@
     },
     {
      "rank": 5,
-     "delta": 0,
+     "delta": 1,
+     "isNew": false,
+     "id": 2205251,
+     "name": "다이브인 저분자 히알루론산 세럼",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "50 ml / 1.69 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.69,
+     "reviews": 87137,
+     "url": "https://www.hwahae.co.kr/goods/79352",
+     "topics": [
+      "Hydrating",
+      "Spreads well",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 6,
+     "delta": -1,
      "isNew": false,
      "id": 2208490,
      "name": "네오샷 스킨 부스트 세럼",
@@ -1324,47 +1345,28 @@
      ]
     },
     {
-     "rank": 6,
-     "delta": 0,
-     "isNew": false,
-     "id": 2205251,
-     "name": "다이브인 저분자 히알루론산 세럼",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "50 ml / 1.69 fl. oz.",
-     "priceKrw": 22000,
-     "rating": 4.69,
-     "reviews": 87122,
-     "url": "https://www.hwahae.co.kr/goods/79352",
-     "topics": [
-      "Hydrating",
-      "Spreads well",
-      "Moisturizing"
-     ]
-    },
-    {
      "rank": 7,
-     "delta": 5,
+     "delta": 17,
      "isNew": false,
-     "id": 2207886,
-     "name": "바이오 리페어 앰플",
-     "brand": "시아베리어",
-     "brandEn": "Siaberieo",
-     "brandOfficial": false,
-     "size": "45ml",
-     "priceKrw": 40000,
-     "rating": 4.58,
-     "reviews": 617,
-     "url": "https://www.hwahae.co.kr/goods/79068",
+     "id": 2209011,
+     "name": "비타 토닝 캡슐 세럼 나이아신아마이드 5%",
+     "brand": "달바",
+     "brandEn": "d'Alba",
+     "brandOfficial": true,
+     "size": "100ml",
+     "priceKrw": 58000,
+     "rating": 4.72,
+     "reviews": 441,
+     "url": "https://www.hwahae.co.kr/products/2209011",
      "topics": [
-      "Comforting",
-      "Moisturizing"
+      "Has granules",
+      "Non-sticky",
+      "Blends in"
      ]
     },
     {
      "rank": 8,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2116913,
      "name": "니오좀 판테놀 5% 세럼",
@@ -1384,6 +1386,25 @@
     },
     {
      "rank": 9,
+     "delta": -2,
+     "isNew": false,
+     "id": 2207886,
+     "name": "바이오 리페어 앰플",
+     "brand": "시아베리어",
+     "brandEn": "Siaberieo",
+     "brandOfficial": false,
+     "size": "45ml",
+     "priceKrw": 40000,
+     "rating": 4.58,
+     "reviews": 617,
+     "url": "https://www.hwahae.co.kr/goods/79068",
+     "topics": [
+      "Comforting",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 10,
      "delta": -1,
      "isNew": false,
      "id": 1863382,
@@ -1394,7 +1415,7 @@
      "size": "50ml",
      "priceKrw": 43000,
      "rating": 4.64,
-     "reviews": 19265,
+     "reviews": 19273,
      "url": "https://www.hwahae.co.kr/goods/7130",
      "topics": [
       "Bouncy / chewy texture",
@@ -1402,7 +1423,7 @@
      ]
     },
     {
-     "rank": 10,
+     "rank": 11,
      "delta": -1,
      "isNew": false,
      "id": 1815817,
@@ -1413,7 +1434,7 @@
      "size": "30ml",
      "priceKrw": 43000,
      "rating": 4.53,
-     "reviews": 10022,
+     "reviews": 10024,
      "url": "https://www.hwahae.co.kr/goods/35355",
      "topics": [
       "Strengthens skin barrier",
@@ -1422,7 +1443,7 @@
      ]
     },
     {
-     "rank": 11,
+     "rank": 12,
      "delta": -1,
      "isNew": false,
      "id": 2041191,
@@ -1442,7 +1463,7 @@
      ]
     },
     {
-     "rank": 12,
+     "rank": 13,
      "delta": -1,
      "isNew": false,
      "id": 2096686,
@@ -1453,7 +1474,7 @@
      "size": "40ml",
      "priceKrw": 22000,
      "rating": 4.36,
-     "reviews": 9304,
+     "reviews": 9305,
      "url": "https://www.hwahae.co.kr/goods/64586",
      "topics": [
       "Clears breakouts",
@@ -1462,8 +1483,8 @@
      ]
     },
     {
-     "rank": 13,
-     "delta": 0,
+     "rank": 14,
+     "delta": -1,
      "isNew": false,
      "id": 2058844,
      "name": "더 6 펩타이드 스킨 부스터 세럼",
@@ -1473,7 +1494,7 @@
      "size": "150ml",
      "priceKrw": 23000,
      "rating": 4.64,
-     "reviews": 4503,
+     "reviews": 4508,
      "url": "https://www.hwahae.co.kr/goods/57560",
      "topics": [
       "Lightweight",
@@ -1482,8 +1503,8 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": 0,
+     "rank": 15,
+     "delta": -1,
      "isNew": false,
      "id": 1895405,
      "name": "아토베리어365 하이드로 에센스",
@@ -1493,7 +1514,7 @@
      "size": "200ML",
      "priceKrw": 32000,
      "rating": 4.63,
-     "reviews": 3051,
+     "reviews": 3052,
      "url": "https://www.hwahae.co.kr/goods/68399",
      "topics": [
       "Fixes inner dryness",
@@ -1502,8 +1523,8 @@
      ]
     },
     {
-     "rank": 15,
-     "delta": 1,
+     "rank": 16,
+     "delta": -1,
      "isNew": false,
      "id": 2148589,
      "name": "피디알엔 모공 탄력 세럼",
@@ -1513,7 +1534,7 @@
      "size": "40ml",
      "priceKrw": 22000,
      "rating": 4.52,
-     "reviews": 2194,
+     "reviews": 2195,
      "url": "https://www.hwahae.co.kr/goods/78735",
      "topics": [
       "Pore care",
@@ -1521,7 +1542,7 @@
      ]
     },
     {
-     "rank": 16,
+     "rank": 17,
      "delta": -1,
      "isNew": false,
      "id": 2197265,
@@ -1540,8 +1561,8 @@
      ]
     },
     {
-     "rank": 17,
-     "delta": 1,
+     "rank": 18,
+     "delta": -1,
      "isNew": false,
      "id": 1996087,
      "name": "노스카나인 트러블 세럼",
@@ -1551,31 +1572,12 @@
      "size": "30 ml / 1.01 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.51,
-     "reviews": 10524,
+     "reviews": 10525,
      "url": "https://www.hwahae.co.kr/goods/32201",
      "topics": [
       "Clears breakouts",
       "Soothing",
       "No flare-ups"
-     ]
-    },
-    {
-     "rank": 18,
-     "delta": -1,
-     "isNew": false,
-     "id": 2162685,
-     "name": "피치마이크로바이옴 84 이지에프 세럼",
-     "brand": "라보레브",
-     "brandEn": "Raborebeu",
-     "brandOfficial": false,
-     "size": "30ml",
-     "priceKrw": 34000,
-     "rating": 4.49,
-     "reviews": 2552,
-     "url": "https://www.hwahae.co.kr/goods/73631",
-     "topics": [
-      "Non-sticky",
-      "No pilling"
      ]
     },
     {
@@ -1590,7 +1592,7 @@
      "size": "30ml",
      "priceKrw": 6000,
      "rating": 4.46,
-     "reviews": 667,
+     "reviews": 668,
      "url": "https://www.hwahae.co.kr/goods/74005",
      "topics": [
       "Pore care"
@@ -1598,22 +1600,21 @@
     },
     {
      "rank": 20,
-     "delta": 0,
+     "delta": -2,
      "isNew": false,
-     "id": 2017019,
-     "name": "밸런스풀 시카 진정 세럼",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "50ml / 1.69 fl. oz.",
-     "priceKrw": 23000,
-     "rating": 4.62,
-     "reviews": 7132,
-     "url": "https://www.hwahae.co.kr/products/2017019",
+     "id": 2162685,
+     "name": "피치마이크로바이옴 84 이지에프 세럼",
+     "brand": "라보레브",
+     "brandEn": "Raborebeu",
+     "brandOfficial": false,
+     "size": "30ml",
+     "priceKrw": 34000,
+     "rating": 4.49,
+     "reviews": 2552,
+     "url": "https://www.hwahae.co.kr/goods/73631",
      "topics": [
-      "Soothing",
-      "Clears breakouts",
-      "Non-irritating"
+      "Non-sticky",
+      "No pilling"
      ]
     }
    ]
@@ -1636,7 +1637,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -1656,7 +1657,7 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
@@ -1676,7 +1677,7 @@
      "size": "80ml",
      "priceKrw": 28000,
      "rating": 4.64,
-     "reviews": 3965,
+     "reviews": 3966,
      "url": "https://www.hwahae.co.kr/goods/75134",
      "topics": [
       "Fixes inner dryness",
@@ -1696,7 +1697,7 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
@@ -1728,6 +1729,26 @@
      "rank": 6,
      "delta": 1,
      "isNew": false,
+     "id": 1984093,
+     "name": "다이브인 저분자 히알루론산 크림",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "80 ml / 2.70 fl. oz.",
+     "priceKrw": 21000,
+     "rating": 4.62,
+     "reviews": 26326,
+     "url": "https://www.hwahae.co.kr/goods/46604",
+     "topics": [
+      "Fresh / light",
+      "Lightweight",
+      "Oil-free feel"
+     ]
+    },
+    {
+     "rank": 7,
+     "delta": -1,
+     "isNew": false,
      "id": 2208708,
      "name": "301 수분 크림",
      "brand": "디오딧",
@@ -1745,26 +1766,6 @@
      ]
     },
     {
-     "rank": 7,
-     "delta": -1,
-     "isNew": false,
-     "id": 1984093,
-     "name": "다이브인 저분자 히알루론산 크림",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "80 ml / 2.70 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.62,
-     "reviews": 26320,
-     "url": "https://www.hwahae.co.kr/goods/46604",
-     "topics": [
-      "Fresh / light",
-      "Lightweight",
-      "Oil-free feel"
-     ]
-    },
-    {
      "rank": 8,
      "delta": 0,
      "isNew": false,
@@ -1776,7 +1777,7 @@
      "size": "60ml",
      "priceKrw": 26000,
      "rating": 4.58,
-     "reviews": 6200,
+     "reviews": 6201,
      "url": "https://www.hwahae.co.kr/goods/65070",
      "topics": [
       "Pore care",
@@ -1785,7 +1786,25 @@
     },
     {
      "rank": 9,
-     "delta": 0,
+     "delta": 1,
+     "isNew": false,
+     "id": 1977279,
+     "name": "MLE 크림",
+     "brand": "아토팜",
+     "brandEn": "Atopalm",
+     "brandOfficial": true,
+     "size": "160ml",
+     "priceKrw": 50000,
+     "rating": 4.76,
+     "reviews": 4843,
+     "url": "https://www.hwahae.co.kr/goods/74199",
+     "topics": [
+      "Non-irritating"
+     ]
+    },
+    {
+     "rank": 10,
+     "delta": -1,
      "isNew": false,
      "id": 1998036,
      "name": "레드 블레미쉬 클리어 수딩 크림",
@@ -1804,26 +1823,8 @@
      ]
     },
     {
-     "rank": 10,
-     "delta": 2,
-     "isNew": false,
-     "id": 1977279,
-     "name": "MLE 크림",
-     "brand": "아토팜",
-     "brandEn": "Atopalm",
-     "brandOfficial": true,
-     "size": "160ml",
-     "priceKrw": 50000,
-     "rating": 4.76,
-     "reviews": 4833,
-     "url": "https://www.hwahae.co.kr/goods/74199",
-     "topics": [
-      "Non-irritating"
-     ]
-    },
-    {
      "rank": 11,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2091467,
      "name": "진정한 수분크림",
@@ -1833,7 +1834,7 @@
      "size": "100ml",
      "priceKrw": 28000,
      "rating": 4.59,
-     "reviews": 6305,
+     "reviews": 6307,
      "url": "https://www.hwahae.co.kr/goods/61437",
      "topics": [
       "Lightweight",
@@ -1842,7 +1843,7 @@
     },
     {
      "rank": 12,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 1980809,
      "name": "판테놀 크림",
@@ -1852,7 +1853,7 @@
      "size": "80ml",
      "priceKrw": 38000,
      "rating": 4.73,
-     "reviews": 1611,
+     "reviews": 1612,
      "url": "https://www.hwahae.co.kr/goods/74206",
      "topics": [
       "Soothing",
@@ -1881,7 +1882,26 @@
     },
     {
      "rank": 14,
-     "delta": 1,
+     "delta": 9,
+     "isNew": false,
+     "id": 2209012,
+     "name": "비타 토닝 캡슐 크림 나이아신아마이드 5%",
+     "brand": "달바",
+     "brandEn": "d'Alba",
+     "brandOfficial": true,
+     "size": "55g",
+     "priceKrw": 58000,
+     "rating": 4.65,
+     "reviews": 1258,
+     "url": "https://www.hwahae.co.kr/products/2209012",
+     "topics": [
+      "Has granules",
+      "Spreads well"
+     ]
+    },
+    {
+     "rank": 15,
+     "delta": -1,
      "isNew": false,
      "id": 1995168,
      "name": "인테카 수딩 크림",
@@ -1900,46 +1920,7 @@
      ]
     },
     {
-     "rank": 15,
-     "delta": -1,
-     "isNew": false,
-     "id": 2186012,
-     "name": "더마 배리어 P 크림",
-     "brand": "셀린저",
-     "brandEn": "Selrinjeo",
-     "brandOfficial": false,
-     "size": "100ml",
-     "priceKrw": 32000,
-     "rating": 4.65,
-     "reviews": 1020,
-     "url": "https://www.hwahae.co.kr/products/2186012",
-     "topics": [
-      "Comforting",
-      "Blends in"
-     ]
-    },
-    {
      "rank": 16,
-     "delta": 0,
-     "isNew": false,
-     "id": 2195805,
-     "name": "레드 블레미쉬 클리어 수딩 크림 EX",
-     "brand": "닥터지",
-     "brandEn": "Dr.G",
-     "brandOfficial": true,
-     "size": "70ml",
-     "priceKrw": 38000,
-     "rating": 4.64,
-     "reviews": 43924,
-     "url": "https://www.hwahae.co.kr/products/2195805",
-     "topics": [
-      "Soothing",
-      "Non-sticky",
-      "Lightweight"
-     ]
-    },
-    {
-     "rank": 17,
      "delta": 1,
      "isNew": false,
      "id": 1896937,
@@ -1959,8 +1940,28 @@
      ]
     },
     {
-     "rank": 18,
+     "rank": 17,
      "delta": -1,
+     "isNew": false,
+     "id": 2195805,
+     "name": "레드 블레미쉬 클리어 수딩 크림 EX",
+     "brand": "닥터지",
+     "brandEn": "Dr.G",
+     "brandOfficial": true,
+     "size": "70ml",
+     "priceKrw": 38000,
+     "rating": 4.64,
+     "reviews": 43924,
+     "url": "https://www.hwahae.co.kr/products/2195805",
+     "topics": [
+      "Soothing",
+      "Non-sticky",
+      "Lightweight"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": 0,
      "isNew": false,
      "id": 1948859,
      "name": "모이스춰 닥터 크림",
@@ -1970,7 +1971,7 @@
      "size": "70ml",
      "priceKrw": 36000,
      "rating": 4.53,
-     "reviews": 3623,
+     "reviews": 3624,
      "url": "https://www.hwahae.co.kr/goods/74772",
      "topics": [
       "Lightweight",
@@ -1980,7 +1981,26 @@
     },
     {
      "rank": 19,
-     "delta": 0,
+     "delta": -4,
+     "isNew": false,
+     "id": 2186012,
+     "name": "더마 배리어 P 크림",
+     "brand": "셀린저",
+     "brandEn": "Selrinjeo",
+     "brandOfficial": false,
+     "size": "100ml",
+     "priceKrw": 32000,
+     "rating": 4.65,
+     "reviews": 1020,
+     "url": "https://www.hwahae.co.kr/products/2186012",
+     "topics": [
+      "Comforting",
+      "Blends in"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": -1,
      "isNew": false,
      "id": 2109850,
      "name": "시카비오 크림+",
@@ -1995,26 +2015,6 @@
      "topics": [
       "Soothing",
       "Moisturizing"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
-     "isNew": false,
-     "id": 1817580,
-     "name": "자작나무 수분 크림",
-     "brand": "라운드랩",
-     "brandEn": "Round Lab",
-     "brandOfficial": true,
-     "size": "80ml",
-     "priceKrw": 32000,
-     "rating": 4.38,
-     "reviews": 18480,
-     "url": "https://www.hwahae.co.kr/goods/78025",
-     "topics": [
-      "Oil-free feel",
-      "Fresh / light",
-      "Lightweight"
      ]
     }
    ]
@@ -2037,7 +2037,7 @@
      "size": "80ml",
      "priceKrw": 15000,
      "rating": 4.63,
-     "reviews": 51411,
+     "reviews": 51415,
      "url": "https://www.hwahae.co.kr/goods/78537",
      "topics": [
       "Has granules",
@@ -2057,7 +2057,7 @@
      "size": "120 ml",
      "priceKrw": 16000,
      "rating": 4.58,
-     "reviews": 7226,
+     "reviews": 7228,
      "url": "https://www.hwahae.co.kr/goods/70162",
      "topics": [
       "Slippery",
@@ -2097,7 +2097,7 @@
      "size": "200ml",
      "priceKrw": 24000,
      "rating": 4.66,
-     "reviews": 9379,
+     "reviews": 9382,
      "url": "https://www.hwahae.co.kr/goods/6617",
      "topics": [
       "No breakouts",
@@ -2117,7 +2117,7 @@
      "size": "150 ml / 5.07 fl. oz.",
      "priceKrw": 15000,
      "rating": 4.72,
-     "reviews": 15608,
+     "reviews": 15611,
      "url": "https://www.hwahae.co.kr/goods/80000",
      "topics": [
       "Hydrating",
@@ -2137,7 +2137,7 @@
      "size": "200ml",
      "priceKrw": 29000,
      "rating": 4.65,
-     "reviews": 14093,
+     "reviews": 14096,
      "url": "https://www.hwahae.co.kr/goods/32352",
      "topics": [
       "Lightweight",
@@ -2157,7 +2157,7 @@
      "size": "500ml",
      "priceKrw": 13900,
      "rating": 4.7,
-     "reviews": 11632,
+     "reviews": 11635,
      "url": "https://www.hwahae.co.kr/goods/78844",
      "topics": [
       "Non-irritating",
@@ -2176,7 +2176,7 @@
      "size": "80ml",
      "priceKrw": 12000,
      "rating": 4.71,
-     "reviews": 8092,
+     "reviews": 8095,
      "url": "https://www.hwahae.co.kr/goods/48278",
      "topics": [
       "Good for double cleansing",
@@ -2234,7 +2234,7 @@
      "size": "150ml",
      "priceKrw": 18000,
      "rating": 4.89,
-     "reviews": 400,
+     "reviews": 401,
      "url": "https://www.hwahae.co.kr/products/2208295",
      "topics": [
       "Comforting",
@@ -2273,7 +2273,7 @@
      "size": "300ml",
      "priceKrw": 34000,
      "rating": 4.54,
-     "reviews": 17838,
+     "reviews": 17839,
      "url": "https://www.hwahae.co.kr/goods/49050",
      "topics": [
       "No breakouts"
@@ -2291,7 +2291,7 @@
      "size": "150ml",
      "priceKrw": 16000,
      "rating": 4.63,
-     "reviews": 7913,
+     "reviews": 7914,
      "url": "https://www.hwahae.co.kr/goods/61962",
      "topics": [
       "Removes impurities"
@@ -2299,7 +2299,27 @@
     },
     {
      "rank": 15,
-     "delta": 0,
+     "delta": 10,
+     "isNew": false,
+     "id": 2208585,
+     "name": "말차 디퍼핑 클렌징 밀크",
+     "brand": "뉴베리프",
+     "brandEn": "Nyuberipeu",
+     "brandOfficial": false,
+     "size": "300ml",
+     "priceKrw": 59000,
+     "rating": 4.63,
+     "reviews": 380,
+     "url": "https://www.hwahae.co.kr/goods/79890",
+     "topics": [
+      "Moisturizing",
+      "Removes impurities",
+      "Hydrating"
+     ]
+    },
+    {
+     "rank": 16,
+     "delta": -1,
      "isNew": false,
      "id": 2008976,
      "name": "퓨어 소이빈 클렌징 오일",
@@ -2316,8 +2336,27 @@
      ]
     },
     {
-     "rank": 16,
+     "rank": 17,
      "delta": 0,
+     "isNew": false,
+     "id": 2119993,
+     "name": "리얼 딥 클렌징오일",
+     "brand": "프리메이",
+     "brandEn": "Peurimei",
+     "brandOfficial": false,
+     "size": "330ml",
+     "priceKrw": 36000,
+     "rating": 4.59,
+     "reviews": 2576,
+     "url": "https://www.hwahae.co.kr/goods/66747",
+     "topics": [
+      "Removes impurities",
+      "Lightweight"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": -2,
      "isNew": false,
      "id": 2204303,
      "name": "골든 호호바 10% 듀얼 마이크로 버블 클렌저",
@@ -2335,27 +2374,8 @@
      ]
     },
     {
-     "rank": 17,
-     "delta": 0,
-     "isNew": false,
-     "id": 2119993,
-     "name": "리얼 딥 클렌징오일",
-     "brand": "프리메이",
-     "brandEn": "Peurimei",
-     "brandOfficial": false,
-     "size": "330ml",
-     "priceKrw": 36000,
-     "rating": 4.59,
-     "reviews": 2573,
-     "url": "https://www.hwahae.co.kr/goods/66747",
-     "topics": [
-      "Removes impurities",
-      "Lightweight"
-     ]
-    },
-    {
-     "rank": 18,
-     "delta": 1,
+     "rank": 19,
+     "delta": -1,
      "isNew": false,
      "id": 1894554,
      "name": "닥터트럽 클렌징 밀크",
@@ -2365,7 +2385,7 @@
      "size": "200ml",
      "priceKrw": 17680,
      "rating": 4.54,
-     "reviews": 8035,
+     "reviews": 8036,
      "url": "https://www.hwahae.co.kr/goods/55683",
      "topics": [
       "No breakouts",
@@ -2373,7 +2393,7 @@
      ]
     },
     {
-     "rank": 19,
+     "rank": 20,
      "delta": -1,
      "isNew": false,
      "id": 1994808,
@@ -2384,28 +2404,10 @@
      "size": "150mL(5.07fl.oz.)",
      "priceKrw": 22000,
      "rating": 4.67,
-     "reviews": 6350,
+     "reviews": 6351,
      "url": "https://www.hwahae.co.kr/goods/58874",
      "topics": [
       "Has granules",
-      "Removes impurities"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
-     "isNew": false,
-     "id": 2123935,
-     "name": "세라마이드 유자 바이오 클렌징 오일",
-     "brand": "아이레시피",
-     "brandEn": "Airesipi",
-     "brandOfficial": false,
-     "size": "200ml",
-     "priceKrw": 26000,
-     "rating": 4.59,
-     "reviews": 2520,
-     "url": "https://www.hwahae.co.kr/goods/68832",
-     "topics": [
       "Removes impurities"
      ]
     }
@@ -2429,7 +2431,7 @@
      "size": "28g",
      "priceKrw": 4000,
      "rating": 4.75,
-     "reviews": 23683,
+     "reviews": 23687,
      "url": "https://www.hwahae.co.kr/goods/66749",
      "topics": [
       "Clears breakouts",
@@ -2449,7 +2451,7 @@
      "size": "24ml*10매",
      "priceKrw": 20000,
      "rating": 4.7,
-     "reviews": 7675,
+     "reviews": 7677,
      "url": "https://www.hwahae.co.kr/goods/79366",
      "topics": [
       "Clears breakouts",
@@ -2469,7 +2471,7 @@
      "size": "27 ml  / 0.91 fl. oz.",
      "priceKrw": 3000,
      "rating": 4.77,
-     "reviews": 18166,
+     "reviews": 18168,
      "url": "https://www.hwahae.co.kr/products/1904876",
      "topics": [
       "Fixes inner dryness",
@@ -2489,7 +2491,7 @@
      "size": "250g (60매)",
      "priceKrw": 26000,
      "rating": 4.47,
-     "reviews": 21139,
+     "reviews": 21140,
      "url": "https://www.hwahae.co.kr/goods/25110",
      "topics": [
       "Absorbs well",
@@ -2508,8 +2510,8 @@
      "brandOfficial": true,
      "size": "18ml",
      "priceKrw": 6000,
-     "rating": 4.63,
-     "reviews": 1130,
+     "rating": 4.64,
+     "reviews": 1129,
      "url": "https://www.hwahae.co.kr/goods/75161",
      "topics": [
       "Moisturizing",
@@ -2528,7 +2530,7 @@
      "size": "8.45fl. oz. 250ml / 70 pads",
      "priceKrw": 24000,
      "rating": 4.34,
-     "reviews": 3262,
+     "reviews": 3263,
      "url": "https://www.hwahae.co.kr/products/2133211",
      "topics": [
       "Clears breakouts",
@@ -2566,7 +2568,7 @@
      "size": "30ml*1매",
      "priceKrw": 3500,
      "rating": 4.7,
-     "reviews": 7497,
+     "reviews": 7498,
      "url": "https://www.hwahae.co.kr/goods/48019",
      "topics": [
       "Lots of essence"
@@ -2632,21 +2634,20 @@
     },
     {
      "rank": 12,
-     "delta": 2,
+     "delta": 3,
      "isNew": false,
-     "id": 2104116,
-     "name": "다시마 콜라겐 퍼밍 마스크",
-     "brand": "션리",
-     "brandEn": "Syeonri",
-     "brandOfficial": false,
-     "size": "23 mL",
-     "priceKrw": 4000,
-     "rating": 4.59,
-     "reviews": 1824,
-     "url": "https://www.hwahae.co.kr/goods/70363",
+     "id": 2090492,
+     "name": "아쿠아 오아시스 판테알란 카밍패드",
+     "brand": "에스네이처",
+     "brandEn": "S.NATURE",
+     "brandOfficial": true,
+     "size": "60매 / 190ml",
+     "priceKrw": 26000,
+     "rating": 4.73,
+     "reviews": 1215,
+     "url": "https://www.hwahae.co.kr/goods/74394",
      "topics": [
-      "Bouncy / chewy texture",
-      "Slippery",
+      "Non-irritating",
       "Moisturizing"
      ]
     },
@@ -2674,6 +2675,46 @@
      "rank": 14,
      "delta": -2,
      "isNew": false,
+     "id": 2104116,
+     "name": "다시마 콜라겐 퍼밍 마스크",
+     "brand": "션리",
+     "brandEn": "Syeonri",
+     "brandOfficial": false,
+     "size": "23 mL",
+     "priceKrw": 4000,
+     "rating": 4.59,
+     "reviews": 1824,
+     "url": "https://www.hwahae.co.kr/goods/70363",
+     "topics": [
+      "Bouncy / chewy texture",
+      "Slippery",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 15,
+     "delta": 1,
+     "isNew": false,
+     "id": 1848416,
+     "name": "마스크팩 [어성초]",
+     "brand": "다자연",
+     "brandEn": "Dajayeon",
+     "brandOfficial": false,
+     "size": "25ml",
+     "priceKrw": 1500,
+     "rating": 4.47,
+     "reviews": 26602,
+     "url": "https://www.hwahae.co.kr/goods/2720",
+     "topics": [
+      "Clears breakouts",
+      "No breakouts",
+      "Non-irritating"
+     ]
+    },
+    {
+     "rank": 16,
+     "delta": -2,
+     "isNew": false,
      "id": 2087347,
      "name": "워터핏 8중 수분착붙 패드",
      "brand": "리브엠",
@@ -2690,47 +2731,8 @@
      ]
     },
     {
-     "rank": 15,
-     "delta": 2,
-     "isNew": false,
-     "id": 2090492,
-     "name": "아쿠아 오아시스 판테알란 카밍패드",
-     "brand": "에스네이처",
-     "brandEn": "S.NATURE",
-     "brandOfficial": true,
-     "size": "60매 / 190ml",
-     "priceKrw": 26000,
-     "rating": 4.73,
-     "reviews": 1215,
-     "url": "https://www.hwahae.co.kr/goods/74394",
-     "topics": [
-      "Non-irritating",
-      "Moisturizing"
-     ]
-    },
-    {
-     "rank": 16,
-     "delta": -1,
-     "isNew": false,
-     "id": 1848416,
-     "name": "마스크팩 [어성초]",
-     "brand": "다자연",
-     "brandEn": "Dajayeon",
-     "brandOfficial": false,
-     "size": "25ml",
-     "priceKrw": 1500,
-     "rating": 4.47,
-     "reviews": 26603,
-     "url": "https://www.hwahae.co.kr/goods/2720",
-     "topics": [
-      "Clears breakouts",
-      "No breakouts",
-      "Non-irritating"
-     ]
-    },
-    {
      "rank": 17,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2021763,
      "name": "메타바이옴 토너 패드",
@@ -2769,25 +2771,6 @@
      "rank": 19,
      "delta": 1,
      "isNew": false,
-     "id": 1944734,
-     "name": "모델링마스크 컵팩 [진정약초]",
-     "brand": "린제이",
-     "brandEn": "Lindsay",
-     "brandOfficial": true,
-     "size": "28g 일회용",
-     "priceKrw": 4000,
-     "rating": 4.63,
-     "reviews": 3789,
-     "url": "https://www.hwahae.co.kr/goods/66738",
-     "topics": [
-      "Soothing",
-      "Clears breakouts"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 1,
-     "isNew": false,
      "id": 1949293,
      "name": "AC 딥 진정 모공 패드",
      "brand": "듀이트리",
@@ -2802,6 +2785,25 @@
       "Clears breakouts",
       "Soothing",
       "Lots of essence"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": -1,
+     "isNew": false,
+     "id": 1944734,
+     "name": "모델링마스크 컵팩 [진정약초]",
+     "brand": "린제이",
+     "brandEn": "Lindsay",
+     "brandOfficial": true,
+     "size": "28g 일회용",
+     "priceKrw": 4000,
+     "rating": 4.63,
+     "reviews": 3789,
+     "url": "https://www.hwahae.co.kr/goods/66738",
+     "topics": [
+      "Soothing",
+      "Clears breakouts"
      ]
     }
    ]
@@ -2824,7 +2826,7 @@
      "size": "50ml",
      "priceKrw": 25000,
      "rating": 4.6,
-     "reviews": 30296,
+     "reviews": 30298,
      "url": "https://www.hwahae.co.kr/goods/42771",
      "topics": [
       "Fresh / light",
@@ -2882,7 +2884,7 @@
      "size": "40ml",
      "priceKrw": 20000,
      "rating": 4.72,
-     "reviews": 5032,
+     "reviews": 5035,
      "url": "https://www.hwahae.co.kr/goods/80112",
      "topics": [
       "Non-irritating",
@@ -2901,7 +2903,7 @@
      "size": "60 ml / 2.02 fl. oz.",
      "priceKrw": 25000,
      "rating": 4.56,
-     "reviews": 9585,
+     "reviews": 9586,
      "url": "https://www.hwahae.co.kr/goods/76484",
      "topics": [
       "Non-irritating",
@@ -2910,7 +2912,27 @@
     },
     {
      "rank": 6,
-     "delta": 0,
+     "delta": 1,
+     "isNew": false,
+     "id": 2135341,
+     "name": "마데카소사이드 수분 선세럼 흔적 리페어 [SPF50+/PA++++]",
+     "brand": "메디힐",
+     "brandEn": "Mediheal",
+     "brandOfficial": true,
+     "size": "50g",
+     "priceKrw": 22000,
+     "rating": 4.6,
+     "reviews": 1232,
+     "url": "https://www.hwahae.co.kr/goods/76734",
+     "topics": [
+      "Absorbs well",
+      "Lightweight",
+      "Hydrating"
+     ]
+    },
+    {
+     "rank": 7,
+     "delta": -1,
      "isNew": false,
      "id": 2207668,
      "name": "선크림 [SPF50+/PA++++]",
@@ -2927,26 +2949,6 @@
      ]
     },
     {
-     "rank": 7,
-     "delta": 0,
-     "isNew": false,
-     "id": 2135341,
-     "name": "마데카소사이드 수분 선세럼 흔적 리페어 [SPF50+/PA++++]",
-     "brand": "메디힐",
-     "brandEn": "Mediheal",
-     "brandOfficial": true,
-     "size": "50g",
-     "priceKrw": 22000,
-     "rating": 4.6,
-     "reviews": 1230,
-     "url": "https://www.hwahae.co.kr/goods/76734",
-     "topics": [
-      "Absorbs well",
-      "Lightweight",
-      "Hydrating"
-     ]
-    },
-    {
      "rank": 8,
      "delta": 0,
      "isNew": false,
@@ -2958,7 +2960,7 @@
      "size": "50ml*2ea",
      "priceKrw": 22000,
      "rating": 4.51,
-     "reviews": 3296,
+     "reviews": 3298,
      "url": "https://www.hwahae.co.kr/goods/74655",
      "topics": [
       "Lightweight",
@@ -2996,7 +2998,7 @@
      "size": "50mL",
      "priceKrw": 29000,
      "rating": 4.25,
-     "reviews": 18091,
+     "reviews": 18090,
      "url": "https://www.hwahae.co.kr/goods/75633",
      "topics": [
       "No breakouts"
@@ -3014,7 +3016,7 @@
      "size": "50ml",
      "priceKrw": 25000,
      "rating": 4.53,
-     "reviews": 3719,
+     "reviews": 3720,
      "url": "https://www.hwahae.co.kr/products/1997242",
      "topics": [
       "Non-irritating",
@@ -3023,7 +3025,7 @@
     },
     {
      "rank": 12,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2026453,
      "name": "더마UV365 장벽수분 무기자차 선크림 [SPF50+/PA++++]",
@@ -3042,7 +3044,7 @@
     },
     {
      "rank": 13,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2203432,
      "name": "세라마이드 아토 선로션 [SPF50+/PA++++]",
@@ -3052,7 +3054,7 @@
      "size": "180ml",
      "priceKrw": 18000,
      "rating": 4.75,
-     "reviews": 231,
+     "reviews": 232,
      "url": "https://www.hwahae.co.kr/products/2203432",
      "topics": [
       "Comforting",
@@ -3072,7 +3074,7 @@
      "size": "50 mL / 1.69 fl. oz.",
      "priceKrw": 27000,
      "rating": 4.53,
-     "reviews": 857,
+     "reviews": 858,
      "url": "https://www.hwahae.co.kr/goods/75109",
      "topics": []
     },
@@ -3125,7 +3127,7 @@
      "size": "50 mL",
      "priceKrw": 25000,
      "rating": 4.61,
-     "reviews": 368,
+     "reviews": 369,
      "url": "https://www.hwahae.co.kr/goods/70928",
      "topics": [
       "Breathable",
@@ -3145,7 +3147,7 @@
      "size": "60ml",
      "priceKrw": 24000,
      "rating": 4.78,
-     "reviews": 223,
+     "reviews": 224,
      "url": "https://www.hwahae.co.kr/goods/76776",
      "topics": [
       "Comforting",
@@ -3154,26 +3156,7 @@
     },
     {
      "rank": 19,
-     "delta": 0,
-     "isNew": false,
-     "id": 2042504,
-     "name": "맑은쌀선크림 [SPF50+/PA++++]",
-     "brand": "조선미녀",
-     "brandEn": "Beauty of Joseon",
-     "brandOfficial": true,
-     "size": "50ml",
-     "priceKrw": 18000,
-     "rating": 4.6,
-     "reviews": 542,
-     "url": "https://www.hwahae.co.kr/products/2042504",
-     "topics": [
-      "Absorbs well",
-      "Hydrating"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
+     "delta": 1,
      "isNew": false,
      "id": 1938394,
      "name": "엔조이 슈퍼 마일드 선 에센스 [SPF50+/PA++++]",
@@ -3183,11 +3166,30 @@
      "size": "50ml",
      "priceKrw": 15000,
      "rating": 4.53,
-     "reviews": 4341,
+     "reviews": 4342,
      "url": "https://www.hwahae.co.kr/goods/78835",
      "topics": [
       "No white cast",
       "Non-irritating"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": -1,
+     "isNew": false,
+     "id": 2042504,
+     "name": "맑은쌀선크림 [SPF50+/PA++++]",
+     "brand": "조선미녀",
+     "brandEn": "Beauty of Joseon",
+     "brandOfficial": true,
+     "size": "50ml",
+     "priceKrw": 18000,
+     "rating": 4.6,
+     "reviews": 543,
+     "url": "https://www.hwahae.co.kr/products/2042504",
+     "topics": [
+      "Absorbs well",
+      "Hydrating"
      ]
     }
    ]
@@ -3267,12 +3269,11 @@
      "size": "12g",
      "priceKrw": 28000,
      "rating": 4.36,
-     "reviews": 290,
+     "reviews": 292,
      "url": "https://www.hwahae.co.kr/goods/59686",
      "topics": [
       "Non-irritating",
-      "No breakouts",
-      "Comforting"
+      "No breakouts"
      ]
     },
     {
@@ -3295,7 +3296,7 @@
     },
     {
      "rank": 6,
-     "delta": 2,
+     "delta": 0,
      "isNew": false,
      "id": 2020286,
      "name": "워터벨벳 쿠션 팩트[SPF50+/PA+++] [22호 베이지]",
@@ -3314,25 +3315,7 @@
     },
     {
      "rank": 7,
-     "delta": 0,
-     "isNew": false,
-     "id": 2160725,
-     "name": "킬커버 파운웨어 쿠션 [SPF40/PA++] [19C 라이트]",
-     "brand": "클리오",
-     "brandEn": "CLIO",
-     "brandOfficial": true,
-     "size": "15g*2",
-     "priceKrw": 36000,
-     "rating": 4.18,
-     "reviews": 93,
-     "url": "https://www.hwahae.co.kr/goods/73678",
-     "topics": [
-      "No darkening"
-     ]
-    },
-    {
-     "rank": 8,
-     "delta": -2,
+     "delta": 1,
      "isNew": false,
      "id": 2049747,
      "name": "라이트 글로우 쿠션 [SPF26/PA++] [23N 진저]",
@@ -3350,26 +3333,26 @@
      ]
     },
     {
-     "rank": 9,
-     "delta": 3,
+     "rank": 8,
+     "delta": -1,
      "isNew": false,
-     "id": 2092228,
-     "name": "블랙 쿠션 파운데이션 [SPF34/PA++] [17N1 아이보리]",
-     "brand": "헤라",
-     "brandEn": "Hera",
-     "brandOfficial": false,
-     "size": "15g*1개",
-     "priceKrw": 52000,
-     "rating": 4.45,
-     "reviews": 297,
-     "url": "https://www.hwahae.co.kr/goods/61558",
+     "id": 2160725,
+     "name": "킬커버 파운웨어 쿠션 [SPF40/PA++] [19C 라이트]",
+     "brand": "클리오",
+     "brandEn": "CLIO",
+     "brandOfficial": true,
+     "size": "15g*2",
+     "priceKrw": 36000,
+     "rating": 4.18,
+     "reviews": 93,
+     "url": "https://www.hwahae.co.kr/goods/73678",
      "topics": [
-      "Long-lasting"
+      "No darkening"
      ]
     },
     {
-     "rank": 10,
-     "delta": -1,
+     "rank": 9,
+     "delta": 1,
      "isNew": false,
      "id": 2138294,
      "name": "스킨 레이어 핏 쿠션 [SPF30/PA++] [22 아이보리]",
@@ -3381,6 +3364,24 @@
      "rating": 4.12,
      "reviews": 163,
      "url": "https://www.hwahae.co.kr/products/2138294",
+     "topics": [
+      "Long-lasting"
+     ]
+    },
+    {
+     "rank": 10,
+     "delta": -1,
+     "isNew": false,
+     "id": 2092228,
+     "name": "블랙 쿠션 파운데이션 [SPF34/PA++] [17N1 아이보리]",
+     "brand": "헤라",
+     "brandEn": "Hera",
+     "brandOfficial": false,
+     "size": "15g*1개",
+     "priceKrw": 52000,
+     "rating": 4.45,
+     "reviews": 297,
+     "url": "https://www.hwahae.co.kr/goods/61558",
      "topics": [
       "Long-lasting"
      ]
@@ -3407,7 +3408,7 @@
     },
     {
      "rank": 12,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2090098,
      "name": "뚜쉬 에끌라 글로우-팩트 쿠션 [SPF50+/PA++++] [BR10]",
@@ -3427,22 +3428,6 @@
      "rank": 13,
      "delta": 1,
      "isNew": false,
-     "id": 2146003,
-     "name": "커버 마스터 핑크 쿠션 [SPF40/PA++] [21 퓨어 아이보리]",
-     "brand": "힌스",
-     "brandEn": "Hinseu",
-     "brandOfficial": false,
-     "size": "11g",
-     "priceKrw": 34000,
-     "rating": 4.23,
-     "reviews": 302,
-     "url": "https://www.hwahae.co.kr/products/2146003",
-     "topics": []
-    },
-    {
-     "rank": 14,
-     "delta": -4,
-     "isNew": false,
      "id": 2115801,
      "name": "올리고 히알루론산 헬씨 크림 쿠션 [SPF50+/PA++++] [02 베이지]",
      "brand": "더랩바이블랑두",
@@ -3458,6 +3443,22 @@
       "No breakouts",
       "No flare-ups"
      ]
+    },
+    {
+     "rank": 14,
+     "delta": -1,
+     "isNew": false,
+     "id": 2146003,
+     "name": "커버 마스터 핑크 쿠션 [SPF40/PA++] [21 퓨어 아이보리]",
+     "brand": "힌스",
+     "brandEn": "Hinseu",
+     "brandOfficial": false,
+     "size": "11g",
+     "priceKrw": 34000,
+     "rating": 4.23,
+     "reviews": 302,
+     "url": "https://www.hwahae.co.kr/products/2146003",
+     "topics": []
     },
     {
      "rank": 15,
@@ -3479,7 +3480,25 @@
     },
     {
      "rank": 16,
-     "delta": 0,
+     "delta": 1,
+     "isNew": false,
+     "id": 2115807,
+     "name": "스킨톤 픽싱 커버 쿠션 [SPF40/PA++] [00 포슬린]",
+     "brand": "토니모리",
+     "brandEn": "TONYMOLY",
+     "brandOfficial": true,
+     "size": "13 g*2 ea",
+     "priceKrw": 39000,
+     "rating": 4.54,
+     "reviews": 13,
+     "url": "https://www.hwahae.co.kr/goods/71951",
+     "topics": [
+      "Long-lasting"
+     ]
+    },
+    {
+     "rank": 17,
+     "delta": -1,
      "isNew": false,
      "id": 2148949,
      "name": "에어리 포어 커버 쿠션 [SPF50+/PA++++] [01 에어리]",
@@ -3493,24 +3512,6 @@
      "url": "https://www.hwahae.co.kr/products/2148949",
      "topics": [
       "Lightweight",
-      "Long-lasting"
-     ]
-    },
-    {
-     "rank": 17,
-     "delta": 0,
-     "isNew": false,
-     "id": 2115807,
-     "name": "스킨톤 픽싱 커버 쿠션 [SPF40/PA++] [00 포슬린]",
-     "brand": "토니모리",
-     "brandEn": "TONYMOLY",
-     "brandOfficial": true,
-     "size": "13 g*2 ea",
-     "priceKrw": 39000,
-     "rating": 4.54,
-     "reviews": 13,
-     "url": "https://www.hwahae.co.kr/goods/71951",
-     "topics": [
       "Long-lasting"
      ]
     },
@@ -3607,7 +3608,7 @@
      "size": "13ml",
      "priceKrw": 3800,
      "rating": 4.63,
-     "reviews": 13130,
+     "reviews": 13129,
      "url": "https://www.hwahae.co.kr/goods/4700",
      "topics": [
       "Long-lasting"
@@ -3615,25 +3616,7 @@
     },
     {
      "rank": 3,
-     "delta": 0,
-     "isNew": false,
-     "id": 2208462,
-     "name": "라이트 베일 틴트 [봄라이트 웜톤]",
-     "brand": "미아엘",
-     "brandEn": "Miael",
-     "brandOfficial": false,
-     "size": "3.5ml",
-     "priceKrw": 17000,
-     "rating": 4.65,
-     "reviews": 201,
-     "url": "https://www.hwahae.co.kr/goods/79836",
-     "topics": [
-      "Breathable"
-     ]
-    },
-    {
-     "rank": 4,
-     "delta": 0,
+     "delta": 1,
      "isNew": false,
      "id": 2101095,
      "name": "대나무히알루 립에센스",
@@ -3652,6 +3635,24 @@
      ]
     },
     {
+     "rank": 4,
+     "delta": -1,
+     "isNew": false,
+     "id": 2208462,
+     "name": "라이트 베일 틴트 [봄라이트 웜톤]",
+     "brand": "미아엘",
+     "brandEn": "Miael",
+     "brandOfficial": false,
+     "size": "3.5ml",
+     "priceKrw": 17000,
+     "rating": 4.65,
+     "reviews": 201,
+     "url": "https://www.hwahae.co.kr/goods/79836",
+     "topics": [
+      "Breathable"
+     ]
+    },
+    {
      "rank": 5,
      "delta": 0,
      "isNew": false,
@@ -3663,7 +3664,7 @@
      "size": "10g / 0.35 oz.",
      "priceKrw": 18000,
      "rating": 4.6,
-     "reviews": 602,
+     "reviews": 603,
      "url": "https://www.hwahae.co.kr/goods/77990",
      "topics": []
     },
@@ -3679,7 +3680,7 @@
      "size": "20g",
      "priceKrw": 22000,
      "rating": 4.49,
-     "reviews": 3864,
+     "reviews": 3865,
      "url": "https://www.hwahae.co.kr/goods/22469",
      "topics": []
     },
@@ -3744,7 +3745,26 @@
     },
     {
      "rank": 10,
-     "delta": 0,
+     "delta": 2,
+     "isNew": false,
+     "id": 2075264,
+     "name": "진저슈가 오버나이트 립 마스크",
+     "brand": "에뛰드",
+     "brandEn": "Etude",
+     "brandOfficial": true,
+     "size": "23g",
+     "priceKrw": 11000,
+     "rating": 4.46,
+     "reviews": 1364,
+     "url": "https://www.hwahae.co.kr/goods/79772",
+     "topics": [
+      "Moisturizing",
+      "Hydrating"
+     ]
+    },
+    {
+     "rank": 11,
+     "delta": -1,
      "isNew": false,
      "id": 2160461,
      "name": "셀메이징 저분자 콜라겐 볼륨 립 에센스",
@@ -3763,45 +3783,8 @@
      ]
     },
     {
-     "rank": 11,
-     "delta": 0,
-     "isNew": false,
-     "id": 1997322,
-     "name": "잉크 무드 글로이 틴트 [005 어쩔체리]",
-     "brand": "페리페라",
-     "brandEn": "Peripera",
-     "brandOfficial": false,
-     "size": "4 g / Net Wt. 0.14 Oz.",
-     "priceKrw": 11000,
-     "rating": 4.55,
-     "reviews": 968,
-     "url": "https://www.hwahae.co.kr/products/1997322",
-     "topics": [
-      "Hydrating"
-     ]
-    },
-    {
      "rank": 12,
-     "delta": 0,
-     "isNew": false,
-     "id": 2075264,
-     "name": "진저슈가 오버나이트 립 마스크",
-     "brand": "에뛰드",
-     "brandEn": "Etude",
-     "brandOfficial": true,
-     "size": "23g",
-     "priceKrw": 11000,
-     "rating": 4.46,
-     "reviews": 1364,
-     "url": "https://www.hwahae.co.kr/goods/79772",
-     "topics": [
-      "Moisturizing",
-      "Hydrating"
-     ]
-    },
-    {
-     "rank": 13,
-     "delta": 0,
+     "delta": 1,
      "isNew": false,
      "id": 2100260,
      "name": "판테놀 립세라",
@@ -3820,8 +3803,8 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": 0,
+     "rank": 13,
+     "delta": 1,
      "isNew": false,
      "id": 1979445,
      "name": "립 트리트먼트 밤 [퓨어레드]",
@@ -3831,13 +3814,13 @@
      "size": "5g",
      "priceKrw": 19800,
      "rating": 4.34,
-     "reviews": 4137,
+     "reviews": 4138,
      "url": "https://www.hwahae.co.kr/goods/79419",
      "topics": []
     },
     {
-     "rank": 15,
-     "delta": 0,
+     "rank": 14,
+     "delta": 1,
      "isNew": false,
      "id": 2117708,
      "name": "립 트리트먼트 로즈립밤 [베리로즈]",
@@ -3851,6 +3834,26 @@
      "url": "https://www.hwahae.co.kr/goods/67939",
      "topics": [
       "Hydrating"
+     ]
+    },
+    {
+     "rank": 15,
+     "delta": 2,
+     "isNew": false,
+     "id": 2121361,
+     "name": "밀크 세라마이드 립 에센스",
+     "brand": "비플레인",
+     "brandEn": "beplain",
+     "brandOfficial": true,
+     "size": "10g",
+     "priceKrw": 11000,
+     "rating": 4.59,
+     "reviews": 209,
+     "url": "https://www.hwahae.co.kr/goods/68406",
+     "topics": [
+      "Hydrating",
+      "Non-sticky",
+      "Moisturizing"
      ]
     },
     {
@@ -3871,27 +3874,7 @@
     },
     {
      "rank": 17,
-     "delta": 0,
-     "isNew": false,
-     "id": 2121361,
-     "name": "밀크 세라마이드 립 에센스",
-     "brand": "비플레인",
-     "brandEn": "beplain",
-     "brandOfficial": true,
-     "size": "10g",
-     "priceKrw": 11000,
-     "rating": 4.59,
-     "reviews": 209,
-     "url": "https://www.hwahae.co.kr/goods/68406",
-     "topics": [
-      "Hydrating",
-      "Non-sticky",
-      "Moisturizing"
-     ]
-    },
-    {
-     "rank": 18,
-     "delta": 0,
+     "delta": 1,
      "isNew": false,
      "id": 2077408,
      "name": "바이옴 베리어 모이스처 멜팅 립밤 [로지]",
@@ -3909,7 +3892,7 @@
      ]
     },
     {
-     "rank": 19,
+     "rank": 18,
      "delta": 1,
      "isNew": false,
      "id": 2048814,
@@ -3927,8 +3910,8 @@
      ]
     },
     {
-     "rank": 20,
-     "delta": -1,
+     "rank": 19,
+     "delta": 1,
      "isNew": false,
      "id": 2093258,
      "name": "로 글로우 젤 틴트 [02 로 로즈]",
@@ -3941,6 +3924,25 @@
      "reviews": 176,
      "url": "https://www.hwahae.co.kr/products/2093258",
      "topics": [
+      "Hydrating"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": 1,
+     "isNew": false,
+     "id": 1996163,
+     "name": "(유니레버) 립 테라피 미니자 립밤 [오리지널]",
+     "brand": "바세린",
+     "brandEn": "Baserin",
+     "brandOfficial": false,
+     "size": "7g",
+     "priceKrw": 5000,
+     "rating": 4.61,
+     "reviews": 1195,
+     "url": "https://www.hwahae.co.kr/products/1996163",
+     "topics": [
+      "Moisturizing",
       "Hydrating"
      ]
     }
@@ -3964,7 +3966,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -3984,7 +3986,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -4004,7 +4006,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -4024,7 +4026,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -4034,7 +4036,27 @@
     },
     {
      "rank": 5,
-     "delta": 0,
+     "delta": null,
+     "isNew": true,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 6,
+     "delta": -1,
      "isNew": false,
      "id": 1950255,
      "name": "아쿠아 오아시스 토너",
@@ -4044,7 +4066,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -4053,8 +4075,8 @@
      ]
     },
     {
-     "rank": 6,
-     "delta": 0,
+     "rank": 7,
+     "delta": -1,
      "isNew": false,
      "id": 1889139,
      "name": "아쿠아 스쿠알란 수분크림",
@@ -4064,7 +4086,7 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
@@ -4073,8 +4095,8 @@
      ]
     },
     {
-     "rank": 7,
-     "delta": 0,
+     "rank": 8,
+     "delta": -1,
      "isNew": false,
      "id": 2153055,
      "name": "리얼 히알루로닉 블루 100 앰플",
@@ -4084,7 +4106,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -4093,8 +4115,8 @@
      ]
     },
     {
-     "rank": 8,
-     "delta": 0,
+     "rank": 9,
+     "delta": -1,
      "isNew": false,
      "id": 2131293,
      "name": "세라마이드 아토 로션",
@@ -4104,7 +4126,7 @@
      "size": "350ML",
      "priceKrw": 16900,
      "rating": 4.79,
-     "reviews": 2834,
+     "reviews": 2836,
      "url": "https://www.hwahae.co.kr/goods/74971",
      "topics": [
       "Spreads well",
@@ -4113,8 +4135,8 @@
      ]
     },
     {
-     "rank": 9,
-     "delta": 1,
+     "rank": 10,
+     "delta": -1,
      "isNew": false,
      "id": 2130253,
      "name": "PDRN 히알루론산 100 수분 크림",
@@ -4133,7 +4155,7 @@
      ]
     },
     {
-     "rank": 10,
+     "rank": 11,
      "delta": -1,
      "isNew": false,
      "id": 2116913,
@@ -4153,8 +4175,8 @@
      ]
     },
     {
-     "rank": 11,
-     "delta": 0,
+     "rank": 12,
+     "delta": -1,
      "isNew": false,
      "id": 1779219,
      "name": "1025 독도 토너",
@@ -4164,7 +4186,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -4173,8 +4195,8 @@
      ]
     },
     {
-     "rank": 12,
-     "delta": 0,
+     "rank": 13,
+     "delta": -1,
      "isNew": false,
      "id": 1939812,
      "name": "다이브인 저분자 히알루론산 수딩 크림",
@@ -4184,7 +4206,7 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
@@ -4193,8 +4215,8 @@
      ]
     },
     {
-     "rank": 13,
-     "delta": 0,
+     "rank": 14,
+     "delta": -1,
      "isNew": false,
      "id": 1998256,
      "name": "수딩 젤 로션",
@@ -4204,7 +4226,7 @@
      "size": "160ml",
      "priceKrw": 26000,
      "rating": 4.77,
-     "reviews": 3130,
+     "reviews": 3131,
      "url": "https://www.hwahae.co.kr/goods/74198",
      "topics": [
       "Soothing",
@@ -4213,28 +4235,8 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": 2,
-     "isNew": false,
-     "id": 2208708,
-     "name": "301 수분 크림",
-     "brand": "디오딧",
-     "brandEn": "Diodit",
-     "brandOfficial": false,
-     "size": "80ml",
-     "priceKrw": 36000,
-     "rating": 4.8,
-     "reviews": 482,
-     "url": "https://www.hwahae.co.kr/goods/79958",
-     "topics": [
-      "Fixes inner dryness",
-      "Spreads well",
-      "Moisturizing"
-     ]
-    },
-    {
      "rank": 15,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2190874,
      "name": "데일리 페이셜 크림",
@@ -4254,7 +4256,7 @@
     },
     {
      "rank": 16,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2001721,
      "name": "아쿠아 스쿠알란 세럼",
@@ -4264,7 +4266,7 @@
      "size": "50ml",
      "priceKrw": 21000,
      "rating": 4.71,
-     "reviews": 12087,
+     "reviews": 12088,
      "url": "https://www.hwahae.co.kr/goods/80165",
      "topics": [
       "Bouncy / chewy texture",
@@ -4274,7 +4276,47 @@
     },
     {
      "rank": 17,
-     "delta": 2,
+     "delta": -3,
+     "isNew": false,
+     "id": 2208708,
+     "name": "301 수분 크림",
+     "brand": "디오딧",
+     "brandEn": "Diodit",
+     "brandOfficial": false,
+     "size": "80ml",
+     "priceKrw": 36000,
+     "rating": 4.8,
+     "reviews": 482,
+     "url": "https://www.hwahae.co.kr/goods/79958",
+     "topics": [
+      "Fixes inner dryness",
+      "Spreads well",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": 0,
+     "isNew": false,
+     "id": 2085358,
+     "name": "아토베리어365 로션",
+     "brand": "에스트라",
+     "brandEn": "Aestura",
+     "brandOfficial": true,
+     "size": "150ml",
+     "priceKrw": 33000,
+     "rating": 4.68,
+     "reviews": 3038,
+     "url": "https://www.hwahae.co.kr/goods/72561",
+     "topics": [
+      "Moisturizing",
+      "Spreads well",
+      "Strengthens skin barrier"
+     ]
+    },
+    {
+     "rank": 19,
+     "delta": -2,
      "isNew": false,
      "id": 1977273,
      "name": "MLE 로션",
@@ -4292,63 +4334,23 @@
      ]
     },
     {
-     "rank": 18,
-     "delta": -1,
+     "rank": 20,
+     "delta": 2,
      "isNew": false,
-     "id": 2085358,
-     "name": "아토베리어365 로션",
-     "brand": "에스트라",
-     "brandEn": "Aestura",
-     "brandOfficial": true,
-     "size": "150ml",
-     "priceKrw": 33000,
-     "rating": 4.68,
-     "reviews": 3037,
-     "url": "https://www.hwahae.co.kr/goods/72561",
-     "topics": [
-      "Moisturizing",
-      "Spreads well",
-      "Strengthens skin barrier"
-     ]
-    },
-    {
-     "rank": 19,
-     "delta": -1,
-     "isNew": false,
-     "id": 1984093,
-     "name": "다이브인 저분자 히알루론산 크림",
+     "id": 2205251,
+     "name": "다이브인 저분자 히알루론산 세럼",
      "brand": "토리든",
      "brandEn": "Torriden",
      "brandOfficial": true,
-     "size": "80 ml / 2.70 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.62,
-     "reviews": 26320,
-     "url": "https://www.hwahae.co.kr/goods/46604",
+     "size": "50 ml / 1.69 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.69,
+     "reviews": 87137,
+     "url": "https://www.hwahae.co.kr/goods/79352",
      "topics": [
-      "Fresh / light",
-      "Lightweight",
-      "Oil-free feel"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
-     "isNew": false,
-     "id": 1890624,
-     "name": "캐롯 카로틴 카밍 워터 패드",
-     "brand": "스킨푸드",
-     "brandEn": "Seukinpudeu",
-     "brandOfficial": false,
-     "size": "250g (60매)",
-     "priceKrw": 26000,
-     "rating": 4.47,
-     "reviews": 21139,
-     "url": "https://www.hwahae.co.kr/goods/25110",
-     "topics": [
-      "Absorbs well",
-      "Moisturizing",
-      "Fixes inner dryness"
+      "Hydrating",
+      "Spreads well",
+      "Moisturizing"
      ]
     }
    ]
@@ -4371,7 +4373,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -4381,7 +4383,7 @@
     },
     {
      "rank": 2,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2197271,
      "name": "세라마이드 모찌 토너",
@@ -4391,7 +4393,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -4401,7 +4403,7 @@
     },
     {
      "rank": 3,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 1939812,
      "name": "다이브인 저분자 히알루론산 수딩 크림",
@@ -4411,7 +4413,7 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
@@ -4421,7 +4423,7 @@
     },
     {
      "rank": 4,
-     "delta": 2,
+     "delta": 0,
      "isNew": false,
      "id": 2197950,
      "name": "히알루로닉 붐 세럼 워터 드롭",
@@ -4431,7 +4433,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -4441,7 +4443,7 @@
     },
     {
      "rank": 5,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2153055,
      "name": "리얼 히알루로닉 블루 100 앰플",
@@ -4451,7 +4453,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -4461,7 +4463,7 @@
     },
     {
      "rank": 6,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2078467,
      "name": "아토베리어365 크림",
@@ -4471,7 +4473,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -4491,7 +4493,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -4511,7 +4513,7 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
@@ -4531,7 +4533,7 @@
      "size": "80 ml / 2.70 fl. oz.",
      "priceKrw": 21000,
      "rating": 4.62,
-     "reviews": 26320,
+     "reviews": 26326,
      "url": "https://www.hwahae.co.kr/goods/46604",
      "topics": [
       "Fresh / light",
@@ -4551,7 +4553,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -4571,7 +4573,7 @@
      "size": "300 ml / 10.14 fl. oz.",
      "priceKrw": 21000,
      "rating": 4.7,
-     "reviews": 9918,
+     "reviews": 9919,
      "url": "https://www.hwahae.co.kr/goods/62479",
      "topics": [
       "Fixes inner dryness",
@@ -4591,7 +4593,7 @@
      "size": "350ML",
      "priceKrw": 16900,
      "rating": 4.79,
-     "reviews": 2834,
+     "reviews": 2836,
      "url": "https://www.hwahae.co.kr/goods/74971",
      "topics": [
       "Spreads well",
@@ -4611,7 +4613,7 @@
      "size": "50ml",
      "priceKrw": 21000,
      "rating": 4.71,
-     "reviews": 12087,
+     "reviews": 12088,
      "url": "https://www.hwahae.co.kr/goods/80165",
      "topics": [
       "Bouncy / chewy texture",
@@ -4641,7 +4643,27 @@
     },
     {
      "rank": 15,
-     "delta": 0,
+     "delta": 3,
+     "isNew": false,
+     "id": 2206999,
+     "name": "다이브인 저분자 히알루론산 토너",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "300 ml / 10.14 fl. oz.",
+     "priceKrw": 21000,
+     "rating": 4.8,
+     "reviews": 36775,
+     "url": "https://www.hwahae.co.kr/goods/79631",
+     "topics": [
+      "Absorbs well",
+      "Non-irritating",
+      "Hydrating"
+     ]
+    },
+    {
+     "rank": 16,
+     "delta": -1,
      "isNew": false,
      "id": 2130253,
      "name": "PDRN 히알루론산 100 수분 크림",
@@ -4660,8 +4682,28 @@
      ]
     },
     {
-     "rank": 16,
-     "delta": 0,
+     "rank": 17,
+     "delta": 13,
+     "isNew": false,
+     "id": 2205251,
+     "name": "다이브인 저분자 히알루론산 세럼",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "50 ml / 1.69 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.69,
+     "reviews": 87137,
+     "url": "https://www.hwahae.co.kr/goods/79352",
+     "topics": [
+      "Hydrating",
+      "Spreads well",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": -2,
      "isNew": false,
      "id": 1998036,
      "name": "레드 블레미쉬 클리어 수딩 크림",
@@ -4680,8 +4722,28 @@
      ]
     },
     {
-     "rank": 17,
-     "delta": 0,
+     "rank": 19,
+     "delta": null,
+     "isNew": true,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": -3,
      "isNew": false,
      "id": 2109968,
      "name": "녹두 모공 타이트업 수딩 크림",
@@ -4691,71 +4753,11 @@
      "size": "60ml",
      "priceKrw": 26000,
      "rating": 4.58,
-     "reviews": 6200,
+     "reviews": 6201,
      "url": "https://www.hwahae.co.kr/goods/65070",
      "topics": [
       "Pore care",
       "Lightweight"
-     ]
-    },
-    {
-     "rank": 18,
-     "delta": 0,
-     "isNew": false,
-     "id": 2206999,
-     "name": "다이브인 저분자 히알루론산 토너",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "300 ml / 10.14 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.8,
-     "reviews": 36768,
-     "url": "https://www.hwahae.co.kr/goods/79631",
-     "topics": [
-      "Absorbs well",
-      "Non-irritating",
-      "Hydrating"
-     ]
-    },
-    {
-     "rank": 19,
-     "delta": 0,
-     "isNew": false,
-     "id": 1890624,
-     "name": "캐롯 카로틴 카밍 워터 패드",
-     "brand": "스킨푸드",
-     "brandEn": "Seukinpudeu",
-     "brandOfficial": false,
-     "size": "250g (60매)",
-     "priceKrw": 26000,
-     "rating": 4.47,
-     "reviews": 21139,
-     "url": "https://www.hwahae.co.kr/goods/25110",
-     "topics": [
-      "Absorbs well",
-      "Moisturizing",
-      "Fixes inner dryness"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
-     "isNew": false,
-     "id": 2177164,
-     "name": "리얼 히알루로닉 수딩 크림",
-     "brand": "웰라쥬",
-     "brandEn": "Wellage",
-     "brandOfficial": true,
-     "size": "80ml",
-     "priceKrw": 28000,
-     "rating": 4.64,
-     "reviews": 3965,
-     "url": "https://www.hwahae.co.kr/goods/75134",
-     "topics": [
-      "Fixes inner dryness",
-      "Lightweight",
-      "Fresh / light"
      ]
     }
    ]
@@ -4778,7 +4780,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -4798,7 +4800,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -4818,7 +4820,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -4838,7 +4840,7 @@
      "size": "80ml",
      "priceKrw": 28000,
      "rating": 4.64,
-     "reviews": 3965,
+     "reviews": 3966,
      "url": "https://www.hwahae.co.kr/goods/75134",
      "topics": [
       "Fixes inner dryness",
@@ -4858,7 +4860,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -4868,7 +4870,27 @@
     },
     {
      "rank": 6,
-     "delta": 1,
+     "delta": null,
+     "isNew": true,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 7,
+     "delta": -1,
      "isNew": false,
      "id": 2197271,
      "name": "세라마이드 모찌 토너",
@@ -4878,7 +4900,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -4887,7 +4909,7 @@
      ]
     },
     {
-     "rank": 7,
+     "rank": 8,
      "delta": -1,
      "isNew": false,
      "id": 1889139,
@@ -4898,32 +4920,12 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
       "Fixes inner dryness",
       "No pilling"
-     ]
-    },
-    {
-     "rank": 8,
-     "delta": 0,
-     "isNew": false,
-     "id": 1939812,
-     "name": "다이브인 저분자 히알루론산 수딩 크림",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "100 ml / 3.38 fl. oz.",
-     "priceKrw": 24000,
-     "rating": 4.68,
-     "reviews": 27645,
-     "url": "https://www.hwahae.co.kr/goods/69344",
-     "topics": [
-      "Fresh / light",
-      "Lightweight",
-      "Oil-free feel"
      ]
     },
     {
@@ -4938,7 +4940,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -4948,7 +4950,27 @@
     },
     {
      "rank": 10,
-     "delta": 0,
+     "delta": -2,
+     "isNew": false,
+     "id": 1939812,
+     "name": "다이브인 저분자 히알루론산 수딩 크림",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "100 ml / 3.38 fl. oz.",
+     "priceKrw": 24000,
+     "rating": 4.68,
+     "reviews": 27649,
+     "url": "https://www.hwahae.co.kr/goods/69344",
+     "topics": [
+      "Fresh / light",
+      "Lightweight",
+      "Oil-free feel"
+     ]
+    },
+    {
+     "rank": 11,
+     "delta": -1,
      "isNew": false,
      "id": 2131293,
      "name": "세라마이드 아토 로션",
@@ -4958,7 +4980,7 @@
      "size": "350ML",
      "priceKrw": 16900,
      "rating": 4.79,
-     "reviews": 2834,
+     "reviews": 2836,
      "url": "https://www.hwahae.co.kr/goods/74971",
      "topics": [
       "Spreads well",
@@ -4967,8 +4989,8 @@
      ]
     },
     {
-     "rank": 11,
-     "delta": 0,
+     "rank": 12,
+     "delta": -1,
      "isNew": false,
      "id": 1779219,
      "name": "1025 독도 토너",
@@ -4978,7 +5000,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -4987,8 +5009,8 @@
      ]
     },
     {
-     "rank": 12,
-     "delta": 0,
+     "rank": 13,
+     "delta": -1,
      "isNew": false,
      "id": 2130253,
      "name": "PDRN 히알루론산 100 수분 크림",
@@ -5007,8 +5029,48 @@
      ]
     },
     {
-     "rank": 13,
+     "rank": 14,
+     "delta": 2,
+     "isNew": false,
+     "id": 1984093,
+     "name": "다이브인 저분자 히알루론산 크림",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "80 ml / 2.70 fl. oz.",
+     "priceKrw": 21000,
+     "rating": 4.62,
+     "reviews": 26326,
+     "url": "https://www.hwahae.co.kr/goods/46604",
+     "topics": [
+      "Fresh / light",
+      "Lightweight",
+      "Oil-free feel"
+     ]
+    },
+    {
+     "rank": 15,
      "delta": 0,
+     "isNew": false,
+     "id": 2001721,
+     "name": "아쿠아 스쿠알란 세럼",
+     "brand": "에스네이처",
+     "brandEn": "S.NATURE",
+     "brandOfficial": true,
+     "size": "50ml",
+     "priceKrw": 21000,
+     "rating": 4.71,
+     "reviews": 12088,
+     "url": "https://www.hwahae.co.kr/goods/80165",
+     "topics": [
+      "Bouncy / chewy texture",
+      "Fixes inner dryness",
+      "Non-irritating"
+     ]
+    },
+    {
+     "rank": 16,
+     "delta": -3,
      "isNew": false,
      "id": 1998256,
      "name": "수딩 젤 로션",
@@ -5018,7 +5080,7 @@
      "size": "160ml",
      "priceKrw": 26000,
      "rating": 4.77,
-     "reviews": 3130,
+     "reviews": 3131,
      "url": "https://www.hwahae.co.kr/goods/74198",
      "topics": [
       "Soothing",
@@ -5027,8 +5089,8 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": 2,
+     "rank": 17,
+     "delta": -3,
      "isNew": false,
      "id": 2208708,
      "name": "301 수분 크림",
@@ -5047,48 +5109,8 @@
      ]
     },
     {
-     "rank": 15,
-     "delta": 0,
-     "isNew": false,
-     "id": 2001721,
-     "name": "아쿠아 스쿠알란 세럼",
-     "brand": "에스네이처",
-     "brandEn": "S.NATURE",
-     "brandOfficial": true,
-     "size": "50ml",
-     "priceKrw": 21000,
-     "rating": 4.71,
-     "reviews": 12087,
-     "url": "https://www.hwahae.co.kr/goods/80165",
-     "topics": [
-      "Bouncy / chewy texture",
-      "Fixes inner dryness",
-      "Non-irritating"
-     ]
-    },
-    {
-     "rank": 16,
-     "delta": -2,
-     "isNew": false,
-     "id": 1984093,
-     "name": "다이브인 저분자 히알루론산 크림",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "80 ml / 2.70 fl. oz.",
-     "priceKrw": 21000,
-     "rating": 4.62,
-     "reviews": 26320,
-     "url": "https://www.hwahae.co.kr/goods/46604",
-     "topics": [
-      "Fresh / light",
-      "Lightweight",
-      "Oil-free feel"
-     ]
-    },
-    {
-     "rank": 17,
-     "delta": 0,
+     "rank": 18,
+     "delta": -1,
      "isNew": false,
      "id": 1977273,
      "name": "MLE 로션",
@@ -5106,47 +5128,8 @@
      ]
     },
     {
-     "rank": 18,
-     "delta": 0,
-     "isNew": false,
-     "id": 2109968,
-     "name": "녹두 모공 타이트업 수딩 크림",
-     "brand": "비플레인",
-     "brandEn": "beplain",
-     "brandOfficial": true,
-     "size": "60ml",
-     "priceKrw": 26000,
-     "rating": 4.58,
-     "reviews": 6200,
-     "url": "https://www.hwahae.co.kr/goods/65070",
-     "topics": [
-      "Pore care",
-      "Lightweight"
-     ]
-    },
-    {
      "rank": 19,
-     "delta": 0,
-     "isNew": false,
-     "id": 2085358,
-     "name": "아토베리어365 로션",
-     "brand": "에스트라",
-     "brandEn": "Aestura",
-     "brandOfficial": true,
-     "size": "150ml",
-     "priceKrw": 33000,
-     "rating": 4.68,
-     "reviews": 3037,
-     "url": "https://www.hwahae.co.kr/goods/72561",
-     "topics": [
-      "Moisturizing",
-      "Spreads well",
-      "Strengthens skin barrier"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 2,
+     "delta": 1,
      "isNew": false,
      "id": 2205251,
      "name": "다이브인 저분자 히알루론산 세럼",
@@ -5156,12 +5139,31 @@
      "size": "50 ml / 1.69 fl. oz.",
      "priceKrw": 22000,
      "rating": 4.69,
-     "reviews": 87122,
+     "reviews": 87137,
      "url": "https://www.hwahae.co.kr/goods/79352",
      "topics": [
       "Hydrating",
       "Spreads well",
       "Moisturizing"
+     ]
+    },
+    {
+     "rank": 20,
+     "delta": -2,
+     "isNew": false,
+     "id": 2109968,
+     "name": "녹두 모공 타이트업 수딩 크림",
+     "brand": "비플레인",
+     "brandEn": "beplain",
+     "brandOfficial": true,
+     "size": "60ml",
+     "priceKrw": 26000,
+     "rating": 4.58,
+     "reviews": 6201,
+     "url": "https://www.hwahae.co.kr/goods/65070",
+     "topics": [
+      "Pore care",
+      "Lightweight"
      ]
     }
    ]
@@ -5184,7 +5186,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -5204,7 +5206,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -5224,7 +5226,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -5244,7 +5246,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -5254,7 +5256,27 @@
     },
     {
      "rank": 5,
-     "delta": 0,
+     "delta": null,
+     "isNew": true,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 6,
+     "delta": -1,
      "isNew": false,
      "id": 2153055,
      "name": "리얼 히알루로닉 블루 100 앰플",
@@ -5264,7 +5286,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -5273,8 +5295,8 @@
      ]
     },
     {
-     "rank": 6,
-     "delta": 0,
+     "rank": 7,
+     "delta": -1,
      "isNew": false,
      "id": 2177164,
      "name": "리얼 히알루로닉 수딩 크림",
@@ -5284,7 +5306,7 @@
      "size": "80ml",
      "priceKrw": 28000,
      "rating": 4.64,
-     "reviews": 3965,
+     "reviews": 3966,
      "url": "https://www.hwahae.co.kr/goods/75134",
      "topics": [
       "Fixes inner dryness",
@@ -5293,8 +5315,8 @@
      ]
     },
     {
-     "rank": 7,
-     "delta": 0,
+     "rank": 8,
+     "delta": -1,
      "isNew": false,
      "id": 1889139,
      "name": "아쿠아 스쿠알란 수분크림",
@@ -5304,7 +5326,7 @@
      "size": "60ml",
      "priceKrw": 28000,
      "rating": 4.58,
-     "reviews": 44025,
+     "reviews": 44032,
      "url": "https://www.hwahae.co.kr/goods/45194",
      "topics": [
       "Glowy",
@@ -5313,8 +5335,8 @@
      ]
     },
     {
-     "rank": 8,
-     "delta": 0,
+     "rank": 9,
+     "delta": -1,
      "isNew": false,
      "id": 2113285,
      "name": "PDRN 히알루론산 캡슐 100 세럼",
@@ -5324,7 +5346,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -5333,8 +5355,8 @@
      ]
     },
     {
-     "rank": 9,
-     "delta": 0,
+     "rank": 10,
+     "delta": -1,
      "isNew": false,
      "id": 1939812,
      "name": "다이브인 저분자 히알루론산 수딩 크림",
@@ -5344,7 +5366,7 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
@@ -5353,8 +5375,8 @@
      ]
     },
     {
-     "rank": 10,
-     "delta": 0,
+     "rank": 11,
+     "delta": -1,
      "isNew": false,
      "id": 2131293,
      "name": "세라마이드 아토 로션",
@@ -5364,7 +5386,7 @@
      "size": "350ML",
      "priceKrw": 16900,
      "rating": 4.79,
-     "reviews": 2834,
+     "reviews": 2836,
      "url": "https://www.hwahae.co.kr/goods/74971",
      "topics": [
       "Spreads well",
@@ -5373,8 +5395,8 @@
      ]
     },
     {
-     "rank": 11,
-     "delta": 0,
+     "rank": 12,
+     "delta": -1,
      "isNew": false,
      "id": 2130253,
      "name": "PDRN 히알루론산 100 수분 크림",
@@ -5393,8 +5415,8 @@
      ]
     },
     {
-     "rank": 12,
-     "delta": 0,
+     "rank": 13,
+     "delta": -1,
      "isNew": false,
      "id": 1779219,
      "name": "1025 독도 토너",
@@ -5404,7 +5426,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -5413,8 +5435,28 @@
      ]
     },
     {
-     "rank": 13,
+     "rank": 14,
      "delta": 0,
+     "isNew": false,
+     "id": 2001721,
+     "name": "아쿠아 스쿠알란 세럼",
+     "brand": "에스네이처",
+     "brandEn": "S.NATURE",
+     "brandOfficial": true,
+     "size": "50ml",
+     "priceKrw": 21000,
+     "rating": 4.71,
+     "reviews": 12088,
+     "url": "https://www.hwahae.co.kr/goods/80165",
+     "topics": [
+      "Bouncy / chewy texture",
+      "Fixes inner dryness",
+      "Non-irritating"
+     ]
+    },
+    {
+     "rank": 15,
+     "delta": -2,
      "isNew": false,
      "id": 2208708,
      "name": "301 수분 크림",
@@ -5433,27 +5475,7 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": 2,
-     "isNew": false,
-     "id": 2001721,
-     "name": "아쿠아 스쿠알란 세럼",
-     "brand": "에스네이처",
-     "brandEn": "S.NATURE",
-     "brandOfficial": true,
-     "size": "50ml",
-     "priceKrw": 21000,
-     "rating": 4.71,
-     "reviews": 12087,
-     "url": "https://www.hwahae.co.kr/goods/80165",
-     "topics": [
-      "Bouncy / chewy texture",
-      "Fixes inner dryness",
-      "Non-irritating"
-     ]
-    },
-    {
-     "rank": 15,
+     "rank": 16,
      "delta": -1,
      "isNew": false,
      "id": 1984093,
@@ -5464,7 +5486,7 @@
      "size": "80 ml / 2.70 fl. oz.",
      "priceKrw": 21000,
      "rating": 4.62,
-     "reviews": 26320,
+     "reviews": 26326,
      "url": "https://www.hwahae.co.kr/goods/46604",
      "topics": [
       "Fresh / light",
@@ -5473,8 +5495,28 @@
      ]
     },
     {
-     "rank": 16,
-     "delta": -1,
+     "rank": 17,
+     "delta": 2,
+     "isNew": false,
+     "id": 2205251,
+     "name": "다이브인 저분자 히알루론산 세럼",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "50 ml / 1.69 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.69,
+     "reviews": 87137,
+     "url": "https://www.hwahae.co.kr/goods/79352",
+     "topics": [
+      "Hydrating",
+      "Spreads well",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": -2,
      "isNew": false,
      "id": 1998256,
      "name": "수딩 젤 로션",
@@ -5484,7 +5526,7 @@
      "size": "160ml",
      "priceKrw": 26000,
      "rating": 4.77,
-     "reviews": 3130,
+     "reviews": 3131,
      "url": "https://www.hwahae.co.kr/goods/74198",
      "topics": [
       "Soothing",
@@ -5493,8 +5535,8 @@
      ]
     },
     {
-     "rank": 17,
-     "delta": 1,
+     "rank": 19,
+     "delta": -2,
      "isNew": false,
      "id": 1977273,
      "name": "MLE 로션",
@@ -5512,8 +5554,8 @@
      ]
     },
     {
-     "rank": 18,
-     "delta": -1,
+     "rank": 20,
+     "delta": -2,
      "isNew": false,
      "id": 2109968,
      "name": "녹두 모공 타이트업 수딩 크림",
@@ -5523,50 +5565,11 @@
      "size": "60ml",
      "priceKrw": 26000,
      "rating": 4.58,
-     "reviews": 6200,
+     "reviews": 6201,
      "url": "https://www.hwahae.co.kr/goods/65070",
      "topics": [
       "Pore care",
       "Lightweight"
-     ]
-    },
-    {
-     "rank": 19,
-     "delta": 3,
-     "isNew": false,
-     "id": 2205251,
-     "name": "다이브인 저분자 히알루론산 세럼",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "50 ml / 1.69 fl. oz.",
-     "priceKrw": 22000,
-     "rating": 4.69,
-     "reviews": 87122,
-     "url": "https://www.hwahae.co.kr/goods/79352",
-     "topics": [
-      "Hydrating",
-      "Spreads well",
-      "Moisturizing"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 0,
-     "isNew": false,
-     "id": 2208490,
-     "name": "네오샷 스킨 부스트 세럼",
-     "brand": "기픈",
-     "brandEn": "Gipeun",
-     "brandOfficial": false,
-     "size": "30ml",
-     "priceKrw": 59000,
-     "rating": 4.62,
-     "reviews": 633,
-     "url": "https://www.hwahae.co.kr/products/2208490",
-     "topics": [
-      "No stinging",
-      "Blends in"
      ]
     }
    ]
@@ -5589,7 +5592,7 @@
      "size": "1.69 fl. oz. 50 mL",
      "priceKrw": 32000,
      "rating": 4.64,
-     "reviews": 3445,
+     "reviews": 3444,
      "url": "https://www.hwahae.co.kr/goods/77974",
      "topics": [
       "Blends in",
@@ -5599,7 +5602,7 @@
     },
     {
      "rank": 2,
-     "delta": 1,
+     "delta": 0,
      "isNew": false,
      "id": 2197271,
      "name": "세라마이드 모찌 토너",
@@ -5609,7 +5612,7 @@
      "size": "500ml",
      "priceKrw": 18000,
      "rating": 4.72,
-     "reviews": 19631,
+     "reviews": 19633,
      "url": "https://www.hwahae.co.kr/goods/77271",
      "topics": [
       "Bouncy / chewy texture",
@@ -5619,7 +5622,7 @@
     },
     {
      "rank": 3,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 2078467,
      "name": "아토베리어365 크림",
@@ -5629,7 +5632,7 @@
      "size": "80ml",
      "priceKrw": 33000,
      "rating": 4.68,
-     "reviews": 19184,
+     "reviews": 19189,
      "url": "https://www.hwahae.co.kr/goods/70740",
      "topics": [
       "Strengthens skin barrier",
@@ -5649,7 +5652,7 @@
      "size": "210ml",
      "priceKrw": 20000,
      "rating": 4.75,
-     "reviews": 29573,
+     "reviews": 29577,
      "url": "https://www.hwahae.co.kr/goods/26143",
      "topics": [
       "Exfoliates well",
@@ -5669,7 +5672,7 @@
      "size": "100ml",
      "priceKrw": 30000,
      "rating": 4.65,
-     "reviews": 34544,
+     "reviews": 34547,
      "url": "https://www.hwahae.co.kr/goods/74253",
      "topics": [
       "Fixes inner dryness",
@@ -5689,7 +5692,7 @@
      "size": "80ml",
      "priceKrw": 28000,
      "rating": 4.64,
-     "reviews": 3965,
+     "reviews": 3966,
      "url": "https://www.hwahae.co.kr/goods/75134",
      "topics": [
       "Fixes inner dryness",
@@ -5699,27 +5702,7 @@
     },
     {
      "rank": 7,
-     "delta": 0,
-     "isNew": false,
-     "id": 1889139,
-     "name": "아쿠아 스쿠알란 수분크림",
-     "brand": "에스네이처",
-     "brandEn": "S.NATURE",
-     "brandOfficial": true,
-     "size": "60ml",
-     "priceKrw": 28000,
-     "rating": 4.58,
-     "reviews": 44025,
-     "url": "https://www.hwahae.co.kr/goods/45194",
-     "topics": [
-      "Glowy",
-      "Fixes inner dryness",
-      "No pilling"
-     ]
-    },
-    {
-     "rank": 8,
-     "delta": 0,
+     "delta": 1,
      "isNew": false,
      "id": 1939812,
      "name": "다이브인 저분자 히알루론산 수딩 크림",
@@ -5729,12 +5712,32 @@
      "size": "100 ml / 3.38 fl. oz.",
      "priceKrw": 24000,
      "rating": 4.68,
-     "reviews": 27645,
+     "reviews": 27649,
      "url": "https://www.hwahae.co.kr/goods/69344",
      "topics": [
       "Fresh / light",
       "Lightweight",
       "Oil-free feel"
+     ]
+    },
+    {
+     "rank": 8,
+     "delta": -1,
+     "isNew": false,
+     "id": 1889139,
+     "name": "아쿠아 스쿠알란 수분크림",
+     "brand": "에스네이처",
+     "brandEn": "S.NATURE",
+     "brandOfficial": true,
+     "size": "60ml",
+     "priceKrw": 28000,
+     "rating": 4.58,
+     "reviews": 44032,
+     "url": "https://www.hwahae.co.kr/goods/45194",
+     "topics": [
+      "Glowy",
+      "Fixes inner dryness",
+      "No pilling"
      ]
     },
     {
@@ -5749,7 +5752,7 @@
      "size": "200ml",
      "priceKrw": 15000,
      "rating": 4.43,
-     "reviews": 95448,
+     "reviews": 95450,
      "url": "https://www.hwahae.co.kr/goods/48436",
      "topics": [
       "Exfoliates well",
@@ -5759,7 +5762,27 @@
     },
     {
      "rank": 10,
-     "delta": 0,
+     "delta": null,
+     "isNew": true,
+     "id": 2007562,
+     "name": "페이스 앤 바디 로션 포 베이비",
+     "brand": "클라리케",
+     "brandEn": "Keulrarike",
+     "brandOfficial": false,
+     "size": "347ml",
+     "priceKrw": 45000,
+     "rating": 4.81,
+     "reviews": 1196,
+     "url": "https://www.hwahae.co.kr/products/2007562",
+     "topics": [
+      "Comforting",
+      "Non-sticky",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 11,
+     "delta": -1,
      "isNew": false,
      "id": 2113285,
      "name": "PDRN 히알루론산 캡슐 100 세럼",
@@ -5769,7 +5792,7 @@
      "size": "30 mL / 1.01 fl.oz.",
      "priceKrw": 39000,
      "rating": 4.61,
-     "reviews": 12888,
+     "reviews": 12891,
      "url": "https://www.hwahae.co.kr/goods/69360",
      "topics": [
       "Glowy",
@@ -5778,28 +5801,8 @@
      ]
     },
     {
-     "rank": 11,
-     "delta": 1,
-     "isNew": false,
-     "id": 2131293,
-     "name": "세라마이드 아토 로션",
-     "brand": "일리윤",
-     "brandEn": "Illiyoon",
-     "brandOfficial": true,
-     "size": "350ML",
-     "priceKrw": 16900,
-     "rating": 4.79,
-     "reviews": 2834,
-     "url": "https://www.hwahae.co.kr/goods/74971",
-     "topics": [
-      "Spreads well",
-      "Non-irritating",
-      "Absorbs well"
-     ]
-    },
-    {
      "rank": 12,
-     "delta": -1,
+     "delta": 0,
      "isNew": false,
      "id": 1984093,
      "name": "다이브인 저분자 히알루론산 크림",
@@ -5809,7 +5812,7 @@
      "size": "80 ml / 2.70 fl. oz.",
      "priceKrw": 21000,
      "rating": 4.62,
-     "reviews": 26320,
+     "reviews": 26326,
      "url": "https://www.hwahae.co.kr/goods/46604",
      "topics": [
       "Fresh / light",
@@ -5819,7 +5822,27 @@
     },
     {
      "rank": 13,
-     "delta": 0,
+     "delta": -2,
+     "isNew": false,
+     "id": 2131293,
+     "name": "세라마이드 아토 로션",
+     "brand": "일리윤",
+     "brandEn": "Illiyoon",
+     "brandOfficial": true,
+     "size": "350ML",
+     "priceKrw": 16900,
+     "rating": 4.79,
+     "reviews": 2836,
+     "url": "https://www.hwahae.co.kr/goods/74971",
+     "topics": [
+      "Spreads well",
+      "Non-irritating",
+      "Absorbs well"
+     ]
+    },
+    {
+     "rank": 14,
+     "delta": -1,
      "isNew": false,
      "id": 2001721,
      "name": "아쿠아 스쿠알란 세럼",
@@ -5829,7 +5852,7 @@
      "size": "50ml",
      "priceKrw": 21000,
      "rating": 4.71,
-     "reviews": 12087,
+     "reviews": 12088,
      "url": "https://www.hwahae.co.kr/goods/80165",
      "topics": [
       "Bouncy / chewy texture",
@@ -5838,8 +5861,8 @@
      ]
     },
     {
-     "rank": 14,
-     "delta": 0,
+     "rank": 15,
+     "delta": -1,
      "isNew": false,
      "id": 2130253,
      "name": "PDRN 히알루론산 100 수분 크림",
@@ -5858,8 +5881,8 @@
      ]
     },
     {
-     "rank": 15,
-     "delta": 0,
+     "rank": 16,
+     "delta": -1,
      "isNew": false,
      "id": 2017136,
      "name": "초저분자 히아루론산 토너",
@@ -5869,7 +5892,7 @@
      "size": "300 ml / 10.14 fl. oz.",
      "priceKrw": 21000,
      "rating": 4.7,
-     "reviews": 9918,
+     "reviews": 9919,
      "url": "https://www.hwahae.co.kr/goods/62479",
      "topics": [
       "Fixes inner dryness",
@@ -5878,8 +5901,28 @@
      ]
     },
     {
-     "rank": 16,
-     "delta": 0,
+     "rank": 17,
+     "delta": 3,
+     "isNew": false,
+     "id": 2205251,
+     "name": "다이브인 저분자 히알루론산 세럼",
+     "brand": "토리든",
+     "brandEn": "Torriden",
+     "brandOfficial": true,
+     "size": "50 ml / 1.69 fl. oz.",
+     "priceKrw": 22000,
+     "rating": 4.69,
+     "reviews": 87137,
+     "url": "https://www.hwahae.co.kr/goods/79352",
+     "topics": [
+      "Hydrating",
+      "Spreads well",
+      "Moisturizing"
+     ]
+    },
+    {
+     "rank": 18,
+     "delta": -2,
      "isNew": false,
      "id": 2208708,
      "name": "301 수분 크림",
@@ -5898,8 +5941,8 @@
      ]
     },
     {
-     "rank": 17,
-     "delta": 0,
+     "rank": 19,
+     "delta": -2,
      "isNew": false,
      "id": 2109968,
      "name": "녹두 모공 타이트업 수딩 크림",
@@ -5909,7 +5952,7 @@
      "size": "60ml",
      "priceKrw": 26000,
      "rating": 4.58,
-     "reviews": 6200,
+     "reviews": 6201,
      "url": "https://www.hwahae.co.kr/goods/65070",
      "topics": [
       "Pore care",
@@ -5917,8 +5960,8 @@
      ]
     },
     {
-     "rank": 18,
-     "delta": 0,
+     "rank": 20,
+     "delta": -2,
      "isNew": false,
      "id": 1998036,
      "name": "레드 블레미쉬 클리어 수딩 크림",
@@ -5935,49 +5978,9 @@
       "Soothing",
       "Lightweight"
      ]
-    },
-    {
-     "rank": 19,
-     "delta": 0,
-     "isNew": false,
-     "id": 1890624,
-     "name": "캐롯 카로틴 카밍 워터 패드",
-     "brand": "스킨푸드",
-     "brandEn": "Seukinpudeu",
-     "brandOfficial": false,
-     "size": "250g (60매)",
-     "priceKrw": 26000,
-     "rating": 4.47,
-     "reviews": 21139,
-     "url": "https://www.hwahae.co.kr/goods/25110",
-     "topics": [
-      "Absorbs well",
-      "Moisturizing",
-      "Fixes inner dryness"
-     ]
-    },
-    {
-     "rank": 20,
-     "delta": 3,
-     "isNew": false,
-     "id": 2205251,
-     "name": "다이브인 저분자 히알루론산 세럼",
-     "brand": "토리든",
-     "brandEn": "Torriden",
-     "brandOfficial": true,
-     "size": "50 ml / 1.69 fl. oz.",
-     "priceKrw": 22000,
-     "rating": 4.69,
-     "reviews": 87122,
-     "url": "https://www.hwahae.co.kr/goods/79352",
-     "topics": [
-      "Hydrating",
-      "Spreads well",
-      "Moisturizing"
-     ]
     }
    ]
   }
  ],
- "updatedAt": "2026-10-29 05:00:00"
+ "updatedAt": "2026-11-05 05:00:00"
 }

@@ -31,6 +31,14 @@
 "date": "2026-11-04",
 "sig": "brand-atopalm-2026-10"
 },
+"https://koreanbeautynow.com/brand/beplain/": {
+"date": "2026-11-05",
+"sig": "brand-beplain-2026-11"
+},
+"https://koreanbeautynow.com/brand/mediheal/": {
+"date": "2026-11-05",
+"sig": "brand-mediheal-2026-11"
+},
 "https://koreanbeautynow.com/brand/s-nature/": {
 "date": "2026-11-04",
 "sig": "brand-s-nature-2026-10"
@@ -64,20 +72,20 @@
 "sig": "Modeling Mask Cup Pack|Madecassoside Essential Mask|Dive-In Low Molecular Hyaluronic Acid Mask|Carrot Carotene Calming Water Pad|Aqua Squalane Moisture Cream Wrapping Mask"
 },
 "https://koreanbeautynow.com/c/serum/": {
-"date": "2026-10-29",
-"sig": "Hyaluronic Boom Serum Water Drop|Real Hyaluronic Blue 100 Ampoule|PDRN Hyaluronic Acid Capsule 100 Serum|Aqua Squalane Serum|Neo Shot Skin Boost Serum"
+"date": "2026-11-05",
+"sig": "Hyaluronic Boom Serum Water Drop|Real Hyaluronic Blue 100 Ampoule|PDRN Hyaluronic Acid Capsule 100 Serum|Aqua Squalane Serum|Dive-In Low Molecular Hyaluronic Acid Serum"
 },
 "https://koreanbeautynow.com/c/skincare/": {
-"date": "2026-10-29",
-"sig": "Ceramide Mochi Toner|Hyaluronic Boom Serum Water Drop|Atobarrier 365 Cream|Aqua Oasis Toner|Real Hyaluronic Blue 100 Ampoule"
+"date": "2026-11-05",
+"sig": "Ceramide Mochi Toner|Hyaluronic Boom Serum Water Drop|Atobarrier 365 Cream|Aqua Oasis Toner|Face & Body Lotion for Baby"
 },
 "https://koreanbeautynow.com/c/sunscreen/": {
 "date": "2026-10-30",
 "sig": "Birch Juice Moisturizing Sunscreen|Zinc Mild Up Sunscreen|Hyaluronic Acid Fresh Sun Serum|Aqua 365 UV Sunscreen|Dive-In Mild Mineral Sunscreen"
 },
 "https://koreanbeautynow.com/c/toner/": {
-"date": "2026-10-29",
-"sig": "Ceramide Mochi Toner|Aqua Oasis Toner|1025 Dokdo Toner|Ultra Low Molecular Hyaluronic Acid Toner|Oligo Hyaluronic Acid Deep Toner"
+"date": "2026-11-05",
+"sig": "Ceramide Mochi Toner|Aqua Oasis Toner|1025 Dokdo Toner|Ultra Low Molecular Hyaluronic Acid Toner|Dive-In Low Molecular Hyaluronic Acid Toner"
 },
 "https://koreanbeautynow.com/guide/k-beauty-black-friday/": {
 "date": "2026-11-03",
@@ -167,6 +175,10 @@
 "date": "2026-11-01",
 "sig": "product-2098300-2026-W44"
 },
+"https://koreanbeautynow.com/p/2101095/": {
+"date": "2026-11-05",
+"sig": "product-2101095-2026-W45"
+},
 "https://koreanbeautynow.com/p/2107391/": {
 "date": "2026-11-02",
 "sig": "product-2107391-2026-W44"
@@ -232,8 +244,8 @@
 "sig": "Hyaluronic Boom Serum Water Drop|Ceramide Mochi Toner|Atobarrier 365 Cream|Aqua Oasis Toner|Real Hyaluronic Blue 100 Ampoule"
 },
 "https://koreanbeautynow.com/trending/": {
-"date": "2026-10-29",
-"sig": "Bio Repair Ampoule|Oat Micellar Cleansing Milk|Face & Body Lotion for Baby|Black Cushion Foundation|Neo Shot Skin Boost Serum"
+"date": "2026-11-05",
+"sig": "Face & Body Lotion for Baby|비타 토닝 캡슐 세럼 나이아신아마이드 5%|Dive-In Low Molecular Hyaluronic Acid Serum|말차 디퍼핑 클렌징 밀크|비타 토닝 캡슐 크림 나이아신아마이드 5%"
 },
 "https://whistlewhistle311-web.github.io/kbeauty-now/c/all/": {
 "date": "2026-10-29",
