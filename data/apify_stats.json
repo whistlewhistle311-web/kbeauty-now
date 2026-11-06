@@ -1,25 +1,25 @@
 {
- "at": "2026-11-06T02:48Z",
+ "at": "2026-11-06T11:28Z",
  "actors": [
+  {
+   "name": "hwahae-kbeauty-ranking-tracker",
+   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)",
+   "users30": 1,
+   "users": 2,
+   "runs": 10,
+   "pricing": "PAY_PER_EVENT"
+  },
   {
    "name": "daangn-used-price-index",
    "title": "Daangn Scraper - Karrot Used Price Index (Korea Second-hand)",
    "users30": 1,
    "users": 2,
-   "runs": 9,
+   "runs": 10,
    "pricing": "PAY_PER_EVENT"
   },
   {
    "name": "danawa-price-compare",
    "title": "Korea Price Comparison (Danawa) - Naver Shopping Alternative",
-   "users30": 1,
-   "users": 2,
-   "runs": 8,
-   "pricing": "PAY_PER_EVENT"
-  },
-  {
-   "name": "hwahae-kbeauty-ranking-tracker",
-   "title": "Hwahae Scraper - K-Beauty Rankings API (Korean Skincare)",
    "users30": 1,
    "users": 2,
    "runs": 9,
@@ -30,7 +30,7 @@
    "title": "Naver News & Blog Scraper - Cafe Keyword Monitor (Official API)",
    "users30": 1,
    "users": 2,
-   "runs": 10,
+   "runs": 11,
    "pricing": "PAY_PER_EVENT"
   },
   {
@@ -38,7 +38,7 @@
    "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
    "users30": 1,
    "users": 2,
-   "runs": 11,
+   "runs": 12,
    "pricing": "PAY_PER_EVENT"
   },
   {
