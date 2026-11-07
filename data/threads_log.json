@@ -69,5 +69,11 @@
   "key": "2026-11-07-2-error",
   "error": "400 {\"error\":{\"message\":\"Fatal\",\"type\":\"OAuthException\",\"code\":-1,\"error_subcode\":4279047,\"is_transient\":false,\"error_user_title\":\"Invalid Link Attachment\",\"error_user_msg\":\"The post you're trying to publish has an invalid link attachment.\",\"fbtrace_id\":\"AddgKZw39TH4e12BgTWom-q\"}}",
   "at": "2026-11-07T16:59+00:00"
+ },
+ {
+  "key": "2026-11-07-2",
+  "id": "18126492737292971",
+  "category": "value-cleansing",
+  "at": "2026-11-07T18:19+00:00"
  }
 ]
