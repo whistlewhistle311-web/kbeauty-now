@@ -80,5 +80,11 @@
   "key": "2026-11-08-2-error",
   "error": "400 {\"error\":{\"message\":\"Fatal\",\"type\":\"OAuthException\",\"code\":-1,\"error_subcode\":4279047,\"is_transient\":false,\"error_user_title\":\"Invalid Link Attachment\",\"error_user_msg\":\"The post you're trying to publish has an invalid link attachment.\",\"fbtrace_id\":\"At6SxV4gUHbREevAdJXnBpr\"}}",
   "at": "2026-11-08T17:14+00:00"
+ },
+ {
+  "key": "2026-11-08-2",
+  "id": "18124589914731004",
+  "category": "compare-cream",
+  "at": "2026-11-08T18:30+00:00"
  }
 ]
