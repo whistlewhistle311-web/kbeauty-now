@@ -167,4 +167,8 @@ N = {
 '호호바 립 에센스 [원료향]': 'Jojoba Lip Essence (Natural Scent)',
 '히알루로닉 붐 세럼 워터 드롭': 'Hyaluronic Boom Serum Water Drop',
 '히알루론산 프레쉬 선 세럼 [SPF50+/PA++++]': 'Hyaluronic Acid Fresh Sun Serum SPF50+ PA++++',
+'(유니레버) 립 테라피 미니자 립밤 [오리지널]': '(Unilever) Lip Therapy Mini Jar Lip Balm (Original)',
+'말차 디퍼핑 클렌징 밀크': 'Matcha Deeperping Cleansing Milk',
+'비타 토닝 캡슐 세럼 나이아신아마이드 5%': 'Vita Toning Capsule Serum Niacinamide 5%',
+'비타 토닝 캡슐 크림 나이아신아마이드 5%': 'Vita Toning Capsule Cream Niacinamide 5%',
 }
