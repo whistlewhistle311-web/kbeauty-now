@@ -1,5 +1,5 @@
 {
- "at": "2026-11-12T04:12Z",
+ "at": "2026-11-12T13:14Z",
  "actors": [
   {
    "name": "daangn-used-price-index",
@@ -7,14 +7,6 @@
    "users30": 2,
    "users": 3,
    "runs": 16,
-   "pricing": "PAY_PER_EVENT"
-  },
-  {
-   "name": "naver-shopping-insight-search-trends",
-   "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
-   "users30": 1,
-   "users": 2,
-   "runs": 17,
    "pricing": "PAY_PER_EVENT"
   },
   {
@@ -42,6 +34,14 @@
    "pricing": "PAY_PER_EVENT"
   },
   {
+   "name": "naver-shopping-insight-search-trends",
+   "title": "Naver DataLab Scraper - Shopping Insight & Keyword Trends API",
+   "users30": 1,
+   "users": 2,
+   "runs": 17,
+   "pricing": "PAY_PER_EVENT"
+  },
+  {
    "name": "kakao-map-places-api",
    "title": "Kakao Map Scraper - Places Extractor (Official API, No 45 Cap)",
    "users30": 0,
@@ -51,7 +51,7 @@
   }
  ],
  "account": {
-  "plan": "FREE"
+  "error": "HTTP Error 401: Unauthorized"
  },
  "log": []
 }
