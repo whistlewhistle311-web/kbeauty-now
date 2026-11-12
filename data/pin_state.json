@@ -43,6 +43,10 @@
 "date": "2026-11-05",
 "sig": "brand-beplain-2026-11"
 },
+"https://koreanbeautynow.com/brand/isoi/": {
+"date": "2026-11-12",
+"sig": "brand-isoi-2026-11"
+},
 "https://koreanbeautynow.com/brand/mediheal/": {
 "date": "2026-11-05",
 "sig": "brand-mediheal-2026-11"
@@ -72,8 +76,8 @@
 "sig": "Atobarrier 365 Cream|Aqua Squalane Moisture Cream|Real Hyaluronic Soothing Cream|Dive-In Low Molecular Hyaluronic Acid Soothing Cream|PDRN Hyaluronic Acid 100 Moisture Cream"
 },
 "https://koreanbeautynow.com/c/cushion/": {
-"date": "2026-10-30",
-"sig": "Essential Skin Nuder Cushion|Texture Cushion|Skincare Vegan Cushion|Oligo Hyaluronic Acid Healthy Cream Cushion|Black Cushion Foundation"
+"date": "2026-11-12",
+"sig": "Texture Cushion|Essential Skin Nuder Cushion|Skincare Vegan Cushion|Oligo Hyaluronic Acid Healthy Cream Cushion|Black Cushion Foundation"
 },
 "https://koreanbeautynow.com/c/lip/": {
 "date": "2026-11-06",
@@ -88,8 +92,8 @@
 "sig": "Hyaluronic Boom Serum Water Drop|Real Hyaluronic Blue 100 Ampoule|PDRN Hyaluronic Acid Capsule 100 Serum|Aqua Squalane Serum|Dive-In Low Molecular Hyaluronic Acid Serum"
 },
 "https://koreanbeautynow.com/c/skincare/": {
-"date": "2026-11-05",
-"sig": "Ceramide Mochi Toner|Hyaluronic Boom Serum Water Drop|Atobarrier 365 Cream|Aqua Oasis Toner|Face & Body Lotion for Baby"
+"date": "2026-11-12",
+"sig": "Ceramide Mochi Toner|Hyaluronic Boom Serum Water Drop|Atobarrier 365 Cream|Aqua Oasis Toner|Real Hyaluronic Blue 100 Ampoule"
 },
 "https://koreanbeautynow.com/c/sunscreen/": {
 "date": "2026-10-30",
@@ -106,6 +110,10 @@
 "https://koreanbeautynow.com/compare/aestura-atobarrier-365-cream-vs-s-nature-aqua-squalane-moisture-cream/": {
 "date": "2026-11-09",
 "sig": "compare-cream-2026-11"
+},
+"https://koreanbeautynow.com/compare/anua-texture-cushion-vs-jung-saem-mool-beauty-essential-skin-nuder-cushion/": {
+"date": "2026-11-12",
+"sig": "compare-cushion-2026-11"
 },
 "https://koreanbeautynow.com/compare/beplain-mung-bean-ph-balanced-cleansing-foam-vs-shionle-kelp-ampoule-cleansing-foam/": {
 "date": "2026-11-10",
@@ -304,16 +312,16 @@
 "sig": "Ceramide Mochi Toner|Atobarrier 365 Cream|Hyaluronic Boom Serum Water Drop|PDRN Hyaluronic Acid Capsule 100 Serum|Face & Body Lotion for Baby"
 },
 "https://koreanbeautynow.com/skin/oily/": {
-"date": "2026-10-30",
-"sig": "Aqua Oasis Toner|Ceramide Mochi Toner|Dive-In Low Molecular Hyaluronic Acid Soothing Cream|Hyaluronic Boom Serum Water Drop|Real Hyaluronic Blue 100 Ampoule"
+"date": "2026-11-12",
+"sig": "Aqua Oasis Toner|Ceramide Mochi Toner|Dive-In Low Molecular Hyaluronic Acid Soothing Cream|Real Hyaluronic Blue 100 Ampoule|Atobarrier 365 Cream"
 },
 "https://koreanbeautynow.com/skin/sensitive/": {
 "date": "2026-11-06",
 "sig": "Hyaluronic Boom Serum Water Drop|Ceramide Mochi Toner|Atobarrier 365 Cream|Aqua Oasis Toner|Face & Body Lotion for Baby"
 },
 "https://koreanbeautynow.com/trending/": {
-"date": "2026-11-05",
-"sig": "Face & Body Lotion for Baby|비타 토닝 캡슐 세럼 나이아신아마이드 5%|Dive-In Low Molecular Hyaluronic Acid Serum|말차 디퍼핑 클렌징 밀크|비타 토닝 캡슐 크림 나이아신아마이드 5%"
+"date": "2026-11-12",
+"sig": "Dive-In Low Molecular Hyaluronic Acid Serum|Aqua Collagen Peptide Triple Gel Essence|Black Cushion Foundation|(Unilever) Lip Therapy Mini Jar Lip Balm|Texture Cushion"
 },
 "https://koreanbeautynow.com/value/cleansing/": {
 "date": "2026-11-08",
