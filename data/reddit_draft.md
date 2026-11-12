@@ -6,11 +6,11 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 
 - S.NATURE Aqua Collagen Peptide Triple Gel Essence: #10 to #8 in Korean serums and essences (4.64, 19,313 reviews)
 - Hera Black Cushion Foundation SPF34 PA++ (17N1 Ivory): #10 to #8 in Korean cushion foundations (4.45, 298 reviews)
-- Vaseline (Unilever) Lip Therapy Mini Jar Lip Balm (Original): #20 to #18 in Korean lip products (4.61, 1,198 reviews)
+- Vaseline (Unilever) Lip Therapy Mini Jar Lip Balm (Original): #20 to #18 in Korean lip products (4.61, 1,199 reviews)
 - Anua Texture Cushion SPF50+ PA+++ (03 Natural): #2 to #1 in Korean cushion foundations (4.48, 25 reviews)
 - Dibeu Juvé Lip Serum (01 Ju Rose): #5 to #4 in Korean lip products (4.60, 603 reviews)
 - LAYER LAB Niosome Panthenol 5% Serum: #8 to #7 in Korean serums and essences (4.63, 1,133 reviews)
-- S.NATURE Super Aqua Gel Oasis Ampoule Mask: #8 to #7 in Korean face masks (4.70, 7,505 reviews)
+- S.NATURE Super Aqua Gel Oasis Ampoule Mask: #8 to #7 in Korean face masks (4.70, 7,506 reviews)
 
 **New in a top 20**
 
