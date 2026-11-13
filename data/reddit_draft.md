@@ -14,7 +14,7 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 
 **New in a top 20**
 
-- isoi 립 트리트먼트 로즈립밤: #20 in Korean lip products
+- isoi Lip Treatment Rose Lip Balm (Rosy Coral): #20 in Korean lip products
 
 **In the overall top 20 every day (2 days)**
 

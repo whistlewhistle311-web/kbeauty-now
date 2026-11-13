@@ -57,6 +57,7 @@ N = {
 '릴리프 하이드레이션 라이트 폼 클렌저': 'Relief Hydration Light Foam Cleanser',
 '립 슬리핑 마스크 EX [베리]': 'Lip Sleeping Mask EX (Berry)',
 '립 트리트먼트 로즈립밤 [베리로즈]': 'Lip Treatment Rose Lip Balm (Berry Rose)',
+'립 트리트먼트 로즈립밤 [로지코랄]': 'Lip Treatment Rose Lip Balm (Rosy Coral)',
 '립 트리트먼트 밤 [퓨어레드]': 'Lip Treatment Balm (Pure Red)',
 '마다가스카르 리얼 수분크림': 'Madagascar Real Moisture Cream',
 '마데카소사이드 수분 선세럼 흔적 리페어 [SPF50+/PA++++]': 'Madecassoside Hydrating Sun Serum, Blemish-Mark Repair SPF50+ PA++++',
