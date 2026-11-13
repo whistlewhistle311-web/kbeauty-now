@@ -10,7 +10,7 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 - Anua Texture Cushion SPF50+ PA+++ (03 Natural): #2 to #1 in Korean cushion foundations (4.48, 25 reviews)
 - Dibeu Juvé Lip Serum (01 Ju Rose): #5 to #4 in Korean lip products (4.60, 603 reviews)
 - LAYER LAB Niosome Panthenol 5% Serum: #8 to #7 in Korean serums and essences (4.63, 1,133 reviews)
-- S.NATURE Super Aqua Gel Oasis Ampoule Mask: #8 to #7 in Korean face masks (4.70, 7,507 reviews)
+- S.NATURE Super Aqua Gel Oasis Ampoule Mask: #8 to #7 in Korean face masks (4.70, 7,508 reviews)
 
 **New in a top 20**
 
