@@ -172,4 +172,12 @@ N = {
 '말차 디퍼핑 클렌징 밀크': 'Matcha Deeperping Cleansing Milk',
 '비타 토닝 캡슐 세럼 나이아신아마이드 5%': 'Vita Toning Capsule Serum Niacinamide 5%',
 '비타 토닝 캡슐 크림 나이아신아마이드 5%': 'Vita Toning Capsule Cream Niacinamide 5%',
+'리바이탈 어드밴스드 크림': 'Revital Advanced Cream',
+'비타 캡슐 안티에이징 선크림 [SPF50+/PA++++]': 'Vita Capsule Anti-Aging Sunscreen SPF50+ PA++++',
+'세라마이드 무향 비건 립밤': 'Ceramide Fragrance-Free Vegan Lip Balm',
+'시카테롤 토너': 'Cicaterol Toner',
+'워터풀 선크림 [SPF50+/PA++++] [톤업/퍼플]': 'Waterfull Sunscreen SPF50+ PA++++ (Tone-Up / Purple)',
+'카밍 클리어 크림': 'Calming Clear Cream',
+'커버리셔스 얼티밋 화이트 쿠션 에어 [SPF50+/PA++++] [21C 로제]': 'Covericious Ultimate White Cushion Air SPF50+ PA++++ (21C Rose)',
+'피디알엔 모공 탄력 패드': 'PDRN Pore Elasticity Pad',
 }

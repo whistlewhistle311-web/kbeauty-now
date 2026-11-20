@@ -14,13 +14,13 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 
 **New in a top 20**
 
-- Rijyueksel 리바이탈 어드밴스드 크림: #13 in Korean moisturizers
-- Rijyueksel 카밍 클리어 크림: #16 in Korean moisturizers
-- d'Alba 비타 캡슐 안티에이징 선크림 [SPF50+/PA++++]: #16 in Korean sunscreens
-- Banila Co 커버리셔스 얼티밋 화이트 쿠션 에어 [SPF50+/PA++++]: #18 in Korean cushion foundations
-- beplain 시카테롤 토너: #20 in Korean toners
-- Mediheal 피디알엔 모공 탄력 패드: #20 in Korean face masks
-- d'Alba 워터풀 선크림 [SPF50+/PA++++]: #20 in Korean sunscreens
+- Rijyueksel Revital Advanced Cream: #13 in Korean moisturizers
+- Rijyueksel Calming Clear Cream: #16 in Korean moisturizers
+- d'Alba Vita Capsule Anti-Aging Sunscreen SPF50+ PA++++: #16 in Korean sunscreens
+- Banila Co Covericious Ultimate White Cushion Air SPF50+ PA++++ (21C Rose): #18 in Korean cushion foundations
+- beplain Cicaterol Toner: #20 in Korean toners
+- Mediheal PDRN Pore Elasticity Pad: #20 in Korean face masks
+- d'Alba Waterfull Sunscreen SPF50+ PA++++ (Tone-Up / Purple): #20 in Korean sunscreens
 
 **In the overall top 20 every day (2 days)**
 
