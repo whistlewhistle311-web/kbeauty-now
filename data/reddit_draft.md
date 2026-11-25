@@ -4,12 +4,12 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 
 **Biggest climbers**
 
-- Dr.G Red Blemish Clear Soothing Cream EX: #17 to #11 in Korean moisturizers (4.65, 44,083 reviews)
+- Dr.G Red Blemish Clear Soothing Cream EX: #17 to #11 in Korean moisturizers (4.65, 44,086 reviews)
 - YBK Relief Hydration Light Foam Cleanser: #20 to #17 in Korean cleansers (4.68, 6,382 reviews)
 - 3NOUGH Daily Conscious Serum: #12 to #10 in Korean serums and essences (4.62, 2,295 reviews)
-- Illiyoon Ceramide Ato 6.0 Top-to-Toe Wash: #7 to #6 in Korean cleansers (4.70, 11,680 reviews)
+- Illiyoon Ceramide Ato 6.0 Top-to-Toe Wash: #7 to #6 in Korean cleansers (4.70, 11,682 reviews)
 - Innisfree Canola Honey Lip Balm (Extra Moisture): #7 to #6 in Korean lip products (4.63, 620 reviews)
-- AMPLE:N Ceramide Shot Ampoule: #10 to #9 in Korean serums and essences (4.53, 10,069 reviews)
+- AMPLE:N Ceramide Shot Ampoule: #10 to #9 in Korean serums and essences (4.53, 10,068 reviews)
 - Dr.G Red Blemish Clear Soothing Cream: #10 to #9 in Korean moisturizers (4.39, 43,250 reviews)
 
 **New in a top 20**
