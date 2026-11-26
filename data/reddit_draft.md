@@ -1,36 +1,35 @@
-Title: What moved on Hwahae (Korea's biggest cosmetics review app) this week, 2026-11-12 to 2026-11-19
+Title: What moved on Hwahae (Korea's biggest cosmetics review app) this week, 2026-11-19 to 2026-11-26
 
 I track the public Hwahae top 20s every day. Here is what changed over the last week. Ratings and review counts are from Korean users.
 
 **Biggest climbers**
 
-- Dr.G Red Blemish Clear Soothing Cream EX: #17 to #11 in Korean moisturizers (4.65, 44,106 reviews)
-- YBK Relief Hydration Light Foam Cleanser: #20 to #17 in Korean cleansers (4.68, 6,382 reviews)
-- 3NOUGH Daily Conscious Serum: #12 to #10 in Korean serums and essences (4.62, 2,295 reviews)
-- Illiyoon Ceramide Ato 6.0 Top-to-Toe Wash: #7 to #6 in Korean cleansers (4.70, 11,685 reviews)
-- Innisfree Canola Honey Lip Balm (Extra Moisture): #7 to #6 in Korean lip products (4.63, 620 reviews)
-- AMPLE:N Ceramide Shot Ampoule: #10 to #9 in Korean serums and essences (4.53, 10,068 reviews)
-- Dr.G Red Blemish Clear Soothing Cream: #10 to #9 in Korean moisturizers (4.39, 43,253 reviews)
+- Mediheal Madecassoside Blemish-Mark Repair Serum: #13 to #10 in Korean serums and essences (4.36, 9,351 reviews)
+- Rijyueksel Calming Clear Cream: #16 to #13 in Korean moisturizers (4.59, 420 reviews)
+- Aestura Atobarrier 365 Hydro Essence: #15 to #13 in Korean serums and essences (4.63, 3,083 reviews)
+- ShionLe Kelp Collagen Firming Mask: #15 to #13 in Korean face masks (4.59, 1,835 reviews)
+- S.NATURE Aqua 365 UV Sunscreen SPF50+ PA++++: #4 to #3 in Korean sunscreens (4.72, 5,104 reviews)
+- Laneige Lip Sleeping Mask EX (Berry): #7 to #6 in Korean lip products (4.49, 3,876 reviews)
+- about_tone Skin Layer Fit Cushion SPF30 PA++ (22 Ivory): #9 to #8 in Korean cushion foundations (4.13, 165 reviews)
 
 **New in a top 20**
 
-- Rijyueksel Revital Advanced Cream: #13 in Korean moisturizers
-- Rijyueksel Calming Clear Cream: #16 in Korean moisturizers
-- d'Alba Vita Capsule Anti-Aging Sunscreen SPF50+ PA++++: #16 in Korean sunscreens
-- Banila Co Covericious Ultimate White Cushion Air SPF50+ PA++++ (21C Rose): #18 in Korean cushion foundations
-- beplain Cicaterol Toner: #20 in Korean toners
-- Mediheal PDRN Pore Elasticity Pad: #20 in Korean face masks
-- d'Alba Waterfull Sunscreen SPF50+ PA++++ (Tone-Up / Purple): #20 in Korean sunscreens
+- Bidibichi 블랙 퍼펙션 커버 핏 쿠션 [SPF40/PA++]: #19 in Korean cushion foundations
+- Dakteoikua NMN 1% 나이아신아마이드 2% 에너자이징 글로우 세럼: #20 in Korean serums and essences
+- Rijyueksel 비타 비쓰리 크림: #20 in Korean moisturizers
+- Anua 어성초 약산성 딥 클렌징 워터: #20 in Korean cleansers
+- Itcheuseukin 파워10 감초줄렌 젤리패드: #20 in Korean face masks
+- Beauty of Joseon Relief Sun: Rice + Probiotics SPF50+ PA++++: #20 in Korean sunscreens
 
 **In the overall top 20 every day (2 days)**
 
-- TONYMOLY Ceramide Mochi Toner (#1 today)
-- Aestura Atobarrier 365 Cream (#2 today)
+- Aestura Atobarrier 365 Cream (#1 today)
+- TONYMOLY Ceramide Mochi Toner (#2 today)
 - Abib Hyaluronic Boom Serum Water Drop (#3 today)
 - beplain Mung Bean pH-Balanced Cleansing Foam (#4 today)
 - S.NATURE Aqua Oasis Toner (#5 today)
 - Wellage Real Hyaluronic Blue 100 Ampoule (#6 today)
-- KLALYKKE Face & Body Lotion for Baby (#7 today)
+- ShionLe Kelp Ampoule Cleansing Foam (#7 today)
 
 Full daily lists (English names, Korean prices) if anyone wants them: https://koreanbeautynow.com/this-week/
 
