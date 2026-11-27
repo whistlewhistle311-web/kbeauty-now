@@ -5,7 +5,7 @@ I track the public Hwahae top 20s every day. Here is what changed over the last 
 **Biggest climbers**
 
 - Mediheal Madecassoside Blemish-Mark Repair Serum: #13 to #10 in Korean serums and essences (4.36, 9,352 reviews)
-- Rijyueksel Calming Clear Cream: #16 to #13 in Korean moisturizers (4.59, 423 reviews)
+- Rijyueksel Calming Clear Cream: #16 to #13 in Korean moisturizers (4.59, 428 reviews)
 - Aestura Atobarrier 365 Hydro Essence: #15 to #13 in Korean serums and essences (4.63, 3,084 reviews)
 - ShionLe Kelp Collagen Firming Mask: #15 to #13 in Korean face masks (4.59, 1,835 reviews)
 - S.NATURE Aqua 365 UV Sunscreen SPF50+ PA++++: #4 to #3 in Korean sunscreens (4.72, 5,106 reviews)
